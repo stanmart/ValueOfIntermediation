@@ -4,7 +4,7 @@ rule paper:
     output:
         pdf = "out/paper/paper.pdf"
     params:
-        pdf_wo_ext = "out/paper/paper"
+        outdir = "out/paper/"
     shell:
-        "latexmk -pdf -jobname={params.pdf_wo_ext} {input.tex}"
+        "latexmk -outdir={params.outdir} -pdf -shell-escape {input.tex}"
     
