@@ -41,16 +41,16 @@
 
 The use of solution concepts from cooperative game theory, such as the Shapley-value, to model the outcome of a bargaining process has been a feature of many papers in the industrial organization literature. It is particularly prevalent in articles dealing with issues related to integration and mergers \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}. This is in part motivated by the appealing properties of the resulting distributions, their tractability, but also by the long line of studies showing that various bargaining procedures lead to such outcomes. For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,} or, perhaps most relevant to this paper, \textcite{stole1996intra} all propose various extensive-form bargaining games in which the expected outcomes correspond to players' Shapley-values.
 
-A common feature of the aforementioned papers is that they involve models with a finite number of agents. However, as is often the case in economics, the infinite-player approximations might turn out to be more tractable while retaining the main conclusions of the finite models from which they arise. Indeed, in the case of cooperative games with non-atomic players, the axiomatic and asymptotic approaches both give rise to the same value\footnote{On the appropriate subspace of non-atomic games.} \parencite{aumann2015values}, which is furthermore analytically simple and readily interpretable. An economic application of this theory can be found in \textcite{billera1978internal}.
+A common feature of the aforementioned papers is that they involve models with a finite number of agents. However, as is often the case in economics, infinite-player approximations might turn out to be more tractable while retaining the main conclusions of the finite models from which they arise. Indeed, in the case of cooperative games with non-atomic players, the axiomatic and asymptotic approaches both give rise to the same value\footnote{On the appropriate subspace of non-atomic games.} \parencite{aumann2015values}, which is furthermore analytically simple and readily interpretable. An economic application of this theory can be found in \textcite{billera1978internal}.
 
 Beyond games with no atoms, economists are often interested in situations characterized by a relatively small number of large players and numerous individually rather insignificant ones. The continuous analogue of them are called oceanic games, in which the set of players consists of a finite number of atoms and an ocean made up of a continuum of fringe players. While the axiomatic characterization of the value on such games has not been particularly fruitful,\footnote{\textcite{hart1973values} shows that the usual axioms do not characterize a unique value in general.} \textcite{fogelman1980asymptotic} demonstrates that the asymptotic approach works well on a large subset of them.
 
-Despite this positive result, and their analytical tractability, oceanic games are utilized by hardly any papers in economics. One of the few such examples is \textcite{levy1997individual}, applying it to the problem of wage bargaining. In the following, I propose an oceanic game with the main feature that the large player(s) is indispensable for creating value. Such a model can apply, for example, to upstream-downstream supply chains, or platforms connecting two sides of a market. I demonstrate that the values of the players in those models are described by easily interpretable and visualizable expressions. Furthermore, the results are simple enough that these games can be embedded into more complex models, for example, as the second stage of a sequential game \parencite[as in e.g.][]{montez2007downstream}. Just as importantly, the outcomes are in line with one's intuitive expectations of bargaining outcomes in such situations.
+Despite this positive result, and their analytical tractability, oceanic games are utilized by hardly any papers in economics. One of the few such examples is \textcite{levy1997individual}, applying it to the problem of wage bargaining. In the following, I propose an oceanic game with the main feature that the large player(s) is indispensable for creating value. Such a model can apply, for example, to upstream-downstream supply chains, or platforms connecting two sides of a market. I demonstrate that the values of the players in those models are described by easily interpretable and visualizable expressions. Furthermore, the results are simple enough that these games can be embedded into more complex models, for example, as the second stage of a sequential game \parencite[as in e.g.][]{montez2007downstream}. Furthermore, the outcomes are in line with one's intuitive expectations of bargaining outcomes in such situations.
 
 
 \section{One-sided case}
 
-Imagine a cooperative game with two types of players: a major player $P$ and $n$ smaller players. I.e., $N = \{P, A_1, \dots, A_n\}$. Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical. Let $n_T(S)$ denote the number of players of type $T$ in coalition $S$. Then, the value $S \subset N$ can achieve is the following:
+Imagine a cooperative game with two types of players: a major player $P$ and $n$ smaller players. I.e., $N = \{P, A_1, \dots, A_n\}$. Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical. Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$. Then, the value $S \subset N$ can achieve is the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } P \notin S \\
@@ -63,7 +63,7 @@ One can think of this setting as a (one-sided) platform and a number of potentia
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
 \end{proposition}
 \begin{proof}
-    Monotonicity is evident. For superadditivity, note that for any $S, T$ such that $S \cap T = \emptyset$, $P \notin S$ or $P \notin T$. WLOG assume it is the latter, therefore $v(T) = 0$. As a result, $v(S) + v(T) = v(S) \leq v(S \cup T)$ holds if and only if $(N, v)$ is monotone.
+    Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
 \end{proof}
 In the following, let us assume that the assumptions required for monotonicity are always satisfied. It ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies: asymptotic value coincides with the axiomatic one using the uniform distribution for the latter. \textcolor{red}{Note: I realize that this paragraph is somewhat vague and needs explanation. However, for the current set of results, I do not rely on said theorem. If I end up using it later, I will expand on this part.}
 
@@ -76,7 +76,7 @@ Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ play
     \end{align*}
 \end{proposition}
 \begin{proof}
-    For a permutation of players $R$, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
+    Let $R$ denote a permutation of the set of players ($N$). Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
     \begin{align*}
         \varphi_P^n = \frac{1}{(n+1)!} \sum_R v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)
     \end{align*}
@@ -84,7 +84,7 @@ Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ play
     \begin{align*}
         v(\mathcal{P}_P^R \cup \{i\}) = f(n_A(\mathcal{P}_P^R \cup \{i\}) / n) = f(|\mathcal{P}_P^R| / n).
     \end{align*}
-    Finally, the set of permutations in which the number of players preceding $P$ is $k$ is independent of $n$, i.e.
+    Finally, the set of permutations in which $k$ number of players precede $P$ is independent of $n$, i.e.
     \begin{align*}
         \{R \mid |\mathcal{P}_P^R| = k\} = n! \quad \forall\, k.
     \end{align*}
@@ -105,7 +105,7 @@ Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ play
 The above proposition is not surprising in light of \textcite{fogelman1980asymptotic}: the limit is just the expected marginal contribution of the single atomic player, with said player being placed in the order according to the uniform distribution. Nevertheless, even this simple result has a compelling geometric interpretation, and gives rise to a couple of interesting corollaries, detailed below.
 
 \begin{corollary}
-    The aggregated Shapley-value of the fringe (alternatively, the per-unit Shapley-value of the fringe) is
+    The aggregated Shapley-value of the fringe is
     \begin{align*}
         \varphi_A^\infty = f(1) - \int_0^1 f(t) \dt.
     \end{align*}
@@ -125,7 +125,7 @@ The above proposition is not surprising in light of \textcite{fogelman1980asympt
     \end{align*}
 \end{proof}
 
-It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ and $f(1)$) player $P$ gets a larger share of the surplus when $f(t)$ is large even for small values of $t$. It corresponds to the case when only a small fraction of the fringe is needed to create most of the surplus (e.g. their products are substitutes of each other). This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms could obtain high values.
+It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ and $f(1)$) player $P$ gets a larger share of the surplus when $f(t)$ is larger for every $t$. It corresponds to the case when only a small fraction of the fringe is needed to create most of the surplus (e.g. their products are substitutes of each other). This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms could obtain high values.
 
 \begin{figure}
     \centering
@@ -155,14 +155,14 @@ It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ an
     If $f$ is monotone increasing, then $f(0) \leq \int_0^1 f(t) \dt \leq f(1)$. The inequalities become strict if $f$ is not constant on the whole interval.
 \end{proof}
 
-This proposition gives credence to using asymptotics to model situations with a finite, albeit large number of players. Even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value converges to a positive value.
+This proposition implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value converges to a positive value.
 
 
 \subsection{Weighted Shapley-values}
 
 Imagine a general non-cooperative game $(N, v)$ with $N = \{1, \dots, n\}$. Assume that, in addition to the value function $v : 2^n \to \mathbb{R}$, the game is also endowed with a weight system $\lambda \in \mathbb{R}^n$. These weights can be thought of as measures of innate bargaining power \parencite{shapley1953additive}, not reflected in the value function. Further support for this interpretation can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{For example, only one player having a positive value corresponds to them making take it or leave it offers.}
 
-For my purposes, it is sufficient to deal with the case of simple weights. I.e., assume that there is at most one player with zero weight. I make use of the fact that weighted Shapley values can be calculated by weighting the permutations by the probabilities arising from the following sequential entry procedure \parencite{kalai1987weighted}. Start adding players from the end. The probability of player $i$ being the last amongst the set of remaining players $R$ is $\lambda_i / \sum_{j \in R} \lambda_j$. This yields a well-defined probability for each permutation of players.
+For my purposes, it is sufficient to deal with the case of simple weights. I.e., assume that there is at most one player with zero weight. I make use of the fact that weighted Shapley values can be calculated by weighting the permutations by the probabilities arising from the following sequential entry procedure \parencite{kalai1987weighted}. Start with the set of all players. Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$. This yields a well-defined probability for each permutation of players. Continue until all players are exhausted.
 
 Getting back to the game at hand, let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively. Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the above procedure. Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
 \begin{align*}
@@ -210,7 +210,7 @@ The following lemma establishes the continuous analogue of this statement.
         &= t^\lambda.
     \end{align*}
 
-    For $t=0$, simply observe that
+    For $t=0$, simply observe that \textcolor{red}{Have to elaborate on this}
     \begin{align*}
         \lim_{n \to \infty} \prod_{j = 1}^n \frac{j}{j + \lambda} = 0 = 0^\lambda.
     \end{align*}
