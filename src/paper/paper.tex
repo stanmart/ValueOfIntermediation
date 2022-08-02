@@ -60,11 +60,10 @@ Imagine a cooperative game with two types of players: a major player $P$ and $n$
 One can think of this setting as a (one-sided) platform and a number of potential entrants.
 
 \begin{proposition}
+    \label{prop:monotone}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
 \end{proposition}
-\begin{proof}
-    Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
-\end{proof}
+
 In the following, let us assume that the assumptions required for monotonicity are always satisfied. It ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies: asymptotic value coincides with the axiomatic one using the uniform distribution for the latter. \textcolor{red}{Note: I realize that this paragraph is somewhat vague and needs explanation. However, for the current set of results, I do not rely on said theorem. If I end up using it later, I will expand on this part.}
 
 Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ players of type $A$. The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the Shapley-value of the platform does not converge to $f(1)$. This in turn implies that the aggregated Shapley-values of the fringe remain positive even in the limit.
@@ -75,36 +74,11 @@ Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ play
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_p^n = \int_0^1 f(t) \dt .
     \end{align*}
 \end{proposition}
-\begin{proof}
-    Let $R$ denote a permutation of the set of players ($N$). Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
-    \begin{align*}
-        \varphi_P^n = \frac{1}{(n+1)!} \sum_R v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)
-    \end{align*}
-    First, note that $v(\mathcal{P}_P^R) = 0$ for any permutation, as no coalition can achieve a positive value without player $P$. Furthermore, using the fact that all agents of type $A$ are identical implies that $v(\mathcal{P}_P^R \cup \{i\})$ only depends on the number of agents in the coalition. More precisely, 
-    \begin{align*}
-        v(\mathcal{P}_P^R \cup \{i\}) = f(n_A(\mathcal{P}_P^R \cup \{i\}) / n) = f(|\mathcal{P}_P^R| / n).
-    \end{align*}
-    Finally, the set of permutations in which $k$ number of players precede $P$ is independent of $n$, i.e.
-    \begin{align*}
-        \{R \mid |\mathcal{P}_P^R| = k\} = n! \quad \forall\, k.
-    \end{align*}
-    Putting all the above together, the value of player $P$ can be expressed as
-    \begin{align*}
-        \varphi_P^n &= \frac{1}{(n+1)!} \sum_{k=0}^n n! f(k / n) \\
-        &= \frac{1}{n+1} \sum_{k=0}^n f(k / n) \\
-        &= \frac{n}{n+1} \underbrace{\frac{1}{n} \sum_{k=0}^{n-1} f(k / n)}_{=S_n} + \frac{1}{n+1} f(1).
-    \end{align*}
-    $S_n$ are just the left Riemann-sums of function $f$ on the interval $[0, 1]$. Therefore, if $f$ is continuous (and thus Riemann-integrable), then $S_n \to \int_0^1 f(t)$, and thus
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \frac{1}{n+1} \sum_{k=1}^n f(k / n) \\
-        &= \lim_{n \to \infty}\underbrace{\frac{n}{n+1}}_{\to 1} \frac{1}{n} \sum_{k=0}^{n-1} f(k / n) + \underbrace{\frac{1}{n+1} f(1)}_{\to 0} \\
-        &= \int_0^1 f(t) \dt .
-    \end{align*}
-\end{proof}
 
 The above proposition is not surprising in light of \textcite{fogelman1980asymptotic}: the limit is just the expected marginal contribution of the single atomic player, with said player being placed in the order according to the uniform distribution. Nevertheless, even this simple result has a compelling geometric interpretation, and gives rise to a couple of interesting corollaries, detailed below.
 
 \begin{corollary}
+    \label{cor:fringe_value}
     The aggregated Shapley-value of the fringe is
     \begin{align*}
         \varphi_A^\infty = f(1) - \int_0^1 f(t) \dt.
@@ -114,16 +88,6 @@ The above proposition is not surprising in light of \textcite{fogelman1980asympt
         \varphi_A^\infty = \int_0^1 t f'(t) \dt.
     \end{align*}
 \end{corollary}
-\begin{proof}
-    The first equality comes from the efficiency of the Shapley-value. The values of all players sum up to $f(1)$ for all $n \in \mathbb{N}$, therefore
-    \begin{align*}
-        \lim_{n \to \infty} \sum_{i=1}^n \varphi_{A_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
-    \end{align*}
-    The second can be obtained by integration by parts:
-    \begin{align*}
-        \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
-    \end{align*}
-\end{proof}
 
 It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ and $f(1)$) player $P$ gets a larger share of the surplus when $f(t)$ is larger for every $t$. It corresponds to the case when only a small fraction of the fringe is needed to create most of the surplus (e.g. their products are substitutes of each other). This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms could obtain high values.
 
@@ -149,11 +113,9 @@ It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ an
 \end{figure}
 
 \begin{corollary}
+    \label{cor:fringe_value_2}
     $\varphi_P^\infty < f(1)$ and $\varphi_A^\infty > 0$ for any $f$ that is not constant.
 \end{corollary}
-\begin{proof}
-    If $f$ is monotone increasing, then $f(0) \leq \int_0^1 f(t) \dt \leq f(1)$. The inequalities become strict if $f$ is not constant on the whole interval.
-\end{proof}
 
 This proposition implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value converges to a positive value.
 
@@ -170,52 +132,9 @@ Getting back to the game at hand, let the weights of players of type $A$ and $P$
 \end{align*}
 The following lemma establishes the continuous analogue of this statement.
 \begin{lemma}
+    \label{lem:entry_distr}
      As $n \to \infty$, $X_n \xrightarrow[]{\mathrm{d}} X$ with the cdf $G_X(t) = \lambda^t$. Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
-\begin{proof} \textcolor{red}{(Might have to fix sum indices)} \\
-    The probability of $P$ having at most fraction $t$ of the other players before itself is
-    \begin{align*}
-        \Pr(X_n \leq nt) &= \Pr(X_n \leq nt ) \\
-        &= \prod_{j = nt + 1}^n \frac{j}{j + \lambda} \\
-        &= \exp \Bigg( \underbrace{\sum_{j = nt + 1}^n \log(j) - \log(j+\lambda)}_{\equiv S_n} \Bigg).
-    \end{align*}
-    Taking limits,
-    \begin{align*}
-        \lim_{n \to \infty} S_n &= \lim_{n \to \infty} \sum_{j = nt + 1}^n \log(j) - \log(j+\lambda) \\
-        &= \lim_{n \to \infty} \sum_{i = 1}^{n - nt} \log(nt + i) - \log(nt + i + \lambda) \\
-        &= \lim_{n \to \infty} \frac{1}{n - nt} \sum_{i = 1}^{n - nt} \frac{\log \left( t + \frac{i}{n - nt} \right) - \log \left( t + \frac{i}{n - nt} + \frac{\lambda}{n - nt} \right)}{1 / (n - nt)}
-    \end{align*}
-    Let
-    \begin{align*}
-        \Delta_n(s) = \frac{\log \left( s \right) - \log \left( s + \frac{\lambda}{n - nt} \right)}{1 / (n - nt)}
-    \end{align*}
-    By lemma \ref{lemma:log_convergence}, 
-    \begin{align*}
-        \Delta_n \xrightarrow[]{\mathrm{u}} \lambda \frac{\mathrm{d}}{\mathrm{d}s}log(s) = -\frac{\lambda}{s}
-    \end{align*}
-    on the compact interval $[t, 1]$ for any $t > 0$ ($\xrightarrow[]{\mathrm{u}}$ denotes uniform convergence).
-    
-    Then, by lemma \ref{lemma:integral_convergence}, we have that
-    \begin{align*}
-        \lim_{n \to \infty} S_n &= \lim_{n \to \infty} \frac{1}{n-nt} \sum_{i=1}^{n-nt} \Delta_n \left( t + \frac{i}{n - nt} \right) \\
-        &= \int_t^1 (\lim_{n \to \infty} \Delta_n)(s) \ds \\
-        &= \int_t^1 \lim_{n \to \infty} -\frac{\lambda}{s} \ds \\
-        &= \lambda \log{t}
-    \end{align*}
-
-    Substituting $\lim_{n \to \infty} S_n$ into the original equation yields
-    \begin{align*}
-        \lim \Pr \left( \frac{X_n}{n} \leq t \right) &= \exp \Bigg( \lim_{n \to \infty} \sum_{j = nt + 1}^n \log(j) - \log(j+\lambda) \Bigg) \\
-        &= \exp(\lambda \log(t)) \\
-        &= t^\lambda.
-    \end{align*}
-
-    For $t=0$, simply observe that \textcolor{red}{Have to elaborate on this}
-    \begin{align*}
-        \lim_{n \to \infty} \prod_{j = 1}^n \frac{j}{j + \lambda} = 0 = 0^\lambda.
-    \end{align*}
-\end{proof}
-
 
 Finally, the weighted Shapley-value of player $i$ can be expressed as the expected marginal contribution of that player where the permutations are weighted according to the previous distribution.
 \begin{proposition}
@@ -226,45 +145,18 @@ Finally, the weighted Shapley-value of player $i$ can be expressed as the expect
     \end{align*}
     where $g(t) = \lambda t^{\lambda - 1}$.
 \end{proposition}
-\begin{proof}
-    The weighted value of player $P$ is its expected contribution across all permutations, with each permutation weighted by its probability of occurring.
-    \begin{align*}
-        \varphi_P^{n, \lambda} = \sum_R \Pr(R) [v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)]
-    \end{align*}
-    As before, using the fact that fringe players are identical, this can be rephrased as
-    \begin{align*}
-        \varphi_P^{n, \lambda} &= \sum_{k=0}^n \Pr(R) f(k/n) \\
-        &= \E[f(X_n / n)]
-    \end{align*}
-    where $X_n$ is defined as above. $f$ is continuous, and therefore bounded on the compact set $[0, 1]$. As a consequence, $\frac{X_n}{n} \xrightarrow[]{\mathrm{d}} X$ implies $\E[f(X_n / n)] \to \E[f(X)]$, which in turn gives
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_P^{n, \lambda} &= \lim_{n \to \infty} \E[f(X_n / n)] \\
-        &= \E[f(X)] \\
-        &= \int_0^1 f(t) \mathrm{d}G(t) \\
-        &= \int_0^1 g(t)f(t) \dt
-    \end{align*}
-    where $G(t)$ and $g(t)$ are the cdf and pdf of X, respectively.
-\end{proof}
 
 \begin{corollary}
+    \label{cor:platform_value_weighted}
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
-\begin{proof}
-    Let $X$ and $X'$ be random variables with cdfs $G_X = t^\lambda$ and $G_{X'}t^{\lambda'}$, respectively. For any $\lambda < \lambda'$, $t^\lambda > t^{\lambda'} \forall t \in [0, 1]$, meaning that $X'$ first-order stochastically dominates $X'$. As a result, for any monotonically increasing $f$,
-    \begin{align*}
-        \int_0^1 g_X(t)f(t) \dt = \E[f(X)] \leq \E[f(X')] = \int_0^1 g_{X'}(t)f(t)
-    \end{align*}
-    with strict inequality unless $f$ is constant almost everywhere. As $f$ is continuous, the latter is equivalent to $f$ being constant on the whole $[0, 1]$ interval.
-\end{proof}
 
 The following proposition supports the interpretation of weights as bargaining power, as a higher weight corresponds to a higher Shapley-value in this game.\footnote{This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.}
 
 \begin{corollary}
+    \label{cor:paltform_value_weighted_2}
     If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
-\begin{proof}
-    As $\lambda \to 0$, $X$ converges to the degenerate random variable $X_0$ for which $\Pr(X_0 = 0) = 1$. As a consequence, the expected value of $f(X)$ converges to $\E[f(X_0)] = f(0)$. $\lim_{\lambda \to \infty} \varphi^{\infty, \lambda}_P = f(1)$ can be shown along the same lines.
-\end{proof}
 
 \subsection{Multiple platforms}
 
@@ -282,72 +174,31 @@ Imagine that there are $m$ players of type $P$ which are perfect substitutes of 
 \textcolor{red}{Note: I have to think more about how to describe this situation in the language of cooperative game theory. The issue is that, for example, the value of $\{P_1, A_1\}$ depends on whether $\{P_2, A_2\}$ also decides to form a coalition and enter the market.}
 
 \begin{proposition}
+    \label{prop:multiple_platforms}
     The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
     \begin{align*}
         \varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \dt .
     \end{align*}
 \end{proposition}
-\begin{proof}
-    \label{prop:one_sided_multiple}
-    First, let us rewrite the expected marginal contribution of player $P_i$ in the following way:
-    \begin{align*}
-        \varphi_{P_i}^{n, m} &= \frac{1}{(n+m)!} \sum_R v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R) \\
-        &= \frac{1}{(n+m)!} \left[ \sum_{\{R | n_P(\mathcal{P}_{P_i}^R = 0)\}} \left[v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R)\right] + \sum_{\{R | n_P(\mathcal{P}_{P_i}^R > 0)\}} \left[v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R)\right] \right]
-    \end{align*}
-    Next, make use of the fact that the marginal contribution of a platform is zero if another platform is already present, and only depends on the number of fringe firms otherwise.
-    \begin{align*}
-        \varphi_{P_i}^{n, m} &= \frac{1}{(n+m)!} \sum_{\{R | n_P(\mathcal{P}_{P_i}^R = 0)\}} f (\mathcal{P}_{A}^R / n) \\
-        &= \frac{1}{(n+m)!} \sum_{k=0}^n |\{R | n_A(\mathcal{P}^R_{P_i} = k) \text{ and } n_P(\mathcal{P}^R_{P_i} = 0)\}| f(k/n)
-    \end{align*}
-    Finally, notice that, while the permutations with $k$ fringe agents before $P_i$ does not depend on $k$, amongst those, the number of permutations with no platform before $P_i$ does depend on it. In particular,
-    \begin{align*}
-        |\{R | n_A(\mathcal{P}^R_{P_i} = k) \text{ and } n_P(\mathcal{P}^R_{P_i} = 0)\}| &= \frac{n!(n+m-k-1)!}{(n-k)!}
-    \end{align*}
-    and
-    \begin{align*}
-        \varphi_{P_i}^{n, m} &= \sum_{k=0}^n \frac{n!(n+m-k-1)!}{(n+m)!(n-k)!} f(k/n) \\
-        &= \sum_{k=0}^n \frac{(n-k+1)(n-k+2) \dots (n-k+m-1)}{(n+1)(n+2) \dots (n+m)} f(k/n) \\
-        &= \frac{1}{n+1}\sum_{k=0}^n \underbrace{\frac{(n(1-k/n)+1)(n(1-k/n)+2) \dots (n(1-k/n)+m-1)}{(n+2) \dots (n+m)} f(k/n)}_{S_n}
-    \end{align*}
-    For any $t = k/n \in [0, 1]$, 
-    \begin{align*}
-        S_n(t) \to (1-t)^{m-1}f(t) \equiv S(t).
-    \end{align*}
-    Furthermore, it is simple to verify that this convergence is uniform, and that $S_n$ and $S$ are all continuous functions. By Dini's theorem, the former properties imply that $S_n \xrightarrow[]{\mathrm{u}} S$ uniformly on $[0, 1]$.
-
-    The conclusion of the proof is similar to that of proposition \ref{prop:one_sided}:
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_{P_i}^{n, m} &= \lim_{n \to \infty} \underbrace{\frac{n}{n+1}}_{\to 1} \sum_{k=0}^{n-1} S_k(k/n) + \underbrace{\frac{1}{1+n}S(1)}_{\to 0} \\
-        &= \lim_{n \to \infty} \sum_{k=0}^{n-1} S_k(k/n) \\
-        &= \int_0^1 (1-t)^{m-1} f(t) \dt
-    \end{align*}
-    with the last equality supported by lemma \ref{lemma:integral_convergence}.
-\end{proof}
 
 As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation, and could have been obtained directly from the oceanic game. Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit cube. The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players. That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
 
 \begin{corollary}
+    \label{cor:multiple_platforms}
     The per-unit Shapley-value of the fringe is
     \begin{align*}
         \varphi_A(k, \infty) = 1 - m\int_0^1 (1-t) ^ {m-1} f(t) \dt = \int_0^1 [1 - (1-t)^m] f'(t) \dt .
     \end{align*}
 \end{corollary}
-\begin{proof}
-    The allocation is efficient for all $n \in \mathbb{N}$, therefore efficient in the limit, as well. The second equality can be obtained by integration by parts.
-\end{proof}
 
 The following corollary again demonstrates that the predicted outcomes confirm intuitions. As the major players become more and more substitutable, the portion of the surplus they can capture decreases, and the aggregated value of the fringe increases.
 
 \begin{corollary}
+    \label{cor:multiple_platforms_2}
     Let $\varphi_{P}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant.
 \end{corollary}
-\begin{proof} \textcolor{red}{(Assuming $f$ is continuously differentiable -- will have to relax this)}
-    $f'(t)$ is non-negative, so $[1 - (1-t)^m] f'(t)$ is increasing in $m$ $\forall t \in [0, 1]$. As a consequence, $\varphi_A^{n, \infty}$ is also increasing in $m$ if $f'(t)$ is positive on some interval or, $f(t)$ is not constant. Conversely, $\varphi_{P}^{\infty, m} = 1 - \varphi_{A}^{\infty, m}$ is decreasing in $m$.
-\end{proof}
 
 \section{Two-sided case}
-
-\textcolor{red}{\large No proofs or changes in this section. The next new results are in the appendix.}
 
 Now imagine that, in addition to player $P$, there are two types of smaller players: $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$. As before, $P$ is necessary for any coalition to have a positive value, and the small players are identical within their groups. I.e., the set of players and the characteristic function of the game are the following: $N = \{P, A_1, \dots, A_n, B_1, \dots, B_n\}$ and
 \begin{align*}
@@ -463,6 +314,10 @@ Finally, looking at the first stage, firms will make the initial investment if a
 
 \appendix
 
+\section{References}
+
+\printbibliography
+
 \section{Miscellaneous lemmas}
 
 \begin{lemma}
@@ -474,7 +329,7 @@ Finally, looking at the first stage, firms will make the initial investment if a
     \end{align*}
     Then $\Delta_n \xrightarrow[]{\mathrm{u}} \Delta$ uniformly on $[t, 1]$ for any $t > 0, \lambda > 0$.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof of Lemma \ref{lemma:log_convergence}]
     First, note that $\Delta_n$ and $\Delta$ are all continuous functions. Then, following the standard proof for $\frac{\mathrm{d}}{\mathrm{d}s}log(s) = \frac{1}{s}$ rewrite $\Delta_n(s)$ as
     \begin{align*}
         \Delta_n(s) &= \frac{\log(s + 1/n) - \log(\lambda)}{n} \\
@@ -492,7 +347,7 @@ Finally, looking at the first stage, firms will make the initial investment if a
         \lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) = \int_0^1 f(t) \dt.
     \end{align*}
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof of Lemma \ref{lemma:integral_convergence}]
     \begin{align*}
         &\lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) \\
         &= \lim_{n \to \infty} \frac{b-a}{n} \left[ \sum_{k=1}^n f \left( a + \frac{b-a}{n} \right) + \sum_{k=1}^n \left( f_n \left( a + \frac{b-a}{n} \right) - f \left( a + \frac{b-a}{n} \right) \right) \right] \\
@@ -505,8 +360,173 @@ Finally, looking at the first stage, firms will make the initial investment if a
 \end{proof}
 
 
-\section{References}
+\section{Proofs of propositions and lemmas from the main text}
 
-\printbibliography
+\begin{proof}[Proof of Proposition \ref{prop:monotone}]
+    Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:one_sided}]
+    Let $R$ denote a permutation of the set of players ($N$). Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
+    \begin{align*}
+        \varphi_P^n = \frac{1}{(n+1)!} \sum_R v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)
+    \end{align*}
+    First, note that $v(\mathcal{P}_P^R) = 0$ for any permutation, as no coalition can achieve a positive value without player $P$. Furthermore, using the fact that all agents of type $A$ are identical implies that $v(\mathcal{P}_P^R \cup \{i\})$ only depends on the number of agents in the coalition. More precisely, 
+    \begin{align*}
+        v(\mathcal{P}_P^R \cup \{i\}) = f(n_A(\mathcal{P}_P^R \cup \{i\}) / n) = f(|\mathcal{P}_P^R| / n).
+    \end{align*}
+    Finally, the set of permutations in which $k$ number of players precede $P$ is independent of $n$, i.e.
+    \begin{align*}
+        \{R \mid |\mathcal{P}_P^R| = k\} = n! \quad \forall\, k.
+    \end{align*}
+    Putting all the above together, the value of player $P$ can be expressed as
+    \begin{align*}
+        \varphi_P^n &= \frac{1}{(n+1)!} \sum_{k=0}^n n! f(k / n) \\
+        &= \frac{1}{n+1} \sum_{k=0}^n f(k / n) \\
+        &= \frac{n}{n+1} \underbrace{\frac{1}{n} \sum_{k=0}^{n-1} f(k / n)}_{=S_n} + \frac{1}{n+1} f(1).
+    \end{align*}
+    $S_n$ are just the left Riemann-sums of function $f$ on the interval $[0, 1]$. Therefore, if $f$ is continuous (and thus Riemann-integrable), then $S_n \to \int_0^1 f(t)$, and thus
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \frac{1}{n+1} \sum_{k=1}^n f(k / n) \\
+        &= \lim_{n \to \infty}\underbrace{\frac{n}{n+1}}_{\to 1} \frac{1}{n} \sum_{k=0}^{n-1} f(k / n) + \underbrace{\frac{1}{n+1} f(1)}_{\to 0} \\
+        &= \int_0^1 f(t) \dt .
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:fringe_value}]
+    The first equality comes from the efficiency of the Shapley-value. The values of all players sum up to $f(1)$ for all $n \in \mathbb{N}$, therefore
+    \begin{align*}
+        \lim_{n \to \infty} \sum_{i=1}^n \varphi_{A_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
+    \end{align*}
+    The second can be obtained by integration by parts:
+    \begin{align*}
+        \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lem:entry_distr}] \textcolor{red}{(Might have to fix sum indices)} \\
+    The probability of $P$ having at most fraction $t$ of the other players before itself is
+    \begin{align*}
+        \Pr(X_n \leq nt) &= \Pr(X_n \leq nt ) \\
+        &= \prod_{j = nt + 1}^n \frac{j}{j + \lambda} \\
+        &= \exp \Bigg( \underbrace{\sum_{j = nt + 1}^n \log(j) - \log(j+\lambda)}_{\equiv S_n} \Bigg).
+    \end{align*}
+    Taking limits,
+    \begin{align*}
+        \lim_{n \to \infty} S_n &= \lim_{n \to \infty} \sum_{j = nt + 1}^n \log(j) - \log(j+\lambda) \\
+        &= \lim_{n \to \infty} \sum_{i = 1}^{n - nt} \log(nt + i) - \log(nt + i + \lambda) \\
+        &= \lim_{n \to \infty} \frac{1}{n - nt} \sum_{i = 1}^{n - nt} \frac{\log \left( t + \frac{i}{n - nt} \right) - \log \left( t + \frac{i}{n - nt} + \frac{\lambda}{n - nt} \right)}{1 / (n - nt)}
+    \end{align*}
+    Let
+    \begin{align*}
+        \Delta_n(s) = \frac{\log \left( s \right) - \log \left( s + \frac{\lambda}{n - nt} \right)}{1 / (n - nt)}
+    \end{align*}
+    By lemma \ref{lemma:log_convergence}, 
+    \begin{align*}
+        \Delta_n \xrightarrow[]{\mathrm{u}} \lambda \frac{\mathrm{d}}{\mathrm{d}s}log(s) = -\frac{\lambda}{s}
+    \end{align*}
+    on the compact interval $[t, 1]$ for any $t > 0$ ($\xrightarrow[]{\mathrm{u}}$ denotes uniform convergence).
+    
+    Then, by lemma \ref{lemma:integral_convergence}, we have that
+    \begin{align*}
+        \lim_{n \to \infty} S_n &= \lim_{n \to \infty} \frac{1}{n-nt} \sum_{i=1}^{n-nt} \Delta_n \left( t + \frac{i}{n - nt} \right) \\
+        &= \int_t^1 (\lim_{n \to \infty} \Delta_n)(s) \ds \\
+        &= \int_t^1 \lim_{n \to \infty} -\frac{\lambda}{s} \ds \\
+        &= \lambda \log{t}
+    \end{align*}
+
+    Substituting $\lim_{n \to \infty} S_n$ into the original equation yields
+    \begin{align*}
+        \lim \Pr \left( \frac{X_n}{n} \leq t \right) &= \exp \Bigg( \lim_{n \to \infty} \sum_{j = nt + 1}^n \log(j) - \log(j+\lambda) \Bigg) \\
+        &= \exp(\lambda \log(t)) \\
+        &= t^\lambda.
+    \end{align*}
+
+    For $t=0$, simply observe that \textcolor{red}{Have to elaborate on this}
+    \begin{align*}
+        \lim_{n \to \infty} \prod_{j = 1}^n \frac{j}{j + \lambda} = 0 = 0^\lambda.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:fringe_value_2}]
+    If $f$ is monotone increasing, then $f(0) \leq \int_0^1 f(t) \dt \leq f(1)$. The inequalities become strict if $f$ is not constant on the whole interval.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:one_sided_weighted}]
+    The weighted value of player $P$ is its expected contribution across all permutations, with each permutation weighted by its probability of occurring.
+    \begin{align*}
+        \varphi_P^{n, \lambda} = \sum_R \Pr(R) [v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)]
+    \end{align*}
+    As before, using the fact that fringe players are identical, this can be rephrased as
+    \begin{align*}
+        \varphi_P^{n, \lambda} &= \sum_{k=0}^n \Pr(R) f(k/n) \\
+        &= \E[f(X_n / n)]
+    \end{align*}
+    where $X_n$ is defined as above. $f$ is continuous, and therefore bounded on the compact set $[0, 1]$. As a consequence, $\frac{X_n}{n} \xrightarrow[]{\mathrm{d}} X$ implies $\E[f(X_n / n)] \to \E[f(X)]$, which in turn gives
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^{n, \lambda} &= \lim_{n \to \infty} \E[f(X_n / n)] \\
+        &= \E[f(X)] \\
+        &= \int_0^1 f(t) \mathrm{d}G(t) \\
+        &= \int_0^1 g(t)f(t) \dt
+    \end{align*}
+    where $G(t)$ and $g(t)$ are the cdf and pdf of X, respectively.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:platform_value_weighted}]
+    Let $X$ and $X'$ be random variables with cdfs $G_X = t^\lambda$ and $G_{X'}t^{\lambda'}$, respectively. For any $\lambda < \lambda'$, $t^\lambda > t^{\lambda'} \forall t \in [0, 1]$, meaning that $X'$ first-order stochastically dominates $X'$. As a result, for any monotonically increasing $f$,
+    \begin{align*}
+        \int_0^1 g_X(t)f(t) \dt = \E[f(X)] \leq \E[f(X')] = \int_0^1 g_{X'}(t)f(t)
+    \end{align*}
+    with strict inequality unless $f$ is constant almost everywhere. As $f$ is continuous, the latter is equivalent to $f$ being constant on the whole $[0, 1]$ interval.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:paltform_value_weighted_2}]
+    As $\lambda \to 0$, $X$ converges to the degenerate random variable $X_0$ for which $\Pr(X_0 = 0) = 1$. As a consequence, the expected value of $f(X)$ converges to $\E[f(X_0)] = f(0)$. $\lim_{\lambda \to \infty} \varphi^{\infty, \lambda}_P = f(1)$ can be shown along the same lines.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:multiple_platforms}]
+    \label{prop:one_sided_multiple}
+    First, let us rewrite the expected marginal contribution of player $P_i$ in the following way:
+    \begin{align*}
+        \varphi_{P_i}^{n, m} &= \frac{1}{(n+m)!} \sum_R v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R) \\
+        &= \frac{1}{(n+m)!} \left[ \sum_{\{R | n_P(\mathcal{P}_{P_i}^R = 0)\}} \left[v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R)\right] + \sum_{\{R | n_P(\mathcal{P}_{P_i}^R > 0)\}} \left[v(\mathcal{P}_{P_i}^R \cup \{i\}) - v(\mathcal{P}_{P_i}^R)\right] \right]
+    \end{align*}
+    Next, make use of the fact that the marginal contribution of a platform is zero if another platform is already present, and only depends on the number of fringe firms otherwise.
+    \begin{align*}
+        \varphi_{P_i}^{n, m} &= \frac{1}{(n+m)!} \sum_{\{R | n_P(\mathcal{P}_{P_i}^R = 0)\}} f (\mathcal{P}_{A}^R / n) \\
+        &= \frac{1}{(n+m)!} \sum_{k=0}^n |\{R | n_A(\mathcal{P}^R_{P_i} = k) \text{ and } n_P(\mathcal{P}^R_{P_i} = 0)\}| f(k/n)
+    \end{align*}
+    Finally, notice that, while the permutations with $k$ fringe agents before $P_i$ does not depend on $k$, amongst those, the number of permutations with no platform before $P_i$ does depend on it. In particular,
+    \begin{align*}
+        |\{R | n_A(\mathcal{P}^R_{P_i} = k) \text{ and } n_P(\mathcal{P}^R_{P_i} = 0)\}| &= \frac{n!(n+m-k-1)!}{(n-k)!}
+    \end{align*}
+    and
+    \begin{align*}
+        \varphi_{P_i}^{n, m} &= \sum_{k=0}^n \frac{n!(n+m-k-1)!}{(n+m)!(n-k)!} f(k/n) \\
+        &= \sum_{k=0}^n \frac{(n-k+1)(n-k+2) \dots (n-k+m-1)}{(n+1)(n+2) \dots (n+m)} f(k/n) \\
+        &= \frac{1}{n+1}\sum_{k=0}^n \underbrace{\frac{(n(1-k/n)+1)(n(1-k/n)+2) \dots (n(1-k/n)+m-1)}{(n+2) \dots (n+m)} f(k/n)}_{S_n}
+    \end{align*}
+    For any $t = k/n \in [0, 1]$, 
+    \begin{align*}
+        S_n(t) \to (1-t)^{m-1}f(t) \equiv S(t).
+    \end{align*}
+    Furthermore, it is simple to verify that this convergence is uniform, and that $S_n$ and $S$ are all continuous functions. By Dini's theorem, the former properties imply that $S_n \xrightarrow[]{\mathrm{u}} S$ uniformly on $[0, 1]$.
+
+    The conclusion of the proof is similar to that of proposition \ref{prop:one_sided}:
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_{P_i}^{n, m} &= \lim_{n \to \infty} \underbrace{\frac{n}{n+1}}_{\to 1} \sum_{k=0}^{n-1} S_k(k/n) + \underbrace{\frac{1}{1+n}S(1)}_{\to 0} \\
+        &= \lim_{n \to \infty} \sum_{k=0}^{n-1} S_k(k/n) \\
+        &= \int_0^1 (1-t)^{m-1} f(t) \dt
+    \end{align*}
+    with the last equality supported by lemma \ref{lemma:integral_convergence}.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:multiple_platforms}]
+    The allocation is efficient for all $n \in \mathbb{N}$, therefore efficient in the limit, as well. The second equality can be obtained by integration by parts.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:multiple_platforms_2}] \textcolor{red}{(Assuming $f$ is continuously differentiable -- will have to relax this)}
+    $f'(t)$ is non-negative, so $[1 - (1-t)^m] f'(t)$ is increasing in $m$ $\forall t \in [0, 1]$. As a consequence, $\varphi_A^{n, \infty}$ is also increasing in $m$ if $f'(t)$ is positive on some interval or, $f(t)$ is not constant. Conversely, $\varphi_{P}^{\infty, m} = 1 - \varphi_{A}^{\infty, m}$ is decreasing in $m$.
+\end{proof}
 
 \end{document}
