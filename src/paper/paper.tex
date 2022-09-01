@@ -212,12 +212,14 @@ Now imagine that, in addition to player $P$, there are two types of smaller play
         f\left(\frac{n_A(S)}{n}, \frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
+A prominent interpretation of this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power. However, player $P$ does not have to be in the ``middle'' of the transactions for this framework to be applicable. For example, it also captures the situation of a single upstream producer, a large number of downstream firms, and a similarly large number of customers, as long as both the customers and the downstream firms can participate in the bargaining process. A setting where these assumptions might be plausible is, for example, the new car market with a car producer, a number of independent dealerships, and customers who might engage in negotiation.
 
+Let us follow the pattern from the previous sections. Start by characterizing conditions for superadditivity to support the bargaining interpretation.
 \begin{proposition}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing in both arguments.
 \end{proposition}
 
-Furthermore, the limits of the Shapley-values (as $n \to \infty$) of the various players turn out to be analytically tractable and nicely interpretable.
+Next, let us obtain formulas for the values of the three groups of players. It turns out that the limits of the Shapley-values (as $n \to \infty$) are still analytically tractable and they also have neat interpretations.
 
 \begin{proposition}
     Let $f(a, b)$ be continuous everywhere on $[0, 1]^2$. Then,
@@ -228,17 +230,17 @@ Furthermore, the limits of the Shapley-values (as $n \to \infty$) of the various
     \end{align*}
 \end{proposition}
 
-That is, the value of the grand coalition can be decomposed into the Shapley-values of its members signifying their expected marginal contributions in the following way:
+As the previous proposition shows, the value of each kind of player depends on their expected marginal contribution, i.e. the partial derivatives of $f$. Consequently, the value of the grand coalition can be decomposed into the Shapley-values of its members signifying their expected marginal contributions in the following way:
 \begin{align*}
-    f(1, 1) = \underbrace{\int_0^1 f(t, t) \dt}_{\text{ player } P} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial a} \dt}_{\text{players } A} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial b} \dt}_{\text{players } B}
+    f(1, 1) = \underbrace{\int_0^1 f(t, t) \dt}_{\text{ player } P} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial a} \dt}_{\text{players } A} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial b} \dt}_{\text{players } B}.
 \end{align*}
+
+One surprising element of the result is that one only has to integrate over the diagonal of the support  of $f$, and the value does not depend on the marginal contributions in the case of an unequal measure of $A$ and $B$ types. The intuition for that relies on a law-of-large-numbers-type reasoning. If the number of fringe players is large, then it is very unlikely that, after a random ordering, their proportion in any interval will be too different. Consequently, when taking the expectation over all orderings, ones with vary unequal numbers of the two types will have little impact on it.
 
 
 \subsection{Multiple platforms}
 
-Again, assume that there are $k$ players of type $P$ which are perfect substitutes of each other.
-
-\textbf{Note:} As in the previous case, I have to think more about how interpret the value function here. For now, let me just show the limit of the limits of the Shapley-values assuming that
+The two-sided case can also simply be extended to incorporate multiple platforms instead of just one. As before, assume that there are $k$ players of type $P$ which are perfect substitutes of each other:
 \begin{align*}
     v(S) = \begin{cases}
         0                                                & \text{if } P_i \notin S \; \forall \, i = 1, \dots, k \\
@@ -246,6 +248,7 @@ Again, assume that there are $k$ players of type $P$ which are perfect substitut
     \end{cases}
 \end{align*}
 
+It can be shown that the values of each type of player are rather similar to the one-platform case.
 \begin{proposition}
     The unit Shapley-values of the various types of players are
     \begin{align*}
@@ -255,6 +258,7 @@ Again, assume that there are $k$ players of type $P$ which are perfect substitut
     \end{align*}
 \end{proposition}
 
+Similarly, as the next corollary demonstrates, the combined value of platforms is still decreasing in their number.
 \begin{corollary}
     Let $\varphi_{P}(k, \infty) = k\varphi_{P_i}(k, \infty)$ denote the aggregated Shapley-values of players of type $P$. Then $\varphi_{P}(k, \infty)$ is decreasing in $k$ and $\varphi_{A}(k, \infty)$, $\varphi_{B}(k, \infty)$ is increasing in $k$ unless $f$ is constant.
 \end{corollary}
