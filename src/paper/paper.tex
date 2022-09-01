@@ -23,6 +23,7 @@
 
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
+\newcommand{\di}{\mathrm{d}i}
 \newcommand{\E}{\mathbb{E}}
 
 \title{The value of intermediation -- results so far}
@@ -33,19 +34,19 @@
 \maketitle
 
 \begin{abstract}
-    This paper proposes a simplified model of two-sided markets aimed at analyzing the shares of total surplus various participants can achieve. Instead of explicitly modelling price structures and entry choices, I use a cooperative approach as a reduced-form model of bargaining outcomes. I show that this technique provides an analytically very tractable way of expressing the profits and surpluses of the agents.
+    This paper investigates the idea of using concepts from cooperative game theory (in particular, the Shapley-value) to model bargaining outcomes in games with a few large and a continuum of small players. I show that the cooperative approach can be a tractable alternative of explicitly modelling price structures and entry choices in platform settings. This approach might be advantageous when one does not want to attribute all the bargaining power to one type of market participants, and at the same time would like to avoid having to deal with an explicit multi-stage bargaining game. I demonstrate the advantages of this approach in simple a model of hybrid platforms.
 \end{abstract}
 
 
 \section{Motivation}
 
-The use of solution concepts from cooperative game theory, such as the Shapley-value, to model the outcome of a bargaining process has been a feature of many papers in the industrial organization literature. It is particularly prevalent in articles dealing with issues related to integration and mergers \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}. This is in part motivated by the appealing properties of the resulting distributions, their tractability, but also by the long line of studies showing that various bargaining procedures lead to such outcomes. For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,} or, perhaps most relevant to this paper, \textcite{stole1996intra} all propose various extensive-form bargaining games in which the expected outcomes correspond to players' Shapley-values.
+The use of solution concepts from cooperative game theory -- such as the Shapley-value -- to model the outcome of a bargaining process has been a feature of multiple papers in the industrial organization literature. It is particularly prevalent in articles dealing with issues related to integration and mergers \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}. This is in part motivated by the appealing properties of the resulting gain distributions, their tractability, but also by the long line of theoretical studies showing that various bargaining procedures lead to such outcomes. For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,} or, perhaps most relevant to this paper, \textcite{stole1996intra} all propose various extensive-form bargaining games in which the expected outcomes correspond to players' Shapley-values.
 
-A common feature of the aforementioned papers is that they involve models with a finite number of agents. However, as is often the case in economics, infinite-player approximations might turn out to be more tractable while retaining the main conclusions of the finite models from which they arise. Indeed, in the case of cooperative games with non-atomic players, the axiomatic and asymptotic approaches both give rise to the same value\footnote{On the appropriate subspace of non-atomic games.} \parencite{aumann2015values}, which is furthermore analytically simple and readily interpretable. An economic application of this theory can be found in \textcite{billera1978internal}.
+A common feature of the aforementioned papers is that they involve models with a finite number of agents. However, as is often the case in economics, infinite-player approximations might turn out to be more tractable while retaining the main conclusions of the finite models from which they arise. Indeed, in the case of cooperative games with non-atomic players, both the axiomatic approach to defining a value on infinite games and the asymptotic approach to calculate the limit of its finite counterparts lead to the same result \footnote{On the appropriate subspace of non-atomic games.} \parencite{aumann2015values}, which is furthermore analytically simple and readily interpretable. An economic application of this theory can be found in \textcite{billera1978internal}.
 
-Beyond games with no atoms, economists are often interested in situations characterized by a relatively small number of large players and numerous individually rather insignificant ones. The continuous analogue of them are called oceanic games, in which the set of players consists of a finite number of atoms and an ocean made up of a continuum of fringe players. While the axiomatic characterization of the value on such games has not been particularly fruitful,\footnote{\textcite{hart1973values} shows that the usual axioms do not characterize a unique value in general.} \textcite{fogelman1980asymptotic} demonstrates that the asymptotic approach works well on a large subset of them.
+Beyond games with no atoms, economists are often interested in situations characterized by a relatively small number of large players and numerous individually rather insignificant ones. The continuous analogue of them are called oceanic games, in which the set of players consists of a finite number of atoms and an ocean made up of a continuum of fringe players. While the axiomatic characterization of the value on such games has not been particularly fruitful,\footnote{\textcite{hart1973values} shows that the usual axioms do not characterize a unique value in general.} \textcite{fogelman1980asymptotic} demonstrates that an asymptotic approach works well on a large subset of them. More specifically, the limit of the players' values converge to relatively simple and easy-to-interpret expressions as the number of small players goes towards infinity.
 
-Despite this positive result, and their analytical tractability, oceanic games are utilized by hardly any papers in economics. One of the few such examples is \textcite{levy1997individual}, applying it to the problem of wage bargaining. In the following, I propose an oceanic game with the main feature that the large player(s) is indispensable for creating value. Such a model can apply, for example, to upstream-downstream supply chains, or platforms connecting two sides of a market. I demonstrate that the values of the players in those models are described by easily interpretable and visualizable expressions. Furthermore, the results are simple enough that these games can be embedded into more complex models, for example, as the second stage of a sequential game \parencite[as in e.g.][]{montez2007downstream}. Furthermore, the outcomes are in line with one's intuitive expectations of bargaining outcomes in such situations.
+Despite this positive result and their analytical tractability, oceanic games are extremely underutilized in economics. One of the few examples of papers employing them is \textcite{levy1997individual}, which applies it to the problem of wage bargaining. In the following sections, I propose an oceanic game with the main feature that the large player(s) is indispensable for creating value. Such a model can apply, for example, to upstream-downstream supply chains, or platforms connecting two sides of a market. I demonstrate that the Shapley values of the players in those models are described by easily interpretable and visualizable expressions. Additionally, the outcomes are in line with one's intuitive expectations of bargaining outcomes in such situations. Furthermore, the results are simple enough that these games can be embedded into more complex models, for example, as the second stage of a sequential game \parencite[as in e.g.][]{montez2007downstream}. Finally, I demonstrate the usefulness of this approach by building a simple model of a platform that can choose to function in hybrid mode as opposed to just being a pure marketplace.
 
 
 \section{One-sided case}
@@ -257,64 +258,90 @@ Again, assume that there are $k$ players of type $P$ which are perfect substitut
 
 \section{Application}
 
-Consider a market with a continuum of firms $a(t)$ ($t \in [0, 1]$), continuum of identical consumers and one platform $P$. The former two can only interact through the platform. Assume a measure $N \in (0, 1)$ of the firms are present on the platform. Then, consumers have the following quasilinear/CES utility function over money ($m$) and those firms' products:
-\begin{align*}
-    u(m, x(\cdot)) = m + \alpha \left[ \int_0^N x(t)^\rho \dt \right] ^ \frac{\gamma}{\rho}.
-\end{align*}
+Consider a market with a continuum of firms $a(t)$ ($t \in \mathbb{R}^+$), continuum of identical consumers and one platform $P$. The former two can only interact through the platform. Each firm has its own differentiated product. In addition, the platform can decide to switch to hybrid mode, in which case it will also be able to sell a measure $N_P$ of differentiated products of its own. The consumers have a logit utility function over these products, and a set of outside options of measure 1.
 
 \subsection{Timing of the game}
 
-The game proceeds as follows. In the first stage, firms decide whether to create a product or not. Doing this entails a fixed cost of $C$. Those firms that choose not to invest obtain a payoff of 0 and are excluded from the remainder of the game. Next, the firms that made an investment can decide to join the platform at the cost of some entry fee $F^f$. (Note that the entry fee can be negative, in which case it is a subsidy from the platform to the firm.) After that, consumers decide to join or not at an entry fee of $F^c$. Finally, firms post their product prices, and produce and sell to consumers at marginal cost $c$.
+The game proceeds as follows. In the first stage, the platform decides whether or not to function in hybrid mode by choosing the extent of its own product selection $N_P$. Afterwards, each firm decides whether to create a product or not. Creating a product (or, for the platform, a unit measure of products) incurs a development cost of C. Firms that that choose not to invest obtain a payoff of 0 and are excluded from the remainder of the game.
 
-The model heavily depends on how the entry fees are determined. The most widespread assumption in the literature is that they are unilaterally decided by the platform, and are essentially take it or leave it offers for the other players. The issue with this approach is that it generally leads to extreme conclusions. \textcolor{red}{(TODO: elaborate on this)} As opposed to this, in this paper I assume that firm entry fees are a result of some bargaining process between the firms and the platform, leading to an allocation in which the final profits of each player correspond to their Shapley values. User entry fees, on the other hand, are unilaterally decided by the platforms.
+Next, the firms that have a product decide whether they want to join the platform at the cost of some entry fee $F^f$. (Note that the entry fee can be negative, in which case it is a subsidy from the platform to the firm.) Consumers are assumed to be on the platform without a choice. Finally, the platform and the entering firms post their product prices, and produce and sell to consumers at marginal cost $c$.
 
-The value (characteristic function) of a coalition of the platform and any set of firms is defined as follows. Assume that the firms in the coalition enter the platform, while the others do not. Then, taking that decision as fixed, platforms set a profit-maximizing entry price for the consumers and firms also set own-profit-maximizing prices. That is, there is no collusion between the coalition members in terms of pricing. All they contract on are entry fees and decisions.
+The model heavily depends on how the entry fees are determined. The most widespread assumption in the literature is that they are unilaterally decided by the platform, and are essentially take it or leave it offers for the other players. The issue with this approach is that it generally leads to extreme conclusions. \textcolor{red}{(TODO: elaborate on this)} As an alternative, in this paper I assume that firm entry fees are a result of some bargaining process between the firms and the platform, leading to an allocation in which the final profits of each player correspond to their Shapley values. User entry fees, on the other hand, are unilaterally decided by the platforms.
 
-\subsection{Solution of the game}
+The value (characteristic function) of a coalition consisting of the platform and any set of firms is defined as follows. Take the members of any given coalition as fixed. Let firms and the platform set profit-maximizing prices for their products, irrespective of earlier decisions (as both development costs and entry fees are sunk cost at this point). The value of the coalition is the sum of the paltform's and the firms' profits.
 
-Let us start from the last stage, and assume that firms and consumers have already made their entry decisions: a measure $N$ of firms and measure $M$ of consumers are on the platform. Furthermore, firms have already set their prices $p(t)$, $t \in [0, N]$. Then consumers face the following utility maximization problem:
+\subsection{The pricing subgame}
+
+Let us start from the last stage, when firms have already made their entry decisions: a measure $N_f$ of firms is present on the platform. Assume that consumers have the same Logit-form demand system as in \textcite{anderson2021hybrid}. Each consumer buys precisely one product, the one giving her the highest net utility. The utility from choosing outside option $i$ is $\mu \epsilon_{0i}$. The net utility from buying platform's $i$th product at price $p_{Pi}$ is $v - p_{Pi} + \mu \epsilon_{Pi}$, while the net utility from choosing the $i$th fringe firm's product is $v - p_{Fi} + \epsilon_{Fi}$. $\epsilon_{Pi}, \epsilon_{Fi}$ and $\epsilon_{0i}$ come from identical, independent, standardized Gumbel-distributions.
+
+As shown in \textcite{anderson2021hybrid}, the demand for each of these three types of products is
 \begin{align*}
-    &u(m, x(\cdot)) = m + \alpha \left[ \int_0^N x(t)^\rho \dt \right] ^ \frac{\gamma}{\rho} \\
-    &\text{s.t. } m + \int_0^N p(t) x(t) \dt = I.
-\end{align*}
-By following the usual solution method for CES utility functions, we obtain the following demand function:
-\begin{align*}
-    x(t) = M K p(t) ^ \frac{1}{\rho-1}
+    q_{Pi} &= \frac{\int_0^{N_P}  e^\frac{v - p_{Pi} \di}{\mu}}{A} \\
+    q_{Fi} &= \frac{e^\frac{v - p_{Fi}}{\mu}}{A} \\
+    q_{0i} &= \frac{1}{A} .
 \end{align*}
 where
 \begin{align*}
-    K = (\alpha \gamma) ^ {\frac{1}{1 - \rho} + \gamma - \rho} \left[ \int_0^N p(t) ^ \frac{\rho}{\rho - 1} \dt \right] ^ \frac{\rho - \gamma}{\rho (\gamma - 1)}.
+    A = \int_0^{N_P} e^\frac{v - p_{Pi}}{\mu} \dt + \int_0^{N_F} e^\frac{v - p_{Fi}}{\mu} \dt + 1.
 \end{align*}
-It implies that, as with the usual CES utility function, the optimal pricing strategy is independent on others' prices or the number of consumers, and is simply a constant markup over the marginal cost:
-\begin{align*}
-    p = \frac{c}{\rho}.
-\end{align*}
-The total profit each firm makes is then $\pi(N)$, while the total profit of all firms is $\Pi(n) = N\pi(N)$.
 
-Consumers utility is from buying the products is then $u(N)$, which is increasing in $N$. As all consumers are identical, the platform optimally sets a user entry price of $F^u = u(N)$, so that it extracts all surplus from the consumers. Therefore, the total profits that a coalition of firms and the platform can obtain (assuming they individually maximize profits after the entry decisions are made) is
+It can be shown that the optimal pricing strategy is a constant, additive markup over the unit cost. Moreover, the markup is the same for both the platform and the firms, and corresponds to the dispersion in tastes:
 \begin{align*}
-    v(N) = \Pi(N) + U(N).
+    p_{Pi} = p_{Fi} = c + \mu.
 \end{align*}
-$v(N)$ is increasing in $N$, and its shape depends on the parameters of the utility function of the consumers and the marginal cost of the producers.
+Conversely, the profit of the two types of players are
+\begin{align*}
+    \pi_{Fi} &= \frac{\mu}{A} e^\frac{v - c - \mu}{\mu} \\
+    \pi_{Pi} &= N_P \frac{\mu}{A} e^\frac{v - c - \mu}{\mu}
+\end{align*}
+and the total profits of all players together are
+\begin{align*}
+    v(N_f) = N_f \pi_{Fi} + \pi_{Pi} = \mu \frac{A - 1}{A}.
+\end{align*}
+
+Let $B = e^\frac{v - c - \mu}{\mu}$. Then the total profits from sales (platform and the entering firms combined) can be expressed as
+\begin{align*}
+    v(N_f) = \frac{N_P B + N_f B}{N_P B + N_f B + 1}.
+\end{align*}
 
 \subsection{Deciding firm entry fees}
 
-Let us look at the second stage of the game: firms have made their investment decisions, and are now negotiating with the platform over the entry price. Let us assume that $T \in [0, 1]$ measure of firms have made an investment. $C$ is a fixed cost, therefore does not influence the rest of the game. Remember that entry fees will be set such that the final profits correspond to Shapley values. Let us denote these values by $\varphi_f(v, T)$ and $\varphi_P(v, T)$ for firms and the platform, respectively. As shown in the main results,
+Let us look at the second stage of the game: firms have made their investment decisions, and are now negotiating with the platform over the entry price. Let us assume that $\bar{N}_f \in \mathbb{R}^+$ measure of firms have made an investment. $C$ is a fixed cost, therefore does not influence the rest of the game. Remember that entry fees will be set such that the final profits correspond to Shapley values. Let us denote these values by $\varphi_f(v, T)$ and $\varphi_P(v, T)$ for firms and the platform, respectively. As shown in the main results,
 \begin{align*}
-    \varphi_P(v, T) &= \int_0^1 v(tT) \dt \\
-    \varphi_f(v, T) &= v(T) - \int_0^1 v(tT) \dt.
+    \varphi_P(v, \bar{N}_f) &= \int_0^1 v(t \bar{N}_f) \dt \\
+    &= 1 - \frac{\log(BN_p + BN_f + 1) - \log(BN_p + 1)}{BN_f}
 \end{align*}
-In order to achieve these values, the firm entry fee will be set to $F^f = \varphi_P(v, T) - U(T)$.
-
-Finally, looking at the first stage, firms will make the initial investment if and only if $\varphi_f(v, T) / T \geq C$. Therefore, the equilibrium measure of entrants is given by
+and
 \begin{align*}
-    v(T) - \int_0^1 v(tT) = CT.
+    \varphi_f(v, \bar{N}_f) &= v(\bar{N}_f) - \int_0^1 v(t \bar{N}_f) \dt \\
+    &= \frac{N_P B + N_f B}{N_P B + N_f B + 1} - 1 + \frac{\log(BN_P + BN_f + 1) - \log(BN_P + 1)}{BN_f} \\
+    &= \frac{\log(BN_P + BN_f + 1) - \log(BN_P + 1)}{BN_f} - \frac{1}{N_P B + N_f B + 1}.
 \end{align*}
+In order to achieve these values, the firm entry fee will be set to $F^f = \varphi_P(v, T) - N_P\Pi_{P_i}$. However, these fees are not relevant for any of the participants -- only their net profits, which is their Shapley value, matter.
 
+\subsection{Equilibrium entry}
+
+Finally, looking at the first stage, firms will make the initial investment if and only if $\varphi_{f_i}(v, \bar{N}_f) = \varphi_f(v, \bar{N}_f) / \bar{N}_f \geq C$. Therefore, because of the free entry condition, the equilibrium measure of entrants is given by
+\begin{align*}
+    \frac{\log(BN_P + BN_f + 1) - \log(BN_P + 1)}{BN_f} - \frac{1}{N_P B + N_f B + 1} = C \bar{N}_f.
+\end{align*}
+The left hand side of this expression is strictly concave \textcolor{red}{(show this explicitly!)}, therefore, for low enough values of $C$, the equilibrium measure of entrants as a function of $N_P$ is unique.
+
+Next steps:
+\begin{itemize}
+    \item Show how the equilibrium number of entrants depends on $N_P$
+    \item Show how consumer welfare (which is proportional to $\log(N_f + N_P)$) depends on $N_P$
+    \item Try to characterize the profit-maximizing $N_P$ and how it depends on the parameters
+\end{itemize}
+
+Why is it interesting?
+\begin{itemize}
+    \item In \textcite{anderson2021hybrid}, in the absence of a revenue-based fee, consumer welfare does not depend on the number/measure of the platform's products. (The idea is that a higher $N_P$ is offset by a lower $N_f$ and vice versa.) Consumer welfare effects materialize through the platform setting a different sales fee for different values of $N_P$.
+    \item In this model, however, $N_P$ also changes the bargaining power of the platform, which in turn changes the profits obtained by the fringe. Therefore, $N_P$ does have an effect on the equilibrium measure of entrants and consumer welfare, even without revenue-based fees.
+    \item Therefore, a paltform selling its own products is not only worriesome because of the ususal factors (possibility of steering, perverse incentives for setting sales fees, etc.), but also because it increases its bargaining power against the possible entrants.
+\end{itemize}
 
 \appendix
-
-\section{References}
 
 \printbibliography
 
@@ -360,7 +387,7 @@ Finally, looking at the first stage, firms will make the initial investment if a
 \end{proof}
 
 
-\section{Proofs of propositions and lemmas from the main text}
+\section{Proofs of propositions and lemmas in the main text}
 
 \begin{proof}[Proof of Proposition \ref{prop:monotone}]
     Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
