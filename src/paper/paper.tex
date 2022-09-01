@@ -51,23 +51,24 @@ Despite this positive result and their analytical tractability, oceanic games ar
 
 \section{One-sided case}
 
-Imagine a cooperative game with two types of players: a major player $P$ and $n$ smaller players. I.e., $N = \{P, A_1, \dots, A_n\}$. Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical. Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$. Then, the value $S \subset N$ can achieve is the following:
+Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players. I.e., $N = \{P, A_1, \dots, A_n\}$. Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical. Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$. Then, the value that any coalition $S \subset N$ can achieve is the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } P \notin S \\
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-One can think of this setting as a (one-sided) platform and a number of potential entrants.
+One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform.\footnote{While these assumptions might seem somewhat restrictive, they are relatively simple to relax.} First, let us characterize the conditions under which this game is superadditive. These features provide some theoretical support for using Shapley-values as bargaining outcomes, as papers creating a link between noncooperative bargaining and cooperative values often rely on such assumptions.\footnote{For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.}
 
 \begin{proposition}
     \label{prop:monotone}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
 \end{proposition}
 
-In the following, let us assume that the assumptions required for monotonicity are always satisfied. It ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies: asymptotic value coincides with the axiomatic one using the uniform distribution for the latter. \textcolor{red}{Note: I realize that this paragraph is somewhat vague and needs explanation. However, for the current set of results, I do not rely on said theorem. If I end up using it later, I will expand on this part.}
+In the following, let us assume that the assumptions required for monotonicity are always satisfied. In addition to the previous advantages, it also ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies them, as well. Namely, the asymptotic value coincides with the axiomatic one using the uniform distribution, providing multiple ways of characterizing them. In practice, it means that there is no need to explicitly calculate the limits of finite-player cooperative games, as there is a more direct option for characterizing the value of the oceanic game. Nevertheless, in many of the following theorems, the asymptotic limit is preferred, as I believe that makes the proofs more instructive.
+%\textcolor{red}{Note: I realize that this paragraph is somewhat vague and needs explanation. However, for the current set of results, I do not rely on said theorem. If I end up using it later, I will expand on this part.}
 
-Let $\varphi_P^n$ denote the Shapley-value of player $P$ in the case of $n$ players of type $A$. The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the Shapley-value of the platform does not converge to $f(1)$. This in turn implies that the aggregated Shapley-values of the fringe remain positive even in the limit.
+The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the Shapley-value of the platform does not converge to $f(1)$. This in turn implies that the aggregated Shapley-values of the fringe remain positive even in the limit. In the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the Shapley-value of player $P$ in the case of $n$ players of type $A$.
 \begin{proposition}
     \label{prop:one_sided}
     Let $f$ be continuous on [0, 1]. Then
@@ -113,21 +114,22 @@ It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ an
     \end{tikzpicture}
 \end{figure}
 
+Finally, the following corollary implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value still converges to a positive value.
 \begin{corollary}
     \label{cor:fringe_value_2}
     $\varphi_P^\infty < f(1)$ and $\varphi_A^\infty > 0$ for any $f$ that is not constant.
 \end{corollary}
 
-This proposition implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value converges to a positive value.
-
 
 \subsection{Weighted Shapley-values}
 
+While the values of oceanic games (i.e. the limits of the Shapley values of their finite approximations in finite games) are well known in the relevant literature, there are no results about the limits of the weighted (Shapley) values. While providing very general results in the form of \textcite[]{fogelman1980asymptotic} is outside of the scope of the paper\footnote{They show that the (within some constraints) any discretization of an oceanic game converges to the same value.} the results in this section still provide some new insights into weighted values of oceanic games. In particular, I show that the weighted value of a game with one large and many small players converges to a rather simple and intuitive expression, if the size of the small players go to zero at the same rate.
+
 Imagine a general non-cooperative game $(N, v)$ with $N = \{1, \dots, n\}$. Assume that, in addition to the value function $v : 2^n \to \mathbb{R}$, the game is also endowed with a weight system $\lambda \in \mathbb{R}^n$. These weights can be thought of as measures of innate bargaining power \parencite{shapley1953additive}, not reflected in the value function. Further support for this interpretation can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{For example, only one player having a positive value corresponds to them making take it or leave it offers.}
 
-For my purposes, it is sufficient to deal with the case of simple weights. I.e., assume that there is at most one player with zero weight. I make use of the fact that weighted Shapley values can be calculated by weighting the permutations by the probabilities arising from the following sequential entry procedure \parencite{kalai1987weighted}. Start with the set of all players. Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$. This yields a well-defined probability for each permutation of players. Continue until all players are exhausted.
+For my purposes, it is sufficient to deal with the case of simple weights. I.e., assume that there is at most one player with zero weight. For my main result, I make use of the fact that weighted Shapley values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure \parencite{kalai1987weighted}. Start with the set of all players. Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$. Continue until all players are exhausted. This yields a well-defined probability for each permutation of players.
 
-Getting back to the game at hand, let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively. Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the above procedure. Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
+Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively. Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the above procedure. Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
 \begin{align*}
     \Pr{X_n \leq k} = \prod_{j=k+1}^n \frac{j}{j + \lambda} .
 \end{align*}
@@ -137,7 +139,7 @@ The following lemma establishes the continuous analogue of this statement.
      As $n \to \infty$, $X_n \xrightarrow[]{\mathrm{d}} X$ with the cdf $G_X(t) = \lambda^t$. Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
 
-Finally, the weighted Shapley-value of player $i$ can be expressed as the expected marginal contribution of that player where the permutations are weighted according to the previous distribution.
+The main proposition of this section shows that the weighted Shapley-value of player $i$ can be expressed as the expected marginal contribution of that player where the permutations are weighted according to the previous distribution.
 \begin{proposition}
     \label{prop:one_sided_weighted}
     Let $f(t)$ be continuous on $[0, 1]$. Then
@@ -147,12 +149,12 @@ Finally, the weighted Shapley-value of player $i$ can be expressed as the expect
     where $g(t) = \lambda t^{\lambda - 1}$.
 \end{proposition}
 
+Finally, the following corollaries support the interpretation of weights as bargaining power, as a higher weight corresponds to a higher Shapley-value in this game.\footnote{This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.} Furthermore, the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
+
 \begin{corollary}
     \label{cor:platform_value_weighted}
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
-
-The following proposition supports the interpretation of weights as bargaining power, as a higher weight corresponds to a higher Shapley-value in this game.\footnote{This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.}
 
 \begin{corollary}
     \label{cor:paltform_value_weighted_2}
