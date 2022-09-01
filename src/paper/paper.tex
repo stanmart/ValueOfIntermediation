@@ -26,7 +26,7 @@
 \newcommand{\di}{\mathrm{d}i}
 \newcommand{\E}{\mathbb{E}}
 
-\title{The value of intermediation -- results so far}
+\title{The value of intermediation}
 \author{Martin Stancsics}
 
 \begin{document}
@@ -58,7 +58,7 @@ Consider a cooperative game with two types of players: a major player $P$ and $n
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform.\footnote{While these assumptions might seem somewhat restrictive, they are relatively simple to relax.} First, let us characterize the conditions under which this game is superadditive. These features provide some theoretical support for using Shapley-values as bargaining outcomes, as papers creating a link between noncooperative bargaining and cooperative values often rely on such assumptions.\footnote{For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.}
+One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform.\footnote{While these assumptions might seem somewhat restrictive, they are relatively simple to relax.} First, let us characterize the conditions under which this game is superadditive. These features provide some theoretical support for using Shapley-values as bargaining outcomes, as papers creating a link between non-cooperative bargaining and cooperative values often rely on such assumptions.\footnote{For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.}
 
 \begin{proposition}
     \label{prop:monotone}
@@ -278,7 +278,7 @@ The model heavily depends on how the entry fees are determined. The most widespr
 
 The characteristic function (necessary for computing values) of a coalition consisting of the platform and any set of firms is defined as follows. Take the members of any given coalition as fixed. Let firms and the platform set profit-maximizing prices for their products without collusion. Note that these prices will be irrespective irrespective of earlier decisions, as both development costs and entry fees are sunk cost at this point. The total profits of the coalition is then the sum of the platform's and the firms' profits from product sales.
 
-While the previous procedure might look somewhat peculiar at first glance, its elements would not be out of place in more traditional (noncooperative) models, either. Principally, the two main ideas it relies are the following. First, bargaining outcomes should not depend on which player actually obtains the money, all that matters is the total that a given set of players can obtain.\footnote{For example, imagine the following two situations with two players. In the first one, the first player obtains a playoff of two dollars if they both decide to cooperate and nothing otherwise. In the second scenario, both players receive one dollar in the case of cooperation. If they can transfer monay between each other, bargaining outcomes should be the same in both scenarios.} Second, players during the bargaining foresee the (unique) subgame perfect equilibrium in the following subgame, and negotiate based on them
+While the previous procedure might look somewhat peculiar at first glance, its elements would not be out of place in more traditional (non-cooperative) models, either. Principally, the two main ideas it relies are the following. First, bargaining outcomes should not depend on which player actually obtains the money, all that matters is the total that a given set of players can obtain.\footnote{For example, imagine the following two situations with two players. In the first one, the first player obtains a playoff of two dollars if they both decide to cooperate and nothing otherwise. In the second scenario, both players receive one dollar in the case of cooperation. If they can transfer monay between each other, bargaining outcomes should be the same in both scenarios.} Second, players during the bargaining foresee the (unique) subgame perfect equilibrium in the following subgame, and negotiate based on them.
 
 \subsection{The pricing subgame}
 
@@ -351,21 +351,18 @@ It is immediately apparent from the figure, that a platform operating in hybrid 
 
 \section{Conclusions}
 
+This paper proposed a new framework to think about the profit allocation in situations concerning a few large and a continuum of smaller players. The results are especially relevant for upstream-downstream situations, platform settings, and two-sided markets. The outcomes of the Shapley-value-based gain sharing rule generally concur with intuitive expectations, and the resulting formulas are more tractable than most explicit non-cooperative approaches.
 
+The illustrative hybrid platform model also highlights the strengths of this approach. Despite its simplicity, it highlights a novel channel through which platforms selling their own products might lead to welfare losses: hybrid platforms have more bargaining power against potential entrants than traditional ones. This mechanism should probably also be considered when competition authorities assess mergers between platforms and contents providers.
 
-Next steps:
-\begin{itemize}
-    \item Show how the equilibrium number of entrants depends on $N_P$
-    \item Show how consumer welfare (which is proportional to $\log(N_f + N_P)$) depends on $N_P$
-    \item Try to characterize the profit-maximizing $N_P$ and how it depends on the parameters
-\end{itemize}
+There is a variety of ways through which this paper could be expanded or built upon. On the theoretical side, some of the stricter assumptions could be relaxed, such as fringe agents achieving a zero payoff without the platform. Besides, the convergence result for the weighted values could be strengthened if one could manage to show that any sequence along ever more refined partitions of the atomic players converges to the same limit \parencite[à la][]{fogelman1980asymptotic}. The possibilities for practical applications are no less interesting, either. As a first step, the majorly simplified example application could be expanded upon, so that it is a better description of certain real-life paltform markets. Finally, the cooperative approach to profit distribution could become an alternative for the more usual, but in some sense more extreme assumptions about the bargaining process widely used in industrial organization models.
 
-Why is it interesting?
-\begin{itemize}
-    \item In \textcite{anderson2021hybrid}, in the absence of a revenue-based fee, consumer welfare does not depend on the number/measure of the platform's products. (The idea is that a higher $N_P$ is offset by a lower $N_f$ and vice versa.) Consumer welfare effects materialize through the platform setting a different sales fee for different values of $N_P$.
-    \item In this model, however, $N_P$ also changes the bargaining power of the platform, which in turn changes the profits obtained by the fringe. Therefore, $N_P$ does have an effect on the equilibrium measure of entrants and consumer welfare, even without revenue-based fees.
-    \item Therefore, a paltform selling its own products is not only worriesome because of the ususal factors (possibility of steering, perverse incentives for setting sales fees, etc.), but also because it increases its bargaining power against the possible entrants.
-\end{itemize}
+% Next steps:
+% \begin{itemize}
+%     \item Show how the equilibrium number of entrants depends on $N_P$
+%     \item Show how consumer welfare (which is proportional to $\log(N_f + N_P)$) depends on $N_P$
+%     \item Try to characterize the profit-maximizing $N_P$ and how it depends on the parameters
+% \end{itemize}
 
 \appendix
 
@@ -457,7 +454,7 @@ Why is it interesting?
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of Lemma \ref{lem:entry_distr}] \textcolor{red}{(Might have to fix sum indices)} \\
+\begin{proof}[Proof of Lemma \ref{lem:entry_distr}] %\textcolor{red}{(Might have to fix sum indices)} \\
     The probability of $P$ having at most fraction $t$ of the other players before itself is
     \begin{align*}
         \Pr(X_n \leq nt) &= \Pr(X_n \leq nt ) \\
@@ -495,7 +492,7 @@ Why is it interesting?
         &= t^\lambda.
     \end{align*}
 
-    For $t=0$, simply observe that \textcolor{red}{Have to elaborate on this}
+    For $t=0$, simply observe that %\textcolor{red}{Have to elaborate on this}
     \begin{align*}
         \lim_{n \to \infty} \prod_{j = 1}^n \frac{j}{j + \lambda} = 0 = 0^\lambda.
     \end{align*}
@@ -578,7 +575,7 @@ Why is it interesting?
     The allocation is efficient for all $n \in \mathbb{N}$, therefore efficient in the limit, as well. The second equality can be obtained by integration by parts.
 \end{proof}
 
-\begin{proof}[Proof of Corollary \ref{cor:multiple_platforms_2}] \textcolor{red}{(Assuming $f$ is continuously differentiable -- will have to relax this)}
+\begin{proof}[Proof of Corollary \ref{cor:multiple_platforms_2}] (Assuming $f$ is continuously differentiable) %\textcolor{red}{(Assuming $f$ is continuously differentiable -- will have to relax this)}
     $f'(t)$ is non-negative, so $[1 - (1-t)^m] f'(t)$ is increasing in $m$ $\forall t \in [0, 1]$. As a consequence, $\varphi_A^{n, \infty}$ is also increasing in $m$ if $f'(t)$ is positive on some interval or, $f(t)$ is not constant. Conversely, $\varphi_{P}^{\infty, m} = 1 - \varphi_{A}^{\infty, m}$ is decreasing in $m$.
 \end{proof}
 
