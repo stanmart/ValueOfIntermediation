@@ -163,7 +163,7 @@ Finally, the following corollaries support the interpretation of weights as barg
 
 \subsection{Multiple platforms}
 
-Imagine that there are $m$ players of type $P$ which are perfect substitutes of each other. That is, the fringe players still need a platform to achieve any value, but it does not matter which or how many platforms are available for them. Specifically, the value function for coalition $S$ is the following:
+Imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other. That is, the fringe players still need a platform to achieve any value, but it does not matter which or how many platforms are available for them. Formally, the value function for coalition $S$ is the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } n_P(S) = 0 \\
@@ -171,11 +171,13 @@ Imagine that there are $m$ players of type $P$ which are perfect substitutes of 
     \end{cases}
 \end{align*}
 
-% \begin{proposition}
-%     The game is monotone, supermodular and convex if $f$ is increasing and convex
-% \end{proposition}
-\textcolor{red}{Note: I have to think more about how to describe this situation in the language of cooperative game theory. The issue is that, for example, the value of $\{P_1, A_1\}$ depends on whether $\{P_2, A_2\}$ also decides to form a coalition and enter the market.}
+Let us start by establishing monotonicity for this version of the model, too.
+\begin{proposition}
+    The game is monotone if $f$ is increasing and $f(0) \geq 0$.
+\end{proposition}
+% \textcolor{red}{Note: I have to think more about how to describe this situation in the language of cooperative game theory. The issue is that, for example, the value of $\{P_1, A_1\}$ depends on whether $\{P_2, A_2\}$ also decides to form a coalition and enter the market.}
 
+As before, the main proposition in this section provides us with an expression of the limit of the value for this variant of the game.
 \begin{proposition}
     \label{prop:multiple_platforms}
     The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
@@ -184,7 +186,7 @@ Imagine that there are $m$ players of type $P$ which are perfect substitutes of 
     \end{align*}
 \end{proposition}
 
-As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation, and could have been obtained directly from the oceanic game. Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit cube. The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players. That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
+As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation, and could have been obtained directly using the axiomatic approach. Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit cube. The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players. That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
 
 \begin{corollary}
     \label{cor:multiple_platforms}
