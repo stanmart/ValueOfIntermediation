@@ -1,0 +1,10 @@
+name:
+  voi-manim
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.9.13
+  - manim=0.16.0
+  - typer=0.6.1

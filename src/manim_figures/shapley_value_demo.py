@@ -1,7 +1,7 @@
 from manim import *
 
 
-class Baseline(Scene):
+class ShapleyDemo(Scene):
 
     def construct(self):
 
@@ -17,7 +17,7 @@ class Baseline(Scene):
         Tex.set_default(color=BLACK)
         Brace.set_default(color=BLACK)
 
-        self.next_section("draw objects")
+        self.next_section("draw_objects")
 
         P_text = Tex("$P$", color=BLACK, font_size=label_size)
         P_text.bg = Rectangle(height=box_size, width=box_size, color=BLUE, fill_opacity=0.25)

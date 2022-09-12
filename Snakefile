@@ -1,5 +1,29 @@
 from os.path import dirname, basename, splitext
-from src.utils.makeutils import find_input_files
+from src.utils.makeutils import find_input_files, find_manim_sections
+
+
+rule manim_test:
+    input: "out/manim_figures/videos/shapley_value_demo/800p60/sections/value_1P2.mp4"
+
+
+
+rule manim_shapley_value:
+    conda: "envs/manim.yaml"
+    input:
+        script = "src/manim_figures/shapley_value_demo.py"
+    output:
+        videos = expand(
+            "out/manim_figures/videos/shapley_value_demo/{height}p{fps}/sections/{section}.mp4",
+            section = find_manim_sections("src/manim_figures/shapley_value_demo.py"),
+            allow_missing=True
+        )
+    params:
+        width = lambda wildcards: int(wildcards.height) * 4 // 3,
+    shell:
+        "manim render -qh {input.script} --save_sections --media_dir out/manim_figures \
+                      -r {params.width},{wildcards.height} --fps {wildcards.fps} && \
+         python src/utils/makeutils.py rename-manim-sections \
+                out/manim_figures/videos/shapley_value_demo/{wildcards.height}p{wildcards.fps}/sections"
 
 
 rule paper:
