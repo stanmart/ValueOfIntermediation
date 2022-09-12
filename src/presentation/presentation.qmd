@@ -1,0 +1,88 @@
+---
+title: "The value of intermediation"
+author: "Martin Stancsics"
+format: revealjs
+bibliography: references.bib
+---
+
+<style>
+    ul li li {
+        font-size: 0.75em;
+        line-height: 1.2em;
+    }
+</style>
+
+
+# Intorduction
+
+## Motivation
+
+TODO
+
+## Main ideas
+
+ - Use the Shapley-value instead of an extensive-form bargaining model
+    - Analytically more tractable
+    - Has bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+    - Has precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+ - Focus on the "few large players -- continuum of small players" case (oceanic games)
+    - Good approximation of the finite player case even for not too many players
+    - Results have a nice geometric interpretation
+ - Balance generality and having useful results
+
+## Preview of results
+
+ - The Shapley-value seems to be a very tractable way of modeling bargaining in certain important contexts
+    - One/two-sided platforms
+    - Upstream-downstream setups
+ - Comparative statistics give support to the bargaining interpretation
+ - Extensions to include some important cases are relatively straightforward
+ - Even a simple application yields interesting results about hybrid platforms
+
+
+#
+
+## The Shapley-value
+
+Each player gets their expected marginal contribution
+
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+
+
+## Why do we care about it?
+
+Same idea as with the Nash bargaining game/solution
+
+ - Axiomatic reasoning
+    - The Shapley-value is the only sharing rule that is efficient, symmetric, linear, and satisfies the null player axiom [@shapley1953additive]
+ - Bargaining foundations
+    - The value arises of the subgame-perfect equilibrium of various alternating-offer bargaining games [e.g. @gul1989bargaining; @winter1994demand; @hart1996bargaining; @stole1996intra; @inderst2003bargaining]
+ - A tractable and sensible-looking gain-sharing rule
+    - Comparative statics show that it behaves as one would expect
+
+
+# The relevant setting
+
+## Baseline model
+
+
+
+
+# Thank you
+
+## References
+
+::: {#refs}
+:::
+

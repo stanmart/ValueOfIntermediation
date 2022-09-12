@@ -2,3 +2,7 @@
 .snakemake/
 .vscode/
 __pycache__
+
+# Quarto currently renders into the qmd file's directory
+*.html
+*_files/
