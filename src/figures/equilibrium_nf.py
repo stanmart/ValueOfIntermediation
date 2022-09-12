@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib. pyplot as plt
+import typer
 
 
-def plot_equilibrium_nf(N_P_list, B, C, N_f_range=(0, 2), num_obs=500):
+def plot_equilibrium_nf(N_P_list, B, C, N_f_range, num_obs=500):
     N_f = np.linspace(N_f_range[0], N_f_range[1], num_obs)
     rhs = C * N_f
     lhs_list = []
@@ -21,7 +22,20 @@ def plot_equilibrium_nf(N_P_list, B, C, N_f_range=(0, 2), num_obs=500):
     return fig, ax
 
 
-fig, ax = plot_equilibrium_nf([0, 0.2], B=1, C=0.2, N_f_range=(0, 1))
-fig.set_size_inches(5, 3.5)
-fig.set_facecolor("white")
-fig.savefig("../../out/figures/equilibrium_nf.png", dpi=300)
+def create_plot(out_path: str, B: float = 1, C: float = 0.2,
+                N_P: list[float] = [], N_f_range: tuple[float, float] = (0, 1),
+                num_obs: int = 500, width: float = 5, height: float = 3.5, dpi: int = 300):
+
+    if not N_P:
+        raise typer.BadParameter("At least one value for N_P must be provided")
+
+    fig, ax = plot_equilibrium_nf(N_P_list=N_P, B=B, C=C, N_f_range=N_f_range, num_obs=num_obs)
+
+    fig.set_size_inches(width, height)
+    fig.set_facecolor("white")
+
+    fig.savefig(out_path, dpi=dpi)
+
+
+if __name__ == "__main__":
+    typer.run(create_plot)
