@@ -1,3 +1,4 @@
-out/
+/out/
 .snakemake/
 .vscode/
+__pycache__
