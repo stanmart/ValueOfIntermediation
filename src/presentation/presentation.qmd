@@ -5,8 +5,13 @@ format:
     revealjs:
         embed-resources: true
         transition: fade
+        toc: true
+        toc-depth: 1
+        toc-title: Agenda
 bibliography: references.bib
 ---
+
+# Intorduction
 
 <style>
     ul li li {
@@ -14,9 +19,6 @@ bibliography: references.bib
         line-height: 1.2em;
     }
 </style>
-
-
-# Intorduction
 
 ## Motivation
 
@@ -43,7 +45,7 @@ TODO
  - Even a simple application yields interesting results about hybrid platforms
 
 
-#
+# The Shapley-value
 
 ## The Shapley-value
 
@@ -142,7 +144,7 @@ Same idea as with the Nash bargaining game/solution
     - Comparative statics show that it behaves as one would expect
 
 
-# The relevant setting
+# Main results
 
 ## Baseline model
 
@@ -180,11 +182,13 @@ v(C) = \begin{cases}
 \end{cases}
 $$
 
+::: {.fragment .fade-in fragment-index=2}
 Shapley value:
 $$
 \scriptsize
 \varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
 $$
+:::
 ::: {.fragment .fade-in fragment-index=4}
 $$
 \scriptsize
@@ -228,7 +232,7 @@ $$
 Let $f$ be continuous on $[0, 1]$. Then
 
 $$
-\lim_{n \to \infty} \phi_P^n(f) = \int_0^1 f(t) \, \mathrm{d}t
+\lim_{n \to \infty} \varphi_P^n(f) = \int_0^1 f(t) \, \mathrm{d}t
 $$
 :::
 
@@ -280,7 +284,45 @@ The platform gets a larger slice when
 ::::
 
 
-# Thank you
+# Extensions
+
+
+## Multiple platforms
+
+
+## Weighted value
+
+
+# Example application
+
+
+## Market setup
+
+
+## Timing of the game
+
+
+## Results
+
+
+# Conclusion
+
+## Conclusions
+
+ - Proposed a very tractable way of modeling bargaining applicable to certain important contexts
+ - The results are for upstream-downstream situations, platform settings, and two-sided markets
+ - The outcomes generally concur with intuitive expectations
+ - Even the simple example application provides some interesting insights into hybrid platforms
+
+## Future work
+
+- There is a variety of ways in which the model could be extended (e.g. additional platforms provide some value)
+- The example application could be turned into a proper, full-fledged model
+- A lab experiment about the outcomes of group bargaining could be conducted
+- The model could be applied to other contexts
+
+
+# Thank you {.unnumbered .unlisted}
 
 ## References
 
