@@ -47,6 +47,10 @@ TODO
 
 # The Shapley-value
 
+::: {.notes}
+ - Just the intuition in a few words
+:::
+
 ## The Shapley-value
 
 An example game in coalitional form
@@ -76,6 +80,11 @@ $\{P, A_1, A_2\}$  | 3
 :::
 
 ::::
+
+::: {.notes}
+ - Two ingredients: players (left) and characteristic function (right)
+ - We don't care about strategies, only about value achieved by coalitions
+:::
 
 
 ## The Shapley-value
@@ -131,6 +140,12 @@ $\{P, A_1, A_2\}$  | 3
 
 ::::
 
+::: {.notes}
+ - Most direct definition of Shapley value
+ - Closed-form expression
+ - Generally computationally expensive, but not in this case
+:::
+
 
 ## Why do we care about it?
 
@@ -143,8 +158,18 @@ Same idea as with the Nash bargaining game/solution
  - A tractable and sensible-looking gain-sharing rule
     - Comparative statics show that it behaves as one would expect
 
+::: {.notes}
+ - You don't need to think about cooperative game theory in the following part
+ - Think of it as a convenient gain sharing rule with some (cooperative and non-cooperative) microfoundations
+:::
+
 
 # Main results
+
+::: {.notes}
+ - Very simple setting
+ - Conveys the intuition behind the results
+:::
 
 ## Baseline model
 
@@ -166,6 +191,12 @@ $\forall\, C \subset N$.
 :::
 
 ::::
+
+::: {.notes}
+ - Not only platforms. Also describes
+   - upstream-downstream setups
+   - generally any setting with an important large palyers and many identical small ones
+:::
 
 ## Value of the platform
 
@@ -224,6 +255,10 @@ $$
 
 ::::
 
+::: {.notes}
+ - Think of the previous figure with the orderings
+ - Main insight: each ordering with the platform at position $k$ has the same probability
+:::
 
 
 ## Main proposition
@@ -237,6 +272,10 @@ $$
 :::
 
 Even as firms become infinitesimally small, the platform cannot take all the created value
+
+::: {.notes}
+ - The bargaining problem is reduced to a simple integral
+:::
 
 
 ## Simple comparative statics
@@ -283,8 +322,16 @@ The platform gets a larger slice when
 
 ::::
 
+::: {.notes}
+ - The comparative statics seem to coincide with one's intuition about bargaining
+:::
+
 
 # Extensions
+
+::: {.notes}
+ - Skippable if don't have time
+:::
 
 
 ## Multiple platforms
@@ -298,7 +345,7 @@ Imagine that
   - They are perfect substitutes
 :::
 
-::: {.column .fragment width="5%"}
+::: {.column width="5%"}
 :::
 
 ::: {.column .fragment width="45%"}
@@ -357,6 +404,11 @@ $$
 
 # Example application
 
+::: {.notes}
+ - Intentionally simple model
+ - Most elemnts borrowed from [@anderson2021hybrid]
+:::
+
 
 ## Market setup
 
@@ -376,12 +428,26 @@ $$
  - The outcomes generally concur with intuitive expectations
  - Even the simple example application provides some interesting insights into hybrid platforms
 
+::: {.notes}
+My contributions
+ - Shapley-value is a good fit for platform settings
+ - The continuous case is vary tractable in this speciific setting
+ - Results about the weighted value are mine
+ - Insight that hybrid platforms have higher bargaining power, leading to more distortion
+:::
+
 ## Future work
 
 - There is a variety of ways in which the model could be extended (e.g. additional platforms provide some value)
 - The example application could be turned into a proper, full-fledged model
 - A lab experiment about the outcomes of group bargaining could be conducted
 - The model could be applied to other contexts
+
+::: {.notes}
+ - Some extensions are straightforward
+ - However, some situations just don't fit the model
+ - Essentially a plug-and-play approach when one some middle ground between one side taking all the gains
+:::
 
 
 # Thank you {.unnumbered .unlisted}
