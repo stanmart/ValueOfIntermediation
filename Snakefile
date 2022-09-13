@@ -27,6 +27,25 @@ rule presentation:
           {params.mv} {params.output_in_src} {params.output_in_out}"
 
 
+rule manim_equilibrium_entry:
+    conda: "envs/manim.yaml"
+    input:
+        script = "src/manim_figures/equilibrium_entry.py"
+    output:
+        videos = expand(
+            "out/manim_figures/videos/equilibrium_entry/{height}p{fps}/sections/{section}.mp4",
+            section = find_manim_sections("src/manim_figures/equilibrium_entry.py"),
+            allow_missing=True
+        )
+    params:
+        width = lambda wildcards: int(16/9 * wildcards.height),
+    shell:
+        "manim render -qh {input.script} --save_sections --media_dir out/manim_figures \
+                      -r {params.width},{wildcards.height} --fps {wildcards.fps} && \
+         python src/utils/makeutils.py rename-manim-sections \
+                out/manim_figures/videos/equilibrium_entry/{wildcards.height}p{wildcards.fps}/sections"
+
+
 rule manim_corollary_comparative:
     conda: "envs/manim.yaml"
     input:

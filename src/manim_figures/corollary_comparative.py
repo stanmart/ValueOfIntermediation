@@ -16,15 +16,15 @@ class Baseline(Scene):
         ParametricFunction.set_default(color=BLACK)
 
         # Create plane
-        ax = plane = Axes(
+        ax = Axes(
             x_range=[0, 1, 0.05],
             y_range=[0, 1, 0.05],
             x_length=10,
             y_length=10
         )
-        self.play(Create(plane))
+        self.play(Create(ax))
 
-        f = plane.plot(lambda x: x**2)
+        f = ax.plot(lambda x: x**2)
         f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)
         self.play(Create(f), Create(f_label))
         self.wait(0.5)

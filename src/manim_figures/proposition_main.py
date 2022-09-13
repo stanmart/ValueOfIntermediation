@@ -16,15 +16,15 @@ class Baseline(Scene):
         ParametricFunction.set_default(color=BLACK)
 
         # Create plane
-        ax = plane = Axes(
+        ax = Axes(
             x_range=[0, 1, 0.05],
             y_range=[0, 1, 0.05],
             x_length=10,
             y_length=10
         )
-        self.play(Create(plane))
+        self.play(Create(ax))
 
-        f = plane.plot(lambda x: sqrt(x))
+        f = ax.plot(lambda x: sqrt(x))
         area = ax.get_area(f, (0, 1), opacity=0.5, color=BLUE)
 
         # Discrete number of firms
