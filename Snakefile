@@ -27,6 +27,25 @@ rule presentation:
           {params.mv} {params.output_in_src} {params.output_in_out}"
 
 
+rule manim_corollary_comparative:
+    conda: "envs/manim.yaml"
+    input:
+        script = "src/manim_figures/corollary_comparative.py"
+    output:
+        videos = expand(
+            "out/manim_figures/videos/corollary_comparative/{height}p{fps}/sections/{section}.mp4",
+            section = find_manim_sections("src/manim_figures/corollary_comparative.py"),
+            allow_missing=True
+        )
+    params:
+        width = lambda wildcards: wildcards.height,
+    shell:
+        "manim render -qh {input.script} --save_sections --media_dir out/manim_figures \
+                      -r {params.width},{wildcards.height} --fps {wildcards.fps} && \
+         python src/utils/makeutils.py rename-manim-sections \
+                out/manim_figures/videos/corollary_comparative/{wildcards.height}p{wildcards.fps}/sections"
+
+
 rule manim_proposition_main:
     conda: "envs/manim.yaml"
     input:

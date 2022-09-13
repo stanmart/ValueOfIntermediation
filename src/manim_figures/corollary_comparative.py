@@ -24,22 +24,30 @@ class Baseline(Scene):
         )
         self.play(Create(plane))
 
-        f = plane.plot(lambda x: sqrt(x))
-        area = ax.get_area(f, (0, 1), opacity=0.5, color=BLUE)
+        f = plane.plot(lambda x: x**2)
         f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)
         self.play(Create(f), Create(f_label))
         self.wait(0.5)
-        self.play(FadeIn(area))
+
+        area = ax.get_area(f, (0, 1), opacity=0.5, color=BLUE)
+        top = ax.plot(lambda x: 1)
+        area_fringe = ax.get_area(f, (0, 1), bounded_graph=top, opacity=0.5, color=RED)
+
+        self.play(Create(top))
+
+        self.play(FadeIn(area), FadeIn(area_fringe))
 
         # Convex function
         self.next_section("complements")
 
-        f2 = ax.plot(lambda x: x**2)
+        f2 = ax.plot(lambda x: sqrt(x))
+        f2_label = ax.get_graph_label(f2, "f(t)", direction=RIGHT)
         area2 = ax.get_area(f2, (0, 1), opacity=0.5, color=BLUE)
         area_fringe2 = ax.get_area(f2, (0, 1), bounded_graph=top, opacity=0.5, color=RED)
 
         self.play(
             ReplacementTransform(f, f2),
+            ReplacementTransform(f_label, f2_label),
             ReplacementTransform(area, area2),
             ReplacementTransform(area_fringe, area_fringe2)
         )
@@ -62,13 +70,14 @@ class Baseline(Scene):
 
         f4 = ax.plot(lambda x: sqrt(0.1 + 0.9*x))
         fo4 = ax.plot(lambda x: sqrt(x) / 2)
+        fo4_label = ax.get_graph_label(fo4, "f_0(t)", direction=DOWN)
         area4 = ax.get_area(f4, (0, 1), bounded_graph=fo4, opacity=0.5, color=BLUE)
         areao4 = ax.get_area(fo4, (0, 1), opacity=0.5, color=RED)
         area_fringe4 = ax.get_area(f4, (0, 1), bounded_graph=top, opacity=0.5, color=RED)
 
         self.play(
             ReplacementTransform(f3, f4),
-            Create(fo4)
+            Create(fo4), Create(fo4_label)
         )
 
         self.play(

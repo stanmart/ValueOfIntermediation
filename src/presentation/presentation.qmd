@@ -241,19 +241,18 @@ Even as firms become infinitesimally small, the platform cannot take all the cre
 
 ::: {.column width="40%"}
 
-Let $f_1, f_2$ continuous on $[0, 1]$. Then
-$$
-f_1(t) \leq f_2(t) \;\forall\, t
-$$
-$$
-\implies \phi_P^\infty(f_1) \leq \phi_P^\infty(f_2)
-$$
-
-In words: the platform gets a larger slice when
-
-  * the firms are substitutes to each other
-  * the platform has intrinsic value
-
+::: {.fragment fragment-index=1}
+The platform gets a larger slice when
+:::
+::: {.fragment fragment-index=2}
+  1. the firms are substitutes to each other
+:::
+::: {.fragment fragment-index=3}
+  2. the platform has intrinsic value
+:::
+::: {.fragment fragment-index=4}
+  3. the fringe firms have no outside option
+:::
 
 :::
 
@@ -262,19 +261,16 @@ In words: the platform gets a larger slice when
 ::: {.r-stack}
 
 ::: {.fragment fragment-index=1}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/draw_graph.mp4" />
 :::
 ::: {.fragment fragment-index=2}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/complements.mp4" />
 :::
 ::: {.fragment fragment-index=3}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/intrinsic_value.mp4" />
 :::
 ::: {.fragment fragment-index=4}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
-:::
-::: {.fragment fragment-index=5}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/outside_option.mp4" />
 :::
 
 :::
