@@ -332,6 +332,28 @@ $$
 
 ## Weighted value
 
+::: {.fragment}
+ - Endow the game with a weight system
+   - The platform has weight $\lambda$
+   - The firms have weight $1$
+ - Weights can thoughts of as innate bargaining power [@shapley1953additive; @hart1973values]
+:::
+
+
+::: {#prp-weighted .fragment}
+## Weighted values
+Let $f(t)$ be continuous on $[0, 1]$. Then
+$$
+   \varphi_P^\infty(f, \lambda) = \int_0^1 \underbrace{\lambda t^{\lambda - 1}}_{g(t)} f(t) \mathrm{d}t
+$$
+:::
+
+::: {.notes}
+ - The limit of weighted values is *new*
+ - Corollaries give credence to the bargaining power interpretation
+ - Probabilistic interpretation (weighting permutations)
+:::
+
 
 # Example application
 
