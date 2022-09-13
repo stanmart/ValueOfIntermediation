@@ -451,13 +451,62 @@ $$
 
 ## Market setup
 
+ - Measure 1 of consumers [à la @anderson2021hybrid]
+   - Each of them buy a unit of products
+   - Logit-type utility function ($u_i = v_i - p_i + \mu \epsilon_i$)
+ - Continuum of firms ($a(t), t \in \mathbb{R}$) with one differentiated product each
+ - Measure 1 of outside options
+ - A platform
+   - necessary for the firms to sell their products
+   - May or may not have its own products
 
+::: {.notes}
+ - Each consumer chooses the products giving them the highest net utility
+ - I don't want to go into the details of the model
+:::
 
 
 ## Timing of the game
 
+:::: {.columns}
+
+::: {.column width="45%"}
+ 1. Firms decide whether to invest at cost $c$
+ 2. Platform entry fees and decisions are negotiated
+ 3. Firms and platforms set product prices
+ 4. Consumers choose products
+
+**Idea:** 2. stage bargaining is over *final allocations*
+:::
+
+::::
+
+
+::: {.notes}
+ - Investment decisions are sunk costs
+ - Entry fees are lump sum, do not influence pricing
+ - All players foresee the outcome of the pricing subgame
+:::
+
 
 ## Results
+
+ - Assuming no collusion in the pricing game, total profits as a function of entering firms are
+$$
+v(N_f) = \frac{N_P B + N_F B}{N_P B + N_F B + 1} \quad \text{ where } B = e^\frac{v - c - \mu}{\mu}
+$$
+ - If entry fees were fixed, $N_P$ would not influence product variety / consumer welfare
+ - However, a higher $N_P$ leads to a better bargaining position for the platform and lower number of entrants
+
+::: {.notes}
+ - Constant, additive markup over marginal cost
+ - Consumer welfare is a function of product variety
+:::
+
+
+## Results graphically
+
+
 
 
 # Conclusion
