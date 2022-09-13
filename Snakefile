@@ -1,10 +1,23 @@
-from os.path import dirname, basename, splitext
-from src.utils.makeutils import find_input_files, find_manim_sections
+from platform import system
+from shutil import move
+from os.path import normpath
+from src.utils.makeutils import find_input_files, find_manim_sections, find_videos
 
 
-rule manim_test:
-    input: "out/manim_figures/videos/shapley_value_demo/800p60/sections/value_1P2.mp4"
-
+rule presentation:
+    input:
+        qmd = "src/presentation/presentation.qmd",
+        bib = "src/presentation/references.bib",
+        manim_videos = find_videos("src/presentation/presentation.qmd", remove_prefix="../..")
+    output:
+        html = "out/presentation/presentation.html"
+    params:
+        output_in_out = lambda wildcards, output: normpath(output.html),
+        output_in_src = lambda wildcards, input: normpath(input.qmd.rstrip(".qmd") + ".html"),
+        mv = "move" if system() == "Windows" else "mv"
+    shell:
+         "quarto render {input.qmd} --self-contained && \
+          {params.mv} {params.output_in_src} {params.output_in_out}"
 
 
 rule manim_shapley_value:
@@ -35,7 +48,6 @@ rule paper:
     output:
         pdf = "out/paper/paper.pdf"
     params:
-        outdir = lambda wildcards, output:  dirname(output.pdf),
         pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0]
     shell:
         "latexmk -pdf -synctex=1 -file-line-error \
