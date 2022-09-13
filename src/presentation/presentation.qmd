@@ -289,6 +289,46 @@ The platform gets a larger slice when
 
 ## Multiple platforms
 
+:::: {.columns}
+
+::: {.column width="45%"}
+Imagine that
+
+  - There are $m$ platforms
+  - They are perfect substitutes
+:::
+
+::: {.column .fragment width="5%"}
+:::
+
+::: {.column .fragment width="45%"}
+That is, 
+$$
+   v(S) = \begin{cases}
+      0  \; \text{ if } P_i \notin S \; \forall i \\
+      f\left(\frac{\#_A(S)}{n}\right)
+   \end{cases}
+$$
+:::
+
+::::
+
+::: {.notes}
+ - Probabilistic interpretation: the platform has to be the first one in order to have any additional value
+ - As the number of platforms increases, the *total value* they obtain decreases, and the total value firms obtain increases
+:::
+
+
+::: {#prp-multiple-platforms .fragment}
+## Multiple platforms
+The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
+$$
+\begin{aligned}
+   \varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \mathrm{d}t .
+\end{aligned}
+$$
+:::
+
 
 ## Weighted value
 
