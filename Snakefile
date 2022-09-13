@@ -1,14 +1,21 @@
 from platform import system
 from shutil import move
-from os.path import normpath
+from os.path import normpath, splitext, basename, dirname
 from src.utils.makeutils import find_input_files, find_manim_sections, find_videos
+
+
+rule all:
+    input:
+        presentation = "out/presentation/presentation.html",
+        paper = "out/paper/paper.pdf"
 
 
 rule presentation:
     input:
         qmd = "src/presentation/presentation.qmd",
         bib = "src/presentation/references.bib",
-        manim_videos = find_videos("src/presentation/presentation.qmd", remove_prefix="../..")
+        manim_videos = find_videos("src/presentation/presentation.qmd", remove_prefix="../.."),
+        util_script = "src/utils/makeutils.py"
     output:
         html = "out/presentation/presentation.html"
     params:
@@ -48,7 +55,8 @@ rule paper:
     output:
         pdf = "out/paper/paper.pdf"
     params:
-        pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0]
+        pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0],
+        outdir = lambda wildcards, output: dirname(output.pdf)
     shell:
         "latexmk -pdf -synctex=1 -file-line-error \
                  -outdir={params.outdir} \
@@ -67,3 +75,31 @@ rule figure_equilibrium_entry:
         "python {input.script} {output.fig} \
          --b 1 --c 0.2 --n-p 0 --n-p 0.2 --n-f-range 0 1 \
          --num-obs 500 --width 5 --height 3.8 --dpi 300"
+
+
+rule filegraph:
+    conda: "envs/graphviz.yaml"
+    input:
+        "Snakefile"
+    output:
+        "build_graphs/filegraph.pdf"
+    shell:
+        "snakemake --filegraph | dot -Tpdf > build_graphs/filegraph.pdf"
+
+rule rulegraph:
+    conda: "envs/graphviz.yaml"
+    input:
+        "Snakefile"
+    output:
+        "build_graphs/rulegraph.pdf"
+    shell:
+        "snakemake --rulegraph | dot -Tpdf > build_graphs/rulegraph.pdf"
+
+rule dag:
+    conda: "envs/graphviz.yaml"
+    input:
+        "Snakefile"
+    output:
+        "build_graphs/dag.pdf"
+    shell:
+        "snakemake --dag | dot -Tpdf > build_graphs/dag.pdf"

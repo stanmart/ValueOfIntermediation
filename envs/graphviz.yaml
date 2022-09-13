@@ -1,0 +1,9 @@
+name: voi-graphviz
+
+channels:
+  - conda-forge
+
+dependencies:
+  - graphviz=5.0.1
+  - bioconda::snakemake-minimal=7.8.5
+  - typer=0.6.1
