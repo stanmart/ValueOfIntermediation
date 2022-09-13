@@ -27,6 +27,25 @@ rule presentation:
           {params.mv} {params.output_in_src} {params.output_in_out}"
 
 
+rule manim_proposition_main:
+    conda: "envs/manim.yaml"
+    input:
+        script = "src/manim_figures/proposition_main.py"
+    output:
+        videos = expand(
+            "out/manim_figures/videos/proposition_main/{height}p{fps}/sections/{section}.mp4",
+            section = find_manim_sections("src/manim_figures/proposition_main.py"),
+            allow_missing=True
+        )
+    params:
+        width = lambda wildcards: wildcards.height,
+    shell:
+        "manim render -qh {input.script} --save_sections --media_dir out/manim_figures \
+                      -r {params.width},{wildcards.height} --fps {wildcards.fps} && \
+         python src/utils/makeutils.py rename-manim-sections \
+                out/manim_figures/videos/proposition_main/{wildcards.height}p{wildcards.fps}/sections"
+
+
 rule manim_shapley_value:
     conda: "envs/manim.yaml"
     input:

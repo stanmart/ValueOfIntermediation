@@ -146,7 +146,142 @@ Same idea as with the Nash bargaining game/solution
 
 ## Baseline model
 
+:::: {.columns}
 
+::: {.column width="100%"}
+
+Set of all players: $N = \{P, A_1, \dots, A_n\}$
+
+**Assumption**: the platform is the only way for firms to
+reach users and that all $n$ firms are identical
+$$
+v(C) = \begin{cases}
+   0                                           & \text{if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right) & \text{otherwise}.
+\end{cases}
+$$
+$\forall\, C \subset N$.
+:::
+
+::::
+
+## Value of the platform
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Characteristic function:
+$$
+\scriptsize
+v(C) = \begin{cases}
+   0 \;\text{ if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right)
+\end{cases}
+$$
+
+Shapley value:
+$$
+\scriptsize
+\varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
+$$
+::: {.fragment .fade-in fragment-index=4}
+$$
+\scriptsize
+\to \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
+:::
+::: {.fragment fragment-index=5}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
+:::
+
+:::
+
+:::
+
+::::
+
+
+
+## Main proposition
+
+::: {#prp-baseline}
+Let $f$ be continuous on $[0, 1]$. Then
+
+$$
+\lim_{n \to \infty} \phi_P^n(f) = \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+Even as firms become infinitesimally small, the platform cannot take all the created value
+
+
+## Simple comparative statics
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Let $f_1, f_2$ continuous on $[0, 1]$. Then
+$$
+f_1(t) \leq f_2(t) \;\forall\, t
+$$
+$$
+\implies \phi_P^\infty(f_1) \leq \phi_P^\infty(f_2)
+$$
+
+In words: the platform gets a larger slice when
+
+  * the firms are substitutes to each other
+  * the platform has intrinsic value
+
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
+:::
+::: {.fragment fragment-index=5}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
+:::
+
+:::
+
+:::
+
+::::
 
 
 # Thank you
