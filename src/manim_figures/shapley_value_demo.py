@@ -136,8 +136,8 @@ class ShapleyDemo(Scene):
         A2.target.shift(left - middle)
 
         self.play(MoveToTarget(A1), MoveToTarget(A2))
-        self.play(Write(eq[7]))
+        self.play(Write(eq[8]))
 
         self.next_section("final")
         
-        self.play(Write(eq[1]), Write(eq[2]), Write(eq[8]), Write(eq[9]))
+        self.play(Write(eq[1]), Write(eq[2]), Write(eq[9]))
