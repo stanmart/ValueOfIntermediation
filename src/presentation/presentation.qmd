@@ -24,6 +24,11 @@ bibliography: references.bib
 
 TODO
 
+::: {.notes}
+ - Relevance to competition policy
+ - However: today's presentation is mostly theory but if I have time I'll say a few words about applications
+:::
+
 ## Main ideas
 
  - Use the Shapley-value instead of an extensive-form bargaining model
@@ -360,22 +365,19 @@ $$
 
 ::::
 
-::: {.notes}
- - Probabilistic interpretation: the platform has to be the first one in order to have any additional value
- - As the number of platforms increases, the *total value* they obtain decreases, and the total value firms obtain increases
-:::
-
-
 ::: {#prp-multiple-platforms .fragment}
 ## Multiple platforms
 The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
 $$
-\begin{aligned}
-   \varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \mathrm{d}t .
-\end{aligned}
+\varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \mathrm{d}t .
 $$
 :::
 
+
+::: {.notes}
+ - Probabilistic interpretation: the platform has to be the first one in order to have any additional value
+ - As the number of platforms increases, the *total value* they obtain decreases, and the total value firms obtain increases
+:::
 
 ## Weighted value
 
@@ -391,7 +393,7 @@ $$
 ## Weighted values
 Let $f(t)$ be continuous on $[0, 1]$. Then
 $$
-   \varphi_P^\infty(f, \lambda) = \int_0^1 \underbrace{\lambda t^{\lambda - 1}}_{g(t)} f(t) \mathrm{d}t
+\varphi_P^\infty(f, \lambda) = \int_0^1 \underbrace{\lambda t^{\lambda - 1}}_{g(t)} f(t) \mathrm{d}t
 $$
 :::
 
@@ -399,6 +401,43 @@ $$
  - The limit of weighted values is *new*
  - Corollaries give credence to the bargaining power interpretation
  - Probabilistic interpretation (weighting permutations)
+:::
+
+
+## Two-sided bargaining
+
+:::: {.columns}
+
+::: {.column width="45%"}
+Imagine that there are two fringe types ($A_i$ and $B_i$)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .fragment width="45%"}
+$$
+    v(S) = \begin{cases}
+        0 \; \text{ if } P \notin S \\
+        f\left(\frac{\#_A(S)}{n}, \frac{\#_B(S)}{n}\right).
+    \end{cases}
+$$
+:::
+
+::: {#prp-multiple-platforms .fragment}
+## Two-sided bargaining
+Let $f(a, b)$ continuous on $[0, 1] \times [0, 1]$. Then
+$$
+f(1, 1) = \underbrace{\int_0^1 f(t, t) \mathrm{d}t}_{\varphi_P^\infty(f)} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial a} \mathrm{d}t}_{\varphi_A^\infty(f)} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial b} \mathrm{d}t}_{\varphi_B^\infty(f)}
+$$
+:::
+
+::::
+
+::: {.notes}
+ - The other side (e.g. consumers) also participates in the bargaining process
+ - Values are weighted marginal contributions
+ - $P$ does not have to be in the "middle" of the transactions
 :::
 
 
@@ -411,6 +450,8 @@ $$
 
 
 ## Market setup
+
+
 
 
 ## Timing of the game
