@@ -476,12 +476,45 @@ $$
 :::: {.columns}
 
 ::: {.column width="45%"}
+::: {.fragment .fade-in fragment-index=2}
  1. Firms decide whether to invest at cost $c$
+:::
+::: {.fragment .fade-in fragment-index=3}
  2. Platform entry fees and decisions are negotiated
- 3. Firms and platforms set product prices
- 4. Consumers choose products
+:::
+::: {.fragment .fade-in fragment-index=4}
+ 3. Firms and platform set product prices, consumers buy products
+:::
 
+::: {.fragment .fade-in fragment-index=6}
 **Idea:** 2. stage bargaining is over *final allocations*
+:::
+:::
+
+
+::: {.column width="55%"}
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/draw_objects.mp4" />
+:::
+::: {.fragment fragment-index=2}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/investment.mp4" />
+:::
+::: {.fragment fragment-index=3}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/platform_entry.mp4" />
+:::
+::: {.fragment fragment-index=4}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/pricing_game.mp4" />
+:::
+::: {.fragment fragment-index=5}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/everyone_enters.mp4" />
+:::
+::: {.fragment fragment-index=6}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/shapley_values.mp4" />
+:::
+
+:::
 :::
 
 ::::
