@@ -41,7 +41,8 @@ class Equilibrium(Scene):
             y_length=6
         )
         ax.shift(UP * 0.5)
-        ax_label = ax.get_axis_labels(x_label=r"N_F")
+        ax_label = MathTex("N_f", color=BLACK)
+        ax_label.next_to(ax.get_corner(DOWN + RIGHT), DOWN)
 
         self.play(Create(ax), Write(ax_label))
 
@@ -144,10 +145,10 @@ class Equilibrium(Scene):
         # phi_F functions
         self.next_section("phi_F_functions")
 
-        phi_F_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val), color=BLUE_D, x_range=(0.05, 2))
+        phi_F_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val), color=BLUE_D, x_range=(0.02, 1.2))
         phi_F_fun_label = ax.get_graph_label(phi_F_fun, r"\varphi_F(v)", direction=UP)
 
-        phi_F_h_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val_h), color=RED_D, x_range=(0.05, 2))
+        phi_F_h_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val_h), color=RED_D, x_range=(0.02, 1.2))
         phi_F_h_fun_label = ax.get_graph_label(phi_F_h_fun, r"\varphi_F^h(v)", direction=DOWN)
 
         self.play(
@@ -155,15 +156,14 @@ class Equilibrium(Scene):
         )
         self.play(
             ReplacementTransform(phi_F_point, phi_F_fun), ReplacementTransform(phi_F_point_h, phi_F_h_fun),
-            ReplacementTransform(label_phi_F, phi_F_fun_label), ReplacementTransform(label_phi_F_h, phi_F_h_fun_label),
-            FadeOut(ax_label)
+            ReplacementTransform(label_phi_F, phi_F_fun_label), ReplacementTransform(label_phi_F_h, phi_F_h_fun_label)
         )
 
         # Cost function
         self.next_section("cost_function")
 
         cost_fun = ax.plot(lambda N_F: C * N_F, color=BLACK)
-        cost_fun_label = ax.get_graph_label(cost_fun, "C * N_F", direction=UP)
+        cost_fun_label = ax.get_graph_label(cost_fun, "C * N_F", direction=LEFT+UP)
 
         self.play(
             Create(cost_fun), Write(cost_fun_label)
