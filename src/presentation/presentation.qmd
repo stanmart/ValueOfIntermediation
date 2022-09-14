@@ -22,7 +22,12 @@ bibliography: references.bib
 
 ## Motivation
 
-TODO
+ - Bargaining between participants is rather overlooked in platform settings
+   - Most papers implicitly assume take-it-or-leave-it offers
+ - The use of cooperative bargaining concepts is not widespread in IO
+   - Although they are well established in certain subfields, such as upstream-downstream markets
+ - Most papers only consider finite-player games
+   - Modeling the small players as a continuum simplifies analysis
 
 ::: {.notes}
  - Relevance to competition policy
@@ -165,7 +170,7 @@ Same idea as with the Nash bargaining game/solution
 
 ::: {.notes}
  - You don't need to think about cooperative game theory in the following part
- - Think of it as a convenient gain sharing rule with some (cooperative and non-cooperative) microfoundations
+ - Think of it as a convenient gain sharing rule with some (cooperative and non-cooperative) micro-foundations
 :::
 
 
@@ -200,7 +205,7 @@ $\forall\, C \subset N$.
 ::: {.notes}
  - Not only platforms. Also describes
    - upstream-downstream setups
-   - generally any setting with an important large palyers and many identical small ones
+   - generally any setting with an important large players and many identical small ones
 :::
 
 ## Value of the platform
@@ -335,7 +340,7 @@ The platform gets a larger slice when
 # Extensions
 
 ::: {.notes}
- - Skippable if don't have time
+ - Can be skipped if don't have time
 :::
 
 
@@ -445,7 +450,7 @@ $$
 
 ::: {.notes}
  - Intentionally simple model
- - Most elemnts borrowed from [@anderson2021hybrid]
+ - Most elements borrowed from [@anderson2021hybrid]
 :::
 
 
@@ -556,7 +561,7 @@ $$
 ::: {.notes}
 My contributions
  - Shapley-value is a good fit for platform settings
- - The continuous case is vary tractable in this speciific setting
+ - The continuous case is vary tractable in this specific setting
  - Results about the weighted value are mine
  - Insight that hybrid platforms have higher bargaining power, leading to more distortion
 :::
