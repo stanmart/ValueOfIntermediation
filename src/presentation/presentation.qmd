@@ -56,6 +56,14 @@ bibliography: references.bib
  - Hybrid platforms
    - [@anderson2021hybrid; @hagiu2022should]
 
+::: {.notes}
+ - Further evidence that the Shapley-value is a good bargaining outcome
+ - Cooperative bargaining solutions in IO models are finite-player
+ - The asymptotics of the weighted value are unknown
+ - The literature on hybrid platforms is very recent
+ - Shapley-value in a platform setting is new
+:::
+
 ## Preview of results
 
  - The Shapley-value seems to be a very tractable way of modeling bargaining in certain important contexts
@@ -78,7 +86,7 @@ An example game in coalitional form
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column .fragment width="50%"}
 Imagine a game with three players:
 
  - A wholesale producer: $P$
@@ -89,7 +97,7 @@ Imagine a game with three players:
 ::: {.column width="10%"}
 :::
 
-::: {.column width="40%"}
+::: {.column .fragment width="40%"}
 And the following achievable profits:
 
 Coalition | Profits
