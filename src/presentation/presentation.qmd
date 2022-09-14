@@ -506,7 +506,42 @@ $$
 
 ## Results graphically
 
+::: {.r-stack}
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/draw_axes.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/char_func.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/fix_players.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/P_profit_share.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/profit_share_point.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/hybrid_case.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/switch_to_phi_F.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/phi_F_functions.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/cost_function.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/equilibrium.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/N_F_loss.mp4" />
+:::
 
+:::
 
 
 # Conclusion

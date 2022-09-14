@@ -38,7 +38,7 @@ rule manim_equilibrium_entry:
             allow_missing=True
         )
     params:
-        width = lambda wildcards: int(16/9 * wildcards.height),
+        width = lambda wildcards: int(16/9 * int(wildcards.height)),
     shell:
         "manim render -qh {input.script} --save_sections --media_dir out/manim_figures \
                       -r {params.width},{wildcards.height} --fps {wildcards.fps} && \
