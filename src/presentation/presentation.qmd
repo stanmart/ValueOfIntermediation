@@ -45,6 +45,17 @@ bibliography: references.bib
     - Results have a nice geometric interpretation
  - Balance generality and having useful results
 
+## Related literature
+
+ - Shapley-value as a bargaining outcome
+   - [@gul1989bargaining; @winter1994demand; @hart1996bargaining; @stole1996intra]
+ - Cooperative bargaining in IO models
+   - [@billera1978internal; @hart1990property; @levy1997individual; @segal2003collusion; @inderst2003bargaining; @montez2007downstream]
+ - Values of oceanic games
+   - [@hart1973values; @fogelman1980asymptotic]
+ - Hybrid platforms
+   - [@anderson2021hybrid; @hagiu2022should]
+
 ## Preview of results
 
  - The Shapley-value seems to be a very tractable way of modeling bargaining in certain important contexts
