@@ -41,14 +41,16 @@ class Equilibrium(Scene):
             y_length=6
         )
         ax.shift(UP * 0.5)
-        self.play(Create(ax))
+        ax_label = ax.get_axis_labels(x_label=r"N_F")
+
+        self.play(Create(ax), Write(ax_label))
 
         # Non-hybrid
         N_F_bar_val = 0.8
         N_P_val = 0
 
         self.next_section("char_func")
-        v_fun = ax.plot(lambda N_f: v(N_f, N_P_val), color=BLUE)
+        v_fun = ax.plot(lambda N_f: v(N_f, N_P_val), color=BLUE_D)
         v_label = ax.get_graph_label(v_fun, "v(t)", direction=DOWN)
         self.play(Create(v_fun), Write(v_label))
 
@@ -56,15 +58,18 @@ class Equilibrium(Scene):
         self.next_section("fix_players")
 
         pie_to_share = ax.c2p(N_F_bar_val, v(N_F_bar_val, N_P_val))
-        N_F_bar = ax.get_vertical_line(ax.c2p(N_F_bar_val, 1), color=BLACK)
-        self.play(Create(N_F_bar))
+        N_F_bar = ax.get_vertical_line(ax.c2p(N_F_bar_val, 0.7), color=BLACK)
+        N_F_bar_label = MathTex(r"\bar{N}_F")
+        N_F_bar_label.next_to(N_F_bar, DOWN)
 
-        self.next_section("fix_players")
-        area = ax.get_area(v_fun, (0, N_F_bar_val), opacity=0.5, color=BLUE)
+        self.play(Create(N_F_bar), Write(N_F_bar_label))
+
+        self.next_section("P_profit_share")
+        area = ax.get_area(v_fun, (0, N_F_bar_val), opacity=0.5, color=BLUE_D)
         self.play(FadeIn(area))
 
         self.next_section("profit_share_point")
-        div_point = Dot(color=BLUE)
+        div_point = Dot(color=BLUE_D)
         div_point.move_to(ax.c2p(N_F_bar_val, phi_P(N_F_bar_val, N_P_val)))
         self.play(ReplacementTransform(area, div_point))
 
@@ -85,15 +90,15 @@ class Equilibrium(Scene):
         self.next_section("hybrid_case")
         N_P_val_h = 0.2
 
-        v_h_fun = ax.plot(lambda N_f: v(N_f, N_P_val_h), color=RED)
+        v_h_fun = ax.plot(lambda N_f: v(N_f, N_P_val_h), color=RED_D)
         v_h_label = ax.get_graph_label(v_h_fun, "v^h(t)", direction=UP)
         self.play(Create(v_h_fun), Write(v_h_label))
 
         pie_to_share_h = ax.c2p(N_F_bar_val, v(N_F_bar_val, N_P_val_h))
-        area_h = ax.get_area(v_h_fun, (0, N_F_bar_val), opacity=0.5, color=RED)
+        area_h = ax.get_area(v_h_fun, (0, N_F_bar_val), opacity=0.5, color=RED_D)
         self.play(FadeIn(area_h))
 
-        div_point_h = Dot(color=RED)
+        div_point_h = Dot(color=RED_D)
         div_point_h.move_to(ax.c2p(N_F_bar_val, phi_P(N_F_bar_val, N_P_val_h)))
         self.play(ReplacementTransform(area_h, div_point_h))
 
@@ -113,14 +118,14 @@ class Equilibrium(Scene):
         # Switch to phi_F
         self.next_section("switch_to_phi_F")
 
-        phi_F_point = Dot(color=BLUE)
+        phi_F_point = Dot(color=BLUE_D)
         phi_F_point.move_to(ax.c2p(N_F_bar_val, phi_F(N_F_bar_val, N_P_val)))
 
         brace_phi_F = BraceBetweenPoints(ax.c2p(N_F_bar_val, 0), phi_F_point.get_bottom())
         label_phi_F = Tex(r"$\varphi_F(v)$")
         label_phi_F.next_to(brace_phi_F, RIGHT)
 
-        phi_F_point_h = Dot(color=RED)
+        phi_F_point_h = Dot(color=RED_D)
         phi_F_point_h.move_to(ax.c2p(N_F_bar_val, phi_F(N_F_bar_val, N_P_val_h)))
 
         brace_phi_F_h = BraceBetweenPoints(phi_F_point_h.get_bottom(), ax.c2p(N_F_bar_val, 0))
@@ -139,10 +144,10 @@ class Equilibrium(Scene):
         # phi_F functions
         self.next_section("phi_F_functions")
 
-        phi_F_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val), color=BLUE, x_range=(0.05, 2))
+        phi_F_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val), color=BLUE_D, x_range=(0.05, 2))
         phi_F_fun_label = ax.get_graph_label(phi_F_fun, r"\varphi_F(v)", direction=UP)
 
-        phi_F_h_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val_h), color=RED, x_range=(0.05, 2))
+        phi_F_h_fun = ax.plot(lambda N_f: phi_F(N_f, N_P_val_h), color=RED_D, x_range=(0.05, 2))
         phi_F_h_fun_label = ax.get_graph_label(phi_F_h_fun, r"\varphi_F^h(v)", direction=DOWN)
 
         self.play(
@@ -151,6 +156,7 @@ class Equilibrium(Scene):
         self.play(
             ReplacementTransform(phi_F_point, phi_F_fun), ReplacementTransform(phi_F_point_h, phi_F_h_fun),
             ReplacementTransform(label_phi_F, phi_F_fun_label), ReplacementTransform(label_phi_F_h, phi_F_h_fun_label),
+            FadeOut(ax_label)
         )
 
         # Cost function
@@ -167,19 +173,19 @@ class Equilibrium(Scene):
         self.next_section("equilibrium")
 
         eq = root_scalar(lambda N_F: phi_F(N_F, N_P_val) - C * N_F, bracket=[0.4, 1.2], method='brentq')
-        eq_point = Dot(color=BLUE)
+        eq_point = Dot(color=BLUE_D)
         eq_point.move_to(ax.c2p(eq.root, phi_F(eq.root, N_P_val)))
 
         eq_line = ax.get_vertical_line(eq_point.get_bottom(), color=BLACK)
-        eq_line_label = MathTex("N_F^*", color=BLUE)
+        eq_line_label = MathTex("N_F^*", color=BLUE_D)
         eq_line_label.next_to(eq_line, DOWN)
 
         eq_h = root_scalar(lambda N_F: phi_F(N_F, N_P_val_h) - C * N_F, bracket=[0.4, 1.2], method='brentq')
-        eq_point_h = Dot(color=RED)
+        eq_point_h = Dot(color=RED_D)
         eq_point_h.move_to(ax.c2p(eq_h.root, phi_F(eq_h.root, N_P_val_h)))
 
         eq_line_h = ax.get_vertical_line(eq_point_h.get_bottom(), color=BLACK)
-        eq_line_h_label = MathTex("N_F^{h*}", color=RED)
+        eq_line_h_label = MathTex("N_F^{h*}", color=RED_D)
         eq_line_h_label.next_to(eq_line_h, DOWN)
 
         self.play(
@@ -193,13 +199,14 @@ class Equilibrium(Scene):
         self.next_section("N_F_loss")
 
         brace_loss = BraceBetweenPoints(ax.c2p(eq_h.root, 0), ax.c2p(eq.root, 0))
-        loss_label = MathTex("N_F^* - N_F^{h*} > N_P^h", color=BLACK)
+        loss_label = MathTex("N_F^*", "-", "N_F^{h*}", "> N_P^h", color=BLACK)
+        loss_label[0].set_color(BLUE_D)
+        loss_label[2].set_color(RED_D)
         loss_label.next_to(brace_loss, DOWN)
 
         self.play(
-            FadeOut(eq_line_label), FadeOut(eq_line_h_label)
-        )
-        self.play(
-            FadeIn(brace_loss), Write(loss_label)
+            ReplacementTransform(eq_line_label, loss_label[0]),
+            ReplacementTransform(eq_line_h_label, loss_label[2]),
+            FadeIn(brace_loss), FadeIn(loss_label[1]), FadeIn(loss_label[3])
         )
 

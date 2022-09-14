@@ -22,7 +22,9 @@ class Baseline(Scene):
             x_length=10,
             y_length=10
         )
-        self.play(Create(ax))
+        ax_label = ax.get_axis_labels(x_label=r"t")
+
+        self.play(Create(ax), Write(ax_label))
 
         f = ax.plot(lambda x: x**2)
         f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)
