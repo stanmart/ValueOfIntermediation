@@ -40,8 +40,8 @@ class ShapleyDemo(Scene):
 
         eq = Tex(
             "$\\varphi_P$ = ", "$\\frac{1}{6}$", "$\\bigg($",
-            "$0$", "$+0$", "$+2$", "$+2$", "$+1$", "$+1$", "$\\bigg)$"
-            "$=1$"
+            "$0$", "$+0$", "$+2$", "$+2$", "$+4$", "$+4$", "$\\bigg)$"
+            "$=2$"
         )
         eq.next_to(A1, up_shift * 6 * DOWN)
         eq.font_size = 80
@@ -88,11 +88,17 @@ class ShapleyDemo(Scene):
 
         brace_2 = BraceBetweenPoints(pl0, pm1)
         brace_2.shift(DOWN)
-        brace_2_text = brace_2.get_text("2")
+        brace_2_text = brace_2.get_text("3")
         brace_2_text.font_size = 80
 
+        brace_1_text_new = brace_1.get_text("1")
+        brace_1_text_new.font_size = 80
+
         self.play(MoveToTarget(P), MoveToTarget(A2))
-        self.play(FadeIn(brace_2), FadeIn(brace_2_text))
+        self.play(
+            ReplacementTransform(brace_1_text, brace_1_text_new),
+            FadeIn(brace_2), FadeIn(brace_2_text)
+        )
         self.play(Write(eq[5]))
 
         self.next_section("value_1P2")
@@ -118,13 +124,13 @@ class ShapleyDemo(Scene):
 
         brace_3 = BraceBetweenPoints(pl0, pr1)
         brace_3.shift(DOWN)
-        brace_3_text = brace_3.get_text("3")
+        brace_3_text = brace_3.get_text("6")
         brace_3_text.font_size = 80
 
         self.play(
             MoveToTarget(P), MoveToTarget(A2),
             Transform(brace_1, brace_2_up), Transform(brace_2, brace_3),
-            Transform(brace_1_text, brace_2_up_text), Transform(brace_2_text, brace_3_text)
+            Transform(brace_1_text_new, brace_2_up_text), Transform(brace_2_text, brace_3_text)
         )
         self.play(Write(eq[7]))
 

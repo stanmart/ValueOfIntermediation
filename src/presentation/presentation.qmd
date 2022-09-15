@@ -89,8 +89,10 @@ An example game in coalitional form
 ::: {.column .fragment width="50%"}
 Imagine a game with three players:
 
- - A wholesale producer: $P$
- - Two downstream resellers: $A_1, A_2$
+ - Two producers: $A_1, A_2$
+   - can each make \$1 on their own
+ - A platform: $P$
+   - Triples the firms' profits
 
 :::
 
@@ -98,14 +100,13 @@ Imagine a game with three players:
 :::
 
 ::: {.column .fragment width="40%"}
-And the following achievable profits:
-
 Coalition | Profits
 ----------|---------
-$\{P\},  \{A_i\}$     |  0
-$\{A_1, A_2\}$  | 0  
-$\{P, A_i\}$  | 2 
-$\{P, A_1, A_2\}$  | 3
+$\{P\}$     |  0
+$\{A_i\}$   | 1
+$\{A_1, A_2\}$  | 2
+$\{P, A_i\}$  | 3
+$\{P, A_1, A_2\}$  | 6
 :::
 
 ::::
@@ -157,14 +158,13 @@ Each player gets their expected marginal contribution
 :::
 
 ::: {.column width="40%"}
-And the following achievable profits:
-
 Coalition | Profits
 ----------|---------
-$\{P\},  \{A_i\}$     |  0
-$\{A_1, A_2\}$  | 0
-$\{P, A_i\}$  | 2 
-$\{P, A_1, A_2\}$  | 3
+$\{P\}$     |  0
+$\{A_i\}$   | 1
+$\{A_1, A_2\}$  | 2
+$\{P, A_i\}$  | 3
+$\{P, A_1, A_2\}$  | 6
 :::
 
 ::::
