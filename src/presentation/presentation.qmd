@@ -4,6 +4,7 @@ author: "Martin Stancsics"
 format:
     revealjs:
         embed-resources: true
+        html-math-method: mathjax
         transition: fade
         toc: true
         toc-depth: 1
