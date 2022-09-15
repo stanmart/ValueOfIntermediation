@@ -9,10 +9,22 @@ format:
         toc: true
         toc-depth: 1
         toc-title: Agenda
+        header-includes: |
+          <script>
+            MathJax = {
+                loader: {load: ["input/tex", "output/svg"]}
+                svg: {
+                  scale: 0.9
+                },
+                chtml: {
+                  scale: 0.9
+                }
+            };
+          </script>
 bibliography: references.bib
 ---
 
-# Intorduction
+# Introduction
 
 <style>
     ul li li {
@@ -507,7 +519,7 @@ $$
 :::
 
 ::: {.fragment .fade-in fragment-index=6}
-**Idea:** 2. stage bargaining is over *final allocations*
+**Idea:** stage 2 bargaining is over *final allocations*
 :::
 :::
 
