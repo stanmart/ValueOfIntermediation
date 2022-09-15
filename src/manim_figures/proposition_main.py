@@ -63,7 +63,6 @@ class Baseline(Scene):
 
         self.play(FadeOut(brace), FadeOut(label), FadeOut(brace2), FadeOut(label2))
         f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)
-        self.wait(1)
         self.play(Create(f), Create(f_label))
         self.play(FadeOut(rects2), FadeIn(area))
 

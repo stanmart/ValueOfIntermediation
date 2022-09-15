@@ -249,7 +249,7 @@ $$
 \varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
 $$
 :::
-::: {.fragment .fade-in fragment-index=4}
+::: {.fragment .fade-in fragment-index=5}
 $$
 \scriptsize
 \to \int_0^1 f(t) \, \mathrm{d}t
@@ -274,7 +274,7 @@ $$
 ::: {.fragment fragment-index=4}
    <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
 :::
-::: {.fragment fragment-index=5}
+::: {.fragment fragment-index=6}
    <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
 :::
 
