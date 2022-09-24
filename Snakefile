@@ -10,6 +10,17 @@ rule all:
         paper = "out/paper/paper.pdf"
 
 
+rule deploy_to_github:
+    input:
+        presentation = "out/presentation/presentation.html",
+        script = "src/deploy/deploy_to_github.ps1"
+    output:
+        presentation = "gh-pages/index.html"
+    shell:
+        "pwsh {input.script} {input.presentation} {output.presentation}"
+
+
+
 rule presentation:
     input:
         qmd = "src/presentation/presentation.qmd",

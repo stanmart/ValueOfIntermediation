@@ -3,6 +3,7 @@
 .snakemake/
 .vscode/
 __pycache__
+/gh-pages/
 
 # Quarto currently renders into the qmd file's directory
 *.html
