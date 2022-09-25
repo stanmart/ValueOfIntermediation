@@ -1,5 +1,5 @@
 from platform import system
-from shutil import move
+from shutil import move, which
 from os.path import normpath, splitext, basename, dirname
 from src.utils.makeutils import find_input_files, find_manim_sections, find_videos
 
@@ -13,11 +13,15 @@ rule all:
 rule deploy_to_github:
     input:
         presentation = "out/presentation/presentation.html",
-        script = "src/deploy/deploy_to_github.ps1"
+        script_ps1 = "src/deploy/deploy_to_github.ps1",
+        script_sh = "src/deploy/deploy_to_github.sh"
     output:
         presentation = "gh-pages/index.html"
+    params:
+        sh = "pwsh" if which("pwsh") else ("git bash" if system() == "Windows" else "sh"),
+        script = lambda wildcards, input: input.script_ps1 if which("pwsh") else input.script_sh
     shell:
-        "pwsh {input.script} {input.presentation} {output.presentation}"
+        "{params.sh} {params.script} {input.presentation} {output.presentation}"
 
 
 
