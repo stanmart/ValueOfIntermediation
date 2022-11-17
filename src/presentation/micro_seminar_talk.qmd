@@ -1,0 +1,701 @@
+---
+title: "The value of intermediation"
+author: "Martin Stancsics"
+format:
+    revealjs:
+        embed-resources: true
+        html-math-method: mathjax
+        transition: fade
+        toc: true
+        toc-depth: 1
+        toc-title: Agenda
+        header-includes: |
+          <script>
+            MathJax = {
+                loader: {load: ["input/tex", "output/svg"]}
+                svg: {
+                  scale: 0.9
+                },
+                chtml: {
+                  scale: 0.9
+                }
+            };
+          </script>
+bibliography: references.bib
+---
+
+# Introduction
+
+<style>
+    ul li li {
+        font-size: 0.75em;
+        line-height: 1.2em;
+    }
+</style>
+
+## Motivation
+
+ - Bargaining between participants is rather overlooked in platform settings
+   - Most papers implicitly assume take-it-or-leave-it offers
+ - The use of cooperative bargaining concepts is not widespread in IO
+   - Although they are well established in certain subfields, such as upstream-downstream markets
+ - Most papers only consider finite-player games
+   - Modeling the small players as a continuum simplifies analysis
+
+::: {.notes}
+ - Relevance to competition policy
+ - However: today's presentation is mostly theory but if I have time I'll say a few words about applications
+:::
+
+## Main ideas
+
+ - Use the Shapley-value instead of an extensive-form bargaining model
+    - Analytically more tractable
+    - Has bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+    - Has precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+ - Focus on the "few large players -- continuum of small players" case (oceanic games)
+    - Good approximation of the finite player case even for not too many players
+    - Results have a nice geometric interpretation
+ - Balance generality and having useful results
+
+## Related literature
+
+ - Shapley-value as a bargaining outcome
+   - [@gul1989bargaining; @winter1994demand; @hart1996bargaining; @stole1996intra]
+ - Cooperative bargaining in IO models
+   - [@billera1978internal; @hart1990property; @levy1997individual; @segal2003collusion; @inderst2003bargaining; @montez2007downstream]
+ - Values of oceanic games
+   - [@hart1973values; @fogelman1980asymptotic]
+ - Hybrid platforms
+   - [@anderson2021hybrid; @hagiu2022should]
+
+::: {.notes}
+ - Further evidence that the Shapley-value is a good bargaining outcome
+ - Cooperative bargaining solutions in IO models are finite-player
+ - The asymptotics of the weighted value are unknown
+ - The literature on hybrid platforms is very recent
+ - Shapley-value in a platform setting is new
+:::
+
+## Preview of results
+
+ - The Shapley-value seems to be a very tractable way of modeling bargaining in certain important contexts
+    - One/two-sided platforms
+    - Upstream-downstream setups
+ - Comparative statistics give support to the bargaining interpretation
+ - Extensions to include some important cases are relatively straightforward
+ - Even a simple application yields interesting results about hybrid platforms
+
+
+# The Shapley-value
+
+::: {.notes}
+ - Just the intuition in a few words
+:::
+
+## The Shapley-value
+
+An example game in coalitional form
+
+:::: {.columns}
+
+::: {.column .fragment width="50%"}
+Imagine a game with three players:
+
+ - Two producers: $A_1, A_2$
+   - can each make \$1 on their own
+ - A platform: $P$
+   - Triples the firms' profits
+
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column .fragment width="40%"}
+Coalition | Profits
+----------|---------
+$\{P\}$     |  0
+$\{A_i\}$   | 1
+$\{A_1, A_2\}$  | 2
+$\{P, A_i\}$  | 3
+$\{P, A_1, A_2\}$  | 6
+:::
+
+::::
+
+::: {.notes}
+ - Two ingredients: players (left) and characteristic function (right)
+ - We don't care about strategies, only about value achieved by coalitions
+:::
+
+
+## The Shapley-value
+
+Each player gets their expected marginal contribution
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.r-stack}
+
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/draw_objects.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_P12.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_P21.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_2P1.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_1P2.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_12P.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_21P.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/final.mp4" />
+:::
+
+:::
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+Coalition | Profits
+----------|---------
+$\{P\}$     |  0
+$\{A_i\}$   | 1
+$\{A_1, A_2\}$  | 2
+$\{P, A_i\}$  | 3
+$\{P, A_1, A_2\}$  | 6
+:::
+
+::::
+
+::: {.notes}
+ - Most direct definition of Shapley value
+ - Closed-form expression
+ - Generally computationally expensive, but not in this case
+:::
+
+
+## Why do we care about it?
+
+Same idea as with the Nash bargaining game/solution
+
+ - Axiomatic reasoning
+    - The Shapley-value is the only sharing rule that satisfies a nice set of axioms (efficiency, symmetry, linearity, dummy player axiom) [@shapley1953additive]
+ - Bargaining foundations
+    - The value arises as the subgame-perfect equilibrium of various alternating-offer bargaining games [e.g. @gul1989bargaining; @winter1994demand; @hart1996bargaining; @stole1996intra; @inderst2003bargaining]
+ - A tractable and sensible-looking gain-sharing rule
+    - Comparative statics show that it behaves as one would expect
+
+::: {.notes}
+ - You don't need to think about cooperative game theory in the following part
+ - Think of it as a convenient gain sharing rule with some (cooperative and non-cooperative) micro-foundations
+:::
+
+
+# Main results
+
+::: {.notes}
+ - Very simple setting
+ - Conveys the intuition behind the results
+:::
+
+## Baseline model
+
+:::: {.columns}
+
+::: {.column width="100%"}
+
+Set of all players: $N = \{P, A_1, \dots, A_n\}$
+
+**Assumption**: the platform is the only way for firms to
+reach users and that all $n$ firms are identical
+$$
+v(C) = \begin{cases}
+   0                                           & \text{if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right) & \text{otherwise}.
+\end{cases}
+$$
+$\forall\, C \subset N$.
+:::
+
+::::
+
+::: {.notes}
+ - Not only platforms. Also describes
+   - upstream-downstream setups
+   - generally any setting with an important large players and many identical small ones
+:::
+
+## Value of the platform
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Characteristic function:
+$$
+\scriptsize
+v(C) = \begin{cases}
+   0 \;\text{ if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right)
+\end{cases}
+$$
+
+::: {.fragment .fade-in fragment-index=2}
+Shapley value:
+$$
+\scriptsize
+\varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
+$$
+:::
+::: {.fragment .fade-in fragment-index=5}
+$$
+\scriptsize
+\to \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
+:::
+::: {.fragment fragment-index=6}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
+:::
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+ - Think of the previous figure with the orderings
+ - Main insight: each ordering with the platform at position $k$ has the same probability
+:::
+
+
+## Main proposition
+
+::: {#prp-baseline}
+Let $f$ be continuous on $[0, 1]$. Then
+
+$$
+\lim_{n \to \infty} \varphi_P^n(f) = \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+Even as firms become infinitesimally small, the platform cannot take all the created value
+
+::: {.notes}
+ - The bargaining problem is reduced to a simple integral
+:::
+
+
+## Simple comparative statics
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+::: {.fragment fragment-index=1}
+The platform gets a larger slice when
+:::
+::: {.fragment fragment-index=2}
+  1. the firms are substitutes to each other
+:::
+::: {.fragment fragment-index=3}
+  2. the platform has intrinsic value
+:::
+::: {.fragment fragment-index=4}
+  3. the fringe firms have no outside option
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/complements.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/intrinsic_value.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/corollary_comparative/800p60/sections/outside_option.mp4" />
+:::
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+ - The comparative statics seem to coincide with one's intuition about bargaining
+:::
+
+
+# Example application
+
+## The model
+
+ - Intentionally simple model
+ - Most elements borrowed from [@anderson2021hybrid]
+ - Main changes: 
+
+
+## Market setup
+
+ - Measure 1 of consumers [à la @anderson2021hybrid]
+   - Each of them buy a unit of products
+   - Logit-type utility function ($u_i = v_i - p_i + \mu \epsilon_i$)
+ - Continuum of firms ($a(t), t \in \mathbb{R}$) with one differentiated product each
+ - Measure 1 of outside options
+ - A platform
+   - necessary for the firms to sell their products
+   - May or may not have its own products
+
+::: {.notes}
+ - Each consumer chooses the products giving them the highest net utility
+ - I don't want to go into the details of the model
+:::
+
+
+## Hybrid platforms with lump-sum fees
+
+:::: {.columns}
+
+::: {.column width="45%"}
+::: {.fragment .fade-in fragment-index=2}
+ 1. Platforms set lump-sum fee $F$
+:::
+::: {.fragment .fade-in fragment-index=3}
+ 2. Firms decide whether to enter at cost $c + F$
+:::
+::: {.fragment .fade-in fragment-index=4}
+ 3. Firms and platform set product prices, consumers buy products
+:::
+:::
+
+
+::: {.column width="55%"}
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure_benchmark/800p60/sections/draw_objects.mp4" />
+:::
+::: {.fragment fragment-index=3}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure_benchmark/800p60/sections/platform_entry.mp4" />
+:::
+::: {.fragment fragment-index=4}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure_benchmark/800p60/sections/pricing_game.mp4" />
+:::
+
+:::
+:::
+
+::::
+
+
+## Outcomes
+
+ - Constant additive markup $\implies$ profit $\propto$ market share
+ - Per unit fringe profit
+     $$ \frac{\mu B}{N_P B + N_F B + 1} \quad \text{where } B = \frac{v - c - \mu}{\mu} $$
+ - Free entry
+     $$ N_F^* = \frac{\mu B}{F + c} - N_P - \frac{1}{B} $$
+
+
+## Outcomes - the platform's decision
+
+ - Platform's profit: own sales plus entry fees
+     $$ \pi_P = F N_F^* + \frac{\mu N_P B}{N_P B + N_F^* B + 1} $$
+ - In a pure marketplace the second term is zero
+ - Here, second term is increasing in $N_P$
+ - $\implies$ higher fee and lower entry in the hybrid case
+
+
+## Model with bargaining
+
+:::: {.columns}
+
+::: {.column width="45%"}
+::: {.fragment .fade-in fragment-index=2}
+ 1. Firms decide whether to invest at cost $c$
+:::
+::: {.fragment .fade-in fragment-index=3}
+ 2. Platform entry fees and decisions are negotiated
+:::
+::: {.fragment .fade-in fragment-index=4}
+ 3. Firms and platform set product prices, consumers buy products
+:::
+
+::: {.fragment .fade-in fragment-index=6}
+**Idea:** stage 2 bargaining is over *final allocations*
+:::
+:::
+
+
+::: {.column width="55%"}
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/draw_objects.mp4" />
+:::
+::: {.fragment fragment-index=2}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/investment.mp4" />
+:::
+::: {.fragment fragment-index=3}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/platform_entry.mp4" />
+:::
+::: {.fragment fragment-index=4}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/pricing_game.mp4" />
+:::
+::: {.fragment fragment-index=5}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/everyone_enters.mp4" />
+:::
+::: {.fragment fragment-index=6}
+<video data-autoplay src="../../out/manim_figures/videos/market_structure/800p60/sections/shapley_values.mp4" />
+:::
+
+:::
+:::
+
+::::
+
+
+::: {.notes}
+ - Investment decisions are sunk costs
+ - Entry fees are lump sum, do not influence pricing
+ - All players foresee the outcome of the pricing subgame
+:::
+
+
+## Results
+
+ - Assuming no collusion in the pricing game, total profits as a function of entering firms are
+$$
+v(N_F) = \mu \frac{N_P B + N_F B}{N_P B + N_F B + 1} \quad \text{ where } B = e^\frac{v - c - \mu}{\mu}
+$$
+ - If entry fees were fixed, $N_P$ would not influence product variety / consumer welfare
+ - However, a higher $N_P$ leads to a better bargaining position for the platform and lower number of entrants
+
+::: {.notes}
+ - Constant, additive markup over marginal cost
+ - Consumer welfare is a function of product variety
+:::
+
+
+## Results graphically
+
+::: {.r-stack}
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/draw_axes.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/char_func.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/fix_players.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/P_profit_share.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/profit_share_point.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/hybrid_case.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/switch_to_phi_F.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/phi_F_functions.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/cost_function.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/equilibrium.mp4" />
+:::
+::: {.fragment}
+<video data-autoplay src="../../out/manim_figures/videos/equilibrium_entry/800p60/sections/N_F_loss.mp4" />
+:::
+
+:::
+
+
+# Conclusion
+
+## Conclusions
+
+Contributions
+
+ - A tractable way of modeling bargaining applicable to important contexts
+ - Interesting insights into hybrid platforms
+
+Future work
+
+- The example application could be turned into a proper, full-fledged model
+- A lab experiment about the outcomes of group bargaining
+
+::: {.notes}
+My contributions
+ - Shapley-value is a good fit for platform settings
+ - The continuous case is vary tractable in this specific setting
+ - Results about the weighted value are mine
+ - Insight that hybrid platforms have higher bargaining power, leading to more distortion
+ - Some extensions are straightforward, but some situations just don't fit the model
+ - Essentially a plug-and-play approach when one some middle ground between one side taking all the gains
+:::
+
+
+## References
+
+::: {#refs}
+:::
+
+
+# Appendix
+
+::: {.notes}
+ - Can be skipped if don't have time
+:::
+
+
+## Multiple platforms
+
+:::: {.columns}
+
+::: {.column width="45%"}
+Imagine that
+
+  - There are $m$ platforms
+  - They are perfect substitutes
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .fragment width="45%"}
+That is, 
+$$
+   v(S) = \begin{cases}
+      0  \; \text{ if } P_i \notin S \; \forall i \\
+      f\left(\frac{\#_A(S)}{n}\right)
+   \end{cases}
+$$
+:::
+
+::::
+
+::: {#prp-multiple-platforms .fragment}
+## Multiple platforms
+The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
+$$
+\varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \mathrm{d}t .
+$$
+:::
+
+
+::: {.notes}
+ - Probabilistic interpretation: the platform has to be the first one in order to have any additional value
+ - As the number of platforms increases, the *total value* they obtain decreases, and the total value firms obtain increases
+:::
+
+## Weighted value
+
+::: {.fragment}
+ - Endow the game with a weight system
+   - The platform has weight $\lambda$
+   - The firms have weight $1$
+ - Weights can thoughts of as innate bargaining power [@shapley1953additive; @hart1973values]
+:::
+
+
+::: {#prp-weighted .fragment}
+## Weighted values
+Let $f(t)$ be continuous on $[0, 1]$. Then
+$$
+\varphi_P^\infty(f, \lambda) = \int_0^1 \underbrace{\lambda t^{\lambda - 1}}_{g(t)} f(t) \mathrm{d}t
+$$
+:::
+
+::: {.notes}
+ - The limit of weighted values is *new*
+ - Corollaries give credence to the bargaining power interpretation
+ - Probabilistic interpretation (weighting permutations)
+:::
+
+
+## Two-sided bargaining
+
+:::: {.columns}
+
+::: {.column width="45%"}
+Imagine that there are two fringe types ($A_i$ and $B_i$)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .fragment width="45%"}
+$$
+    v(S) = \begin{cases}
+        0 \; \text{ if } P \notin S \\
+        f\left(\frac{\#_A(S)}{n}, \frac{\#_B(S)}{n}\right).
+    \end{cases}
+$$
+:::
+
+::: {#prp-multiple-platforms .fragment}
+## Two-sided bargaining
+Let $f(a, b)$ continuous on $[0, 1] \times [0, 1]$. Then
+$$
+f(1, 1) = \underbrace{\int_0^1 f(t, t) \mathrm{d}t}_{\varphi_P^\infty(f)} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial a} \mathrm{d}t}_{\varphi_A^\infty(f)} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial b} \mathrm{d}t}_{\varphi_B^\infty(f)}
+$$
+:::
+
+::::
+
+::: {.notes}
+ - The other side (e.g. consumers) also participates in the bargaining process
+ - Values are weighted marginal contributions
+ - $P$ does not have to be in the "middle" of the transactions
+:::
+
