@@ -189,7 +189,7 @@ class Equilibrium(Scene):
         # Equilibrium
         self.next_section("equilibrium")
 
-        eq = root_scalar(lambda N_F: phi_F(N_F, N_P_val) - c * N_F, bracket=[0.4, 1.2], method='brentq')
+        eq = root_scalar(lambda N_F: phi_F(N_F, N_P_val) - C * N_F, bracket=[0.4, 1.2], method='brentq')
         eq_point = Dot(color=BLUE_D)
         eq_point.move_to(ax.c2p(eq.root, phi_F(eq.root, N_P_val)))
 
@@ -197,7 +197,7 @@ class Equilibrium(Scene):
         eq_line_label = MathTex("N_F^*", color=BLUE_D)
         eq_line_label.next_to(eq_line, DOWN)
 
-        eq_h = root_scalar(lambda N_F: phi_F(N_F, N_P_val_h) - c * N_F, bracket=[0.4, 1.2], method='brentq')
+        eq_h = root_scalar(lambda N_F: phi_F(N_F, N_P_val_h) - C * N_F, bracket=[0.4, 1.2], method='brentq')
         eq_point_h = Dot(color=RED_D)
         eq_point_h.move_to(ax.c2p(eq_h.root, phi_F(eq_h.root, N_P_val_h)))
 

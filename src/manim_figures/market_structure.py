@@ -50,7 +50,7 @@ class MarketStructure(Scene):
         firm_eqs = []
         firm_shapleys = []
         for j, firm in enumerate(firms):
-            firm_eq = MathTex(r"-c", f"-F_{j+1}", f"+ \\pi_{j+1}", color=BLACK)
+            firm_eq = MathTex(r"-i", f"-F_{j+1}", f"+ \\pi_{j+1}", color=BLACK)
             firm_eq.next_to(firm, UP)
             firm_eqs.append(firm_eq)
             brace = Brace(firm_eq[1:], UP, color=BLACK)

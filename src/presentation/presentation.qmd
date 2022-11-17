@@ -509,7 +509,7 @@ $$
 
 ::: {.column width="45%"}
 ::: {.fragment .fade-in fragment-index=2}
- 1. Firms decide whether to invest at cost $c$
+ 1. Firms decide whether to invest at cost $i$
 :::
 ::: {.fragment .fade-in fragment-index=3}
  2. Platform entry fees and decisions are negotiated

@@ -375,7 +375,9 @@ The platform gets a larger slice when
 
  - Intentionally simple model
  - Most elements borrowed from [@anderson2021hybrid]
- - Main changes: 
+ - Main changes:
+   - Lump-sum entry fees
+   - Entry fees are not set bilaterally (bargaining) 
 
 
 ## Market setup
@@ -404,7 +406,7 @@ The platform gets a larger slice when
  1. Platforms set lump-sum fee $F$
 :::
 ::: {.fragment .fade-in fragment-index=3}
- 2. Firms decide whether to enter at cost $c + F$
+ 2. Firms decide whether to enter at cost $i + F$
 :::
 ::: {.fragment .fade-in fragment-index=4}
  3. Firms and platform set product prices, consumers buy products
@@ -455,7 +457,7 @@ The platform gets a larger slice when
 
 ::: {.column width="45%"}
 ::: {.fragment .fade-in fragment-index=2}
- 1. Firms decide whether to invest at cost $c$
+ 1. Firms decide whether to invest at cost $i$
 :::
 ::: {.fragment .fade-in fragment-index=3}
  2. Platform entry fees and decisions are negotiated
