@@ -563,7 +563,7 @@ $$
 
  - Assuming no collusion in the pricing game, total profits as a function of entering firms are
 $$
-v(N_F) = \mu \frac{N_P B + N_F B}{N_P B + N_F B + 1} \quad \text{ where } B = e^\frac{v - c - \mu}{\mu}
+v(N_f) = \frac{N_P B + N_F B}{N_P B + N_F B + 1} \quad \text{ where } B = e^\frac{v - c - \mu}{\mu}
 $$
  - If entry fees were fixed, $N_P$ would not influence product variety / consumer welfare
  - However, a higher $N_P$ leads to a better bargaining position for the platform and lower number of entrants
