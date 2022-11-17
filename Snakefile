@@ -4,10 +4,14 @@ from os.path import normpath, splitext, basename, dirname
 from src.utils.makeutils import find_input_files, find_manim_sections, find_videos
 
 
+PAPERS, *_ = glob_wildcards("src/paper/{paper}.tex")
+PRESENTATIONS, *_ = glob_wildcards("src/presentation/{pres}.qmd")
+
+
 rule all:
     input:
-        presentation = "out/presentation/presentation.html",
-        paper = "out/paper/paper.pdf"
+        presentations = expand("out/presentation/{presentation}.html", presentation=PRESENTATIONS),
+        paper = expand("out/paper/{paper}.pdf", paper=PAPERS)
 
 
 rule deploy_to_github:
@@ -24,15 +28,14 @@ rule deploy_to_github:
         "{params.sh} {params.script} {input.presentation} {output.presentation}"
 
 
-
 rule presentation:
     input:
-        qmd = "src/presentation/presentation.qmd",
+        qmd = "src/presentation/{presentation}.qmd",
         bib = "src/presentation/references.bib",
-        manim_videos = find_videos("src/presentation/presentation.qmd", remove_prefix="../.."),
+        manim_videos = lambda wildcards: find_videos(f"src/presentation/{wildcards.presentation}.qmd", remove_prefix="../.."),
         util_script = "src/utils/makeutils.py"
     output:
-        html = "out/presentation/presentation.html"
+        html = "out/presentation/{presentation}.html"
     params:
         output_in_out = lambda wildcards, output: normpath(output.html),
         output_in_src = lambda wildcards, input: normpath(input.qmd.rstrip(".qmd") + ".html"),
@@ -139,12 +142,12 @@ rule manim_shapley_value:
 
 rule paper:
     input:
-        tex = "src/paper/paper.tex",
+        tex = "src/paper/{paper}.tex",
         bib = "src/paper/references.bib",
-        inputs = find_input_files("src/paper/paper.tex"),
+        inputs = lambda wildcard: find_input_files(f"src/paper/{wildcard.paper}.tex"),
         util_script = "src/utils/makeutils.py"
     output:
-        pdf = "out/paper/paper.pdf"
+        pdf = "out/paper/{paper}.pdf"
     params:
         pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0],
         outdir = lambda wildcards, output: dirname(output.pdf)
