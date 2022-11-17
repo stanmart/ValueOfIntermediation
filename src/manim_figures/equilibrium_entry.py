@@ -66,13 +66,16 @@ class Equilibrium(Scene):
         self.play(Create(N_F_bar), Write(N_F_bar_label))
 
         self.next_section("P_profit_share")
+        top_line = ax.get_horizontal_line(pie_to_share, color=BLACK)
+        top_graph = ax.plot(lambda x: v(N_F_bar_val, N_P_val))
+        area_f = ax.get_area(v_fun, (0, N_F_bar_val), bounded_graph=top_graph, opacity=0.5, color=YELLOW_D)
         area = ax.get_area(v_fun, (0, N_F_bar_val), opacity=0.5, color=BLUE_D)
-        self.play(FadeIn(area))
+        self.play(Create(top_line))
+        self.play(FadeIn(area), FadeIn(area_f))
 
         self.next_section("profit_share_point")
         div_point = Dot(color=BLUE_D)
         div_point.move_to(ax.c2p(N_F_bar_val, phi_P(N_F_bar_val, N_P_val)))
-        self.play(ReplacementTransform(area, div_point))
 
         brace_P = BraceBetweenPoints(ax.c2p(N_F_bar_val, 0), div_point.get_bottom())
         label_P = Tex(r"$\varphi_P(v)$")
@@ -83,9 +86,15 @@ class Equilibrium(Scene):
         label_F.next_to(brace_F, RIGHT)
 
         self.play(
-            FadeIn(brace_P), FadeIn(brace_F),
+            ReplacementTransform(area, brace_P),
+            ReplacementTransform(area_f, brace_F)
+        )
+
+        self.play(
+            FadeIn(div_point),
             Write(label_P), Write(label_F)
         )
+        self.play(FadeOut(top_line))
 
         # Hybrid
         self.next_section("hybrid_case")
@@ -96,12 +105,16 @@ class Equilibrium(Scene):
         self.play(Create(v_h_fun), Write(v_h_label))
 
         pie_to_share_h = ax.c2p(N_F_bar_val, v(N_F_bar_val, N_P_val_h))
+        top_line_h = ax.get_horizontal_line(pie_to_share_h, color=BLACK)
+        top_graph_h = ax.plot(lambda x: v(N_F_bar_val, N_P_val_h))
+        area_f_h = ax.get_area(v_h_fun, (0, N_F_bar_val), bounded_graph=top_graph_h, opacity=0.5, color=YELLOW_D)
         area_h = ax.get_area(v_h_fun, (0, N_F_bar_val), opacity=0.5, color=RED_D)
-        self.play(FadeIn(area_h))
+        
+        self.play(Create(top_line_h))
+        self.play(FadeIn(area_h), FadeIn(area_f_h))
 
         div_point_h = Dot(color=RED_D)
         div_point_h.move_to(ax.c2p(N_F_bar_val, phi_P(N_F_bar_val, N_P_val_h)))
-        self.play(ReplacementTransform(area_h, div_point_h))
 
         brace_P_h = BraceBetweenPoints(div_point_h.get_bottom(), ax.c2p(N_F_bar_val, 0))
         label_P_h = Tex(r"$\varphi_P^h(v)$")
@@ -112,7 +125,11 @@ class Equilibrium(Scene):
         label_F_h.next_to(brace_F_h, LEFT)
 
         self.play(
-            FadeIn(brace_P_h), FadeIn(brace_F_h),
+            ReplacementTransform(area_h, brace_P_h),
+            ReplacementTransform(area_f_h, brace_F_h)
+        )
+        self.play(
+            FadeIn(div_point_h), FadeOut(top_line_h),
             Write(label_P_h), Write(label_F_h)
         )
 
@@ -172,7 +189,7 @@ class Equilibrium(Scene):
         # Equilibrium
         self.next_section("equilibrium")
 
-        eq = root_scalar(lambda N_F: phi_F(N_F, N_P_val) - C * N_F, bracket=[0.4, 1.2], method='brentq')
+        eq = root_scalar(lambda N_F: phi_F(N_F, N_P_val) - c * N_F, bracket=[0.4, 1.2], method='brentq')
         eq_point = Dot(color=BLUE_D)
         eq_point.move_to(ax.c2p(eq.root, phi_F(eq.root, N_P_val)))
 
@@ -180,7 +197,7 @@ class Equilibrium(Scene):
         eq_line_label = MathTex("N_F^*", color=BLUE_D)
         eq_line_label.next_to(eq_line, DOWN)
 
-        eq_h = root_scalar(lambda N_F: phi_F(N_F, N_P_val_h) - C * N_F, bracket=[0.4, 1.2], method='brentq')
+        eq_h = root_scalar(lambda N_F: phi_F(N_F, N_P_val_h) - c * N_F, bracket=[0.4, 1.2], method='brentq')
         eq_point_h = Dot(color=RED_D)
         eq_point_h.move_to(ax.c2p(eq_h.root, phi_F(eq_h.root, N_P_val_h)))
 
