@@ -4,6 +4,7 @@
 .vscode/
 __pycache__
 /gh-pages/
+/playground/
 
 # Quarto currently renders into the qmd file's directory
 *.html
