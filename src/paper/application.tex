@@ -1,0 +1,251 @@
+\documentclass[a4paper]{article}
+
+\usepackage{microtype}
+\usepackage{fullpage}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage[backend=biber,style=authoryear,maxbibnames=99,hyperref=true]{biblatex} 
+
+\addbibresource{src/paper/references.bib}
+
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{shapes}
+\pgfplotsset{compat=1.17}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\dt}{\mathrm{d}t}
+\newcommand{\ds}{\mathrm{d}s}
+\newcommand{\di}{\mathrm{d}i}
+\newcommand{\E}{\mathbb{E}}
+
+\title{Hybrid platforms and bargaining power}
+\author{Martin Stancsics}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+
+\section{Motivation}
+
+
+\section{Model}
+
+This section introduces the modeling framework used throughout the paper.
+I start by describing the demand system of a continuum of consumers and differentiated, monopolistically competitive sellers \parencite[]{anderson2021hybrid}.
+After that, I describe the role of the (potentially hybrid) platform on this market.
+
+\subsection{Demand}
+
+Imagine that there is a unit mass of consumers, looking to buy one product each.
+They choose from a continuum of products, indexed by $i$.
+Customer $j$ derives the following utility from buying product $i$:
+\begin{align*}
+    u^F_{ij} = v^F_i - p^F_i + \mu\epsilon^F_{ij},
+\end{align*}
+where $v^F_i$ is the value of product $i$, $p^F_i$ is its price, and $\epsilon^F_{ij}$ is an idiosyncratic taste shock.
+Throughout this paper I assume that the value of each product is the same: $v^F_i = v^F$.
+This is to simplify the analysis, but is not crucial for getting the results.  % TODO: look into relaxing this assumption
+
+Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$
+
+$\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
+
+\subsection{Production}
+
+Each (horizontally differentiated) product is produced by a single, monopolistically competitive (fringe) seller.
+The production entails a constant marginal cost $c^F_i$.
+As with the value, I assume that the marginal cost is the same for all products: $c^F_i = c^F$.
+Facing the demand described in the previous paragraphs, the sellers choose their price $p^F_i$ to maximize profits.
+
+Additionally, the platform itself can also offer mass $N_P$ of its own products.
+The value and marginal cost of these products are denoted by $v^P$ and $c^P$, respectively.
+Furthermore, consumers have the same i.i.d. taste shocks ($\epsilon^P_{ij}$) for platform products as for the products offered by the other sellers.
+Finally, I assume that the product prices its products as if they were produced by separate, monopolistically competitive sellers.
+That is, it does not take into account the fact that it can affect a non-zero measure of the prices, and therefore the aggregate demand.\footnote{
+    As I show in section TODO the appendix, this assumption is more innocuous than it seems.
+    If the platform can commit to the price of its products before the entry of the fringe firms, then the results are the same regardless if the platform behaves as a continuum of atomic firms or one single firm with many products.
+    If the platform cannot make this commitment, and determines its prices after entry decisions are made, the results change quantitatively, but the main ideas carry over.  % TODO: check this!!!!!!!!!!
+}
+
+\subsection{Intermediation}
+
+Assume that the sellers and the consumers can only interact through an intermediary platform, denoted by $P$.
+Without the platform, the fringe firms are not able to sell their products, and thus make no profits.
+For this service, the platform can charge a lump-sum entry fee $F_F$ to each fringe firm.\footnote{
+    This is a critical difference from \textcite[]{anderson2021hybrid}, where the platform charges a per-unit royalty.
+    % TODO: elaborate on this
+}
+In the baseline model, I assume that entry is free for the consumers, and they are always present on the platform, no matter the other players' entry and pricing decisions.\footnote{
+    This essentially means that I assume a one-sided platform, without the usual strong network effects.
+    % TODO: see if I can relax this assumption
+}
+
+As mentioned above, instead of operating as a pure marketplace, the platform can also produce and offer its own products.
+In case it does, it is called a hybrid platform.
+Additionally, the platform can choose to exclude all the fringe firms from the market (e.g. by setting a sufficiently high entry fee), and only offer its own products.  % TODO: should I allow it in the baseline case, or only after a policy intervention?
+
+\subsection{Entry and timing}
+
+There is an infinite measure of fringe firms, who are deciding whether to enter the market.
+Entering has two, separate costs: an exogenous investment cost $I_F$, and the platform entry fee $F_F$.
+One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
+Meanwhile, the second is a payment for using the platform's services.
+
+The game starts by the platform announcing its entry fee $F_F$.
+Next, each fringe firm decides whether to create a product at cost $I_F$ and enter the market.
+After that, the firms that have made the investment decide if they also want to enter the platform for the announced fee $F_F$.\footnote{
+    In the benchmark model, separating these two decisions is redundant, as, in any subgame perfect equilibrium, any firm that makes the investment will also enter the platform.
+    However, in the model with bargaining, this distinction is crucial.
+}
+Finally, the platform and the fringe firms simultaneously choose the prices for their products.
+Each consumer then chooses the one maximizing their utility, and profits are realized.
+
+\subsection{Bargaining}
+
+The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
+In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
+On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the platform and those firms that have made the investment.
+% TODO: entry fee cap?
+
+Instead of modeling the bargaining process in detail, choose a reduced form approach. I assume that the final, net profits (after paying and receiving entry fees) correspond to the Shapley value of the participants in the following, cooperative game.\footnote{
+    This way of modeling bargaining has precedents in the industrial organization literature \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}.
+    Furthermore, a number of papers show that various extensive-form bargaining games result in this outcome \parencite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,stole1996intra}.
+}
+Assume that the value of a coalition consisting of the platform and a measure $N_F$ of fringe firms is the total profits that they can achieve by selling their products in the last stage \emph{using monopolistic pricing}.\footnote{
+    Note that lump-sum entry fees do not influence this value, as they are just transfers between coalition members.
+}
+The value of a coalition without a platform is simply zero.
+% TODO: elaborate on how entry fees are not too important.
+
+
+\section{Equilibrium}
+
+\subsection{Producer profits}
+
+
+
+\subsection{The benchmark model}
+
+\subsection{Bargaining outcomes}
+
+
+%\section{Extensions}
+
+\section{Conclusion}
+
+
+\appendix
+
+\printbibliography
+
+
+\section{Shapley value in the platform game}
+
+Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players.
+I.e., $N = \{P, F_1, \dots, F_n\}$.
+Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $F_i$ are identical.
+Let $n_T(S)$ denote the number of players of type $T \in \{P, F\}$ in coalition $S$. Then, the value that any coalition $S \subset N$ can achieve is the following:
+\begin{align*}
+    v(S) = \begin{cases}
+        0                              & \text{if } P \notin S \\
+        f\left(\frac{n_F(S)}{n}\right) & \text{otherwise}.
+    \end{cases}
+\end{align*}
+This coalition-form game corresponds to the setting in this paper with a (one-sided) platform and a number of potential entrants.
+
+I start by characterizing the case when the game is superadditive to provide some support for using the Shapley value as he bargaining outcome.\footnote{For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.}
+
+\begin{proposition}
+    \label{prop:monotone}
+    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
+\end{proposition}
+
+\begin{proof}[Proof% of Proposition \ref{prop:monotone}
+    ]
+    Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
+\end{proof}
+
+Now let us look at the limit of the Shapley-values as the number of fringe firms goes to infinity.\footnote{
+    As this game is of bounded variation, this result can also be obtained in a more direct way using the main theorem from \textcite{fogelman1980asymptotic}.
+    However, I believe the following proof is instructive, and drives home the idea that the continuous approximation is rather accurate even in the case of a relatively small number of players.
+}
+I use the following notation: $\varphi_P^n$ denotes the Shapley-value of player $P$ if there exist $n$ players of type $F$.
+The next proposition shows that the Shapley value of the platform can be described by a simple integral.
+
+\begin{proposition}
+    \label{prop:one_sided}
+    Let $f$ be continuous on [0, 1]. Then
+    \begin{align*}
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_p^n = \int_0^1 f(t) \dt .
+    \end{align*}
+\end{proposition}
+
+\begin{proof}[Proof% of Proposition \ref{prop:one_sided}
+    ]
+    Let $R$ denote a permutation of the set of players ($N$). Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
+    \begin{align*}
+        \varphi_P^n = \frac{1}{(n+1)!} \sum_R v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)
+    \end{align*}
+    First, note that $v(\mathcal{P}_P^R) = 0$ for any permutation, as no coalition can achieve a positive value without player $P$. Furthermore, using the fact that all agents of type $A$ are identical implies that $v(\mathcal{P}_P^R \cup \{i\})$ only depends on the number of agents in the coalition. More precisely, 
+    \begin{align*}
+        v(\mathcal{P}_P^R \cup \{i\}) = f(n_A(\mathcal{P}_P^R \cup \{i\}) / n) = f(|\mathcal{P}_P^R| / n).
+    \end{align*}
+    Finally, the set of permutations in which $k$ number of players precede $P$ is independent of $n$, i.e.
+    \begin{align*}
+        \{R \mid |\mathcal{P}_P^R| = k\} = n! \quad \forall\, k.
+    \end{align*}
+    Putting all the above together, the value of player $P$ can be expressed as
+    \begin{align*}
+        \varphi_P^n &= \frac{1}{(n+1)!} \sum_{k=0}^n n! f(k / n) \\
+        &= \frac{1}{n+1} \sum_{k=0}^n f(k / n) \\
+        &= \frac{n}{n+1} \underbrace{\frac{1}{n} \sum_{k=0}^{n-1} f(k / n)}_{=S_n} + \frac{1}{n+1} f(1).
+    \end{align*}
+    $S_n$ are just the left Riemann-sums of function $f$ on the interval $[0, 1]$. Therefore, if $f$ is continuous (and thus Riemann-integrable), then $S_n \to \int_0^1 f(t)$, and thus
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \frac{1}{n+1} \sum_{k=1}^n f(k / n) \\
+        &= \lim_{n \to \infty}\underbrace{\frac{n}{n+1}}_{\to 1} \frac{1}{n} \sum_{k=0}^{n-1} f(k / n) + \underbrace{\frac{1}{n+1} f(1)}_{\to 0} \\
+        &= \int_0^1 f(t) \dt .
+    \end{align*}
+\end{proof}
+
+Finally, the aggregated value of the fringe can be obtained using the efficiency of the Shapley value.
+
+\begin{corollary}
+    \label{cor:fringe_value}
+    The aggregated Shapley-value of the fringe is
+    \begin{align*}
+        \varphi_F^\infty = f(1) - \int_0^1 f(t) \dt.
+    \end{align*}
+    Furthermore, if $f$ is differentiable on $[0, 1]$, Then the value of the fringe can also be expressed as
+    \begin{align*}
+        \varphi_F^\infty = \int_0^1 t f'(t) \dt.
+    \end{align*}
+\end{corollary}
+
+\begin{proof}[Proof% of Corollary \ref{cor:fringe_value}
+    ]
+    The first equality comes from the efficiency of the Shapley-value. The values of all players sum up to $f(1)$ for all $n \in \mathbb{N}$, therefore
+    \begin{align*}
+        \lim_{n \to \infty} \sum_{i=1}^n \varphi_{F_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
+    \end{align*}
+    The second can be obtained by integration by parts:
+    \begin{align*}
+        \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
+    \end{align*}
+\end{proof}
+
+
+
+\end{document}
