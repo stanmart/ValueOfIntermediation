@@ -41,6 +41,7 @@
 
 
 \section{Model}
+\label{sec:model}
 
 This section introduces the modeling framework used throughout the paper.
 I start by describing the demand system of a continuum of consumers and differentiated, monopolistically competitive sellers \parencite[]{anderson2021hybrid}.
@@ -135,8 +136,88 @@ The value of a coalition without a platform is simply zero.
 \subsection{Producer profits}
 
 
+As shown in \textcite[]{anderson2021hybrid}, the utility functions described in section \ref{sec:model} give rise to a logit-type demand function.
+Specifically, the demand for product $i$ of producer $T \in \{P, F\}$ is given by:
+\begin{align*}
+    x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
+\end{align*}
+where
+\begin{align}
+    A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \di + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \di + 1.
+    \label{eq:aggregate}
+\end{align}
+The producers' variable profit function is then given by
+\begin{align}
+    \pi^v_{Ti} = ( p_{Ti} - c_T ) \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}.
+    \label{eq:variable_profit}
+\end{align}
+
+Notice that, as each producer is infinitesimal, its pricing decision does not affect the aggregate $A$.
+It follows that the profit maximizing price is a simple additive markup over marginal cost
+\begin{align*}
+    p^*_{Ti} = c_T + \mu,
+\end{align*}
+and the optimal profit is
+\begin{align*}
+    \pi^{v*}_{Ti} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
+\end{align*}
+
+For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
+\begin{align}
+    \pi^{t*}_F = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{A} - I_F - F_F.
+    \label{eq:fringe_profit}
+\end{align}
+
+\subsection{Fringe entry}
+
+Recall that there is an infinity of potential fringe entrants looking to enter the market.
+Therefore, total profits in equilibrium must be zero.
+Let us for the moment assume that fixed fees are low enough for some fringe firms to enter the market.
+In this case, setting $\pi^{t*}_F$, equation \eqref{eq:fringe_profit} implies that the size of the aggregate is
+\begin{align}
+    A = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{F_F + I_F}.
+    \label{eq:aggregate_eq}
+\end{align}
+Substituting this into equation \eqref{eq:aggregate} and rearranging gives the number of fringe firms that enter the market:
+\begin{align*}
+    N_F = \frac{\mu}{F_F + I_F} - I_F N_P \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{1}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}.
+\end{align*}
+
+If, on the other hand, entry costs are too high, no fringe firms enter the market ($N_F = 0$).
+In that case, the aggregate demand is just
+\begin{align*}
+    A = N_P \exp\left( \frac{v_P - c_P - \mu}{\mu} \right) + 1.
+\end{align*}
 
 \subsection{The benchmark model}
+
+In the first period of the game, the platform chooses an entry fee to maximize its total profit, consisting of revenue from its own sales and the collected entry fees.
+First, let us examine the case when the fees are low enough for the fringe to be feasible.
+Profits from sales can be obtained by combining equations \eqref{eq:variable_profit} and \eqref{eq:aggregate_eq}:
+\begin{align*}
+    \pi_P^{v} = N_P (F_F + I_F) \exp \left( \frac{(v_P - v_F) - (c_P - c_F)}{\mu} \right).
+\end{align*}
+% TODO: other cases
+It is increasing in the (1) number of the platform's products, (2) the platform's product advantage (larger market share) and (3) the entry costs for fringe firms (less competition).
+The other component of the platform's profit, entry fees collected from the fringe, are given by
+\begin{align*}
+    \pi_P^{f} = N_F F_F = F_F \left[ \frac{\mu}{F_F + i} - N_P \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{1}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)} \right].
+\end{align*}
+
+Combining these two, the platform's total profit as a function of the entry fee can be expressed as
+\begin{align*}
+    \pi_P^{t} = \mu\frac{F_F}{F_F + I_F} + N_P I_F \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{F_F}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}
+\end{align*}
+
+Now let us consider the case when the fringe is not present in the market.
+In this case, the collected entry fees are obviously zero, and the platform's profit is simply given by
+\begin{align*}
+    \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right)}{N_P \exp\left( \frac{v_P - c_P - \mu}{\mu} \right) + 1}.
+\end{align*}
+
+% Note that, although the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
+% TODO: intuition
+
 
 \subsection{Bargaining outcomes}
 
