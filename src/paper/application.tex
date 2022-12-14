@@ -158,9 +158,10 @@ It follows that the profit maximizing price is a simple additive markup over mar
     p^*_{Ti} = c_T + \mu,
 \end{align*}
 and the optimal profit is
-\begin{align*}
+\begin{align}
     \pi^{v*}_{Ti} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
-\end{align*}
+    \label{eq:optimal_profit}
+\end{align}
 
 For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
 \begin{align}
@@ -215,12 +216,38 @@ In this case, the collected entry fees are obviously zero, and the platform's pr
     \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right)}{N_P \exp\left( \frac{v_P - c_P - \mu}{\mu} \right) + 1}.
 \end{align*}
 
-% Note that, although the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
+Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
+As a consequence, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
 % TODO: intuition
+% TODO: when does switching to retail mode occur?
 
 
 \subsection{Bargaining outcomes}
 
+Now consider the case when instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
+In this case, the timing is slightly different, as the platform cannot commit to an entry fee in the first period.
+Instead, the game starts by fringe firms' investment decisions.
+After that, in the second period, bargaining takes place between the platform and the fringe firms that have entered the market.
+
+
+The participants negotiate over the aggregate profits that they can achieve in the subsequent period (assuming non-collusive, monopolistic pricing, as before).
+I assume that bargaining outcomes are the Shapley values of the participants, where the value of a coalition is defined as the total profits that the coalition can achieve by selling their products.
+As the platform is necessary to reach the customers, the value of any coalition that does not include the platform is zero.
+Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition with $n$ fringe firms and the platform is
+\begin{align*}
+    v(n) = \mu \frac{n \exp \left( \frac{v_F - c_F - \mu}{\mu} \right) + N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right)}{n \exp \left( \frac{v_F - c_F - \mu}{\mu} \right) + N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right) + 1}.
+\end{align*}
+
+Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
+\begin{align*}
+    \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
+            &= TODO.
+\end{align*}
+Subsequently, the fringe gets the remainder of the profits, therefore
+\begin{align*}
+    \pi^t_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
+            &= TODO.
+\end{align*}
 
 %\section{Extensions}
 
