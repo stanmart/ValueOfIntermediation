@@ -162,12 +162,17 @@ and the optimal profit is
     \pi^{v*}_{Ti} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
     \label{eq:optimal_profit}
 \end{align}
-
 For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
 \begin{align}
     \pi^{t*}_F = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{A} - I_F - F_F.
     \label{eq:fringe_profit}
 \end{align}
+
+For ease of notation, let us define the following:
+\begin{align*}
+    V_T = \exp \left( \frac{v_T - c_T - \mu}{\mu} \right).
+\end{align*}
+Then, equilibrium per-product demand and variable profit can be expressed as $V_T/ A$ and $\mu V_T/ A$, respectively.
 
 \subsection{Fringe entry}
 
@@ -176,18 +181,18 @@ Therefore, total profits in equilibrium must be zero.
 Let us for the moment assume that fixed fees are low enough for some fringe firms to enter the market.
 In this case, setting $\pi^{t*}_F$, equation \eqref{eq:fringe_profit} implies that the size of the aggregate is
 \begin{align}
-    A = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{F_F + I_F}.
+    A = \mu \frac{V_F}{F_F + I_F}.
     \label{eq:aggregate_eq}
 \end{align}
 Substituting this into equation \eqref{eq:aggregate} and rearranging gives the number of fringe firms that enter the market:
 \begin{align*}
-    N_F = \frac{\mu}{F_F + I_F} - I_F N_P \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{1}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}.
+    N_F = \frac{\mu}{F_F + I_F} - I_F N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
 \end{align*}
 
 If, on the other hand, entry costs are too high, no fringe firms enter the market ($N_F = 0$).
 In that case, the aggregate demand is just
 \begin{align*}
-    A = N_P \exp\left( \frac{v_P - c_P - \mu}{\mu} \right) + 1.
+    A = N_P V_P + 1.
 \end{align*}
 
 \subsection{The benchmark model}
@@ -196,24 +201,24 @@ In the first period of the game, the platform chooses an entry fee to maximize i
 First, let us examine the case when the fees are low enough for the fringe to be feasible.
 Profits from sales can be obtained by combining equations \eqref{eq:variable_profit} and \eqref{eq:aggregate_eq}:
 \begin{align*}
-    \pi_P^{v} = N_P (F_F + I_F) \exp \left( \frac{(v_P - v_F) - (c_P - c_F)}{\mu} \right).
+    \pi_P^{v} = N_P (F_F + I_F) \frac{V_P}{V_F}.
 \end{align*}
 % TODO: other cases
 It is increasing in the (1) number of the platform's products, (2) the platform's product advantage (larger market share) and (3) the entry costs for fringe firms (less competition).
 The other component of the platform's profit, entry fees collected from the fringe, are given by
 \begin{align*}
-    \pi_P^{f} = N_F F_F = F_F \left[ \frac{\mu}{F_F + i} - N_P \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{1}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)} \right].
+    \pi_P^{f} = N_F F_F = F_F \left[ \frac{\mu}{F_F + i} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
 \end{align*}
 
 Combining these two, the platform's total profit as a function of the entry fee can be expressed as
 \begin{align*}
-    \pi_P^{t} = \mu\frac{F_F}{F_F + I_F} + N_P I_F \exp \left( \frac{(v_P - v_F) - (v_F - c_F)}{\mu} \right) - \frac{F_F}{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}
+    \pi_P^{t} = \mu\frac{F_F}{F_F + I_F} + N_P I_F \frac{V_P}{V_F} - \frac{F_F}{V_F}
 \end{align*}
 
 Now let us consider the case when the fringe is not present in the market.
 In this case, the collected entry fees are obviously zero, and the platform's profit is simply given by
 \begin{align*}
-    \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right)}{N_P \exp\left( \frac{v_P - c_P - \mu}{\mu} \right) + 1}.
+    \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}.
 \end{align*}
 
 Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
@@ -235,23 +240,23 @@ I assume that bargaining outcomes are the Shapley values of the participants, wh
 As the platform is necessary to reach the customers, the value of any coalition that does not include the platform is zero.
 Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition with $n$ fringe firms and the platform is
 \begin{align*}
-    v(n) = \mu \frac{n \exp \left( \frac{v_F - c_F - \mu}{\mu} \right) + N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right)}{n \exp \left( \frac{v_F - c_F - \mu}{\mu} \right) + N_P \exp \left( \frac{v_P - c_P - \mu}{\mu} \right) + 1}.
+    v(n) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
 \end{align*}
 
 Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
 \begin{align*}
     \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
-            &= TODO.
+            &= \mu \left[ 1 + \frac{\log \left( \frac{N_P V_P + 1}{N_P V_P + N_F V_F + 1} \right)}{N_F V_F} \right]
 \end{align*}
 Subsequently, the fringe gets the remainder of the profits, therefore
 \begin{align*}
     \pi^t_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
-            &= TODO.
+            &= \mu \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} - 1 - \frac{\log \left( \frac{N_P V_P + 1}{N_P V_P + N_F V_F + 1} \right)}{N_F V_F} \right]
 \end{align*}
 
 %\section{Extensions}
 
-\section{Conclusion}
+%\section{Conclusion}
 
 
 \appendix
