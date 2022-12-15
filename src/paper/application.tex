@@ -214,8 +214,19 @@ The other component of the platform's profit, entry fees collected from the frin
 \end{align*}
 
 Combining these two, the platform's total profit as a function of the entry fee can be expressed as
-\begin{align*}
+\begin{align}
     \pi_P^{t} = \mu\frac{F_F}{F_F + I_F} + N_P I_F \frac{V_P}{V_F} - \frac{F_F}{V_F}
+    \label{eq:hybrid_profit}
+\end{align}
+Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
+In particular, the optimal entry fee is given by
+\begin{align*}
+    F_F^* = \sqrt{\mu I_F V_F} - I_F.
+\end{align*}
+As a consequence, as long as the fringe is feasible at the optimal entry fee, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
+Substituting it into the profit function, the maximized profit is
+\begin{align*}
+    \pi_P^{t} = \mu - 2\sqrt{\frac{I_F \mu}{V_F}} + \frac{I_F}{V_F} (N_P V_P + 1).
 \end{align*}
 
 Now let us consider the case when the fringe is not present in the market.
@@ -223,12 +234,16 @@ In this case, the collected entry fees are obviously zero, and the platform's pr
 \begin{align*}
     \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}.
 \end{align*}
+In this regime, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
+This is mechanical: more variety leads to higher welfare.
 
-Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
-As a consequence, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
+Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, when the former is feasible.
+This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
+It implies that there is no jump in no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
+Therefore, in the benchmark model, a platform becomes a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.
+This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
+
 % TODO: intuition
-% TODO: when does switching to retail mode occur?
-
 
 \subsection{Bargaining outcomes}
 

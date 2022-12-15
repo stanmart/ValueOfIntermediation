@@ -1,3 +1,4 @@
+import sympy
 from sympy import Symbol, integrate, init_printing, simplify
 
 init_printing()
