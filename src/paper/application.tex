@@ -244,6 +244,7 @@ Therefore, in the benchmark model, a platform becomes a hybrid platform, or incr
 This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
 
 % TODO: intuition
+% Figure
 
 \subsection{Bargaining outcomes}
 
@@ -264,12 +265,12 @@ Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition
 Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
 \begin{align*}
     \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
-            &= \mu \left[ 1 + \frac{\log \left( \frac{N_P V_P + 1}{N_P V_P + N_F V_F + 1} \right)}{N_F V_F} \right]
+            &= \mu \left[ 1 - \frac{\log 1 + \left( \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
 \end{align*}
 Subsequently, the fringe gets the remainder of the profits, therefore
 \begin{align*}
     \pi^t_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
-            &= \mu \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} - 1 - \frac{\log \left( \frac{N_P V_P + 1}{N_P V_P + N_F V_F + 1} \right)}{N_F V_F} \right]
+            &= \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
 \end{align*}
 
 %\section{Extensions}
