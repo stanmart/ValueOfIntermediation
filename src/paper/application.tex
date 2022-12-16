@@ -265,13 +265,34 @@ Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition
 Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
 \begin{align*}
     \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
-            &= \mu \left[ 1 - \frac{\log 1 + \left( \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
+            &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
 \end{align*}
 Subsequently, the fringe gets the remainder of the profits, therefore
 \begin{align*}
-    \pi^t_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
+    \pi^v_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
             &= \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
 \end{align*}
+and the total profits of the whole fringe are
+\begin{align*}
+    \pi^v_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F
+\end{align*}
+The free entry condition implies that fringe profits are zero, therefore the number of fringe entrants is given by the implicit equation
+\begin{align}
+    \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F = 0
+    \label{eq:free_entry_bargaining}
+\end{align}
+
+\textcolor{red}{
+    What I really want to show at this point is that if $N_F$ is determined by equation \eqref{eq:free_entry_bargaining}, then the total aggregate is decreasing in $N_P$.
+    Unfortunately, I don't have a closed form for $N_F^*$, and the IFT does not seem to lead to useful results, either.
+    Therefore, at this point, all I can do is show it through some numerical examples.
+    That won't guarantee of course that it holds in general.
+}
+
+\textcolor{red}{
+    I have a graphical reasoning in mind though, that I might be able to make precise in the future.
+    For the moment, I'd rather not include it as it might be completely wrong.
+}
 
 %\section{Extensions}
 
