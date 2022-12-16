@@ -59,9 +59,7 @@ where $v^F_i$ is the value of product $i$, $p^F_i$ is its price, and $\epsilon^F
 Throughout this paper I assume that the value of each product is the same: $v^F_i = v^F$.
 This is to simplify the analysis, but is not crucial for getting the results.  % TODO: look into relaxing this assumption
 
-Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$
-
-$\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
+Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$. $\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
 
 \subsection{Production}
 
@@ -104,8 +102,10 @@ Entering has two, separate costs: an exogenous investment cost $I_F$, and the pl
 One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
 Meanwhile, the second is a payment for using the platform's services.
 
-The game starts by the platform announcing its entry fee $F_F$.
+In the benchmark model, the game starts by the platform announcing its entry fee $F_F$.
+In the bargaining case, the platform cannot commit to entry fees, so this step is skipped.
 Next, each fringe firm decides whether to create a product at cost $I_F$ and enter the market.
+In the bargaining model, the entry fee is decided at this point, as a result of a negotiation between the platform and the firms that have made the investment.
 After that, the firms that have made the investment decide if they also want to enter the platform for the announced fee $F_F$.\footnote{
     In the benchmark model, separating these two decisions is redundant, as, in any subgame perfect equilibrium, any firm that makes the investment will also enter the platform.
     However, in the model with bargaining, this distinction is crucial.
@@ -117,7 +117,7 @@ Each consumer then chooses the one maximizing their utility, and profits are rea
 
 The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
 In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
-On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the platform and those firms that have made the investment.
+On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
 % TODO: entry fee cap?
 
 Instead of modeling the bargaining process in detail, choose a reduced form approach. I assume that the final, net profits (after paying and receiving entry fees) correspond to the Shapley value of the participants in the following, cooperative game.\footnote{
@@ -177,7 +177,7 @@ Then, equilibrium per-product demand and variable profit can be expressed as $V_
     A = N_P V_P + N_F V_F + 1.
 \end{align*}
 
-\subsection{Fringe entry}
+\subsection{The benchmark model}
 
 Recall that there is an infinity of potential fringe entrants looking to enter the market.
 Therefore, total profits in equilibrium must be zero.
@@ -197,8 +197,6 @@ In that case, the aggregate demand is just
 \begin{align*}
     A = N_P V_P + 1.
 \end{align*}
-
-\subsection{The benchmark model}
 
 In the first period of the game, the platform chooses an entry fee to maximize its total profit, consisting of revenue from its own sales and the collected entry fees.
 First, let us examine the case when the fees are low enough for the fringe to be feasible.
