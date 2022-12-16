@@ -186,7 +186,7 @@ rule figure_equilibrium_entry:
         fig = "out/figures/equilibrium_entry.pdf"
     shell:
         "python {input.script} {output.fig} \
-         --b 1 --c 0.2 --n-p 0 --n-p 0.2 --n-f-range 0 1 \
+         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p 0 --n-p 0.2 --n-f-range 0 1 \
          --num-obs 500 --width 5 --height 3.8 --dpi 300"
 
 
