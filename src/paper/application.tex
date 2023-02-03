@@ -49,13 +49,21 @@ I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the
 However, the model is more general, and the results apply to a broader class of settings.
 Chief among these is an upstream-downstream setting, with a single upstream producer and a continuum of downstream sellers.
 
+Assume that there are two types of players in the market: a platform $P$ and a continuum of fringe sellers $F_i$.
+
+
 \subsection{Production}
 
 I make use of a reduced-form, but quite general approach to model production and demand.
-Assume that the total profits obtained by the platform and the fringe sellers are described by the function $f(n_P, n_F)$.
+First, I assume that all fringe firms are ex-ante identical.
+This implies that the total profits of the platform and the fringe taken together have a simple functional form $f(n_P, n_F)$.
+\begin{assumption}
+    \label{ass:identical_fringe}
+    The total profits of the platform and the fringe are described by some function $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
+\end{assumption}
 Here, $n_F$ is the mass of fringe sellers, and $n_P$ measures the degree to which the platform sells its own products.
-In case the platform operates as a pure intermediary, $n_P = 0$.
 For example, in a setting with differentiated products and monopolistic competition, $n_F$ and $n_P$ represents the product variety of the fringe and the platform, respectively.
+In case the platform operates as a pure intermediary, $n_P = 0$.
 
 I will assume that total profits are increasing in both arguments.
 \begin{assumption}
@@ -119,24 +127,41 @@ The next proposition formalizes this idea.
 
 \subsection{Entry and equilibrium}
 
+Let us now turn to the determination of the equilibrium number of fringe firms.
+Assume that there is an unlimited number of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
+In the first stage of the game, each fringe firm must create a viable product at the investment cost $I_F > 0$.
+In the second stage, firms that made this investment plus the platform engage in producing and selling their respective products.
+If there are $N_F$ fringe entrants and $N_P$ platform products, then, as discussed previously, the total profit they make together is given by $f(N_P, N_F)$.
+Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}.
 
+The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' profits should be equal to the investment cost.
+\begin{assumption}
+    \label{ass:free_entry}
+    In equilibrium, $\pi_F(N_P, N_F) = I_F N_F$.
+\end{assumption}
 
-
-\subsection{Equilibrium}
-
+In order to guarantee a unique equilibrium, let us make the following, additional assumption about the profit and bargaining weight functions.
 \begin{assumption}
     \label{ass:single_crossing}
-    Let $f(n_P, n_F)$ and $w(s)$ be such that the following holds for all $N_F, N_P \geq 0$:
+    Let $f$ and $w$ be such that the following holds for all $N_F, N_P \geq 0$:
     \begin{gather*}
         f'_{n_F} (N_P, N_F) < \int_0^1 s w(s) f'_{n_F} (N_P, s N_F) \ds \\
         \text{or} \\
         f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \ds.
     \end{gather*}
 \end{assumption}
+\textcolor{red}{TODO: Find interpretable sufficient conditions for this assumption.}
+
+
+\section{Results}
+
+\begin{proposition}
+    
+\end{proposition}
 
 
 \section{Example}
-\label{sec:model}
+\label{sec:example}
 
 This section introduces the modeling framework used throughout the paper.
 I start by describing the demand system of a continuum of consumers and differentiated, monopolistically competitive sellers \parencite[]{anderson2021hybrid}.
