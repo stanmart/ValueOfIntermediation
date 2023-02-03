@@ -40,7 +40,7 @@
 \section{Motivation}
 
 
-\section{Model}
+\section{Example}
 \label{sec:model}
 
 This section introduces the modeling framework used throughout the paper.
@@ -266,13 +266,14 @@ Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of
             &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
 \end{align*}
 Subsequently, the fringe gets the remainder of the profits, therefore
-\begin{align*}
+\begin{align}
     \pi^v_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
             &= \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
-\end{align*}
+            \label{eq:fringe_variable_profit}
+\end{align}
 and the total profits of the whole fringe are
 \begin{align*}
-    \pi^v_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F
+    \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F
 \end{align*}
 The free entry condition implies that fringe profits are zero, therefore the number of fringe entrants is given by the implicit equation
 \begin{align}
@@ -395,6 +396,72 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \begin{align*}
         \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
     \end{align*}
+\end{proof}
+
+
+\section{Miscellaneous lemmas and proofs}
+
+The following proposition shows that, if the platform is operating in a more hybrid mode (meaning it has more or better products), then, for a given aggregate size, the fringe obtains a lower share of the profits.
+This is due to the increased bargaining power of the platform.
+
+\begin{proposition}
+    \label{prop:fringe_profit_decreasing_in_N_P}
+    For a fixed aggregate size $A$, fringe profit is decreasing in $N_P$ and $V_P$.
+\end{proposition}
+\begin{proof}
+    Let $N_P' V_P' > N_P V_P$.
+    Furthermore, let $N_F V_F = A - N_P V_P - 1$ and $N_F' V_F' = A - N_P' V_P' - 1$ for some $A > 1$.
+    Finally, let
+    \begin{align*}
+        v(n) &= \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}, \\
+        v'(n) &= \mu \frac{n V_F + N_P' V_P'}{n V_F + N_P' V_P' + 1}.
+    \end{align*}
+
+    Observe that for any $t \in [0, 1)$,
+    \begin{align*}
+        v(tN_F) &= \frac{t N_F V_F + N_P V_P}{t N_F V_F + N_P V_P + 1} \\
+                &= \frac{tA - t + (1 - t) N_P V_P}{tA - t + (1 - t) N_P V_P + 1} \\
+                &< \frac{tA - t + (1 - t) N_P' V_P'}{tA - t + (1 - t) N_P' V_P' + 1} \\
+                &= \frac{t N_F' V_F' + N_P' V_P'}{t N_F' V_F + N_P V_P + 1} \\
+                &= v'(tN_F').
+    \end{align*}
+    This in turn implies that
+    \begin{align*}
+        \pi_F^v = \int_0^1 v(t) \dt < \int_0^1 v'(t) \dt = (\pi_F^v)',
+    \end{align*}
+    which is what we wanted to show.
+
+\end{proof}
+
+
+\begin{lemma}
+    \label{lem:shape_of_pi_F}
+    For any $V_F, N_P, V_P, \mu$, the function $\pi^v_F$ is either concave in $N_F$ or decreasing in $N_F$.
+\end{lemma}
+\begin{proof}
+    Did not manage to prove it yet.
+\end{proof}
+
+\begin{corollary}
+    \label{cor:unique_eq}
+    There is at most one equilibrium with $N_F > 0$.
+\end{corollary}
+
+\begin{proposition}
+    \label{prop:A_decreasing_in_N_P}
+    The equilibrium aggregate size $A$ is monotonically decreasing in $N_P$ and $V_P$. When the fringe is feasible to begin with, the decrease is strict.
+\end{proposition}
+\begin{proof}
+    From proposition \ref{prop:fringe_profit_decreasing_in_N_P}, we know that the fringe profit is decreasing in $N_P$ and $V_P$.
+    Furthermore, lemma \ref{lem:shape_of_pi_F}
+\end{proof}
+
+
+\begin{corollary}
+    \label{consumer_welfare_decreasing_in_N_P}
+\end{corollary}
+\begin{proof}
+    
 \end{proof}
 
 
