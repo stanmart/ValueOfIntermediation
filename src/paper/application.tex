@@ -20,6 +20,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
+\newtheorem{assumption}{Assumption}
 
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
@@ -38,6 +39,68 @@
 
 
 \section{Motivation}
+
+
+\section{Model}
+
+This section introduces the model used throughout the paper.
+I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
+However, the model is more general, and the results apply to a broader class of settings.
+Chief among these is an upstream-downstream setting, with a single upstream producer and a continuum of downstream sellers.
+
+\subsection{Production}
+
+I make use of a reduced-form, but quite general approach to model production and demand.
+Assume that the total profits obtained by the platform and the fringe sellers are described by the function $f(n_P, n_F)$.
+Here, $n_F$ is the mass of fringe sellers, and $n_P$ measures the degree to which the platform sells its own products.
+In case the platform operates as a pure intermediary, $n_P = 0$.
+For example, in a setting with differentiated products and monopolistic competition, $n_F$ and $n_P$ represents the product variety of the fringe and the platform, respectively.
+
+I will assume that total profits are increasing in both arguments.
+\begin{assumption}
+    \label{ass:monotone_profits}
+    $f(n_P, n_F)$ is increasing in both $n_P$ and $n_F$.
+\end{assumption}
+Such profit functions arise in a variety of settings in which the profit reduction from increased competition is dominated by extra sales due to increased variety.
+One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
+Alternatively, indirect network effects, such as in two-sided markets, can also result in such profit functions.
+
+
+\subsection{Profit sharing}
+
+Let us assume that the fringe firms are unable to sell their products directly to consumers.
+Instead, they must sell through the platform.
+For this service, the platform may charge a fee, and obtain a share of the fringe's profits.
+
+Let us assume that the platform and the fringe shares their total profits according to the following rule.
+\begin{assumption}
+    \label{ass:profit_sharing}
+    Let $w: [0, 1] \to \mathbb{R}^+$ such that $\int_0^1 w(s) \ds = 1$. 
+    \begin{align*}
+        \pi_P(N_P, N_F) &= \int_0^1 w(s) f(N_P, s N_F) \ds, \\
+        \pi_F(N_P, N_F) &= f(N_P, N_F) - \int_0^1 w(s) f(N_P, s N_F) \ds.
+    \end{align*}
+\end{assumption}
+
+While at first it might seem rather arbitrary, and much more convoluted than a simple percentage split, it has quite a few nice properties compared to the latter, and can also be microfounded.
+
+
+
+
+\subsection{Entry}
+
+
+\subsection{Equilibrium}
+
+\begin{assumption}
+    \label{ass:single_crossing}
+    Let $f(n_P, n_F)$ and $w(s)$ be such that the following holds for all $N_F, N_P \geq 0$:
+    \begin{gather*}
+        f'_{n_F} (N_P, N_F) < \int_0^1 s w(s) f'_{n_F} (N_P, s N_F) \ds \\
+        \text{or} \\
+        f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \ds.
+    \end{gather*}
+\end{assumption}
 
 
 \section{Example}
