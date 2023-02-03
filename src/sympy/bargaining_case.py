@@ -1,4 +1,4 @@
-from sympy import Symbol, integrate, init_printing, simplify, factor, solve, log
+from sympy import Symbol, integrate, init_printing, simplify, expand, factor, solve, log, plot
 
 init_printing()
 
@@ -27,7 +27,7 @@ pi_F_alt = mu * (
     log(1 + (N_F * V_F) / (N_P * V_P + 1)) / (N_F * V_F)
     - 1 / (N_P * V_P + N_F * V_F + 1)
 )
-pi_F_t_alt = pi_F_alt + I_F * N_F
+pi_F_t_alt = pi_F_alt - I_F * N_F
 d_N_F_N_P = simplify(
     pi_F_t_alt.diff(N_F) / pi_F_t_alt.diff(N_P)
 )
@@ -37,3 +37,31 @@ simplify((pi_F_alt).diff(N_F).diff(N_F))
 simplify((pi_F_alt).diff(N_F).diff(N_F).diff(N_F))
 
 (2 * log((N_F * V_F) / (N_P * V_P + 1) + 1)).diff(N_F)  # type: ignore
+
+plot_params = {
+    V_F: 1,
+    N_P: 0.5,
+    V_P: 1,
+    mu: 1
+}
+plot(
+    pi_F_alt.subs(plot_params),
+    (N_F, 0, 10),
+)
+plot(
+    simplify((pi_F_alt).diff(N_F)).subs(plot_params),
+    simplify((pi_F_alt).diff(N_F).diff(N_F)).subs(plot_params),
+    (N_F, 3, 5),
+)
+
+# unfortunately the result of this has an ambiguous sign:
+simplify(
+    simplify((pi_F_alt).diff(N_F).diff(N_F) * N_F**3 * V_F * (N_F * V_F + N_P * V_P + 1) ** 3)
+    + simplify(2 * (pi_F_alt).diff(N_F) * N_F**2 * V_F * (N_F * V_F + N_P * V_P + 1) ** 3)
+)
+
+simplify(
+    simplify((pi_F_alt).diff(N_F).diff(N_F) * N_F**3 * V_F * (N_F * V_F + N_P * V_P + 1) ** 3)
+    + simplify(2 * (pi_F_alt).diff(N_F) * N_F**2 * V_F * (N_F * V_F + N_P * V_P + 1) ** 2 * N_F * V_F)
+)
+
