@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
 \usepackage{amsthm}
 \usepackage{xcolor}
 \usepackage[backend=biber,style=authoryear,maxbibnames=99,hyperref=true]{biblatex} 
@@ -75,19 +76,50 @@ For this service, the platform may charge a fee, and obtain a share of the fring
 Let us assume that the platform and the fringe shares their total profits according to the following rule.
 \begin{assumption}
     \label{ass:profit_sharing}
-    Let $w: [0, 1] \to \mathbb{R}^+$ such that $\int_0^1 w(s) \ds = 1$. 
+    Let $w: [0, 1] \to \mathbb{R}_0^+$ such that $\int_0^1 w(s) \ds = 1$. 
     \begin{align*}
         \pi_P(N_P, N_F) &= \int_0^1 w(s) f(N_P, s N_F) \ds, \\
         \pi_F(N_P, N_F) &= f(N_P, N_F) - \int_0^1 w(s) f(N_P, s N_F) \ds.
     \end{align*}
 \end{assumption}
+While at first it might seem rather arbitrary, and much more convoluted than a simple percentage split, it has quite a few nice properties compared to the latter.
+Furthermore, \cref{sec:profit_sharing} provides some cooperative and non-cooperative microfoundations for this rule.
+Let us start by examining the various parts of this rule, and then discuss how they impact the platform's profit share.
 
-While at first it might seem rather arbitrary, and much more convoluted than a simple percentage split, it has quite a few nice properties compared to the latter, and can also be microfounded.
+The main feature of this rule is that the platform's bargaining power depends on the substitutability of the fringe firms.
+The following proposition demonstrates this idea.
+\begin{proposition}
+    \label{prop:outcome_based_bargaining_power}
+    Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different total profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(n_P, n_F) \leq \tilde{f}(n_P, n_F)$ for all $n_P < N_P, n_F < N_F$.
+    Furthermore, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
+    
+    Then, $\pi_P \leq \tilde{\pi}_P$.
+\end{proposition}
+In words, when comparing two different total profit functions (i.e., demand systems, production functions), even if the total profits are the same under some pair $N_P, N_F$, profit shares might differ.
+In particular, the platform's profits are higher when it needs fewer firms to achieve a certain total profit level (i.e., when the fringe firms are more substitutable).
+\textcolor{red}{GRAPH HERE}
+This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
+
+The other main ingredient of the sharing rule, $w(s)$, captures the platform's \emph{innate} bargaining power.
+It is independent of the production function, demand, or the fringe firms' substitutability, and might represent, for example, that the platform and the fringe firms have different power to propose allocations during the (not explicitly modeled) negotiation process.\footnote{
+    For a more thorough exploration of this idea, see \cref{app:profit_sharing} and \textcite{hart1996bargaining}.
+}
+One way to think about it is that the platform's share is randomly drawn from the total profit according to some distribution, and $w$ is the probability density function of this distribution.
+When the distribution $W_1$ first order stochastically dominates another distribution $W_2$, the platform is more likely to draw a value from with a higher mass of fringe firms, and therefore obtain a higher profit share in case of $W_1$ than in the case of $W_2$.
+The next proposition formalizes this idea.
+\begin{proposition}
+    \label{prop:innate_bargaining_power}
+    Let $w, \tilde{w}: [0, 1] \to \mathbb{R}_0^+$ be two different weight functions such that $\int_0^x w_1(s) \ds \leq \int_0^x w_2(s) \ds$ for all $x \in [0, 1]$.
+    As before, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
+    
+    Then, $\pi_P(N_P, N_F) \leq \tilde{\pi}_P(N_P, N_F) \; \forall\, N_P \geq 0, N_F > 0$.
+    Furthermore, this inequality is strict if $\int_0^x w_1(s) \ds < \int_0^x w_2(s) \ds$ on some non-zero measure set.
+\end{proposition}
 
 
+\subsection{Entry and equilibrium}
 
 
-\subsection{Entry}
 
 
 \subsection{Equilibrium}
@@ -199,7 +231,7 @@ The value of a coalition without a platform is simply zero.
 \subsection{Producer profits}
 
 
-As shown in \textcite[]{anderson2021hybrid}, the utility functions described in section \ref{sec:model} give rise to a logit-type demand function.
+As shown in \textcite[]{anderson2021hybrid}, the utility functions described in \cref{sec:model} give rise to a logit-type demand function.
 Specifically, the demand for product $i$ of producer $T \in \{P, F\}$ is given by:
 \begin{align*}
     x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
@@ -323,7 +355,7 @@ Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition
     v(n) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
 \end{align*}
 
-Proposition \ref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
+\Cref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
 \begin{align*}
     \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
             &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
@@ -515,8 +547,8 @@ This is due to the increased bargaining power of the platform.
     The equilibrium aggregate size $A$ is monotonically decreasing in $N_P$ and $V_P$. When the fringe is feasible to begin with, the decrease is strict.
 \end{proposition}
 \begin{proof}
-    From proposition \ref{prop:fringe_profit_decreasing_in_N_P}, we know that the fringe profit is decreasing in $N_P$ and $V_P$.
-    Furthermore, lemma \ref{lem:shape_of_pi_F}
+    From \cref{prop:fringe_profit_decreasing_in_N_P}, we know that the fringe profit is decreasing in $N_P$ and $V_P$.
+    Furthermore, \cref{lem:shape_of_pi_F}
 \end{proof}
 
 
