@@ -22,6 +22,7 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
 \newtheorem{assumption}{Assumption}
+\crefname{assumption}{assumption}{assumptions}
 
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
@@ -51,6 +52,11 @@ However, the model is more general, and the results apply to a broader class of 
 Chief among these is an upstream-downstream setting, with a single upstream producer and a continuum of downstream sellers.
 
 Assume that there are two types of players in the market: a platform $P$ and a continuum of fringe sellers $F_i$.
+The fringe firms each have one product, which they can only sell through the platform.
+The platform itself may also have its own products in addition to acting as an intermediary between the fringe and the consumers.
+In that case it is referred to as a hybrid platform.
+The main feature of the model is, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
+The bargaining rule, as well as other details of the morel, are described in the rest of this section.
 
 
 \subsection{Production}
@@ -159,19 +165,21 @@ In order to guarantee a unique equilibrium, let us make the following, additiona
 
 \section{Results}
 
-Some preliminary (hand-wavily proven) results about equilibrium profits and entry.
+These are some preliminary (hand-wavily proven) results about equilibrium profits and entry.
 
+First, a technical, but important result.
 \begin{proposition}
     \label{prop:unique_equilibrium}
-    Under the conditions in assumption \ref{ass:single_crossing}, the equilibrium is unique.
+    Under the conditions in \cref{ass:single_crossing}, the equilibrium is unique.
 \end{proposition}
 
-\begin{proposition}
-    \label{prop:share_of_platform}
-    Assume that $f, w$ are continuously differentiable and that $w$ has a non-zero measure support.
-    Then $\pi_P$ is also differentiable and
-    $$\frac{\partial \pi_P(N_P, n_F)}{\partial N_P} > 0$$.
-\end{proposition}
+The following statements provide some comparative statics for equilibrium profits and entry.
+% \begin{proposition}
+%     \label{prop:share_of_platform}
+%     Assume that $f, w$ are continuously differentiable and that $w$ has a non-zero measure support.
+%     Then $\pi_P$ is also differentiable and
+%     $$\frac{\partial \pi_P(N_P, n_F)}{\partial N_P} > 0$$.
+% \end{proposition}
 
 \begin{proposition}
     \label{prop:share_of_fringe}
@@ -185,7 +193,7 @@ Some preliminary (hand-wavily proven) results about equilibrium profits and entr
 \end{proposition}
 
 \begin{corollary}
-    \label{fringe_entry}
+    \label{cor:fringe_entry}
     Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
     Let $N_F^*$ denote the equilibrium number of fringe firms.
     \begin{align*}
@@ -193,6 +201,21 @@ Some preliminary (hand-wavily proven) results about equilibrium profits and entr
         &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \;\forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} > 0.
     \end{align*}
 \end{corollary}
+
+The following proposition establishes a stronger result for a particular class of profit functions.
+\begin{proposition}
+    \label{prop:aggregate_size_additive}
+    Let $f$ have the following, additive form:
+    \begin{align*}
+        f(N_P, N_F) = g(\alpha N_P + \beta N_F)
+    \end{align*}
+    where $\alpha, \beta > 0$.
+    Furthermore, assume that $g$ is twice differentiable and that $g'' < 0$.
+    Then
+    \begin{align*}
+        \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}.
+    \end{align*}
+\end{proposition}
 
 
 \section{Example}
@@ -405,7 +428,7 @@ This yields the following closed-form expressions for the total profits of the p
 \begin{proposition}
     The platform's total profits are
     \begin{align*}
-        \pi^t_P &= \varphi_P = \int_0^1 f(N_P, sN_F) \ds \\
+        \pi^t_P &\int_0^1 f(N_P, sN_F) \ds \\
                 &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
     \end{align*}
     The total profits of the whole fringe is given by
@@ -416,7 +439,7 @@ This yields the following closed-form expressions for the total profits of the p
 \textcolor{red}{TODO: add an example figure}
 
 \textcolor{red}{
-    Note: I have not managed to prove lemma \ref{lem:profit_assumptions} yet, but I'm pretty sure it's true.
+    Note: I have not managed to prove \cref{lem:profit_assumptions} yet, but I'm pretty sure it's true.
     In case I'm not able to come up with a proof, I'll just use some results based on numerical simulations using the closed form expressions above.
 }
 
@@ -424,13 +447,30 @@ Now let us turn to how the platform's hybridness affects product variety and con
 Let us start by establishing some properties of the toral profit function $f(n_P, n_F)$.
 \begin{lemma}
     \label{lem:profit_assumptions}
-    $f(n_P, n_F)$ satisfies assumption \ref{ass:single_crossing}.
+    $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
     Furthermore,
     \begin{align*}
         \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0.
     \end{align*}
 \end{lemma}
+Using this, \cref{prop:unique_equilibrium} gives that the equilibrium is unique.
+Furthermore, \cref{cor:fringe_entry} implies that an increase in the hybridness of the platform leads to a reduction in the number of fringe firms that enter the market.
 
+Owing to the additive nature of the total profit function, an even stronger result can be established.
+Notice that $f$ has the functional form required for proposition \ref{prop:aggregate_size_additive} with $g(x) = \frac{x}{1+x}, \alpha = V_P, \beta = V_F$.
+Therefore, the same proposition implies that
+\begin{align*}
+    \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F},
+\end{align*}
+and in turn, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
+    The same result can also easily be shown for an increase in $V_P$.
+}
+As in this model consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products.
+Therefore, as opposed to the benchmark model, the platform becoming more hybrid leads to a reduction in consumer welfare.\footnote{
+    Unless $V_P N_P$ is high enough that the platform would operate in the benchmark model, too.
+}
+
+\textcolor{red}{TODO: add figure showing consumer welfare in the benchmark and bargaining models as a function of $N_P$}
 
 
 % \section{Extensions}
@@ -537,60 +577,6 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
         \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
     \end{align*}
 \end{proof}
-
-
-\section{Miscellaneous lemmas and proofs}
-
-The following proposition shows that, if the platform is operating in a more hybrid mode (meaning it has more or better products), then, for a given aggregate size, the fringe obtains a lower share of the profits.
-This is due to the increased bargaining power of the platform.
-
-\begin{proposition}
-    \label{prop:fringe_profit_decreasing_in_N_P}
-    For a fixed aggregate size $A$, fringe profit is decreasing in $N_P$ and $V_P$.
-\end{proposition}
-\begin{proof}
-    Let $N_P' V_P' > N_P V_P$.
-    Furthermore, let $N_F V_F = A - N_P V_P - 1$ and $N_F' V_F' = A - N_P' V_P' - 1$ for some $A > 1$.
-    Finally, let
-    \begin{align*}
-        v(n) &= \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}, \\
-        v'(n) &= \mu \frac{n V_F + N_P' V_P'}{n V_F + N_P' V_P' + 1}.
-    \end{align*}
-
-    Observe that for any $t \in [0, 1)$,
-    \begin{align*}
-        v(tN_F) &= \frac{t N_F V_F + N_P V_P}{t N_F V_F + N_P V_P + 1} \\
-                &= \frac{tA - t + (1 - t) N_P V_P}{tA - t + (1 - t) N_P V_P + 1} \\
-                &< \frac{tA - t + (1 - t) N_P' V_P'}{tA - t + (1 - t) N_P' V_P' + 1} \\
-                &= \frac{t N_F' V_F' + N_P' V_P'}{t N_F' V_F + N_P V_P + 1} \\
-                &= v'(tN_F').
-    \end{align*}
-    This in turn implies that
-    \begin{align*}
-        \pi_F^v = \int_0^1 v(t) \dt < \int_0^1 v'(t) \dt = (\pi_F^v)',
-    \end{align*}
-    which is what we wanted to show.
-
-\end{proof}
-
-
-\begin{proposition}
-    \label{prop:A_decreasing_in_N_P}
-    The equilibrium aggregate size $A$ is monotonically decreasing in $N_P$ and $V_P$. When the fringe is feasible to begin with, the decrease is strict.
-\end{proposition}
-\begin{proof}
-    From \cref{prop:fringe_profit_decreasing_in_N_P}, we know that the fringe profit is decreasing in $N_P$ and $V_P$.
-    Furthermore, \cref{lem:shape_of_pi_F}
-\end{proof}
-
-
-\begin{corollary}
-    \label{consumer_welfare_decreasing_in_N_P}
-\end{corollary}
-\begin{proof}
-    
-\end{proof}
-
 
 
 \end{document}
