@@ -155,17 +155,42 @@ In order to guarantee a unique equilibrium, let us make the following, additiona
 
 \section{Results}
 
+Some preliminary (hand-wavily proven) results about equilibrium profits and entry.
+
 \begin{proposition}
-    
+    \label{prop:share_of_platform}
+    Assume that $f, w$ are continuously differentiable and that $w$ has a non-zero measure support.
+    Then $\pi_P$ is also differentiable and
+    $$\frac{\partial \pi_P(N_P, n_F)}{\partial N_P} > 0$$.
 \end{proposition}
+
+\begin{proposition}
+    \label{prop:share_of_fringe}
+    Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
+    Then $\pi_F$ is also differentiable. Let $N_F > 0$.
+    \begin{align*}
+        &\text{If } \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} > 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0, \\
+        &\text{if } \frac{\partial^2 f(N_P, N_F)}{\partial n_P \partial n_F} > 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} > 0
+    \end{align*}
+    for all $N_P \geq 0$.
+\end{proposition}
+
+\begin{corollary}
+    \label{fringe_entry}
+    Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
+    Let $N_F^*$ denote the equilibrium number of fringe firms.
+    \begin{align*}
+        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} < 0. \\
+        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} > 0.
+    \end{align*}
+\end{corollary}
 
 
 \section{Example}
 \label{sec:example}
 
-This section introduces the modeling framework used throughout the paper.
-I start by describing the demand system of a continuum of consumers and differentiated, monopolistically competitive sellers \parencite[]{anderson2021hybrid}.
-After that, I describe the role of the (potentially hybrid) platform on this market.
+This section presents an example application of the model, based on \parencite[]{anderson2021hybrid}.
+The setting is a (possibly hybrid) platform market with monopolistically competing fringe firms.
 
 \subsection{Demand}
 
