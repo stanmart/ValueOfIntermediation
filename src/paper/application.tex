@@ -43,6 +43,7 @@
 
 
 \section{Model}
+\label{sec:model}
 
 This section introduces the model used throughout the paper.
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
@@ -91,7 +92,10 @@ Let us assume that the platform and the fringe shares their total profits accord
     \end{align*}
 \end{assumption}
 While at first it might seem rather arbitrary, and much more convoluted than a simple percentage split, it has quite a few nice properties compared to the latter.
-Furthermore, \cref{sec:profit_sharing} provides some cooperative and non-cooperative microfoundations for this rule.
+Furthermore, \cref{sec:profit_sharing} provides some cooperative and non-cooperative microfoundations for this rule.\footnote{
+    This way of modeling bargaining has precedents in the industrial organization literature \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}.
+    Furthermore, a number of papers show that various extensive-form bargaining games result in this outcome \parencite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,stole1996intra}.
+}
 Let us start by examining the various parts of this rule, and then discuss how they impact the platform's profit share.
 
 The main feature of this rule is that the platform's bargaining power depends on the substitutability of the fringe firms.
@@ -158,6 +162,11 @@ In order to guarantee a unique equilibrium, let us make the following, additiona
 Some preliminary (hand-wavily proven) results about equilibrium profits and entry.
 
 \begin{proposition}
+    \label{prop:unique_equilibrium}
+    Under the conditions in assumption \ref{ass:single_crossing}, the equilibrium is unique.
+\end{proposition}
+
+\begin{proposition}
     \label{prop:share_of_platform}
     Assume that $f, w$ are continuously differentiable and that $w$ has a non-zero measure support.
     Then $\pi_P$ is also differentiable and
@@ -169,7 +178,7 @@ Some preliminary (hand-wavily proven) results about equilibrium profits and entr
     Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
     Then $\pi_F$ is also differentiable. Let $N_F > 0$.
     \begin{align*}
-        &\text{If } \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} > 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0, \\
+        &\text{If } \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0, \\
         &\text{if } \frac{\partial^2 f(N_P, N_F)}{\partial n_P \partial n_F} > 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} > 0
     \end{align*}
     for all $N_P \geq 0$.
@@ -180,8 +189,8 @@ Some preliminary (hand-wavily proven) results about equilibrium profits and entr
     Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
     Let $N_F^*$ denote the equilibrium number of fringe firms.
     \begin{align*}
-        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} < 0. \\
-        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} > 0.
+        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0 \;\forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} < 0. \\
+        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \;\forall n_P \leq N_P, \text{ then } \frac{\partial N_F^*}{\partial N_P} > 0.
     \end{align*}
 \end{corollary}
 
@@ -192,7 +201,9 @@ Some preliminary (hand-wavily proven) results about equilibrium profits and entr
 This section presents an example application of the model, based on \parencite[]{anderson2021hybrid}.
 The setting is a (possibly hybrid) platform market with monopolistically competing fringe firms.
 
-\subsection{Demand}
+\subsection{Setup}
+
+\subsubsection{Demand}
 
 Imagine that there is a unit mass of consumers, looking to buy one product each.
 They choose from a continuum of products, indexed by $i$.
@@ -201,12 +212,12 @@ Customer $j$ derives the following utility from buying product $i$:
     u^F_{ij} = v^F_i - p^F_i + \mu\epsilon^F_{ij},
 \end{align*}
 where $v^F_i$ is the value of product $i$, $p^F_i$ is its price, and $\epsilon^F_{ij}$ is an idiosyncratic taste shock.
-Throughout this paper I assume that the value of each product is the same: $v^F_i = v^F$.
+Throughout this section I assume that the value of each product is the same: $v^F_i = v^F$.
 This is to simplify the analysis, but is not crucial for getting the results.  % TODO: look into relaxing this assumption
 
 Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$. $\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
 
-\subsection{Production}
+\subsubsection{Production}
 
 Each (horizontally differentiated) product is produced by a single, monopolistically competitive (fringe) seller.
 The production entails a constant marginal cost $c^F_i$.
@@ -217,15 +228,12 @@ Additionally, the platform itself can also offer mass $N_P$ of its own products.
 The value and marginal cost of these products are denoted by $v^P$ and $c^P$, respectively.
 Furthermore, consumers have the same i.i.d. taste shocks ($\epsilon^P_{ij}$) for platform products as for the products offered by the other sellers.
 Finally, I assume that the product prices its products as if they were produced by separate, monopolistically competitive sellers.
-That is, it does not take into account the fact that it can affect a non-zero measure of the prices, and therefore the aggregate demand.\footnote{
-    As I show in section TODO the appendix, this assumption is more innocuous than it seems.
-    If the platform can commit to the price of its products before the entry of the fringe firms, then the results are the same regardless if the platform behaves as a continuum of atomic firms or one single firm with many products.
-    If the platform cannot make this commitment, and determines its prices after entry decisions are made, the results change quantitatively, but the main ideas carry over.  % TODO: check this!!!!!!!!!!
-}
+That is, it does not take into account the fact that it can affect a non-zero measure of the prices, and therefore the aggregate demand.
+This is to simplify the example, but I expect that it does not affect the main results qualitatively
 
-\subsection{Intermediation}
+\subsubsection{Intermediation}
 
-Assume that the sellers and the consumers can only interact through an intermediary platform, denoted by $P$.
+As in \cref{sec:model}, assume that the sellers and the consumers can only interact through an intermediary platform, denoted by $P$.
 Without the platform, the fringe firms are not able to sell their products, and thus make no profits.
 For this service, the platform can charge a lump-sum entry fee $F_F$ to each fringe firm.\footnote{
     This is a critical difference from \textcite[]{anderson2021hybrid}, where the platform charges a per-unit royalty.
@@ -236,12 +244,14 @@ In the baseline model, I assume that entry is free for the consumers, and they a
     % TODO: see if I can relax this assumption
 }
 
-As mentioned above, instead of operating as a pure marketplace, the platform can also produce and offer its own products.
+As mentioned above, instead of operating as a pure marketplace, the platform may also produce and offer its own products.
 In case it does, it is called a hybrid platform.
-Additionally, the platform can choose to exclude all the fringe firms from the market (e.g. by setting a sufficiently high entry fee), and only offer its own products.  % TODO: should I allow it in the baseline case, or only after a policy intervention?
+% Additionally, the platform can choose to exclude all the fringe firms from the market (e.g. by setting a sufficiently high entry fee), and only offer its own products.  % TODO: should I allow it in the baseline case, or only after a policy intervention?
 
-\subsection{Entry and timing}
+\subsubsection{Entry and timing}
 
+The structure of the game follows closely that of the more general model in \cref{sec:model}.
+In addition, a benchmark model without bargaining is presented, for comparison.
 There is an infinite measure of fringe firms, who are deciding whether to enter the market.
 Entering has two, separate costs: an exogenous investment cost $I_F$, and the platform entry fee $F_F$.
 One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
@@ -258,61 +268,55 @@ After that, the firms that have made the investment decide if they also want to 
 Finally, the platform and the fringe firms simultaneously choose the prices for their products.
 Each consumer then chooses the one maximizing their utility, and profits are realized.
 
-\subsection{Bargaining}
-
 The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
 In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
 On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
-% TODO: entry fee cap?
-
-Instead of modeling the bargaining process in detail, choose a reduced form approach. I assume that the final, net profits (after paying and receiving entry fees) correspond to the Shapley value of the participants in the following, cooperative game.\footnote{
-    This way of modeling bargaining has precedents in the industrial organization literature \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}.
-    Furthermore, a number of papers show that various extensive-form bargaining games result in this outcome \parencite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,stole1996intra}.
-}
-Assume that the value of a coalition consisting of the platform and a measure $N_F$ of fringe firms is the total profits that they can achieve by selling their products in the last stage \emph{using monopolistic pricing}.\footnote{
-    Note that lump-sum entry fees do not influence this value, as they are just transfers between coalition members.
-}
-The value of a coalition without a platform is simply zero.
-% TODO: elaborate on how entry fees are not too important.
+In particular, I use the profit sharing rule from \cref{ass:profit_sharing} with $w(s) \equiv 1$.
 
 
-\section{Equilibrium}
+\subsection{Equilibrium}
 
-\subsection{Producer profits}
-
+\subsubsection{Demand and producer profits}
 
 As shown in \textcite[]{anderson2021hybrid}, the utility functions described in \cref{sec:model} give rise to a logit-type demand function.
-Specifically, the demand for product $i$ of producer $T \in \{P, F\}$ is given by:
-\begin{align*}
-    x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
-\end{align*}
-where
-\begin{align}
-    A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \di + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \di + 1.
-    \label{eq:aggregate}
-\end{align}
-The producers' variable profit function is then given by
-\begin{align}
-    \pi^v_{Ti} = ( p_{Ti} - c_T ) \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}.
-    \label{eq:variable_profit}
-\end{align}
+\begin{proposition}
+    The demand for product $i$ of producer $T \in \{P, F\}$ is given by:
+    \begin{align*}
+        x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
+    \end{align*}
+    where
+    \begin{align}
+        A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \di + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \di + 1.
+        \label{eq:aggregate}
+    \end{align}
+\end{proposition}
 
-Notice that, as each producer is infinitesimal, its pricing decision does not affect the aggregate $A$.
-It follows that the profit maximizing price is a simple additive markup over marginal cost
-\begin{align*}
-    p^*_{Ti} = c_T + \mu,
-\end{align*}
-and the optimal profit is
-\begin{align}
-    \pi^{v*}_{Ti} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
-    \label{eq:optimal_profit}
-\end{align}
-For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
-\begin{align}
-    \pi^{t*}_F = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{A} - I_F - F_F.
-    \label{eq:fringe_profit}
-\end{align}
+Let us call $p_{Ti}$ the net value of product $i$.
+As one would expect, demand is increasing in this net vale, and decreasing in the competitors' net 
+Furthermore, demand for each product is increasing in $\mu$, which can be thought of as the degree of product differentiation or the importance of taste shocks.
+Finally, notice that, as each producer is infinitesimal, its pricing decision does not affect the aggregate $A$.
+This last property makes the optimal prices and profits of the producers very simple, as shown in the next proposition.
+% \begin{align}
+%     \pi^v_{Ti} = ( p_{Ti} - c_T ) \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}.
+%     \label{eq:variable_profit}
+% \end{align}
+\begin{proposition}
+    The profit maximizing price for prouct $Ti$ is
+    \begin{align*}
+        p^*_{Ti} = c_T + \mu,
+    \end{align*}
+    and the profit from selling that product is
+    \begin{align}
+        \pi^{v*}_{Ti} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
+        \label{eq:optimal_profit}
+    \end{align}
+\end{proposition}
 
+% For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
+% \begin{align}
+%     \pi^{t*}_F = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{A} - I_F - F_F.
+%     \label{eq:fringe_profit}
+% \end{align}
 For ease of notation, let us define the following:
 \begin{align*}
     V_T = \exp \left( \frac{v_T - c_T - \mu}{\mu} \right).
@@ -322,125 +326,116 @@ Then, equilibrium per-product demand and variable profit can be expressed as $V_
     A = N_P V_P + N_F V_F + 1.
 \end{align*}
 
-\subsection{The benchmark model}
+Finally, another important feature of this demand system is that, assuming optimal pricing, consumer welfare only depends on the size of the aggregate \parencite{anderson2020aggregative}.
+In particular, consumer surplus is proportional to the logarithm of the aggregate:
+\begin{align*}
+    CS \propto \log(A).
+\end{align*}
+This fact makes welfare analysis rather simple in this setting.
+
+\subsubsection{The benchmark model}
 
 Recall that there is an infinity of potential fringe entrants looking to enter the market.
 Therefore, total profits in equilibrium must be zero.
-Let us for the moment assume that fixed fees are low enough for some fringe firms to enter the market.
-In this case, setting $\pi^{t*}_F$, equation \eqref{eq:fringe_profit} implies that the size of the aggregate is
-\begin{align}
-    A = \mu \frac{V_F}{F_F + I_F}.
-    \label{eq:aggregate_eq}
-\end{align}
-Substituting this into equation \eqref{eq:aggregate} and rearranging gives the number of fringe firms that enter the market:
-\begin{align*}
-    N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
-\end{align*}
+Combined with the simple profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
+\begin{proposition}
+    If entry costs $I_F$ and $F_F$ are low enough, the equilibrium size of the aggregate is
+    \begin{align}
+        A = \mu \frac{V_F}{F_F + I_F}.
+        \label{eq:aggregate_eq}
+    \end{align}
+    and the equilibrium number of fringe firms is
+    \begin{align*}
+        N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
+    \end{align*}
 
-If, on the other hand, entry costs are too high, no fringe firms enter the market ($N_F = 0$).
-In that case, the aggregate demand is just
-\begin{align*}
-    A = N_P V_P + 1.
-\end{align*}
+    Otherwise, the equilibrium size of the aggregate is
+    \begin{align*}
+        A = N_P V_P + 1.
+    \end{align*}
+\end{proposition}
+Note that in the first case, the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
 
-In the first period of the game, the platform chooses an entry fee to maximize its total profit, consisting of revenue from its own sales and the collected entry fees.
+Now let us turn to the optimal entry fee set by the platform, and its total profits, consisting of revenue from its own sales and the collected entry fees.
 First, let us examine the case when the fees are low enough for the fringe to be feasible.
-Profits from sales can be obtained by combining equations \eqref{eq:variable_profit} and \eqref{eq:aggregate_eq}:
-\begin{align*}
-    \pi_P^{v} = N_P (F_F + I_F) \frac{V_P}{V_F}.
-\end{align*}
-% TODO: other cases
-It is increasing in the (1) number of the platform's products, (2) the platform's product advantage (larger market share) and (3) the entry costs for fringe firms (less competition).
-The other component of the platform's profit, entry fees collected from the fringe, are given by
-\begin{align*}
-    \pi_P^{f} = N_F F_F = F_F \left[ \frac{\mu}{F_F + i} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
-\end{align*}
 
-Combining these two, the platform's total profit as a function of the entry fee can be expressed as
-\begin{align}
-    \pi_P^{t} = \mu\frac{F_F}{F_F + I_F} + N_P I_F \frac{V_P}{V_F} - \frac{F_F}{V_F}
-    \label{eq:hybrid_profit}
-\end{align}
+\begin{proposition}
+    The optimal entry fee is
+    \begin{align*}
+        F_F^* = \sqrt{\mu I_F V_F} - I_F.
+    \end{align*}
+    The platform's total profit is
+    \begin{align*}
+        \pi_P^{t} = \mu - 2\sqrt{\frac{I_F \mu}{V_F}} + \frac{I_F}{V_F} (N_P V_P + 1)
+    \end{align*}
+    in the hybrid regime, and
+    \begin{align*}
+        \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}
+    \end{align*}
+    in the retail regime.
+\end{proposition}
 Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
-In particular, the optimal entry fee is given by
-\begin{align*}
-    F_F^* = \sqrt{\mu I_F V_F} - I_F.
-\end{align*}
 As a consequence, as long as the fringe is feasible at the optimal entry fee, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
-Substituting it into the profit function, the maximized profit is
-\begin{align*}
-    \pi_P^{t} = \mu - 2\sqrt{\frac{I_F \mu}{V_F}} + \frac{I_F}{V_F} (N_P V_P + 1).
-\end{align*}
+In contrast, when the fringe is not present in the market, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
+This is purely mechanical: more variety leads to higher welfare.
 
-Now let us consider the case when the fringe is not present in the market.
-In this case, the collected entry fees are obviously zero, and the platform's profit is simply given by
-\begin{align*}
-    \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}.
-\end{align*}
-In this regime, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
-This is mechanical: more variety leads to higher welfare.
-
-Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, when the former is feasible.
+Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, whenever the former is feasible.
 This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
-It implies that there is no jump in no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
-Therefore, in the benchmark model, a platform becomes a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.
+It implies that there is no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
+Therefore, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.
 This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
 
 % TODO: intuition
 % Figure
 
-\subsection{Bargaining outcomes}
+\subsubsection{The bargaining model}
 
 Now consider the case when instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
 In this case, the timing is slightly different, as the platform cannot commit to an entry fee in the first period.
 Instead, the game starts by fringe firms' investment decisions.
 After that, in the second period, bargaining takes place between the platform and the fringe firms that have entered the market.
 
-
 The participants negotiate over the aggregate profits that they can achieve in the subsequent period (assuming non-collusive, monopolistic pricing, as before).
-I assume that bargaining outcomes are the Shapley values of the participants, where the value of a coalition is defined as the total profits that the coalition can achieve by selling their products.
-As the platform is necessary to reach the customers, the value of any coalition that does not include the platform is zero.
-Furthermore, using equation \eqref{eq:variable_profit}, the value of a coalition with $n$ fringe firms and the platform is
+I assume that bargaining outcomes are determined according to \cref{ass:profit_sharing}, where $f(N_P, N_F)$ is defined as the total profits that the platform and the entrants can achieve by selling their products.
+From \cref{eq:optimal_profit}, the total profit achieved by the platform and $N_F$ fringe firms is given by
 \begin{align*}
-    v(n) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
+    f(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
 \end{align*}
-
-\Cref{prop:one_sided} gives a simple formula for the Shapley value of the platform in case $N_F$ fringe firms made the initial investment:
-\begin{align*}
-    \pi^t_P &= \varphi_P = \int_0^1 v(tN_F) \dt \\
-            &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right]
-\end{align*}
-Subsequently, the fringe gets the remainder of the profits, therefore
-\begin{align}
-    \pi^v_F &= \varphi_F =  1 - \int_0^1 v(tN_F) \dt \\
-            &= \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
-            \label{eq:fringe_variable_profit}
-\end{align}
-and the total profits of the whole fringe are
-\begin{align*}
-    \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F
-\end{align*}
-The free entry condition implies that fringe profits are zero, therefore the number of fringe entrants is given by the implicit equation
-\begin{align}
-    \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F = 0
-    \label{eq:free_entry_bargaining}
-\end{align}
+This yields the following closed-form expressions for the total profits of the partcipants.
+\begin{proposition}
+    The platform's total profits are
+    \begin{align*}
+        \pi^t_P &= \varphi_P = \int_0^1 f(N_P, sN_F) \ds \\
+                &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
+    \end{align*}
+    The total profits of the whole fringe is given by
+    \begin{align*}
+        \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F.
+    \end{align*}
+\end{proposition}
+\textcolor{red}{TODO: add an example figure}
 
 \textcolor{red}{
-    What I really want to show at this point is that if $N_F$ is determined by equation \eqref{eq:free_entry_bargaining}, then the total aggregate is decreasing in $N_P$.
-    Unfortunately, I don't have a closed form for $N_F^*$, and the IFT does not seem to lead to useful results, either.
-    Therefore, at this point, all I can do is show it through some numerical examples.
-    That won't guarantee of course that it holds in general.
+    Note: I have not managed to prove lemma \ref{lem:profit_assumptions} yet, but I'm pretty sure it's true.
+    In case I'm not able to come up with a proof, I'll just use some results based on numerical simulations using the closed form expressions above.
 }
 
-\textcolor{red}{
-    I have a graphical reasoning in mind though, that I might be able to make precise in the future.
-    For the moment, I'd rather not include it as it might be completely wrong.
-}
+Now let us turn to how the platform's hybridness affects product variety and consumer welfare.
+Let us start by establishing some properties of the toral profit function $f(n_P, n_F)$.
+\begin{lemma}
+    \label{lem:profit_assumptions}
+    $f(n_P, n_F)$ satisfies assumption \ref{ass:single_crossing}.
+    Furthermore,
+    \begin{align*}
+        \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0.
+    \end{align*}
+\end{lemma}
 
-%\section{Extensions}
 
-%\section{Conclusion}
+
+% \section{Extensions}
+
+\section{Conclusion}
 
 
 \appendix
@@ -578,19 +573,6 @@ This is due to the increased bargaining power of the platform.
 
 \end{proof}
 
-
-\begin{lemma}
-    \label{lem:shape_of_pi_F}
-    For any $V_F, N_P, V_P, \mu$, the function $\pi^v_F$ is either concave in $N_F$ or decreasing in $N_F$.
-\end{lemma}
-\begin{proof}
-    Did not manage to prove it yet.
-\end{proof}
-
-\begin{corollary}
-    \label{cor:unique_eq}
-    There is at most one equilibrium with $N_F > 0$.
-\end{corollary}
 
 \begin{proposition}
     \label{prop:A_decreasing_in_N_P}
