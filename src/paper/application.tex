@@ -10,6 +10,8 @@
 \usepackage[nameinlink]{cleveref}
 \usepackage{amsthm}
 \usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[backend=biber,style=authoryear,maxbibnames=99,hyperref=true]{biblatex} 
 
 \addbibresource{src/paper/references.bib}
@@ -49,14 +51,14 @@
 This section introduces the model used throughout the paper.
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is more general, and the results apply to a broader class of settings.
-Chief among these is an upstream-downstream setting, with a single upstream producer and a continuum of downstream sellers.
+An important example of those is an upstream-downstream setting with a single upstream producer and a continuum of downstream sellers.
 
 Assume that there are two types of players in the market: a platform $P$ and a continuum of fringe sellers $F_i$.
 The fringe firms each have one product, which they can only sell through the platform.
 The platform itself may also have its own products in addition to acting as an intermediary between the fringe and the consumers.
 In that case it is referred to as a hybrid platform.
-The main feature of the model is, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
-The bargaining rule, as well as other details of the morel, are described in the rest of this section.
+The main feature of the model is that, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
+The bargaining rule, as well as other details of the model, are described in the rest of this section.
 
 
 \subsection{Production}
@@ -97,32 +99,94 @@ Let us assume that the platform and the fringe shares their total profits accord
         \pi_F(N_P, N_F) &= f(N_P, N_F) - \int_0^1 w(s) f(N_P, s N_F) \ds.
     \end{align*}
 \end{assumption}
-While at first it might seem rather arbitrary, and much more convoluted than a simple percentage split, it has quite a few nice properties compared to the latter.
-Furthermore, \cref{sec:profit_sharing} provides some cooperative and non-cooperative microfoundations for this rule.\footnote{
+While somewhat more complex than a simple percentage split, it has quite a few adventages compared to the latter.\footnote{
     This way of modeling bargaining has precedents in the industrial organization literature \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}.
     Furthermore, a number of papers show that various extensive-form bargaining games result in this outcome \parencite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,stole1996intra}.
 }
-Let us start by examining the various parts of this rule, and then discuss how they impact the platform's profit share.
+On the theoretical side, the main argument in favor of this particular rule is its relation to the Shapley-value.\footnote{
+    \cref{sec:profit_sharing} shows that in the case of $w(s) \equiv 1$, $\pi_P(N_P, N_F)$ and $\pi_F(N_P, N_F)$ are the Shapley values of the platform and the fringe, respectively.
+}
+Shapley-value in turn has deep connections to bargaining theory.
+\textcite{gul1989bargaining,stole1996intra,hart1996bargaining,inderst2003bargaining}, along with a number of other papers, show that in various extensive-form bargaining games in the players' expected payoffs in the subgame perfect equilibrium correspond to their Shapley values.
 
-The main feature of this rule is that the platform's bargaining power depends on the substitutability of the fringe firms.
+The other main justification for this rule its intuitive behavior in terms of comparative statistics when varying $f$ and $w$.
+To illustrate this, let us examine the various parts of this rule, and then discuss how they impact the platform's profit share.
+
+The main feature of this rule is that the platform's bargaining power depends on the degree to which the fringe firms are complements or substitutes of each other.
 The following proposition demonstrates this idea.
 \begin{proposition}
     \label{prop:outcome_based_bargaining_power}
-    Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different total profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(n_P, n_F) \leq \tilde{f}(n_P, n_F)$ for all $n_P < N_P, n_F < N_F$.
+    Fix some $N_P \geq 0$. Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different total profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(N_P, n_F) \leq \tilde{f}(N_P, n_F)$ for all $n_F < N_F$.
     Furthermore, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
     
     Then, $\pi_P \leq \tilde{\pi}_P$.
 \end{proposition}
-In words, when comparing two different total profit functions (i.e., demand systems, production functions), even if the total profits are the same under some pair $N_P, N_F$, profit shares might differ.
-In particular, the platform's profits are higher when it needs fewer firms to achieve a certain total profit level (i.e., when the fringe firms are more substitutable).
-\textcolor{red}{GRAPH HERE}
+
+In words, \cref{prop:outcome_based_bargaining_power} describes two alternative profit functions, under which $N_F$ fringe firms (along with the platform and it's $N_P$ products) are able to achieve the same total profit level.
+However, in one of these cases, the fringe firms are more substitutable to each other, in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
+The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
 This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \begin{tikzpicture}[scale=0.8]
+            \centering
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, extra y ticks={1},  extra y tick style={yticklabel={$f(1)$}}]
+                \addplot[name path=f, blue,ultra thick] {x^2};
+                \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+    
+                \node[anchor=north west] at (axis cs: .1, .9) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .9, .1) {Player $P$};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe firms are complements}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, extra y ticks={1},  extra y tick style={yticklabel={$f(1)$}}]
+                \addplot[name path=f, blue,ultra thick] {x^0.5};
+                \node[anchor=north west] at (axis cs: .8, .8^0.5) {$\tilde{f}$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+    
+                \node[anchor=north west] at (axis cs: .1, .9) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .9, .1) {Player $P$};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe firms are substitutes}
+    \end{subfigure}
+    \caption{Distribution of value between player $P$ and the fringe}
+    \label{fig:outcome_based_bargaining_power}
+\end{figure}
+
 
 The other main ingredient of the sharing rule, $w(s)$, captures the platform's \emph{innate} bargaining power.
 It is independent of the production function, demand, or the fringe firms' substitutability, and might represent, for example, that the platform and the fringe firms have different power to propose allocations during the (not explicitly modeled) negotiation process.\footnote{
     For a more thorough exploration of this idea, see \cref{app:profit_sharing} and \textcite{hart1996bargaining}.
 }
-One way to think about it is that the platform's share is randomly drawn from the total profit according to some distribution, and $w$ is the probability density function of this distribution.
+
+One way to think about the weighting is that the platform's share is the expectation of the total profit, when the number of fringe firms is drawn from $[0, N_F]$ according to some distribution.\footnote{
+    In fact, this is exactly the idea behind the Shapley value: the platform (and other players, too) gets its expected marginal contribution to the total profit.
+    As the fringe cannot create any value without the platform, the latter's marginal contribution to a coalition of $n_F$ fringe firms is simply $f(n_F)$.
+}
+An obvious choice is to use the uniform distribution, in which case the shares correspond to the Shapley value.
+However, this is not the only possible choice.
+If, for example, we want to assume that the platform has a higher innate bargaining power, we can use a distribution with a higher mass on the right tail.\footnote{
+    Specific choices for $w$ can also be motivated by cooperative game theoretical concepts.
+    For example using, $w(s) = \lambda t^{\lambda - 1}$ leads to the weighted Shapley value, with weights $\lambda$ and $1$ for the platform and the fringe firms, respectively.
+}
 When the distribution $W_1$ first order stochastically dominates another distribution $W_2$, the platform is more likely to draw a value from with a higher mass of fringe firms, and therefore obtain a higher profit share in case of $W_1$ than in the case of $W_2$.
 The next proposition formalizes this idea.
 \begin{proposition}
@@ -133,6 +197,9 @@ The next proposition formalizes this idea.
     Then, $\pi_P(N_P, N_F) \leq \tilde{\pi}_P(N_P, N_F) \; \forall\, N_P \geq 0, N_F > 0$.
     Furthermore, this inequality is strict if $\int_0^x w_1(s) \ds < \int_0^x w_2(s) \ds$ on some non-zero measure set.
 \end{proposition}
+
+Although the proposition is straightforward, it establishes that $w$ can indeed be used to represent some form of innate bargaining power.
+For example, if one has reason to believe that the platform has a stronger voice in the negotiation process, one can use a weight function with a higher mass on larger values.
 
 
 \subsection{Entry and equilibrium}
