@@ -20,6 +20,7 @@
 \usetikzlibrary{shapes}
 \pgfplotsset{compat=1.17}
 
+\newtheorem{definition}{Definition}
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
@@ -167,7 +168,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \end{tikzpicture}
         \caption{Fringe firms are substitutes}
     \end{subfigure}
-    \caption{Distribution of value between player $P$ and the fringe}
+    \caption{Distribution of value between the platform and the fringe (with $w(s) \equiv 1$)}
     \label{fig:outcome_based_bargaining_power}
 \end{figure}
 
@@ -212,12 +213,16 @@ If there are $N_F$ fringe entrants and $N_P$ platform products, then, as discuss
 Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}.
 
 The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' profits should be equal to the investment cost.
-\begin{assumption}
+\begin{definition}
     \label{ass:free_entry}
-    In equilibrium, $\pi_F(N_P, N_F) = I_F N_F$.
-\end{assumption}
+    Let us define a free entry equilibrium by the following conditions:
+    \begin{itemize}
+        \item Profits are shared according to \cref{ass:profit_sharing}.
+        \item Entrants make zero profits: $\pi_F(N_P, N_F) = I_F N_F$ after accounting for entry costs.
+    \end{itemize}
+\end{definition}
 
-In order to guarantee a unique equilibrium, let us make the following, additional assumption about the profit and bargaining weight functions.
+Finally, in order to guarantee a unique equilibrium, let us make the following, an additional assumption about the profit and bargaining weight functions.
 \begin{assumption}
     \label{ass:single_crossing}
     Let $f$ and $w$ be such that the following holds for all $N_F, N_P \geq 0$:
@@ -227,7 +232,9 @@ In order to guarantee a unique equilibrium, let us make the following, additiona
         f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \ds.
     \end{gather*}
 \end{assumption}
-\textcolor{red}{TODO: Find interpretable sufficient conditions for this assumption.}
+The above assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with the total entry cost (apart from the obvious $N_F=0$ intersection).
+While the conditions is not very simple to interpret, they can be verified once a specific choice for $f$ and $w$ is made.
+In particular, this assumption will be satisfied in the example in \cref{sec:example}.
 
 
 \section{Results}
