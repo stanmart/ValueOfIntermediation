@@ -143,8 +143,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \begin{tikzpicture}[scale=0.8]
             \centering
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                    xtick={0, 1}, ytick={0}, extra y ticks={1}, extra y tick style={yticklabel={$f(1)$}},
-                    xlabel={$s$}]
+                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^2};
                 \node[anchor= east] at (axis cs: .9, .9^2) {$f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -154,7 +153,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
                 \node[anchor=north west] at (axis cs: .1, .9) {Fringe ($A$)};
-                \node[anchor=south east] at (axis cs: .9, .1) {Player $P$};
+                \node[anchor=south east] at (axis cs: .9, .1) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
         \caption{Fringe firms are complements}
@@ -163,8 +162,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, extra y ticks={1}, extra y tick style={yticklabel={$f(1)$}},
-                xlabel={$s$}]
+                xtick={0, 1}, ytick={0}, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^0.5};
                 \node[anchor=north west] at (axis cs: .6, .6^0.5) {$\tilde{f}(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -174,7 +172,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
                 \node[anchor=north west] at (axis cs: .1, .9) {Fringe ($A$)};
-                \node[anchor=south east] at (axis cs: .9, .1) {Player $P$};
+                \node[anchor=south east] at (axis cs: .9, .1) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
         \caption{Fringe firms are substitutes}
@@ -303,6 +301,48 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
 
 \begin{figure}[ht]
     \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, blue,ultra thick] {ln(1+x)};
+                \addplot[name path=tildef, dashed, black] {x};
+                \node[anchor=north west] at (axis cs: .6, 0.5) {$f(N_P, sN_F)$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,0.693) -- (axis cs:1,0.693);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,0.693);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+    
+                \node[anchor=north west] at (axis cs: .05, .65) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Profit shares with $f$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, dashed, black] {ln(1+x)};
+                \addplot[name path=tildef, blue,ultra thick] {x};
+                \node[anchor=south east] at (axis cs: 0.6, 0.6) {$\tilde{f}(N_P, sN_F)$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
+    
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Profit shares with $\tilde{f}$}
+    \end{subfigure}
     \caption{Illustration of \cref{prop:share_of_platform}}
     \label{fig:increase_N_P_platform}
 \end{figure}
@@ -342,10 +382,37 @@ The reason simply lies in the concave or hump-shaped fringe profit function.
 If $N_F^*$ is an equilibrium, then fringe profits minus entry costs are strictly positive for all $N_F \leq N_F^*$ and strictly negative for all $N_F > N_F^*$.
 Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F \geq 0$, equilibrium can be restored by decreasing the number of fringe entrants, and vice versa for the other case (\cref{fig:comparative_N_F}).
 
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[xscale=2,yscale=2,samples=200]
+        \draw[->] (0,0) -- (0,2);
+        \draw[->] (0,0) -- (5.5,0) node[below] {$n_F$};
+
+        \draw[name path=piF,domain=0.01:5.5,variable=\x,blue,ultra thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
+        \draw[name path=piF2,domain=0.01:5.5,variable=\x,blue,ultra thick] plot ({\x},{6*((\x)/(0.3+\x))-6*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
+        \draw[name path=IF,domain=0.01:5.5,variable=\x,red,ultra thick] plot ({\x},{(\x)/3});
+
+        \node[anchor=south] at (5,1) {$\pi_F(N_P, n_F)$};
+        \node[anchor=north] at (5,0.6) {$\pi_F(N_P', n_F)$};
+        \node[anchor=south east] at (5,5/3) {$I_F n_F$};
+
+        \fill [name intersections={of=piF and IF, name=i, total=\t}]
+            [black] (i-2) circle (1pt);
+        \draw[dashed] (i-2) -- (i-2 |- 0,0) node[below] {$N_F^*$};
+        \fill [name intersections={of=piF2 and IF, name=i2, total=\t}]
+            [black] (i2-2) circle (1pt);
+        \draw[dashed] (i2-2) -- (i2-2 |- 0,0) node[below] {$N_F^{*'}$};
+
+        \draw[->] (i-2 |- 0,0.5) -- (i2-2 |- 0,0.5);
+    \end{tikzpicture}
+    \caption{Comparative statistics for equilibrium entry (fringe are substitutes)}
+    \label{fig:comparative_N_F}
+\end{figure}
+
 Finally, let us conclude this section by establishing a stronger result for a more restrictive class of profit functions.
 In the following, I assume that the profit function has a specific, additive form.
 Intuitively, this means that -- in terms of total profits generated -- the platform's and the fringe firms' products are substitutable to each other according to some constant ratio.\footnote{
-    Note that it does not mean that their products are \emph{substitutes} in the usual, demand theory sense.
+    Note that it does not mean that their products are substitutes in the usual, demand theory sense.
     They still might be complements to each other.
 }
 \begin{proposition}
