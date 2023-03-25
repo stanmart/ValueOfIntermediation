@@ -27,7 +27,8 @@ def find_input_files(tex_file: str, remove_prefix: str = "", print_console: bool
     patterns = [
         re.compile(r"\\input\{(.*)\}"),
         re.compile(r"\\include\{(.*)\}"),
-        re.compile(r"\\includegraphics(?:\[.*\])?\{(.*)\}")
+        re.compile(r"\\includegraphics(?:\[.*\])?\{(.*)\}"),
+        re.compile(r"\\pgfplotstableread(?:\[.*\])\{(.*)\}"),
     ]
 
     paths = sum((pattern.findall(tex_contents) for pattern in patterns), [])

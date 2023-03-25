@@ -14,6 +14,11 @@ rule all:
         paper = expand("out/paper/{paper}.pdf", paper=PAPERS)
 
 
+rule papers:
+    input:
+        paper = expand("out/paper/{paper}.pdf", paper=PAPERS)
+
+
 rule deploy_to_github:
     input:
         presentation = "out/presentation/presentation.html",
@@ -175,7 +180,19 @@ rule paper:
                  -outdir={params.outdir} \
                  -jobname={params.pdf_wo_ext} \
                  -interaction=nonstopmode {input.tex}"
-    
+
+
+rule figure_equilibrium:
+    conda:
+        "envs/python-analysis.yaml"
+    input:
+        script = "src/figures/equilibrium.py"
+    output:
+        csv = "out/figures/equilibrium.csv"
+    shell:
+        "python {input.script} {output.csv} \
+         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1 --num-obs 500"
+
 
 rule figure_equilibrium_entry:
     conda:

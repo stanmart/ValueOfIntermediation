@@ -6,6 +6,7 @@
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepackage{hyperref}
 \usepackage[noabbrev,nameinlink]{cleveref}
 \usepackage{amsthm}
@@ -32,7 +33,7 @@
 \newtheorem{assumption}{Assumption}
 
 \crefname{assumption}{assumption}{assumptions}
-\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
 \crefname{observation}{observation}{observations}
 \Crefname{observation}{Observation}{Observations}
 
@@ -40,6 +41,8 @@
 \newcommand{\ds}{\mathrm{d}s}
 \newcommand{\di}{\mathrm{d}i}
 \newcommand{\E}{\mathbb{E}}
+
+\pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
 
 \title{Hybrid platforms and bargaining power}
 \author{Martin Stancsics}
@@ -528,7 +531,7 @@ For this service, the platform can charge a lump-sum entry fee $F_F$ to each fri
     % TODO: elaborate on this
 }
 In the baseline model, I assume that entry is free for the consumers, and they are always present on the platform, no matter the other players' entry and pricing decisions.\footnote{
-    This essentially means that I assume a one-sided platform, without the usual strong network effects.
+    This essentially means that I assume a one-sided platform, without the usual network effects.
     % TODO: see if I can relax this assumption
 }
 
@@ -579,8 +582,8 @@ As shown in \textcite[]{anderson2021hybrid}, the utility functions described in 
     \end{align}
 \end{proposition}
 
-Let us call $p_{Ti}$ the net value of product $i$.
-As one would expect, demand is increasing in this net value, and decreasing in the competitors' net 
+Let us call $v_T - p_{Ti}$ the net value of product $i$.
+As one would expect, demand is increasing in this net value, and decreasing in the competitors' net values.
 Furthermore, demand for each product is increasing in $\mu$, which can be thought of as the degree of product differentiation or the importance of taste shocks.
 Finally, notice that, as each producer is infinitesimal, its pricing decision does not affect the aggregate $A$.
 This last property makes the optimal prices and profits of the producers very simple, as shown in the next proposition.
@@ -637,7 +640,7 @@ Combined with the simple profit function, this gives the following expressions f
         N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
     \end{align*}
 
-    Otherwise, the equilibrium size of the aggregate is
+    Otherwise, if they are sufficiently high, $N_F = 0$ and the equilibrium size of the aggregate is
     \begin{align*}
         A = N_P V_P + 1.
     \end{align*}
@@ -689,11 +692,11 @@ From \cref{eq:optimal_profit}, the total profit achieved by the platform and $N_
 \begin{align*}
     f(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
 \end{align*}
-This yields the following closed-form expressions for the total profits of the partcipants.
+This yields the following closed-form expressions for the total profits of the participants.
 \begin{proposition}
     The platform's total profits are
     \begin{align*}
-        \pi^t_P &\int_0^1 f(N_P, sN_F) \ds \\
+        \pi^t_P &=\int_0^1 f(N_P, sN_F) \ds \\
                 &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
     \end{align*}
     The total profits of the whole fringe is given by
@@ -704,7 +707,7 @@ This yields the following closed-form expressions for the total profits of the p
 \textcolor{red}{TODO: add an example figure}
 
 Now let us turn to how the platform's hybridness affects product variety and consumer welfare.
-Let us start by establishing some properties of the toral profit function $f(n_P, n_F)$.
+Let us start by establishing some properties of the total profit function $f(n_P, n_F)$.
 \begin{lemma}
     \label{lem:profit_assumptions}
     $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
@@ -731,6 +734,29 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
 }
 
 \textcolor{red}{TODO: add figure showing consumer welfare in the benchmark and bargaining models as a function of $N_P$}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={$N_P$},
+                ylabel={$N_F^*$},
+                xmin=0, xmax=1, % adjust these values as needed
+                ymin=0, ymax=1, % adjust these values as needed
+                % grid=major,
+                % grid style={dashed,gray!30},
+                width=6cm, % adjust the width of the plot
+                height=6cm, % adjust the height of the plot
+                axis lines=left,
+                xtick=\empty, ytick=\empty
+            ]
+            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=N_F]{\equilibrium};
+            \addplot[color=black,mark=none,dashed] table[x=N_P,y=N_F_cf]{\equilibrium};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{The equilibrium number of fringe firms as a function of the number of platform products.}
+    \label{fig:fringe_entry_eq}
+\end{figure}
 
 
 % \section{Extensions}
