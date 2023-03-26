@@ -288,7 +288,7 @@ For the following two propositions, let us ignore free entry and equilibrium beh
 The following statement says that the platform's profit is increasing in its own product variety.
 \begin{proposition}
     \label{prop:share_of_platform}
-    Assume that $f, w$ are continuously differentiable and that $w$ has a non-zero measure support.
+    Assume that $f$ is continuously differentiable with respect to $N_P$ and also twice differentiable.
     Let $N_F \geq 0$.
     Then $\pi_P$ is also differentiable and
     $$\frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0$$.
@@ -354,7 +354,7 @@ Next, let us look at an analogous result for the fringe firms.
 As the next proposition demonstrates, in this case, the direction of the change depends on the complementarities between the fringe firms.
 \begin{proposition}
     \label{prop:share_of_fringe}
-    Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
+    Assume that $f, w$ are twice continuously differentiable.
     Let $N_F > 0$.
     Then $\pi_F$ is also differentiable.
     \begin{align*}
@@ -419,13 +419,17 @@ Now let us turn to equilibrium entry as a function of the platform's product var
 The previous proposition implies an almost immediate corollary regarding the equilibrium number of fringe entrants.
 \begin{corollary}
     \label{cor:fringe_entry}
-    Assume that $f, w$ are twice continuously differentiable and that $w$ has a non-zero measure support.
+    Assume that $f, w$ are twice continuously differentiable.
     Let $N_F^*$ denote the equilibrium number of fringe firms.
     Let us also assume that $N_F^* > 0$.
+    Furthermore, let us assume that
+    \begin{align*}
+        \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0 \quad \forall n_F \leq N_F \\
+        \frac{\partial^2 f(n_P, n_F)}{\partial n_F^2} < 0 \quad \forall n_F \leq N_F.
+    \end{align*}
     Then the equilibrium number of fringe firms is also differentiable and
     \begin{align*}
-        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial N_F^*}{\partial N_P} < 0. \\
-        &\text{If } \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} > 0 \;\forall n_F \leq N_F, \text{ then } \frac{\partial N_F^*}{\partial N_P} > 0.
+        \frac{\partial N_F^*}{\partial N_P} < 0.
     \end{align*}
 \end{corollary}
 That is, the equilibrium number of entrants increases as a response to an increase in $N_P$ if the fringe firms are mostly complements, and decreases if they are mostly substitutes.
@@ -456,7 +460,7 @@ Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F
 
         \draw[->] (i-2 |- 0,0.5) -- (i2-2 |- 0,0.5);
     \end{tikzpicture}
-    \caption{Comparative statistics for equilibrium entry (fringe are substitutes)}
+    \caption{Illustration of comparative statics for equilibrium entry}
     \label{fig:comparative_N_F}
 \end{figure}
 
@@ -741,20 +745,20 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
         \begin{axis}[
                 xlabel={$N_P$},
                 ylabel={$N_F^*$},
-                xmin=0, xmax=1, % adjust these values as needed
-                ymin=0, ymax=1, % adjust these values as needed
-                % grid=major,
-                % grid style={dashed,gray!30},
-                width=6cm, % adjust the width of the plot
+                xmin=0, xmax=1.5, % adjust these values as needed
+                ymin=0, ymax=1.4, % adjust these values as needed
+                width=10cm, % adjust the width of the plot
                 height=6cm, % adjust the height of the plot
                 axis lines=left,
                 xtick=\empty, ytick=\empty
             ]
+            \addplot[color=red,mark=none,very thick] table[x=N_P,y=N_F_bench]{\equilibrium};
             \addplot[color=blue,mark=none,very thick] table[x=N_P,y=N_F]{\equilibrium};
-            \addplot[color=black,mark=none,dashed] table[x=N_P,y=N_F_cf]{\equilibrium};
+            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=N_F_cf]{\equilibrium};
+            \legend{Benchmark, Bargaining, Fixed aggregate}
         \end{axis}
     \end{tikzpicture}
-    \caption{The equilibrium number of fringe firms as a function of the number of platform products.}
+    \caption{Equilibrium number of fringe firms as a function of the number of platform products.}
     \label{fig:fringe_entry_eq}
 \end{figure}
 
@@ -935,6 +939,101 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \begin{align*}
         \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
     \end{align*}
+\end{proof}
+
+
+\section{Proofs and additional lemmas}
+
+\begin{lemma}
+    \label{lem:slope_at_eq}
+    Let the conditions in \cref{ass:single_crossing} hold. Then for any $N_F^* > 0$ for which $\pi_F(N_P, N_F^*) = I_F$, the partial derivative with respect to the number of fringe firms is smaller than the investment cost:
+    \begin{align*}
+        \left. \frac{\partial \pi_F(N_P, N_F)}{\partial N_F} \right|_{N_F = N_F^*} < I_F.
+    \end{align*}
+\end{lemma}
+\begin{proof}[Proof of \cref{lem:slope_at_eq}]
+    Let us use Leibniz' rule to obtain the first two derivatives of the fringe's profit with respect to the number of fringe firms:
+    \begin{align*}
+        \frac{\partial f(N_P, sN_F)}{\partial N_F} &= \frac{\partial}{\partial N_F} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, sN_F) \ds \right] \\
+        &= \frac{\partial f(N_P, N_F)}{\partial N_F} - \int_0^1 s w(s) \frac{\partial f(N_P, sN_F)}{\partial N_F} \ds, \\
+        \frac{\partial^2 f(N_P, sN_F)}{\partial N_F^2} &= \frac{\partial^2}{\partial N_F^2} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, sN_F) \ds \right] \\
+        &= \frac{\partial^2 f(N_P, N_F)}{\partial N_F^2} - \int_0^1 s^2 w(s) \frac{\partial f(N_P, sN_F)}{\partial N_F^2} \ds.
+    \end{align*}
+    Therefore, \cref{ass:single_crossing} implies that at any $N_F$, $\pi_F(N_P, N_F)$ is either concave or decreasing.
+
+    In the remainder, for ease of notation, let us denote partial derivatives as follows:
+    \begin{align*}
+        \partial_F \pi_F(N_P^*, N_F^*) := \left. \frac{\partial \pi_F(N_P, N_F)}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*}.
+    \end{align*}
+
+    Notice that the fact that $\pi_F$ is concave or decreasing in $N_F$ implies that if $\partial_F \pi_F(N_P, N_F')$ for some $N_F' \geq 0$, then $\partial_F \pi_F(N_P, N_F'') < \partial_F \pi_F(N_P, N_F')$ for any $\tilde{N_F} < \bar{N_F}$.
+
+    Next, observe that if $\partial_F \pi_F(N_P, 0) < I_F$, then there is no equilibrium with $N_F > 0$.
+    To show this, assume by contradiction that $\exists N_F^* > 0$ such that $\pi_F(N_P, N_F^*) = I_F N_F^*$.
+    Then the mean value theorem implies that there is a $\bar{N}_F \in (0, N_F^*)$ such that $\partial_F \pi_F(N_P, \bar{N}_F) = I_F$.
+    However, this clearly cannot be the case as $\partial_F \pi_F(N_P, N_F) < I_F$ for all $N_F > 0$.
+
+    Now let $N_F^*$ be a positive number for which $f(N_P, N_F^*) = I_F N_F^*$, if it exists.
+    It is easy to see that $\partial \pi(N_P, N_F^*) < I_F$.
+    The reason is that if it exists, then $\partial_F \pi_F(N_P, 0) > I_F$.
+    Now if $\partial_F \pi_F(N_P, N_F^*) \geq I_F \forall N_F > 0$, then $f(N_P, N_F) > I_F N_F$, and the two functions do not intersect.
+    Therefore, there must exist some $\bar{N}_F > 0$ for which $\partial_F \pi_F(N_P, \bar{N}_F) < I_F$.
+    This in turn implies that $\partial_F \pi_F(N_P, N_F) \leq \partial_F \pi_F(N_P, \bar{N}_F) < I_F$ for all $N_F > \bar{N}_F$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
+    \Cref{lem:slope_at_eq} states that for any positive $N_F^*$ for which $\pi_F(N_P, N_F^*)$, the partial derivative with respect to the number of fringe firms is negative.
+    Now assume by contradiction that $\exists 0 < N_F^* < N_F^{**}$ such that $\pi_F(N_P, N_F^*) = I_F N_F^*$ and $\pi_F(N_P, N_F^{**}) = I_F N_F^{**}$.
+    But then the mean value theorem implies that there is a $\bar{N}_F \in (N_F^*, N_F^{**})$ such that $\partial_F \pi_F(N_P, \bar{N}_F) = I_F$.
+    This is a contradiction, as $\partial_F \pi_F(N_P, N_F) < I_F$ for all $N_F^* < N_F$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:share_of_platform}]
+    $f(N_P, N_F)$ is continuously differentiable in $N_P$, therefore the Leibniz rule can be applied to obtain
+    \begin{align*}
+        \frac{\partial \pi_P(N_P, N_F)}{\partial N_P} &= \frac{\partial}{\partial N_P} \int_0^1 w(s) f(N_P, N_F) \ds \\
+        &= \int_0^1 w(s) \underbrace{\frac{\partial f(N_P, sN_F)}{\partial N_P}}_{> 0} \ds > 0.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:share_of_fringe}]
+    Remember that
+    \begin{align*}
+        \pi_F(N_P, N_F) = f(N_P, N_F) - \int_0^1 w(s) f(N_P, N_F) \ds.
+    \end{align*}
+    $f(N_P, N_F)$ is continuously differentiable in $N_P$, therefore the Leibniz rule can be applied to obtain
+    \begin{align*}
+        \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} &= \frac{\partial}{\partial N_P} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, N_F) \ds \right]\\
+        &= \frac{\partial f(N_P, N_F)}{\partial N_P} - \int_0^1 w(s) \frac{\partial f(N_P, sN_F)}{\partial N_P} \ds \\
+        &= \underbrace{h(N_F)}_{(*)} - \underbrace{\int_0^1 w(s) h(s N_F)}_{(**)}
+    \end{align*}
+    where $h(N_F) = \frac{\partial h(N_F)}{\partial N_P}$.
+
+    Notice that $(*)$ and $(**)$ are both positive.
+    Furthermore, $(**)$ is the weighed average of $(*)$ over the interval $[0, N_F]$.
+    Therefore, if $h(N_F)$ is strictly increasing, then $(*) > (**)$, and the whole expression is positive.
+    Conversely, it is negative if $h(N_F)$ is strictly decreasing.
+
+    If $h(N_F)$ is differentiable, then it is equivalent to saying that
+    \begin{align*}
+        \frac{\mathrm{d}h(N_F)}{\mathrm{d}N_F} = \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0 &\implies \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0 \\
+        \frac{\mathrm{d}h(N_F)}{\mathrm{d}N_F} = \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} > 0 &\implies \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} > 0
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{cor:fringe_entry}]
+    \Cref{prop:unique_equilibrium} establishes that if an equilibrium with $N_F > 0$ exists, it is unique.
+    Use the implicit function theorem on the equation from \cref{ass:free_entry} to obtain
+    \begin{align*}
+        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F)}{\partial N_P}}{I_F - \frac{\partial \pi_F (N_P, N_F)}{\partial N_F}}
+    \end{align*}
+
+    Remember from \cref{prop:share_of_fringe} that the numerator of this expression is negative under the condition $\frac{\partial^2 f(N_P, N_F)}{\partial N_P \partial N_F}$.
+    All we need to show to conclude the proof is that
+    \begin{align*}
+        \frac{\partial \pi_F (N_P, N_F)}{\partial N_F} < I_F,
+    \end{align*}
+    which is the statement of \cref{lem:slope_at_eq}.
 \end{proof}
 
 
