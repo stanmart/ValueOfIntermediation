@@ -191,7 +191,7 @@ rule figure_equilibrium:
         csv = "out/figures/equilibrium.csv"
     shell:
         "python {input.script} {output.csv} \
-         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1 --num-obs 500"
+         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1 --num-obs 200"
 
 
 rule figure_equilibrium_entry:

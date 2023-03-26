@@ -758,6 +758,79 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
     \label{fig:fringe_entry_eq}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={$N_P$},
+                ylabel={$A^*$},
+                xmin=0, xmax=1.5, % adjust these values as needed
+                ymin=0, ymax=2.6, % adjust these values as needed
+                width=10cm, % adjust the width of the plot
+                height=6cm, % adjust the height of the plot
+                axis lines=left,
+                xtick=\empty, ytick=\empty,
+                legend pos=south east
+            ]
+            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=A_bench]{\equilibrium};
+            \addplot[color=red,mark=none,very thick] table[x=N_P,y=A]{\equilibrium};
+            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A_noF]{\equilibrium};
+            \legend{Benchmark, Bargaining, Pure retail}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Equilibrium aggregate as a function of the number of platform products.}
+    \label{fig:aggregate_eq}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={$N_P$},
+                ylabel={$\pi_P^{t*}$},
+                xmin=0, xmax=1.5, % adjust these values as needed
+                ymin=0, ymax=0.65, % adjust these values as needed
+                width=10cm, % adjust the width of the plot
+                height=6cm, % adjust the height of the plot
+                axis lines=left,
+                xtick=\empty, ytick=\empty,
+                legend pos=south east
+            ]
+            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
+            \addplot[color=red,mark=none,very thick] table[x=N_P,y=pi_P]{\equilibrium};
+            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
+            \legend{Benchmark, Bargaining, Pure retail}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Equilibrium platform profit as a function of the number of platform products.}
+    \label{fig:pi_P_eq}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={$N_P$},
+                ylabel={$F_F$},
+                xmin=0, xmax=1.5, % adjust these values as needed
+                ymin=0, ymax=0.65, % adjust these values as needed
+                width=10cm, % adjust the width of the plot
+                height=6cm, % adjust the height of the plot
+                axis lines=left,
+                xtick=\empty, ytick=\empty,
+                legend pos=north east
+            ]
+            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=F_F_opt]{\equilibrium};
+            \addplot[color=red,mark=none,very thick] table[x=N_P,y=F_F_implied]{\equilibrium};
+            \legend{Benchmark (optimal), Bargaining (implied)}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Optimal/implied entry fee as a function of the number of platform products.}
+    \label{fig:F_F_eq}
+\end{figure}
+
+
+
 
 % \section{Extensions}
 
