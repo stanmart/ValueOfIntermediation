@@ -541,7 +541,6 @@ In the baseline model, I assume that entry is free for the consumers, and they a
 
 As mentioned above, instead of operating as a pure marketplace, the platform may also produce and offer its own products.
 In case it does, it is called a hybrid platform.
-% Additionally, the platform can choose to exclude all the fringe firms from the market (e.g. by setting a sufficiently high entry fee), and only offer its own products.  % TODO: should I allow it in the baseline case, or only after a policy intervention?
 
 \subsubsection{Entry and timing}
 
@@ -649,7 +648,7 @@ Combined with the simple profit function, this gives the following expressions f
         A = N_P V_P + 1.
     \end{align*}
 \end{proposition}
-Note that in the first case, the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
+Note that in the first case, the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage (\cref{eq:aggregate_eq}).
 
 Now let us turn to the optimal entry fee set by the platform, and its total profits, consisting of revenue from its own sales and the collected entry fees.
 First, let us examine the case when the fees are low enough for the fringe to be feasible.
@@ -669,20 +668,24 @@ First, let us examine the case when the fees are low enough for the fringe to be
     \end{align*}
     in the retail regime.
 \end{proposition}
-Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it.
+Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:F_F_eq,fig:pi_P_eq}).\footnote{
+    This is only due to the fact that the platform's product does not reqire any investment cost.
+    If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on investment costs, which is essentially wasted.
+    If the platform's products also require investment, and their cost is proportional to the platform's product advantage, then $N_P$ has no effect on platform profits within the hybrid regime.
+}
 As a consequence, as long as the fringe is feasible at the optimal entry fee, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
 In contrast, when the fringe is not present in the market, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
 This is purely mechanical: more variety leads to higher welfare.
 
 Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, whenever the former is feasible.
+Therefore, the platform prefers to operate in hybrid mode, and does not want to exclude fringe firms from the market.
 This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
 It implies that there is no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
-Therefore, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.
-This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
-
-% TODO: intuition
-% Figure
-
+Therefore, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.\footnote{
+    This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
+    The reason for this difference lies in the type of entry fee: they assume a revenue-based, proportional fee, which distorts prices.
+    In contrast, in this paper, I assume a non-distortive lump sum fee.
+}
 \subsubsection{The bargaining model}
 
 Now consider the case when instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
@@ -708,7 +711,6 @@ This yields the following closed-form expressions for the total profits of the p
         \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F.
     \end{align*}
 \end{proposition}
-\textcolor{red}{TODO: add an example figure}
 
 Now let us turn to how the platform's hybridness affects product variety and consumer welfare.
 Let us start by establishing some properties of the total profit function $f(n_P, n_F)$.
@@ -729,16 +731,18 @@ Therefore, the same proposition implies that
 \begin{align*}
     \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F},
 \end{align*}
-and in turn, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
-    The same result can also easily be shown for an increase in $V_P$.
+that is, an increase in the platform's products leads to a more than proportional reduction in the number of fringe products (\cref{fig:fringe_entry_eq}).\footnote{
+    The intuition behind this is demonstrated in \cref{fig:F_F_eq}.
+    As the platform's product variety grows, its bargaining power also increases.
+    This can be thought of as an increase in (implied) entry fees, which in turn discourages fringe entry.
 }
-As in this model consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products.
+Conversely, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
+    The same result also holds true for an increase in $V_P$.
+}
+As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:aggregate_eq}).
 Therefore, as opposed to the benchmark model, the platform becoming more hybrid leads to a reduction in consumer welfare.\footnote{
-    Unless $V_P N_P$ is high enough that the platform would operate in the benchmark model, too.
+    Unless $V_P N_P$ is high enough that the platform would operate in pure retial mode in the benchmark model, too.
 }
-
-\textcolor{red}{TODO: add figure showing consumer welfare in the benchmark and bargaining models as a function of $N_P$}
-
 \begin{figure}
     \centering
     \begin{tikzpicture}
@@ -782,7 +786,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
             \legend{Benchmark, Bargaining, Pure retail}
         \end{axis}
     \end{tikzpicture}
-    \caption{Equilibrium aggregate as a function of the number of platform products.}
+    \caption{Equilibrium aggregate as a function of the number of platform products. Note, that consumer surplus is monotone in the aggregate, therefore this figure also shows ordinal changes in the equilibrium consumer surplus.}
     \label{fig:aggregate_eq}
 \end{figure}
 
