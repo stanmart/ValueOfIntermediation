@@ -57,6 +57,49 @@
 
 \section{Motivation}
 
+Even though the economics literature offers no unambiguous definition for what a platform is, there seems to be a consensus that they are of key importance for the modern economy, and are getting even more so in the future.
+Although market structures resembling various aspects of what we call platforms have existed for some time, the term has only gained widespread usage in the 2000s, with the advent of digitization, and a number of behemoth technology companies playing matchmakers on the internet.
+Since then, platforms have become a buzzword in the business world, the subject of increasing regulatory scrutiny, and also a topic of intense academic interest.
+
+While it is hard to define what a platform is, there are a number of features commonly associated with platforms.\footnote{
+    I thank the participants of the Third Year Seminar at the University of Zurich for their lively discussion on this topic.
+    The conclusion was that, although platforms are hard to define, "You know one when you see one".
+}
+An organization does not have to exhibit all of these features to be considered a platform, but they are often present, and are also the main areas of interest when studying platforms.
+First, platforms are often characterized by multi-sidedness.
+Their most prominent examples are large internet companies, such as Google connecting advertisers and consumers, Amazon connecting sellers and consumers, or Uber connecting drivers and passengers.
+Second, a frequent feature of platforms is the presence of network effects.
+More buyers on Amazon mean more value for the sellers, and vice versa.
+These network effects often lead to increasing returns to scale, which in turn leads to consolidation in the industry.
+Third, another important aspect of platforms is the disparity between the various market participants.
+While there is usually just a few, large platforms in an industry, there is a much larger number of participants who use the platforms' services to connect to each other.
+Furthermore, the platform is often indispensable for the participants to make business, but the participants themselves are more easily replaceable.
+This power imbalance naturally leads to antitrust concerns, with regulators taking an increasingly close look at such markets as of late \parencite[see e.g. ][]{fletcher2021consumer}.
+Finally, a somewhat more recent, but slightly alarming feature of platforms is operating in a so-called hybrid mode.
+They act as an intermediary (deciding the rules) and a market participant (competing with the other entrants) at the same time.
+This paper focuses on the latter two aspects (bargaining power and hybridness), while mostly abstracting away the first two in the form of a rather reduced-form approach of modeling the production function.
+
+Various models have been proposed to study the economics of platforms, focusing on different aspects of the phenomenon.
+One of the larger and earlier strands of literature focus on the multi-sidedeness of platforms, the resulting implications.
+These papers investigate how various market features, such as the possibility of multi-homing, the magnitude of network-effects, or the number of platforms influence market outcomes.
+In addition to welfare, they are often interested in the transfers between the various sides facilitated by the platforms' desire to exploit network effects.
+Examples of such studies include the seminal papers \textcite{rochet2003platform} and \textcite{armstrong2006competition}, as well as a number of insightful papers examining the effects of various market attributes \parencite[e.g.][]{hagiu2004optimal,choi2010tying,evans2011platform,lee2014competing}.
+
+Hybrid platforms also received increasing attention in the literature.
+While not explicitly phrased in terms of hybridness, the literature on the importance of exclusive content can be seen as adjacent to this topic \parencite[]{hagiu2011exclusivity,lee2013vertical,dou2014sell,weeds2016tv}.
+These papers mostly focus on competition between platforms, and not on the impact on the platform-participant relationship.
+On the other hand, more recent papers, such as \textcite{hagiu2020should}, \textcite{anderson2021hybrid} and \textcite{gutierrez2021welfare} have started to address the issue of hybrid platforms, and how platforms having their own products affect competition between the platform and the entrants, and ultimately consumer welfare and producer surplus.
+The results are mixed: while some of them find that hybrid platforms can be beneficial if certain anti-competitive behavior, such as self-preferencing, is prevented \parencite[]{anderson2021hybrid}, others are more critical of this hybrid form \parencite[]{anderson2021hybrid}.
+This paper provides some additional insights into this topic, by looking at the impact of dual mode operation on bargaining power.
+
+Many results and concepts of this paper are also applicable outside the context of (multi-sided) platforms.
+Certain structures, such as vertical relationships, or even traditional retail stores share a number of features with platforms (notably, the presence of a dominant, indispensable entity), and can be modeled in much the same way.
+Therefore, the results of this paper also contributes to the literature on those settings, such as retailers having their own private labels \parencite{steiner2004nature}, or vertical integration in upstream-downstream markets \parencite{hart1990vertical,aghion2006vertical}.
+It is particularly closely related to \textcite{de2005vertical} and \textcite{montez2007downstream} in which bargaining between the upstream and downstream firms take the center stage.
+
+Finally, this also belongs to the not too large set of papers using concepts from cooperative game theory in an industrial organization setting.
+Such examples include the aforementioned \textcite{montez2007downstream}, as well as \textcite{hart1990property}, \textcite{levy1997individual}, \textcite{inderst2003bargaining} and \textcite{brugemann2019intra} among others.
+
 
 \section{Model}
 \label{sec:model}
@@ -842,7 +885,26 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
 
 % \section{Extensions}
 
-\section{Conclusion}
+\section{Conclusion and future work}
+
+This paper has introduced a new model of hybrid platforms in which bargaining between the platform and the entrant firms plays a key role.
+It has been demonstrated that platforms operating in hybrid mode can have serious consequences in such an environment.
+In particular, when a platform has a large number of its own products, then its bargaining power is also higher compared to the fringe entrants.
+This, in certain situations, such as the one described in this paper, this can lead to fewer fringe firms entering the market, reduced product variety, and ultimately, lower consumer welfare.
+
+In addition to the specific platform model, this paper also provides a simple, tractable, yet quite general framework in which one can study the effects of bargaining between one large and a continuum of small players.
+Such environments might, in addition to platforms, include upstream-downstream settings with one upstream supplier, or franchises with one franchisor and a continuum of franchisees, or wage bargaining.
+The quite general results of this paper give some intuition on what happens in such settings, without needing to delve into the details of a specific model.
+This also highlights certain similarities between those markets.
+Furthermore, many of the results from this paper can be applied in a plug-and-play fashion to other models of large-player-small-player interactions.
+
+There is a number of avenues for future research in this direction.
+First, I suspect that many of the assumptions made in section \cref{sec:example} can be relaxed, and one can still obtain similar results.
+An additional step I am planning to take is to endogenize the number of the platform's products, and the parameters of the profit sharing (bargaining rule).
+The latter would provide important insights into what kind of demand structures might lead to the evolution of hybrid platforms.
+
+I also hope that others will find this framework useful in their own research, and incorporate it in more complex and more applied models.
+In general, I believe this approach for modeling bargaining is a rather good compromise between assuming that one party has all the bargaining power, and modeling the bargaining process in detail, and might be a good fit for a number of different economic applications.
 
 
 \appendix
