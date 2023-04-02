@@ -12,3 +12,6 @@ __pycache__
 /media
 
 .flake8
+
+# Apple stuff
+.DS_Store
