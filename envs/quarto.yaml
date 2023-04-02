@@ -1,0 +1,7 @@
+name: voi-quarto
+
+channels:
+  - conda-forge
+
+dependencies:
+  - quarto=1.2.335

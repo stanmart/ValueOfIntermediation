@@ -34,6 +34,7 @@ rule deploy_to_github:
 
 
 rule presentation:
+    conda: "envs/quarto.yaml"
     input:
         qmd = "src/presentation/{presentation}.qmd",
         bib = "src/presentation/references.bib",
