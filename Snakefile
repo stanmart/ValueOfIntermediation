@@ -21,16 +21,44 @@ rule papers:
 
 rule deploy_to_github:
     input:
-        presentation = "out/presentation/presentation.html",
-        script_ps1 = "src/deploy/deploy_to_github.ps1",
-        script_sh = "src/deploy/deploy_to_github.sh"
+        presentations = expand("gh-pages/{presentation}.html", presentation=PRESENTATIONS),
+        papers = expand("gh-pages/{paper}.pdf", paper=PAPERS),
+        index = "gh-pages/index.html",
+        nojekyll = "gh-pages/.nojekyll"
+    run:
+        import os
+        import stat
+        from shutil import rmtree
+        from subprocess import run
+        def del_rw(action, name, exc):
+            os.chmod(name, stat.S_IWRITE)
+            os.remove(name)
+        if os.path.exists("gh-pages/.git"):
+            rmtree("gh-pages/.git", onerror=del_rw)
+        os.chdir("gh-pages")
+        run(["git", "init", "--initial-branch=main"])
+        run(["git", "add", "-A"])
+        run(["git", "commit", "-m", "Deploy to GitHub Pages"])
+        run(["git", "push", "--force", "git@github.com:stanmart/ValueOfIntermediation.git", "main:gh-pages"])
+        rmtree(".git", onerror=del_rw)
+
+
+rule prepare_to_deploy:
+    input:
+        presentations = expand("out/presentation/{presentation}.html", presentation=PRESENTATIONS),
+        papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
     output:
-        presentation = "gh-pages/index.html"
-    params:
-        sh = "pwsh" if which("pwsh") else ("git bash" if system() == "Windows" else "sh"),
-        script = lambda wildcards, input: input.script_ps1 if which("pwsh") else input.script_sh
-    shell:
-        "{params.sh} {params.script} {input.presentation} {output.presentation}"
+        presentations = expand("gh-pages/{presentation}.html", presentation=PRESENTATIONS),
+        papers = expand("gh-pages/{paper}.pdf", paper=PAPERS),
+        index = "gh-pages/index.html",
+        nojekyll = "gh-pages/.nojekyll"
+    run:
+        from shutil import copy2
+        from pathlib import Path
+        for file in input.presentations + input.papers:
+            copy2(file, "gh-pages")
+        Path("gh-pages/index.html").touch()
+        Path("gh-pages/.nojekyll").touch()
 
 
 rule presentation:
