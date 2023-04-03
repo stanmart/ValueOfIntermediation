@@ -1,7 +1,7 @@
 /out/
 /build_graphs/
 .snakemake/
-.vscode/
+.vscode/*
 __pycache__
 /gh-pages/
 /playground/
@@ -15,3 +15,6 @@ __pycache__
 
 # Apple stuff
 .DS_Store
+
+# Latex workshop recipe
+!.vscode/settings.json

@@ -1,0 +1,35 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk 🔃",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-e",
+                "$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/",
+                "-outdir=%WORKSPACE_FOLDER%/out/paper",
+                "-pdf",
+                "-shell-escape",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/out/paper",
+    "latex-workshop.latex.external.build.command": "latexmk",
+    "latex-workshop.latex.external.build.args": [
+        "-pdf",
+        "-synctex=1",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "-jobname=%DOCFILE%",
+        "-interaction=nonstopmode",
+        "%DOC%"
+    ]
+}
