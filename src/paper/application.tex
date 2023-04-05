@@ -189,7 +189,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \begin{tikzpicture}[scale=0.8]
             \centering
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                    xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^2};
                 \node[anchor= east] at (axis cs: .9, .9^2) {$f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -208,7 +208,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^0.5};
                 \node[anchor=north west] at (axis cs: .6, .6^0.5) {$\tilde{f}(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -351,7 +351,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {ln(1+x)};
                 \addplot[name path=tildef, dashed, black] {x};
                 \node[anchor=north west] at (axis cs: .6, 0.5) {$f(N_P, sN_F)$};
@@ -372,7 +372,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {ln(1+x)};
                 \addplot[name path=tildef, blue,ultra thick] {x};
                 \node[anchor=south east] at (axis cs: 0.6, 0.6) {$f(N_P', sN_F)$};
@@ -416,7 +416,7 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.225, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {sqrt(x)};
                 \addplot[name path=tildef, dashed, black] {sqrt(0.5+x)};
                 \node[anchor=north west] at (axis cs: .6, 0.77) {$f(0, sN_F)$};
@@ -437,7 +437,7 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.225, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, axis lines=left, xlabel={$s$}]
+                xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {sqrt(x)};
                 \addplot[name path=tildef, blue,ultra thick] {sqrt(0.5+x)};
                 \node[anchor=north west] at (axis cs: 0, 0.7) {$f(0.5, sN_F)$};
