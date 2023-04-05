@@ -801,7 +801,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
             ]
             \addplot[color=red,mark=none,very thick] table[x=N_P,y=N_F_bench]{\equilibrium};
             \addplot[color=blue,mark=none,very thick] table[x=N_P,y=N_F]{\equilibrium};
-            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=N_F_cf]{\equilibrium};
+            \addplot[color=black,mark=none,thick,dotted] table[x=N_P,y=N_F_cf]{\equilibrium};
             \legend{Benchmark, Bargaining, Fixed aggregate}
         \end{axis}
     \end{tikzpicture}
@@ -816,7 +816,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                 xlabel={$N_P$},
                 ylabel={$A^*$},
                 xmin=0, xmax=1.5, % adjust these values as needed
-                ymin=0, ymax=2.6, % adjust these values as needed
+                ymin=0, ymax=3, % adjust these values as needed
                 width=10cm, % adjust the width of the plot
                 height=6cm, % adjust the height of the plot
                 axis lines=left,
