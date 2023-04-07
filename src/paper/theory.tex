@@ -116,7 +116,7 @@ In the remainder of the paper, let us use the following notation: $\varphi_P^n$ 
     \label{prop:one_sided}
     Let $f$ be continuous on [0, 1]. Then
     \begin{align*}
-        \varphi_P^\infty = \lim_{n \to \infty} \varphi_p^n = \int_0^1 f(t) \dt .
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \dt .
     \end{align*}
 \end{proposition}
 
@@ -345,7 +345,7 @@ I.e., the set of players and the characteristic function of the game are the fol
 \begin{align*}
     v(S) = \begin{cases}
         0                                                & \text{if } P \notin S \\
-        f\left(\frac{n_A(S)}{n}, \frac{n_A(S)}{n}\right) & \text{otherwise}.
+        f\left(\frac{n_A(S)}{n}, \frac{n_B(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
 A prominent interpretation of this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power.
@@ -414,137 +414,22 @@ Similarly, as the next corollary demonstrates, the combined value of platforms i
 
 \section{Example Application}
 
+This section demonstrates the proposed cooperative approach via a model of a vertical market.
+Note, that this is not a full-fledged model, and many factors are exogenous.
+However, it is sufficient to illustrate the advantages of the framework presented in this paper: most notably, its analytical tractability and that it captures what intuitively feels like bargaining power.
 
-\section{Old example application}
+Consider a market in the vein of \textcite{hart1990property}, but with a finite number of upstream and a continuum of downstream firms.
+Furthermore, let us model production and sales in a reduced form, without going into the micro-foundations of the profit functions.
+Finally, let us assume that profits are shared according to players' Shapley-values.
 
-This section demonstrates the usefulness of the cooperative approach via a model of a hybrid market, based on that in \textcite[]{anderson2021hybrid}.
-Consider a market with a continuum of firms $a(t)$ ($t \in \mathbb{R}^+$), continuum of identical consumers and one platform $P$.
-Assume former two can only interact through the platform.
-Let each firm have its own, differentiated product.
-The consumers have a logit utility function over these products, and a set of outside options of measure 1.
-I will examine the outcome in two situations: (1) the platform functions as a pure marketplace without having an own product, and (2) the platform operating in hybrid mode, selling a measure $N_P$ of differentiated products of its own.
+In the rest of this section, I will examine the effect of various market structures on the profit distribution.
+I start by looking at the case of a single upstream producer, with no direct acces to the downstream market.
+I then contrast this with two scenarios in which the upstream producer acquires a way to directly sell to the final consumers: either by vertical integration (merging with some share of the downstream firms), or by creating a completely new, downstream division within itself.
+Finally, I look at the case of multiple upstream producers, and how their presence changes the incentives for merging with downstream firms.
 
-\subsection{Timing of the game}
-
-The game proceeds as follows.
-In the first stage, each firm decides whether to invest in creating a product or not. Creating a product incurs a development cost of C.
-Firms that choose not to invest obtain a payoff of 0 and are excluded from the remainder of the game.
-
-Next, the firms that have a product decide whether they want to join the platform at the cost of some entry fee $F^f$.
-(Note that the entry fee can be negative, in which case it is a subsidy from the platform to the firm.)
-Consumers are assumed to be on the platform without a choice.
-Finally, the platform and the entering firms post their product prices, and produce and sell to consumers at marginal cost $c$.
-
-The model heavily depends on how the entry fees are determined.
-The most widespread assumption in the literature is that they are unilaterally decided by the platform, and are essentially take it or leave it offers for the other players.
-The issue with this approach is that it generally leads to extreme conclusions (depending on the number of platforms, and assumptions about single-and-multi-homing, the platforms either act as monopolists or obtain zero profits).
-As an alternative to this, in this paper, I assume that firm entry fees are a result of some bargaining process between the firms and the platform.
-Furthermore, the bargaining process is such that it leads to an allocation in which the final profits of each player correspond to their Shapley values.
-
-The characteristic function (necessary for computing values) of a coalition consisting of the platform and any set of firms is defined as follows.
-Take the members of any given coalition as fixed.
-Let firms and the platform set profit-maximizing prices for their products without collusion.
-Note that these prices will be irrespective irrespective of earlier decisions, as both development costs and entry fees are sunk cost at this point.
-The total profits of the coalition is then the sum of the platform's and the firms' profits from product sales.
-
-While the previous procedure might look somewhat peculiar at first glance, its elements would not be out of place in more traditional (non-cooperative) models, either.
-Principally, the two main ideas it relies are the following.
-First, bargaining outcomes should not depend on which player actually obtains the money, all that matters is the total that a given set of players can obtain.\footnote{
-    For example, imagine the following two situations with two players.
-    In the first one, the first player obtains a playoff of two dollars if they both decide to cooperate and nothing otherwise.
-    In the second scenario, both players receive one dollar in the case of cooperation.
-    If they can transfer monay between each other, bargaining outcomes should be the same in both scenarios.
-} Second, players during the bargaining foresee the (unique) subgame perfect equilibrium in the following subgame, and negotiate based on them.
-
-\subsection{The pricing subgame}
-
-Let us start from the last stage, when firms' entry to the platform is already decided: a measure $N_f$ of firms is present on the platform.
-Assume that consumers have the same Logit-form demand system as in \textcite{anderson2021hybrid}.
-Each consumer buys precisely a measure one of products, those giving her the highest net utility.
-The utility from choosing outside option $i$ is $\mu \epsilon_{0i}$.
-The net utility from buying the platform's $i$th product at price $p_{Pi}$ is $v - p_{Pi} + \mu \epsilon_{Pi}$, while the net utility from choosing the $i$th fringe firm's product is $v - p_{Fi} + \epsilon_{Fi}$.
-$\epsilon_{Pi}, \epsilon_{Fi}$ and $\epsilon_{0i}$ come from identical, independent, standardized Gumbel-distributions.
-
-As shown in \textcite{anderson2021hybrid}, the demand for each of these three types of products is
-\begin{align*}
-    q_{Pi} &= \frac{\int_0^{N_P}  e^\frac{v - p_{Pi} \di}{\mu}}{A} \\
-    q_{Fi} &= \frac{e^\frac{v - p_{Fi}}{\mu}}{A} \\
-    q_{0i} &= \frac{1}{A} .
-\end{align*}
-where
-\begin{align*}
-    A = \int_0^{N_P} e^\frac{v - p_{Pi}}{\mu} \dt + \int_0^{N_F} e^\frac{v - p_{Fi}}{\mu} \dt + 1.
-\end{align*}
-
-Furthermore, it can be shown that the optimal pricing strategy is a constant, additive markup over the unit cost.
-Moreover, the markup is the same for both the platform and the firms, and corresponds to the dispersion in tastes:
-\begin{align*}
-    p_{Pi} = p_{Fi} = c + \mu.
-\end{align*}
-
-Conversely, the profit of the two types of players are
-\begin{align*}
-    \pi_{Fi} &= \frac{\mu}{A} e^\frac{v - c - \mu}{\mu} \\
-    \pi_{Pi} &= N_P \frac{\mu}{A} e^\frac{v - c - \mu}{\mu}
-\end{align*}
-and the total profits of all players together are
-\begin{align*}
-    v(N_f) = N_f \pi_{Fi} + \pi_{Pi} = \mu \frac{A - 1}{A}.
-\end{align*}
-
-Let $B = e^\frac{v - c - \mu}{\mu}$.
-Then the total profits from sales (platform and firms combined) can be expressed as
-\begin{align*}
-    v(N_f) = \frac{N_P B + N_f B}{N_P B + N_f B + 1}.
-\end{align*}
-This is the characteristic function that forms the basis of the profit allocation.
-
-\subsection{Deciding firm entry fees}
-
-Let us look at the second stage of the game: firms have made their investment decisions, and are now negotiating with the platform over the entry price.
-Let us assume that $\bar{N}_f \in \mathbb{R}^+$ measure of firms have made an investment.
-$C$ is a fixed cost, therefore does not influence the rest of the game.
-It is simpler to think about bargaining final net profits (entry fees can always be set to achieve any final allocation of profits), which are assumed to be equal to the players' Shapley values.
-Let us denote these values by $\varphi_f(v, T)$ and $\varphi_P(v, T)$ for the firms and the platform, respectively.
-As shown in proposition \ref{prop:one_sided},
-\begin{align*}
-    \varphi_P(v, \bar{N}_f) &= \int_0^1 v(t \bar{N}_f) \dt \\
-    &= 1 - \frac{\log(BN_p + BN_f + 1) - \log(BN_p + 1)}{BN_f}
-\end{align*}
-and
-\begin{align*}
-    \varphi_f(v, \bar{N}_f) &= v(\bar{N}_f) - \int_0^1 v(t \bar{N}_f) \dt \\
-    &= \frac{N_P B + N_f B}{N_P B + N_f B + 1} - 1 + \frac{\log(BN_P + BN_f + 1) - \log(BN_P + 1)}{BN_f} \\
-    &= \frac{\log(BN_P + BN_f + 1) - \log(BN_P + 1)}{BN_f} - \frac{1}{N_P B + N_f B + 1}.
-\end{align*}
-
-\subsection{Equilibrium entry}
-
-Finally, looking at the first stage, firms will make the initial investment if and only if $\varphi_{f_i}(v, \bar{N}_f) = \varphi_f(v, \bar{N}_f) / \bar{N}_f \geq C$.
-Therefore, because of the free entry condition, the equilibrium measure of entrants is given by the equation
-\begin{align*}
-    \underbrace{\frac{\log(BN_P + B\bar N_f + 1) - \log(BN_P + 1)}{B\bar N_f} - \frac{1}{N_P B + \bar N_f B + 1}}_{\equiv h(\bar N_f)} = C \bar{N}_f.
-\end{align*}
-
-Let us examine the implications of this result through a numerical example.
-Let $B=1, C=0.2$, and let the product variety of the platform be $0$ and $0.2$ in the pure marketplace and the hybrid case, respectively.
-The equilibrium number of entrants is shown in figure \ref{fig:entry}.
-\begin{figure}
-    \centering
-    \includegraphics[width=4in]{out/figures/equilibrium_entry.pdf}
-    \caption{Equilibrium number of fringe entrants as a function of the platform's product variety.}
-    \label{fig:entry}
-\end{figure}
-
-It is immediately apparent from the figure, that a platform operating in hybrid mode discourages fringe entry, as a direct result of more competition and lower profits in the final stage of the game.
-However, a more subtle point is that the total number of products (platform's products plus measure of entrants) is also lower in the hybrid case.
-Because consumer surplus is proportional to the logarithm of the number of available products, this also corresponds to a decrease in that measure.
-
- In the version of the model without bargaining, the platforms' product variety does not influence total product variety, as long as entry fees are fixed.
- An increase in the monopolist's product variety will lead to an identically sized decrease in fringe entry, leaving the total number of available products, and, conversely, consumer welfare, unchanged.
- Operating in hybrid mode only influences fringe entry through more indirect channels, e.g. self-preferencing \parencite[]{hagiu2022should} or distorted incentives when setting revenue-based fees \parencite[]{anderson2021hybrid}.
- This example application highlights another channel of distortion created by hybrid platforms: a platform having its own products has more bargaining power when entry fees are determined, leading to lower fringe profits.
- As a consequence, fewer firms enter than in the pure marketplace scenario, and this decrease is more significant than the addition of the platform's own products.
+As this model is only supposed to be an illustration, I will focus on simplicity rather than realism.
+Furthermore, I will not endogenize certain choices, such as entry, or the actual merger decisions.
+Nevertheless, some of the results are suggestive of what might happen in an applied, more fully specified model.
 
 \section{Conclusions}
 
