@@ -337,18 +337,18 @@ As the major players become more and more substitutable, the portion of the surp
     Let $\varphi_{P}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant.
 \end{corollary}
 
-\section{Two-sided case}
+\section{Many-sided case}
 
-Now imagine that, in addition to player $P$, there are two types of smaller players: $\{A_1, \dots, A_n\}$ and $\{B_1, \dots, B_n\}$.
+Now imagine that, in addition to player $P$, there are $L$ types of $n$ smaller players: $\{A^l_1, \dots, A^l_n\}$ where $1 \leq l \leq L$.
 As before, $P$ is necessary for any coalition to have a positive value, and the small players are identical within their groups.
-I.e., the set of players and the characteristic function of the game are the following: $N = \{P, A_1, \dots, A_n, B_1, \dots, B_n\}$ and
+I.e., the set of players and the characteristic function of the game are the following: $N = \{P, A^1_1, \dots, A^1_n, \dots, A^L_1, \dots, A^L_n\}$ and
 \begin{align*}
     v(S) = \begin{cases}
         0                                                & \text{if } P \notin S \\
-        f\left(\frac{n_A(S)}{n}, \frac{n_B(S)}{n}\right) & \text{otherwise}.
+        f\left(\frac{n_{A_1}(S)}{n}, \dots, \frac{n_{A_L}(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-A prominent interpretation of this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power.
+A prominent interpretation of the two-sided version this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power.
 However, player $P$ does not have to be in the ``middle'' of the transactions for this framework to be applicable.
 For example, it also captures the situation of a single upstream producer, a large number of downstream firms, and a similarly large number of customers, as long as both the customers and the downstream firms can participate in the bargaining process.
 A setting where these assumptions might be plausible is, for example, the new car market with a car producer, a number of independent dealerships, and customers who might engage in negotiation.
@@ -356,26 +356,26 @@ A setting where these assumptions might be plausible is, for example, the new ca
 Let us follow the pattern from the previous sections.
 Start by characterizing conditions for superadditivity to support the bargaining interpretation.
 \begin{proposition}
-    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing in both arguments.
+    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing in all of its arguments.
 \end{proposition}
 
 Next, let us obtain formulas for the values of the three groups of players.
 It turns out that the limits of the Shapley-values (as $n \to \infty$) are still analytically tractable and they also have neat interpretations.
+For ease of notation, let us define the following function:
 
 \begin{proposition}
-    Let $f(a, b)$ be continuous everywhere on $[0, 1]^2$.
+    Let $f$ be continuous everywhere on $[0, 1]^L$.
     Then,
     \begin{align*}
-        \varphi_P^\infty & = \int_0^1 f(t, t) \dt                                 \\
-        \varphi_A^\infty & = \int_0^1 t \frac{\partial f(t, t)}{\partial a} \dt   \\
-        \varphi_B^\infty & = \int_0^1 t \frac{\partial f(t, t)}{\partial b} \dt .
+        \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt                                 \\
+        \varphi_{A_l}^\infty & = \int_0^1 t \partial_l f(t, \dots, t) \dt.
     \end{align*}
 \end{proposition}
 
 As the previous proposition shows, the value of each kind of player depends on their expected marginal contribution, i.e. the partial derivatives of $f$.
 Consequently, the value of the grand coalition can be decomposed into the Shapley-values of its members signifying their expected marginal contributions in the following way:
 \begin{align*}
-    f(1, 1) = \underbrace{\int_0^1 f(t, t) \dt}_{\text{ player } P} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial a} \dt}_{\text{players } A} + \underbrace{\int_0^1 t \frac{\partial f(t, t)}{\partial b} \dt}_{\text{players } B}.
+    f(1, \dots, 1) = \underbrace{\int_0^1 f(t, \dots, t) \dt}_{\text{ player } P} + \sum_{l=1}^L \underbrace{\int_0^1 t \partial_l f(t, \dots, t) \dt}_{\text{players } A_l}.
 \end{align*}
 
 One surprising element of the result is that one only has to integrate over the diagonal of the support  of $f$, and the value does not depend on the marginal contributions in the case of an unequal measure of $A$ and $B$ types.
@@ -386,12 +386,12 @@ Consequently, when taking the expectation over all orderings, ones with vary une
 
 \subsection{Multiple platforms}
 
-The two-sided case can also simply be extended to incorporate multiple platforms instead of just one.
+The many-sided case can also simply be extended to incorporate multiple platforms instead of just one.
 As before, assume that there are $k$ players of type $P$ which are perfect substitutes of each other:
 \begin{align*}
     v(S) = \begin{cases}
         0                                                & \text{if } P_i \notin S \; \forall \, i = 1, \dots, k \\
-        f\left(\frac{n_A(S)}{n}, \frac{n_B(S)}{n}\right) & \text{otherwise}.
+        f\left(\frac{n_{A_1}(S)}{n}, \dots, \frac{n_{A_L}(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
 
@@ -399,16 +399,15 @@ It can be shown that the values of each type of player are rather similar to the
 \begin{proposition}
     The unit Shapley-values of the various types of players are
     \begin{align*}
-        \varphi_{P_i}(k, \infty) & = \int_0^1 (1-t)^{k-1} f(t, t) \dt                                 \\
-        \varphi_A(k, \infty)     & = \int_0^1 [1 - (1-t)^k] \frac{\partial f(t, t)}{\partial a} \dt   \\
-        \varphi_B(k, \infty)     & = \int_0^1 [1 - (1-t)^k] \frac{\partial f(t, t)}{\partial b} \dt .
+        \varphi_{P_i}(k, \infty) & = \int_0^1 (1-t)^{k-1} f(t, \dots, t) \dt                                 \\
+        \varphi_{A_l}(k, \infty)     & = \int_0^1 [1 - (1-t)^k] \partial_l f(t, \dots, t) \dt.
     \end{align*}
 \end{proposition}
 
 Similarly, as the next corollary demonstrates, the combined value of platforms is still decreasing in their number.
 \begin{corollary}
     Let $\varphi_{P}(k, \infty) = k\varphi_{P_i}(k, \infty)$ denote the aggregated Shapley-values of players of type $P$.
-    Then $\varphi_{P}(k, \infty)$ is decreasing in $k$ and $\varphi_{A}(k, \infty)$, $\varphi_{B}(k, \infty)$ is increasing in $k$ unless $f$ is constant.
+    Then $\varphi_{P}(k, \infty)$ is decreasing in $k$ and $\varphi_{A_l}(k, \infty)$ are increasing in $k$ unless $f$ is constant.
 \end{corollary}
 
 
