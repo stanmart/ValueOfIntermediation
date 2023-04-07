@@ -26,6 +26,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
+\newtheorem{assumption}{Assumption}
 
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
@@ -429,6 +430,41 @@ Finally, I look at the case of multiple upstream producers, and how their presen
 As this model is only supposed to be an illustration, I will focus on simplicity rather than realism.
 Furthermore, I will not endogenize certain choices, such as entry, or the actual merger decisions.
 Nevertheless, some of the results are suggestive of what might happen in an applied, more fully specified model.
+
+
+\subsection{Benchmark case}
+
+Let us start by looking at the simplest case: one upstream producer, no direct access to the downstream market.
+Assume that without the upstream producer, the downstream firms cannot produce anything, and thus total industry profits are zero.
+On the other hand, if the upstream producer and $t$ fraction of the downstream firms create an agreement, then total industry profits are given by the function $f(t)$.\footnote{
+    This reduced-form profit function can be given microfoundations in many ways.
+    For an example, see TODO!!!!
+}
+Furthermore, the following assumption guarantees ensures that the game is superadditive, therefore it actually makes sense to have every downstream firm in the coalition.\footnote{
+    TODO: elaborate on what this assumption entails.
+}
+\begin{assumption}
+    Let us assume that $f$ is continuous and increasing in $t$.
+\end{assumption}
+
+As noted before, profits are distributed according to players' Shapley values.
+Consequently, it follows from \cref{prop:one_sided} that the profits of the upstream producer and the downstream mass of firms are
+\begin{align*}
+    \pi_P & = \int_0^1 f(t) \dt, \\
+    \pi_A & = f(1) - \int_0^1 f(t) \dt,
+\end{align*}
+respectively.
+
+
+\subsection{Vertical integration}
+
+
+\subsection{Additional downstream division}
+
+
+\subsection{Multiple upstream producers}
+
+
 
 \section{Conclusions}
 
