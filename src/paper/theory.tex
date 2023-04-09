@@ -44,7 +44,7 @@
     This paper investigates the idea of using concepts from cooperative game theory (in particular, the Shapley-value) to model bargaining outcomes in games with a few large and a continuum of small players.
     I show that the cooperative approach can be a tractable alternative of explicitly modelling price structures and entry choices in platform settings.
     This approach might be advantageous when one does not want to attribute all the bargaining power to one type of market participants, and at the same time would like to avoid having to deal with an explicit multi-stage bargaining game.
-    I demonstrate the advantages of this approach in simple a model of hybrid platforms.
+    I demonstrate the advantages of this approach in a stylized model of a vertical market.
 \end{abstract}
 
 
@@ -75,7 +75,7 @@ Such a model can apply, for example, to upstream-downstream supply chains, or pl
 I demonstrate that the Shapley values of the players in those models are described by easily interpretable and visualizable expressions.
 Additionally, the outcomes are in line with one's intuitive expectations of bargaining outcomes in such situations.
 Furthermore, the results are simple enough that these games can be embedded into more complex models, for example, as the second stage of a sequential game \parencite[as in e.g.][]{montez2007downstream}.
-Finally, I demonstrate the usefulness of this approach by building a simple model of a platform that can choose to function in hybrid mode as opposed to just being a pure marketplace.
+Finally, I demonstrate the usefulness of this approach by building a simple model of a vertical market that obtains the capability of bypassing the downstream firms and selling directly to final consumers.
 
 
 \section{One-sided case}
@@ -515,16 +515,26 @@ This paper proposed a new framework to think about the profit allocation in situ
 The results are especially relevant for upstream-downstream situations, platform settings, and two-sided markets.
 The outcomes of the Shapley-value-based gain sharing rule generally concur with intuitive expectations, and the resulting formulas are more tractable than most explicit non-cooperative approaches.
 
-The illustrative hybrid platform model also highlights the strengths of this approach.
-Despite its simplicity, it highlights a novel channel through which platforms selling their own products might lead to welfare losses: hybrid platforms have more bargaining power against potential entrants than traditional ones.
-This mechanism should probably also be considered when competition authorities assess mergers between platforms and contents providers.
+The illustrative model also highlights the strengths of this approach.
+Despite its simplicity, it highlights that the effects of vertical integration strongly depends on the substitutability of the downstream firms.
+In a time when upstream firms and platforms are increasingly seeking to sell directly to the consumers\footnote{
+    As some recent examples, consider the recent acquisition of Whole Foods by Amazon, Microsoft's ongoing efforts to buy Activision/Blizzard (a major video game publisher), or Tesla's or BMW's plans to sell cars directly without the help of dealerships.
+}
+, such results can be important for competition authorities.
 
 There is a variety of ways through which this paper could be expanded or built upon.
-On the theoretical side, some of the stricter assumptions could be relaxed, such as fringe agents achieving a zero payoff without the platform.
-Besides, the convergence result for the weighted values could be strengthened if one could manage to show that any sequence along ever more refined partitions of the atomic players converges to the same limit \parencite[à la][]{fogelman1980asymptotic}.
-The possibilities for practical applications are no less interesting, either.
-As a first step, the majorly simplified example application could be expanded upon, so that it is a better description of certain real-life pLAtform markets.
-Finally, the cooperative approach to profit distribution could become an alternative for the more usual, but in some sense more extreme assumptions about the bargaining process widely used in industrial organization models.
+On the theoretical side, a number of the assumptions, such as fringe agents achieving a zero payoff without the platform, could be relaxed,
+Besides this, the convergence result for the weighted values could be strengthened if one could manage to show that any sequence along ever more refined partitions of the atomic players converges to the same limit \parencite[à la][]{fogelman1980asymptotic}.
+
+A slightly different direction would be to consider other solution concepts from cooperative game theory in this specific setting.
+One obvious candidate is the nucleolus, which shares many of the useful properties of the Shapley-value (it always exists and is unique).
+Furthermore, it also has connections to bargaining theory due to it being contained in the core when the latter exists.
+
+The possibilities for practical applications are no less interesting.
+The proposed profit sharing framework could be embedded in a more applied model of some real-life setting.
+For a step in this direction, see \textcite{stancsics2023hybrid}.
+
+Finally, with time, the cooperative approach to profit distribution could become an almost drop-in alternative of the more usual, but in some sense more extreme assumptions about the bargaining process widely used in industrial organization models.
 
 
 \appendix
