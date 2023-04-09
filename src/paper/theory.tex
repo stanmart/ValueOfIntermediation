@@ -425,7 +425,6 @@ Finally, let us assume that profits are shared according to players' Shapley-val
 In the rest of this section, I will examine the effect of various market structures on the profit distribution.
 I start by looking at the case of a single upstream producer, with no direct acces to the downstream market.
 I then contrast this with two scenarios in which the upstream producer acquires a way to directly sell to the final consumers: either by vertical integration (merging with some share of the downstream firms), or by creating a completely new, downstream division within itself.
-Finally, I look at the case of multiple upstream producers, and how their presence changes the incentives for merging with downstream firms.
 
 As this model is only supposed to be an illustration, I will focus on simplicity rather than realism.
 Furthermore, I will not endogenize certain choices, such as entry, or the actual merger decisions.
@@ -450,20 +449,64 @@ Furthermore, the following assumption guarantees ensures that the game is supera
 As noted before, profits are distributed according to players' Shapley values.
 Consequently, it follows from \cref{prop:one_sided} that the profits of the upstream producer and the downstream mass of firms are
 \begin{align*}
-    \pi_P & = \int_0^1 f(t) \dt, \\
-    \pi_A & = f(1) - \int_0^1 f(t) \dt,
+    \pi_P^b & = \int_0^1 f(t) \dt, \\
+    \pi_A^b & = f(1) - \int_0^1 f(t) \dt,
 \end{align*}
 respectively.
 
 
 \subsection{Vertical integration}
 
+Let us now consider the case in which the upstream producer merges with some fraction $\alpha$ of the downstream firms.
+The total profits are the same as before, namely, $f(1)$.\footnote{
+    TODO: do I need a footnote here?
+}
+However, the profit distribution is now different.
+New shares can be calculated as follows:
+\begin{align}
+    \pi_{P}^m & = \frac{1}{1 - \alpha} \int_\alpha^1 f(t) \dt, \\
+    \pi_{A}^m & = f(1) - \frac{1}{1 - \alpha} \int_\alpha^1 f(t) \dt .
+\end{align}
 
-\subsection{Additional downstream division}
+Clearly, the upstream producer gets a larger share than before, while the remaining downstream firms capture a smaller share.
+This is intuitive, as the upstream producer now depends on the remaining downstream sellers to a lesser extent.
+However, it's worth examining whether this increase is large enough in the sense that the now hybrid upstream producer's profit is higher than the sum of its profit and $\alpha$ fraction of the downstream firms' profit from the benchmark case.
+The participants only have an incentive to merge if this is the case.
+It turns out that this depends on the shape of the profit function.
 
+\begin{proposition}
+    \label{prop:vertical_integration}
+    If $f$ is concave (convex) on $[0, 1]$, then $\pi_P^m \geq \pi_P^b + \alpha \pi_A^b$ ($\pi_P^m \leq \pi_P^b + \alpha \pi_A^b$). 
+\end{proposition}
 
-\subsection{Multiple upstream producers}
+The intuition is that when $f$ is concave, then obtaining some fraction of the firms lets it create a (comparatively) large share of the total possible profits by itself, and its bargaining position is considerably strengthened.
+In comparison, when $f$ is convex, then the upstream producer still has a large need for the rest of the downstream firms, even when it acquires some of them.
+The bottom line is that industries which are characterized by the downstream firms being relatively substitutable are more susceptible to consolidation.
 
+\subsection{Upstream firm builds downstream capacity}
+
+Now let us consider another way of getting direct downstream access: instead of acquiring some of the existing downstream firms, the upstream producer creates new downstream capacity from scratch.
+In contrast to the previous case, the total size of the pie also changes.
+Let's assume that the upstream firm's downstream capacity is equal to that of $\alpha$ measure of the downstream firms.
+Then, the total profits when everyone agrees to participate is given by $f(1 + \alpha)$, which is larger than $f(1)$ before.
+
+As before, let us examine the distribution of the profits in this case as well:
+\begin{align*}
+    \pi_{P}^c & = \int_0^1 f(t + \alpha) \dt, \\
+    \pi_{A}^c & = f(1 + \alpha) - \int_0^1 f(t + \alpha) \dt .
+\end{align*}
+Similarly to the vertical merger case, the now hybrid upstream producer's profits increase with the size of its downstream capacity.
+However, it is not obvious how the downstream's profit changes.
+The next proposition shows that it, again, depends on the shape of the profit function.
+\begin{proposition}
+    \label{prop:downstream_capacity}
+    If $f$ is concave (convex) on $[0, 1+\alpha]$, then $\pi_A^m \geq \pi_A^b$ ($\pi_A^m \leq \pi_A^b$). 
+\end{proposition}
+
+The results are similar to the previous case.
+When the downstream firms are more substitutable, the upstream firms' newly created capacity strongly reduces their bargaining power, and even though the total size of the pie increases, the downstream firms' share decreases not only in relative terms, but also in absolute terms.
+In a model with endogenous entry and exit on the part of the downstream firms, this would most likely lead to a reduction in their number.
+The implication then also resembles the one in the vertical merger case: industries when downstream firms are easily substitutable should be strongly scrutinized when an upstream firm seeks to build its own downstream capacity.
 
 
 \section{Conclusions}
