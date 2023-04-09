@@ -483,6 +483,54 @@ It turns out that this depends on the shape of the profit function.\footnote{
     If $f$ is concave (convex) on $[0, 1]$, then $\pi_P^m \geq \pi_P^b + \alpha \pi_A^b$ ($\pi_P^m \leq \pi_P^b + \alpha \pi_A^b$). 
 \end{proposition}
 
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, 
+                axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, dashed, black] {sqrt(x)};
+                \addplot[name path=tildef, black, ultra thick] {sqrt(0.3+0.7*x)};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
+    
+                \node[anchor=north west] at (axis cs: .05, .95) {Downstream};
+                \node[anchor=south east] at (axis cs: .95, .05) {Upstream};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Concave case}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0, 1}, yticklabels={0, f(1)},
+                axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, dashed, black] {(x)^1.5};
+                \addplot[name path=tildef, black, ultra thick] {(0.3+0.7*x)^1.5};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
+    
+                \node[anchor=north west] at (axis cs: .05, .95) {Downstream};
+                \node[anchor=south east] at (axis cs: .95, .05) {Upstream};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Convex case}
+    \end{subfigure}
+    \caption{Illustration of \cref{prop:vertical_integration}}
+    \label{fig:vertical_intergration}
+\end{figure}
+
 The intuition is that when $f$ is concave, then obtaining some fraction of the firms lets it create a (comparatively) large share of the total possible profits by itself, and its bargaining position is considerably strengthened.
 In comparison, when $f$ is convex, then the upstream producer still has a large need for the rest of the downstream firms, even when it acquires some of them.
 The bottom line is that industries which are characterized by the downstream firms being relatively substitutable are more susceptible to consolidation.
@@ -506,6 +554,56 @@ The next proposition shows that it, again, depends on the shape of the profit fu
     \label{prop:downstream_capacity}
     If $f$ is concave (convex) on $[0, 1+\alpha]$, then $\pi_A^m \geq \pi_A^b$ ($\pi_A^m \leq \pi_A^b$). 
 \end{proposition}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.14, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0, 1, 1.14}, yticklabels={$0$, $f(1)$, $f(1 + \alpha)$},
+                axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, dashed, black] {sqrt(x)};
+                \addplot[name path=tildef, black, ultra thick] {sqrt(0.3+x)};
+                \draw[dashed] (axis cs:0,1) -- (axis cs:1,1);
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,1.14) -- (axis cs:1,1.14);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1.14);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
+    
+                \node[anchor=north west] at (axis cs: .05, 1.09) {Downstream};
+                \node[anchor=south east] at (axis cs: .95, .05) {Upstream};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Concave case}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.482, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0, 1, 1.482}, yticklabels={$0$, $f(1)$, $f(1 + \alpha)$},
+                axis lines=left, xlabel={$s$}]
+                \addplot[name path=f, dashed, black] {(x)^1.5};
+                \addplot[name path=tildef, black, ultra thick] {(0.3+x)^1.5};
+                \draw[dashed] (axis cs:0,1) -- (axis cs:1,1);
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \draw[name path=top] (axis cs:0,1.482) -- (axis cs:1,1.482);
+                \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1.482);
+    
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
+    
+                \node[anchor=north west] at (axis cs: .05, 1.43) {Downstream};
+                \node[anchor=south east] at (axis cs: .95, .05) {Upstream};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Convex case}
+    \end{subfigure}
+    \caption{Illustration of \cref{prop:downstream_capacity}}
+    \label{fig:upstream_capacity}
+\end{figure}
 
 The results are similar to the previous case.
 When the downstream firms are more substitutable, the upstream firms' newly created capacity strongly reduces their bargaining power, and even though the total size of the pie increases, the downstream firms' share decreases not only in relative terms, but also in absolute terms.
