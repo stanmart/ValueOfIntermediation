@@ -80,8 +80,8 @@ Finally, I demonstrate the usefulness of this approach by building a simple mode
 
 \section{One-sided case}
 
-Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players.
-I.e., $N = \{P, A_1, \dots, A_n\}$.
+Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players $A_i$, $1 \leq i \leq n$.
+Formally, let us denote the set of all players as $N = \{P, A_1, \dots, A_n\}$.
 Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical.
 Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$.
 Then, the value that any coalition $S \subset N$ can achieve is the following:
@@ -142,23 +142,46 @@ This result aligns with our natural intuition that player $P$ has a better barga
 
 \begin{figure}
     \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                \addplot[name path=f, ultra thick] {x^0.5};
+                \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .95, .05) {Big player ($P$)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe players are each other's substitutes}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                \addplot[name path=f, ultra thick] {x^1.5};
+                \node[anchor=south east] at (axis cs: .8, .8^1.5) {$f$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=south east] at (axis cs: .95, .05) {Big player ($P$)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe players are each other's complements}
+    \end{subfigure}
     \caption{Distribution of value between player $P$ and the fringe}
     \label{fig:one_sided}
-    \begin{tikzpicture}
-        \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick={0}, xlabel={$s$}]
-            \addplot[name path=f, ultra thick] {x^0.5};
-            \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
-            \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
-            \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
-
-            \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
-            \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
-
-            \node[anchor=north west] at (axis cs: .1, .9) {Fringe ($A$)};
-            \node[anchor=south east] at (axis cs: .9, .1) {Platform ($P$)};
-        \end{axis}
-    \end{tikzpicture}
 \end{figure}
 
 Finally, the following corollary implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value still converges to a positive value.
@@ -346,7 +369,7 @@ I.e., the set of players and the characteristic function of the game are the fol
 \begin{align*}
     v(S) = \begin{cases}
         0                                                & \text{if } P \notin S \\
-        f\left(\frac{n_{A_1}(S)}{n}, \dots, \frac{n_{A_L}(S)}{n}\right) & \text{otherwise}.
+        f\left(\frac{n_{A^1}(S)}{n}, \dots, \frac{n_{A^L}(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
 A prominent interpretation of the two-sided version this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power.
@@ -489,7 +512,7 @@ It turns out that this depends on the shape of the profit function.\footnote{
         \centering
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, 
+                xtick={0, 1}, ytick={0, 1}, yticklabels={0, f(1)},
                 axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {sqrt(x)};
                 \addplot[name path=tildef, black, ultra thick] {sqrt(0.3+0.7*x)};
