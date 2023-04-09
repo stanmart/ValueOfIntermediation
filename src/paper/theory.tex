@@ -101,7 +101,7 @@ These features provide some theoretical support for using Shapley-values as barg
 
 \begin{proposition}
     \label{prop:monotone}
-    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
+    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
 
 In the following, let us assume that the assumptions required for monotonicity are always satisfied.
@@ -437,7 +437,7 @@ Let us start by looking at the simplest case: one upstream producer, no direct a
 Assume that without the upstream producer, the downstream firms cannot produce anything, and thus total industry profits are zero.
 On the other hand, if the upstream producer and $t$ fraction of the downstream firms create an agreement, then total industry profits are given by the function $f(t)$.\footnote{
     This reduced-form profit function can be given microfoundations in many ways.
-    For an example, see TODO!!!!
+    For an example, see \textcite{stancsics2023hybrid}.
 }
 Furthermore, the following assumption guarantees ensures that the game is superadditive, therefore it actually makes sense to have every downstream firm in the coalition.\footnote{
     TODO: elaborate on what this assumption entails.
@@ -472,7 +472,11 @@ Clearly, the upstream producer gets a larger share than before, while the remain
 This is intuitive, as the upstream producer now depends on the remaining downstream sellers to a lesser extent.
 However, it's worth examining whether this increase is large enough in the sense that the now hybrid upstream producer's profit is higher than the sum of its profit and $\alpha$ fraction of the downstream firms' profit from the benchmark case.
 The participants only have an incentive to merge if this is the case.
-It turns out that this depends on the shape of the profit function.
+It turns out that this depends on the shape of the profit function.\footnote{
+    This way of modeling vertical integration assumes that the upstream firm's innate bargaining power is not affected by the merger.
+    In the terms of some non-cooperative bargaining model, such as \textcite{hart1996bargaining}, it means that the non-acquired downstream firms get a higher probability of proposing allocations.
+    It could be interesting to see how the results change when the upstream firm's also obtains the acquired downstream firms' innate bargaining power, and profits are distributed according to weighted Shapley values.
+}
 
 \begin{proposition}
     \label{prop:vertical_integration}
