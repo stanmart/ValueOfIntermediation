@@ -299,11 +299,11 @@ This set of results highlights that utilizing (weighted) Shapley values to model
     If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
 
-\subsection{Multiple platforms}
+\subsection{Multiple big players}
 
-Imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
-That is, the fringe players still need a platform to achieve any value, but it does not matter which or how many platforms are available for them.
-Formally, the value function for coalition $S$ is the following:
+Now imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
+That is, the fringe players still need one at least of them to achieve any value, but it does not matter which and how many of them are present.
+Formally, the value function for coalition $S$ becomes the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } n_P(S) = 0 \\
@@ -315,16 +315,32 @@ Let us start by establishing monotonicity for this version of the model, too.
 \begin{proposition}
     The game is monotone if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
-% \textcolor{red}{Note: I have to think more about how to describe this situation in the language of cooperative game theory. The issue is that, for example, the value of $\{P_1, A_1\}$ depends on whether $\{P_2, A_2\}$ also decides to form a coalition and enter the market.}
+On the other hand, superadditivity is not as simple in this case, as before.
+For example, when $f$ is concave, then $m$ coalitions with one platform each and the fringe divided equally among them clearly achieve a higher total payoff than the grand coalition.
+Therefore, the results of this section are most applicable to settings when multiple coalitions cannot be formed at the same time for some reason.
+For example, \textcite{hart1996bargaining} propose an interpretation when there is a single, indivisible, non-replicable resource or technology (not captured in the value function) necessary to produce any value.
 
 As before, the main proposition in this section provides us with an expression of the limit of the value for this variant of the game.
+Notably, as in the case of the weighted value, the share of player $P$ can again be expressed as an integral of $f$ and some weighting\footnote{
+    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case.
+    Nevertheless, it highlights the parallel between multiple big players and weighted values.
+} function $h(t)$, with the latter depending only on the number of big players.
 \begin{proposition}
     \label{prop:multiple_platforms}
     The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
     \begin{align*}
-        \varphi_{P_i}^{\infty, m} = \int_0^1 (1-t) ^ {m-1} f(t) \dt .
+        \varphi_{P_i}^{\infty, m} = \int_0^1 h(t) f(t) \dt,
     \end{align*}
+    where $h(t) = (1-t) ^ {m-1}$.
 \end{proposition}
+
+\begin{corollary}
+    \label{cor:multiple_platforms}
+    The per-unit Shapley-value of the fringe is
+    \begin{align*}
+        \varphi_A(k, \infty) = 1 - m\int_0^1 (1-t) ^ {m-1} f(t) \dt = \int_0^1 [1 - (1-t)^m] f'(t) \dt .
+    \end{align*}
+\end{corollary}
 
 \begin{figure}[ht]
     \centering
@@ -338,7 +354,7 @@ As before, the main proposition in this section provides us with an expression o
                 \addplot[ultra thick, dotted] {(1-x)^2};
             \end{axis}
         \end{tikzpicture}
-        \caption{$(1 - t) ^ {m - 1}$}
+        \caption{$h(t)$}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -351,9 +367,9 @@ As before, the main proposition in this section provides us with an expression o
                 \legend{$m = 1$, $m = 2$, $m = 3$}
             \end{axis}
         \end{tikzpicture}
-        \caption{$\int_0^t (1 - s) ^ {m - 1} \ds$}
+        \caption{$\int_0^t h(s) \ds$}
     \end{subfigure}
-    \caption{Illustration of the weighting function for various values of $m$ in the multiple platform case.}
+    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case.}
     \label{fig:multiple_platforms}
 \end{figure}
 
@@ -362,21 +378,15 @@ Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independentl
 The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players.
 That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
 
-\begin{corollary}
-    \label{cor:multiple_platforms}
-    The per-unit Shapley-value of the fringe is
-    \begin{align*}
-        \varphi_A(k, \infty) = 1 - m\int_0^1 (1-t) ^ {m-1} f(t) \dt = \int_0^1 [1 - (1-t)^m] f'(t) \dt .
-    \end{align*}
-\end{corollary}
 
-The following corollary again demonstrates that the predicted outcomes confirm intuitions.
-As the major players become more and more substitutable, the portion of the surplus they can capture decreases, and the aggregated value of the fringe increases.
+The next corollary again demonstrates that the predicted outcomes confirm intuition.
+As the major players become more and more substitutable, the portion of the surplus they can capture decreases, and the aggregated value of the fringe increases (\cref{fig:multiple_platforms}).
 
 \begin{corollary}
     \label{cor:multiple_platforms_2}
     Let $\varphi_{P}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant.
 \end{corollary}
+
 
 \section{Many-sided case}
 
@@ -425,7 +435,7 @@ If the number of fringe players is large, then it is very unlikely that, after a
 Consequently, when taking the expectation over all orderings, ones with vary unequal numbers of the two types will have little impact on it.
 
 
-\subsection{Multiple platforms}
+\subsection{Multiple big players}
 
 The many-sided case can also simply be extended to incorporate multiple platforms instead of just one.
 As before, assume that there are $k$ players of type $P$ which are perfect substitutes of each other:
@@ -436,7 +446,7 @@ As before, assume that there are $k$ players of type $P$ which are perfect subst
     \end{cases}
 \end{align*}
 
-It can be shown that the values of each type of player are rather similar to the one-platform case.
+It can be shown that the values of each type of player are rather similar to the single big player case.
 \begin{proposition}
     The unit Shapley-values of the various types of players are
     \begin{align*}
@@ -445,7 +455,7 @@ It can be shown that the values of each type of player are rather similar to the
     \end{align*}
 \end{proposition}
 
-Similarly, as the next corollary demonstrates, the combined value of platforms is still decreasing in their number.
+Similarly, as the next corollary demonstrates, the combined value of the big palyers is still decreasing in their number.
 \begin{corollary}
     Let $\varphi_{P}(k, \infty) = k\varphi_{P_i}(k, \infty)$ denote the aggregated Shapley-values of players of type $P$.
     Then $\varphi_{P}(k, \infty)$ is decreasing in $k$ and $\varphi_{A_l}(k, \infty)$ are increasing in $k$ unless $f$ is constant.
