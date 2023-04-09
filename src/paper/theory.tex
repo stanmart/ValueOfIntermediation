@@ -201,30 +201,34 @@ Finally, the following corollary highlights that, even though the individual sha
 \end{corollary}
 
 
-\subsection{Weighted Shapley-values}
+\subsection{Weighted values}
 
-While the values of oceanic games (i.e. the limits of the Shapley values of their finite approximations in finite games) are well known in the relevant literature, there are no results about the limits of the weighted (Shapley) values.
-While providing very general results in the form of \textcite[]{fogelman1980asymptotic} is outside the scope of the paper\footnote{
-    They show that the (within some constraints) any discretization of an oceanic game converges to the same value.
-} the results in this section still provide some new insights into weighted values of oceanic games.
-In particular, I show that the weighted value of a game with one large and many small players converges to a rather simple and intuitive expression, if the size of the small players go to zero at the same rate.
-
+Now let us turn to an extension of the Shapley-value, where the symmetry of the players is relaxed: the weighted value.
 Imagine a general non-cooperative game $(N, v)$ with $N = \{1, \dots, n\}$.
-Assume that, in addition to the value function $v : 2^n \to \mathbb{R}$, the game is also endowed with a weight system $\lambda \in \mathbb{R}^n$.
+Assume that, in addition to the value function $v : 2^n \to \mathbb{R}$, the game is now also endowed with a weight system $\lambda \in \mathbb{R}^n$.
+The main idea behind the weighted value is that, in contrast to the Shapley-value, even players that have the same contribution to each possible coalition do not necessarily get the same value.
+
 These weights can be thought of as measures of innate bargaining power \parencite{shapley1953additive}, not reflected in the value function.
 Further support for this interpretation can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{
     For example, only one player having a positive value corresponds to them making take it or leave it offers.
 }
 
-For my purposes, it is sufficient to deal with the case of simple weights. I.e., assume that there is at most one player with zero weight.
-For my main result, I make use of the fact that weighted Shapley values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure \parencite{kalai1987weighted}.
+Although the values of oceanic games (i.e. the limits of the Shapley values of their finite approximations in finite games) are well known in the relevant literature, there are no similar results for weighted (Shapley) values.
+While providing very general results in the form of \textcite[]{fogelman1980asymptotic} is outside the scope of the paper\footnote{
+    They show that the (within some constraints) any discretization of an oceanic game converges to the same value.
+} the results in this section still provide some new insights into the weighted values of oceanic games.
+In particular, I show that the weighted value of a game with one large and many small players converges to a rather simple and intuitive expression, if the size of the small players go to zero at the same rate.
+
+For my purposes, it is sufficient to deal with the case of simple weights.
+I.e., assume that there is at most one player with zero weight.
+For my main result, I make use of the fact that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure \parencite{kalai1987weighted}.
 Start with the set of all players.
 Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$.
 Continue until all players are exhausted.
 This yields a well-defined probability for each permutation of players.
 
 Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively.
-Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the above procedure.
+Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the previously described procedure.
 Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
 \begin{align*}
     \Pr(X_n \leq k) = \prod_{j=k+1}^n \frac{j}{j + \lambda} .
@@ -236,7 +240,8 @@ The following lemma establishes the continuous analogue of this statement.
      Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
 
-The main proposition of this section shows that the weighted Shapley-value of player $i$ can be expressed as the expected marginal contribution of that player where the permutations are weighted according to the previous distribution.
+Now let us turn to the main proposition of this section: the weighted value of player $P$ can again be expressed as an integral over the share of fringe players, but now it is weighted according to the previous probability distribution.
+Depending on the shape of this distribution (which in turn depends on the weight $\lambda$), regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
 \begin{proposition}
     \label{prop:one_sided_weighted}
     Let $f(t)$ be continuous on $[0, 1]$. Then
@@ -277,16 +282,18 @@ The main proposition of this section shows that the weighted Shapley-value of pl
     \label{fig:weigh_function}
 \end{figure}
 
-Finally, the following corollaries support the interpretation of weights as bargaining power, as a higher weight corresponds to a higher Shapley-value in this game.\footnote{
+Now, let us examine how this weighting impacts the shares of the various players.
+It turns out, that a higher weight corresponds to a higher Shapley-value in this game.\footnote{
     This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
-}
-Furthermore, the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
-
+},
+supporting the interpretation of weights as some kind of innate bargaining power.
 \begin{corollary}
     \label{cor:platform_value_weighted}
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
 
+Furthermore, the following corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
+This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player.
 \begin{corollary}
     \label{cor:paltform_value_weighted_2}
     If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
