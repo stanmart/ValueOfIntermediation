@@ -84,35 +84,44 @@ Consider a cooperative game with two types of players: a major player $P$ and $n
 Formally, let us denote the set of all players as $N = \{P, A_1, \dots, A_n\}$.
 Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical.
 Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$.
-Then, the value that any coalition $S \subset N$ can achieve is the following:
+Under these assumptions, the characteristic function of the game (the value that any coalition $S \subset N$ can achieve) is the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } P \notin S \\
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform.\footnote{
-    While these assumptions might seem somewhat restrictive, they are relatively simple to relax.
-}
-First, let us characterize the conditions under which this game is superadditive.
-These features provide some theoretical support for using Shapley-values as bargaining outcomes, as papers creating a link between non-cooperative bargaining and cooperative values often rely on such assumptions.\footnote{
+One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform, or as a vertical supply chain with one upstream producer and a number of downstream firms.
+
+First, let us characterize the conditions under which this game is monotone and superadditive.
+Superadditivity is a key property of cooperative games, as it ensures that it always pays off to form the grand coalition (i.e., the coalition that includes all players).
+Furthermore, in the context of bargaining, these properties provide some theoretical support for using Shapley-values as bargaining outcomes, as many results creating a link between non-cooperative bargaining and cooperative values often rely on these assumptions.\footnote{
     For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.
 }
-
+Fortunately, in this specific setting, characterizing monotonicity and superadditivity is extremely straightforward.
 \begin{proposition}
     \label{prop:monotone}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
 
-In the following, let us assume that the assumptions required for monotonicity are always satisfied.
-In addition to the previous advantages, it also ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies them, as well.
-Namely, the asymptotic value coincides with the axiomatic one using the uniform distribution, providing multiple ways of characterizing them.
+In the following, let us assume that the assumptions required for monotonicity are always satisfied (i.e., $f$ is monotone increasing).\footnote{
+    This assumption is not entirely innocuous.
+    For example, having more small firms could in theory lead to stronger competition, decreasing total profits.
+    However, it often holds in models with network effects \parencite{rochet2003platform} or with consumers having taste for variety \parencite{anderson2020aggregative}.
+}
+In addition to this, it also ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies.
+Namely, various approaches of defining the value of an oceanic game (one with a finite number of atomic and a continuum of non-atomic players) lead to the same result\footnote{
+    More rpecisely, the asymptotic value coincides with the axiomatic one using the uniform distribution.
+    For a more detailed discussion, see \textcite{fogelman1980asymptotic}.
+}, providing multiple ways of characterizing it.
 In practice, it means that there is no need to explicitly calculate the limits of finite-player cooperative games, as there is a more direct option for characterizing the value of the oceanic game.
-Nevertheless, in many of the following theorems, the asymptotic limit is preferred, as I believe that makes the proofs more instructive.
+Nevertheless, in many of the following theorems, the asymptotic limit is explicitly derived, as I believe that makes the results more explanatory.
 
-The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the Shapley-value of the platform does not converge to $f(1)$.
+The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the Shapley-value of the big player does not converge to the worth of the grand coalition, $f(1)$.
 This in turn implies that the aggregated Shapley-values of the fringe remain positive even in the limit.
-In the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the Shapley-value of player $P$ in the case of $n$ players of type $A$.
+In other words, even though the fringe players become smaller and more numerous, they do not lose all of their bargaining power, and still end up with a positive payoff in the end.
+
+In the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the Shapley-value of player $P$ in the game with players $N = \{P, A_1, \dots, A_n\}$.
 \begin{proposition}
     \label{prop:one_sided}
     Let $f$ be continuous on [0, 1]. Then
@@ -136,9 +145,10 @@ Nevertheless, even this simple result has a compelling geometric interpretation,
     \end{align*}
 \end{corollary}
 
-It is already apparent from Figure \ref{fig:one_sided} that (for fixed $f(0)$ and $f(1)$) player $P$ gets a larger share of the surplus when $f(t)$ is larger for every $t$.
-It corresponds to the case when only a small fraction of the fringe is needed to create most of the surplus (e.g. their products are substitutes of each other).
-This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms could obtain high values.
+It is already apparent from Figure \ref{fig:one_sided} that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
+It corresponds to the case when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus (e.g. fringe players products are substitutes of each other).
+This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms on board could obtain high values.
+In contrast, when fringe players are more complementary to each other, the big player can only obtain a smaller share, as its bargaining power is more limited.
 
 \begin{figure}
     \centering
@@ -184,7 +194,7 @@ This result aligns with our natural intuition that player $P$ has a better barga
     \label{fig:one_sided}
 \end{figure}
 
-Finally, the following corollary implies that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value still converges to a positive value.
+Finally, the following corollary highlights that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value still remains positive.
 \begin{corollary}
     \label{cor:fringe_value_2}
     $\varphi_P^\infty < f(1)$ and $\varphi_A^\infty > 0$ for any $f$ that is not constant.
