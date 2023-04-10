@@ -65,17 +65,25 @@ Even though the economics literature offers no unambiguous definition for what a
 Although market structures resembling various aspects of what we call platforms have existed for some time, the term has only gained widespread usage in the 2000s, with the advent of digitization, and a number of behemoth technology companies playing matchmakers on the internet.
 Since then, platforms have become a buzzword in the business world, the subject of increasing regulatory scrutiny, and also a topic of intense academic interest.
 
+In the last couple of decades, a considerable amount of research has been devoted to the study of platforms.
+This paper aims to contribute to this literature by examining an important, but somewhat underexplored aspect of platforms: the bargaining power disparity between them and the other market participants, and how this disparity is affected by the platforms' hybrid operation.
+In particular, this paper proposes an analytically tractable framework which captures many important aspects of bargaining between one large and a continuum of small players, and applies it to the setting of a hybrid platform facing a continuum of potential entrants.
+The results show that when a platform operating in hybrid mode can increase its profits at the cost of decreased seller entry consumer welfare in comparison to the case when the platform is a pure intermediary.
+Before an overview of the relevant literature is given, it is useful to briefly discuss the most prominent features of platforms, as that will be useful to understand the relation of this paper to the existing body of research.
+
 While it is hard to define what a platform is, there are a number of features commonly associated with platforms.\footnote{
     I thank the participants of the Third Year Seminar at the University of Zurich for their lively discussion on this topic.
     The conclusion was that, although platforms are hard to define, "You know one when you see one".
 }
 An organization does not have to exhibit all of these features to be considered a platform, but they are often present, and are also the main areas of interest when studying platforms.
-First, platforms are often characterized by multi-sidedness.
-Their most prominent examples are large internet companies, such as Google connecting advertisers and consumers, Amazon connecting sellers and consumers, or Uber connecting drivers and passengers.
-Second, a frequent feature of platforms is the presence of network effects.
-More buyers on Amazon mean more value for the sellers, and vice versa.
-These network effects often lead to increasing returns to scale, which in turn leads to consolidation in the industry.
-Third, another important aspect of platforms is the disparity between the various market participants.
+First, platforms are often characterized by multi-sidedness.\footnote{
+    The most prominent examples are large internet companies, such as Google connecting advertisers and consumers, Amazon connecting sellers and consumers, or Uber connecting drivers and passengers.
+}
+Second, a frequent feature of platforms is the presence of network effects.\footnote{
+    More buyers on Amazon mean more value for the sellers, and vice versa.
+    These network effects often lead to increasing returns to scale, which in turn leads to consolidation in the industry.
+}
+A third important aspect of platforms is the disparity between the various market participants.
 While there is usually just a few, large platforms in an industry, there is a much larger number of participants who use the platforms' services to connect to each other.
 Furthermore, the platform is often indispensable for the participants to make business, but the participants themselves are more easily replaceable.
 This power imbalance naturally leads to antitrust concerns, with regulators taking an increasingly close look at such markets as of late \parencite[see e.g. ][]{fletcher2021consumer}.
@@ -83,13 +91,12 @@ Finally, a somewhat more recent, but slightly alarming feature of platforms is o
 They act as an intermediary (deciding the rules) and a market participant (competing with the other entrants) at the same time.
 This paper focuses on the latter two aspects (the interplay between bargaining power and hybrid operation), while mostly abstracting away the first two in the form of a rather reduced-form approach of modeling the production function.
 
-Various models have been proposed to study the economics of platforms, focusing on different aspects of the phenomenon.
-One of the larger and earlier strands of literature focus on the multi-sidedeness of platforms, the resulting implications.
+Most of the earlier literature on platform economics focuses on the multi-sidedeness of platforms and the related network effects.
 These papers investigate how various market features, such as the possibility of multi-homing, the magnitude of network-effects, or the number of platforms influence market outcomes.
 In addition to welfare, they are often interested in the transfers between the various sides facilitated by the platforms' desire to exploit network effects.
 Examples of such studies include the seminal papers \textcite{rochet2003platform} and \textcite{armstrong2006competition}, as well as a number of insightful papers examining the effects of various market attributes \parencite[e.g.][]{hagiu2004optimal,choi2010tying,evans2011platform,lee2014competing}.
 
-Hybrid platforms also received increasing attention in the literature.
+More recently, hybrid platforms also received increasing attention in the literature.
 While not explicitly phrased in terms of hybrid operation, the literature on the importance of exclusive content can be seen as adjacent to this topic \parencite[]{hagiu2011exclusivity,lee2013vertical,dou2014sell,weeds2016tv}.
 These papers mostly focus on competition between platforms, and not on the impact on the platform-participant relationship.
 On the other hand, more recent papers, such as \textcite{hagiu2022should}, \textcite{anderson2021hybrid} and \textcite{gutierrez2021welfare} have started to address the issue of hybrid platforms, and how platforms having their own products affect competition between the platform and the entrants, and ultimately consumer welfare and producer surplus.
@@ -101,8 +108,9 @@ Certain structures, such as vertical relationships, or even traditional retail s
 Therefore, the results of this paper also contributes to the literature on those settings, such as retailers having their own private labels \parencite{steiner2004nature}, or vertical integration in upstream-downstream markets \parencite{hart1990vertical,aghion2006vertical}.
 It is particularly closely related to \textcite{de2005vertical} and \textcite{montez2007downstream} in which bargaining between the upstream and downstream firms take the center stage.
 
-Finally, this also belongs to the not too large set of papers using concepts from cooperative game theory in an industrial organization setting.
+Finally, this paper also belongs to the not too large set of models using concepts from cooperative game theory in an industrial organization setting.
 Such examples include the aforementioned \textcite{montez2007downstream}, as well as \textcite{hart1990property}, \textcite{levy1997individual}, \textcite{inderst2003bargaining} and \textcite{brugemann2019intra} among others.
+In contrast to the majority of those, I utilize an oceanic game (a continuum of small players instead of a finite number), and demonstrate that this can considerably simplify the analysis in certain cases.
 
 
 \section{Model}
@@ -202,7 +210,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -221,7 +229,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -234,7 +242,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
 
 The other main ingredient of the sharing rule, $w(s)$, captures the platform's \emph{innate} bargaining power.
 It is independent of the production function, demand, or the fringe firms' substitutability, and might represent, for example, that the platform and the fringe firms have different power to propose allocations during the (not explicitly modeled) negotiation process.\footnote{
-    For a more thorough exploration of this idea, see \cref{app:profit_sharing} and \textcite{hart1996bargaining}.
+    For a more thorough exploration of this idea, see \textcite{hart1996bargaining}.
 }
 
 One way to think about the weighting is that the platform's share is the expectation of the total profit, when the number of fringe firms is drawn from $[0, N_F]$ according to some distribution.\footnote{
@@ -366,7 +374,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
-                \node[anchor=north west] at (axis cs: .05, .65) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, .65) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -387,7 +395,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
     
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -431,7 +439,7 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
     
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -452,7 +460,7 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
                 \addplot [fill=red, fill opacity=0.05] fill between [of=tildef and top];
     
-                \node[anchor=north west] at (axis cs: .05, 1.17) {Fringe ($A$)};
+                \node[anchor=north west] at (axis cs: .05, 1.17) {Fringe ($F$)};
                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
             \end{axis}
         \end{tikzpicture}
@@ -917,6 +925,7 @@ In general, I believe this approach for modeling bargaining is a rather good com
 
 
 \section{Shapley value in the platform game}
+\label{app:shapley_value}
 
 Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players.
 I.e., $N = \{P, F_1, \dots, F_n\}$.
