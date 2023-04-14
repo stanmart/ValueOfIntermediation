@@ -651,6 +651,7 @@ In particular, I use the profit sharing rule from \cref{ass:profit_sharing} with
 
 As shown in \textcite[]{anderson2021hybrid}, the utility functions described in \cref{sec:model} give rise to a logit-type demand function.
 \begin{proposition}
+    \label{prop:demand_function}
     The demand for product $i$ of producer $T \in \{P, F\}$ is given by:
     \begin{align*}
         x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
@@ -672,6 +673,7 @@ This last property makes the optimal prices and profits of the producers very si
 %     \label{eq:variable_profit}
 % \end{align}
 \begin{proposition}
+    \label{prop:optimal_profit}
     The profit maximizing price for product $Ti$ is
     \begin{align*}
         p^*_{Ti} = c_T + \mu,
@@ -710,6 +712,7 @@ Recall that there is an infinity of potential fringe entrants looking to enter t
 Therefore, total profits in equilibrium must be zero.
 Combined with the simple profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
 \begin{proposition}
+    \label{prop:equilibrium_aggregate}
     If entry costs $I_F$ and $F_F$ are low enough, the equilibrium size of the aggregate is
     \begin{align}
         A = \mu \frac{V_F}{F_F + I_F}.
@@ -731,6 +734,7 @@ Now let us turn to the optimal entry fee set by the platform, and its total prof
 First, let us examine the case when the fees are low enough for the fringe to be feasible.
 
 \begin{proposition}
+    \label{prop:optimal_entry_fee}
     The optimal entry fee is
     \begin{align*}
         F_F^* = \sqrt{\mu I_F V_F} - I_F.
@@ -778,6 +782,7 @@ From \cref{eq:optimal_profit}, the total profit achieved by the platform and $N_
 \end{align*}
 This yields the following closed-form expressions for the total profits of the participants.
 \begin{proposition}
+    \label{prop:platform_profits_bargaining}
     The platform's total profits are
     \begin{align*}
         \pi^t_P &=\int_0^1 f(N_P, sN_F) \ds \\
@@ -1187,6 +1192,107 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \begin{align*}
         \frac{\partial N_F^*}{\partial N_P} < \frac{\alpha}{\beta}
     \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:demand_function}]
+    See Theorem 1 in \textcite{anderson2021hybrid}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:optimal_profit}]
+    The profit function for product $Ti$ is the following:
+    \begin{align*}
+        \pi^v_{Ti}(p_{Ti}) &= (p_{Ti} - c_T) x_{T_i}(p_{Ti}) \\
+        &= (p_{Ti} - c_T) \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}.
+    \end{align*}
+    Note that $A$ is not influenced by changes in $p_{Ti}$, as $A$ is an integral and $p_T$ is only changed on a zero-measure (singleton) set.
+    Therefore, let calculate the first order condition while treating $A$ as a constant:
+    \begin{align}
+        \label{eq:foc_profit}
+        \mu \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A} \left[ \frac{p_T - c_T}{\mu} - 1 \right] = 0.
+    \end{align}
+    Also note that $\pi_{Ti}(p_{Ti})$ is strictly concave, so the FOC is sufficient for optimality.
+
+    Now simply rearrange \cref{eq:foc_profit} to obtain
+    \begin{align*}
+        p_{Ti}^* = c_T + \mu
+    \end{align*}
+    and substitute it into the profit function to get
+    \begin{align*}
+        \pi_{Ti}^{v*} = \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:equilibrium_aggregate}]
+    From \cref{prop:optimal_profit}, the variable profit of each fringe firm is $\pi_{Fi}^{v*} = \mu V_F / A$.
+    Total profit after entry fees and investment costs is therefore $\pi_{Fi}^{t*} = \mu V_F / A - I_F - F_F$.
+    Under free entry, total profits are zero:
+    \begin{align*}
+        0 = \pi_{Fi}^{t*} = \mu V_F / A - F_F - I_F.
+    \end{align*}
+    Simple rearrangement gives the formula we are looking for,
+    \begin{align*}
+        A = \mu \frac{V_F}{F_F + I_F},
+    \end{align*}
+    and substituting in $A = N_P V_P + N_F V_F + 1$ yields the equilibrium number of fringe firms,
+    \begin{align*}
+        N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:optimal_entry_fee}]
+    The total profit function of the platform is the following:
+    \begin{align*}
+        \pi_P^t &= \pi_P^v + I_F N_F \\
+        &= \mu \frac{N_P V_P}{F_F + I_F} + F_F \left[ \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
+    \end{align*}
+    The function is strictly concave in $F_F$, so the first order condition is sufficient for optimality in the case of an interior solution.
+    Assume that $N_F$ is high enough that the optimum is indeed interior.
+    Then the FOC is
+    \begin{align*}
+        \frac{\mu I_F V_F - (F_F + I_F)^2}{V_F (F_F + I_F)^2} = 0.
+    \end{align*}
+    Rearranging it gives the optimal entry fee
+    \begin{align*}
+        F_F^* = \sqrt{\mu I_F V_F} - I_F,
+    \end{align*}
+    and substituting it into the profit function leads to
+    \begin{align*}
+        \pi_P^{*t} = \mu - 2\sqrt{\frac{I_F \mu}{V_F}} + \frac{I_F}{V_F} (N_P V_P + 1).
+    \end{align*}
+    Finally, note that
+    \begin{align*}
+        \pi_P^{*t} \geq \mu \frac{N_P V_P}{N_P V_P + 1},
+    \end{align*}
+    i.e., the profit that the platform could achieve by excluding the fringe completely.
+    Therefore, the optimum is indeed interior whenever $F_F$ is low enough
+
+    Now consider the case when $F_F$ is so large that $F_F^*$ would lead to no fringe entry.
+    In that case, the platform's only source of profit is selling its own products, and thus
+    \begin{align*}
+        \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:platform_profits_bargaining}]
+    Simply integrate the total industry profit function with respect to the mass of fringe entrants obtain the platform's share of the pie:
+    \begin{align*}
+        \pi^t_P &= \int_0^1 f(N_P, sN_F) \ds \\
+        &= \mu \int_0^1 \frac{N_P V_P + s N_F V_F}{N_P V_P + s N_F V_F + 1} \ds \\
+        &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
+    \end{align*}
+    The fringe's share is just the remainder,
+    \begin{align*}
+        f(N_P, N_F) - \int_0^1 f(N_P, sN_F) \ds = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
+    \end{align*}
+    Finally, remember that the investment cost of the fringe is fixed at the bargaining stage, and is therefore not included in the bargaining outcome.
+    Therefore, the total profits of the complete fringe are
+    \begin{align*}
+        \pi^t_P = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{lem:profit_assumptions}]
+    
 \end{proof}
 
 
