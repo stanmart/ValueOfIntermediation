@@ -1,0 +1,32 @@
+---
+title: "Hybrid platforms and bargaining"
+author: "Martin Stancsics"
+format:
+    revealjs:
+        embed-resources: true
+        html-math-method: mathjax
+        transition: fade
+        touch: true
+        toc: true
+        toc-depth: 1
+        toc-title: Agenda
+        slide-number: c
+        progress: true
+        controls: false
+        theme:
+         - default
+         - css/custom.scss
+        include-in-header:
+         - js/mathjax-settings.html
+bibliography: references.bib
+---
+
+# Introduction
+
+<style>
+    ul li li {
+        font-size: 0.75em;
+        line-height: 1.2em;
+    }
+</style>
+
