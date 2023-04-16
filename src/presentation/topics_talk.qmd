@@ -66,6 +66,21 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
     - Results have a nice geometric interpretation
 
 
+## Preview of results
+
+::: {.fragment}
+ - The effects of hybrid platforms depend on the substitutability of the products
+   - When they are substitutes, it increases the platform's profit share and decreases the fringe's profits
+   - In the presence of an investment cost, it leads to lower fringe entry
+   - With Logit-demand, hybrid operation leads to welfare losses
+:::
+::: {.fragment}
+ - This modeling strategy seems promising
+   - The model is surprisingly tractable
+   - Quite general results can be obtained
+:::
+
+
 ## References
 
 ::: {#refs}
