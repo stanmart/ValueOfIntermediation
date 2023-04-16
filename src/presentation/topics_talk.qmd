@@ -30,3 +30,44 @@ bibliography: references.bib
     }
 </style>
 
+## Motivation
+
+::: {.highlight-block}
+Examine the bargaining power implications of hybrid platforms and its welfare consequences
+:::
+
+::: {.fragment}
+ - Hybrid platform
+    - Getting more and more common
+    - Seemingly obvious concerns and high-profire competition policy cases
+    - Comparatively little reserach
+:::
+::: {.fragment}
+ - Bargaining between participants is rather overlooked in platform settings
+   - Most papers assume take-it-or-leave-it offers
+:::
+
+::: {.notes}
+
+:::
+
+
+## Main ideas
+
+ - Use the Shapley-value instead of an extensive-form bargaining model
+    - Analytically more tractable
+    - Has bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+    - Has precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+ - Abstract away from all frictions
+    - Allows me to focus on the bargaining channel
+    - Offers a good benchmark model
+ - Focus on continuum of small players case for tractability
+    - Good approximation of the finite player case even for not too many players
+    - Results have a nice geometric interpretation
+
+
+## References
+
+::: {#refs}
+:::
+
