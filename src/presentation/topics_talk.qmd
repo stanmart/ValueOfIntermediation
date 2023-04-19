@@ -214,10 +214,7 @@ $$
 $$
 :::
 ::: {.fragment fragment-index=2}
- - And, under certain conditions, total profits
-$$
-\small\text{Let } f(N_P, N_F) = g(\alpha N_P + \beta N_F)
-$$
+ - And, under certain conditions, total profits: if $\small f(N_P, N_F) = g(\alpha N_P + \beta N_F)$ and $g'' < 0$
 $$
 \small\text{Then } \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
 $$
@@ -315,9 +312,44 @@ I consider two cases:
    $$ F_F^* = \sqrt{\mu I_F V_F} - I_F $$
  - Size of the aggregate is independent* of $N_P$:
    $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
- - Consumer welfare is also independent* of $N_P$:
+ - **Consumer surplus** is also **independent*** of $N_P$:
    $$ CS^* \propto \log(A^*) $$
 :::
+
+
+## Bargaining equilibrium
+
+::: {.incremental}
+ - Total profits as a function of entrants have a simple form:
+ $$
+ f(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}
+ $$
+   - Satisfies the assumption for unique equilibrium
+   - Has the form $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$
+   - $g$ is concave
+ - Therefore,
+ $$
+ \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F}
+ $$
+:::
+
+
+## Bargaining equilibrium
+
+::: {.incremental}
+ - Equilibrium aggregate and total profits are decreasing in $N_P$
+ $$
+ \frac{\partial A^*}{\partial N_P} < 0
+ $$
+   - Platform profits are increasing in $N_P$, though
+ - **Consumer surplus** is also **decreasing** in $N_P$
+ $$
+ \frac{\partial CS^*}{\partial N_P} < 0
+ $$
+:::
+
+
+## Results graphically
 
 
 # Summary
