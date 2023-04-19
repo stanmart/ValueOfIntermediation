@@ -18,7 +18,7 @@ class Baseline(Scene):
         # Create plane
         ax = Axes(
             x_range=[0, 1, 0.05],
-            y_range=[0, 1, 0.05],
+            y_range=[0, 1.1, 0.05],
             x_length=10,
             y_length=10
         )
@@ -29,9 +29,9 @@ class Baseline(Scene):
         f_positive = ax.plot(lambda x: x)
         f_negative = ax.plot(lambda x: log1p(exp(1) - 2 + x))
 
-        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, N_F)", direction=RIGHT)
-        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', N_F)", direction=RIGHT)
-        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', N_F)", direction=RIGHT)
+        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, N_F)", direction=UP)
+        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', N_F)", direction=UP)
+        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', N_F)", direction=UP)
 
         top_orig = ax.plot(lambda x: log1p(1))
         top_alt = ax.plot(lambda x: 1)

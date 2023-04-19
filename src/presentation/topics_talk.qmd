@@ -225,18 +225,21 @@ Now let us endogeneize the number of fringe entrants!
 
 :::: {.column width="40%"}
 
-::: {.fragment fragment-index=1}
- - Hybrid mode reduces fringe entry
-$$
-\small
-\frac{\partial N_F^*}{\partial N_P} < 0
-$$
+::: {.fragment fragment-index=3}
+ - If $\frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0$, hybrid mode reduces fringe entry
+
 :::
-::: {.fragment fragment-index=2}
- - And, under certain conditions, total profits: if $\small f(N_P, N_F) = g(\alpha N_P + \beta N_F)$, $w(s) \equiv 1$ and $g'' < 0$
-$$
-\small\text{Then } \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
-$$
+::: {.fragment fragment-index=4}
+ - And sometimes total profits, too
+ $$
+ \begin{gather*}
+   g(\alpha N_P + \beta N_F), \\
+   g'' < 0, w(s) \equiv 1
+ \end{gather*}
+ $$
+ $$
+ \implies \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
+ $$
 :::
 
 ::::
@@ -246,10 +249,16 @@ $$
 ::: {.r-stack}
 
 ::: {.fragment fragment-index=1}
-   
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/draw_graph.mp4" />
 :::
 ::: {.fragment fragment-index=2}
-   
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/mark_equilibrium.mp4" />
+:::
+::: {.fragment fragment-index=3}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/alternate_equilibrium.mp4" />
+:::
+::: {.fragment fragment-index=4}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/show_loss.mp4" />
 :::
 
 :::
@@ -293,15 +302,6 @@ $$
  - Assume that the platform prices its products as if they were made by seperate, competitive sellers
    - Possible interpretation: profit-maximizing subsidiaries
    - More importantly: provides a nice benchmark
-:::
-::: {.fragment}
- - The optimal price is an additive markup rule:
- $$
- \begin{align*}
- p^*_{Ti} &= c_T + \mu \\
- \pi^{v*}_{Ti} &= \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}
- \end{align*}
- $$
 :::
 ::: {.fragment}
  - The optimal price is an additive markup rule:
