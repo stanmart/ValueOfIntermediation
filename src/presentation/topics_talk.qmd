@@ -214,7 +214,7 @@ $$
 $$
 :::
 ::: {.fragment fragment-index=2}
- - And, under certain conditions, total profits: if $\small f(N_P, N_F) = g(\alpha N_P + \beta N_F)$ and $g'' < 0$
+ - And, under certain conditions, total profits: if $\small f(N_P, N_F) = g(\alpha N_P + \beta N_F)$, $w(s) \equiv 1$ and $g'' < 0$
 $$
 \small\text{Then } \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
 $$
@@ -354,7 +354,40 @@ I consider two cases:
 
 # Summary
 
+## Summary
 
+::: {.fragment}
+ - **Tractable model** of hybrid platforms in which **bargaining** plays a key role
+   - Applicable to other settings, too (e.g. vertical markets, franchises)
+:::
+::: {.fragment}
+ - Highlight an important aspect if hybrid platforms
+   - **Hybridness increases bargaining power** against entrants
+   - This can have **negative welfare consequences**
+:::
+::: {.fragment}
+ - Policy implications for such markets
+   - Amazon operating in hybrid mode
+   - Microsoft acquiring Activision/Blizzard for $68bn
+:::
+
+
+## Future directions
+
+::: {.fragment}
+ - In this paper
+   - Endogenenize hybridness ($N_P$)
+   - Relax separate pricing assumption
+   - Alternative benchmarks (e.g. exogeneous split)
+:::
+::: {.fragment}
+ - Longer term
+   - Endogeneize consumer entry (possibly with them engaging in the negotiation)
+   - Apply this bargaining model to other, similar settings
+:::
+
+
+# Thank you {.unnumbered .unlisted}
 
 
 ## References
