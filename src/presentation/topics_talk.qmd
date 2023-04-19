@@ -81,6 +81,19 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 :::
 
 
+## Related literature
+
+::: {.incremental}
+ - **Hybrid platform markets**<br>
+ @anderson2021hybrid, @gutierrez2021welfare, @hagiu2022should
+ - Similarly structured markets
+   - Private labels in retail [@steiner2004nature]
+   - Vertical integration [@hart1990vertical; @de2005vertical; @montez2007downstream]
+ - Cooperative games in IO<br>
+ @hart1990property, @levy1997individual, @inderst2003bargaining, @montez2007downstream
+
+:::
+
 # Model
 
 ## Players
