@@ -145,14 +145,14 @@ $$
 
 :::: {.column width="40%"}
 
-::: {.fragment fragment-index=1}
+::: {.fragment fragment-index=2}
  - The platform likes being hybrid
 $$
 \small
 \frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0
 $$
 :::
-::: {.fragment fragment-index=2}
+::: {.fragment fragment-index=4}
  - It depends™ for the fringe
 $$
 \begin{align*}
@@ -169,10 +169,16 @@ $$
 ::: {.r-stack}
 
 ::: {.fragment fragment-index=1}
-   
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/draw_graph.mp4" />
 :::
 ::: {.fragment fragment-index=2}
-   
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/cross_derivative_positive.mp4" />
+:::
+::: {.fragment fragment-index=3}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/back_to_original.mp4" />
+:::
+::: {.fragment fragment-index=4}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/cross_derivative_negative.mp4" />
 :::
 
 :::
