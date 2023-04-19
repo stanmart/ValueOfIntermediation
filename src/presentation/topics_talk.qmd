@@ -245,6 +245,79 @@ $$
 
 # More concrete example
 
+## Demand
+
+::: {.incremental}
+ - Follow @anderson2021hybrid
+ - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \epsilon_{ij}^T$$
+   - $T \in \{P, F, 0\}$
+   - Unit mass of outside options at price $p_i^0 = 0$
+   - $v_T$: value of the product
+   - $\mu$: degree of horizontal differentiation
+   - $\epsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
+:::
+
+## Demand
+
+::: {.fragment}
+Logit-like demand:
+$$
+x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
+$$
+:::
+::: {.fragment}
+where
+$$
+A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \mathrm{d}i + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \mathrm{d}i + 1
+$$
+:::
+
+## Production
+::: {.fragment}
+ - Assume that the platform prices its products as if they were made by seperate, competitive sellers
+   - Possible interpretation: profit-maximizing subsidiaries
+   - More importantly: provides a nice benchmark
+:::
+::: {.fragment}
+ - The optimal price is an additive markup rule:
+ $$
+ \begin{align*}
+ p^*_{Ti} &= c_T + \mu \\
+ \pi^{v*}_{Ti} &= \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}
+ \end{align*}
+ $$
+:::
+::: {.fragment}
+ - The optimal price is an additive markup rule:
+ $$
+ \begin{align*}
+ p^*_{Ti} &= c_T + \mu \\
+ \pi^{v*}_{Ti} &= \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}
+ \end{align*}
+ $$
+:::
+
+
+## Entry and equilibrium
+
+I consider two cases:
+
+::: {.incremental}
+ - **Benchmark**<br>platform can commit to any lump-sum fee $F_F$
+ - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
+:::
+
+
+## Benchmark equilibrium
+
+::: {.incremental}
+ - Optimal entry fee is independent of $N_P$:
+   $$ F_F^* = \sqrt{\mu I_F V_F} - I_F $$
+ - Size of the aggregate is independent* of $N_P$:
+   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
+ - Consumer welfare is also independent* of $N_P$:
+   $$ CS^* \propto \log(A^*) $$
+:::
 
 
 # Summary
