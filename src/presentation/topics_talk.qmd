@@ -81,6 +81,177 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 :::
 
 
+# Model
+
+## Players
+
+::: {.fragment}
+ - One platform: $P$
+   - Without the platform, no value can be created
+   - Might have its own products (hybrid mdoe)
+:::
+::: {.fragment}
+ - A continuum of potential fringe entrants: $F_i, i \in \mathbb{R}_0^+$
+   - Infinitesimal size
+   - Have one product each
+   - Can only sell through the platform
+:::
+
+## Production
+
+Reduced-form approach: assume some function for total profit:
+
+::: {.fragment}
+$$
+f(N_P, N_F)
+$$
+:::
+
+::: {.fragment}
+ - $N_P$ is the number of platform products
+ - $N_F$ is the number of fringe products/firms
+ - Assume that $f$ is increasing in both arguments
+:::
+
+## Profit sharing
+
+ - Platform gets $$ \pi_P(N_P, N_F) = \int_0^1 w(s) f(N_P, sN_F) \mathrm{d}s $$
+ - Fringe gets the rest
+
+::: {.fragment}
+ - Based on the Shapley-value 
+   - Bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+   - Precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+ - $w(s)$ is a weighting function with $\int_0^1 w(s) \mathrm{d}s = 1$
+   - Related to the weighted value for a certain class of functions
+:::
+
+## Some simple comparative statics
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+
+::: {.fragment fragment-index=1}
+ - The platform likes being hybrid
+$$
+\small
+\frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0
+$$
+:::
+::: {.fragment fragment-index=2}
+ - It depends™ for the fringe
+$$
+\begin{align*}
+\small\mathrm{sign} \left( \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} \right) = \\
+\small\mathrm{sign} \left( \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} \right)
+\end{align*}
+$$
+:::
+
+::::
+
+:::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   
+:::
+::: {.fragment fragment-index=2}
+   
+:::
+
+:::
+
+::::
+
+:::::
+
+## Entry and equilibrium
+
+Now let us endogeneize the number of fringe entrants!
+
+::: {.fragment}
+ - Unlimited number of potential entrants
+:::
+::: {.incremental}
+ - Timing
+    - Hybrid mode is exogeneously determined $\to N_P$
+    - Each fringe firm decides whether to invest at cost $I_F$ $\to N_F$
+    - Platform and firms produce and sell products $\to f(N_P, N_F)$
+    - Profits are shared according to previous rule $\to \pi_P(N_P, N_F), \pi_F(N_P, N_F)$
+:::
+
+## Equilibrium
+
+::: {.incremental}
+ - Free entry equilibrium: fringe firms make zero net profits
+   $$ \pi_F(N_P, N_F^*) = I_F N_F^* $$
+ - In order to guarantee uniqueness, let us assume
+   $$
+   \scriptsize
+   \begin{gather*}
+       f'_{n_F} (N_P, N_F) < \int_0^1 s w(s) f'_{n_F} (N_P, s N_F) \mathrm{d}s \\
+       \text{or} \\
+       f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \mathrm{d}s.
+   \end{gather*}
+   $$
+     - Holds for certain interesting cases, such as the example application
+:::
+
+## Equilibrium comparative statics
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+
+::: {.fragment fragment-index=1}
+ - Hybrid mode reduces fringe entry
+$$
+\small
+\frac{\partial N_F^*}{\partial N_P} < 0
+$$
+:::
+::: {.fragment fragment-index=2}
+ - And, under certain conditions, total profits
+$$
+\small\text{Let } f(N_P, N_F) = g(\alpha N_P + \beta N_F)
+$$
+$$
+\small\text{Then } \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
+$$
+:::
+
+::::
+
+:::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   
+:::
+::: {.fragment fragment-index=2}
+   
+:::
+
+:::
+
+::::
+
+:::::
+
+
+# More concrete example
+
+
+
+# Summary
+
+
+
+
 ## References
 
 ::: {#refs}
