@@ -375,17 +375,17 @@ I consider two cases:
 ::: {.fragment fragment-index=1}
   <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
 :::
-::: {.fragment fragment-index=1}
-  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+::: {.fragment fragment-index=2}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_nof.mp4" />
 :::
-::: {.fragment fragment-index=1}
-  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+::: {.fragment fragment-index=3}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_bench.mp4" />
 :::
-::: {.fragment fragment-index=1}
-  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+::: {.fragment fragment-index=4}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_barg.mp4" />
 :::
-::: {.fragment fragment-index=1}
-  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+::: {.fragment fragment-index=5}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/pi_p_all.mp4" />
 :::
 
 
@@ -481,7 +481,7 @@ $$
 
 ::: {.fragment .fade-in fragment-index=2}
 Shapley value:
-$$
+$$l 
 \scriptsize
 \varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
 $$
@@ -503,16 +503,16 @@ $$
    <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
 :::
 ::: {.fragment fragment-index=2}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_nof.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
 :::
 ::: {.fragment fragment-index=3}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_bench.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
 :::
 ::: {.fragment fragment-index=4}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_barg.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
 :::
 ::: {.fragment fragment-index=6}
-   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/pi_p_all.mp4" />
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
 :::
 
 :::
