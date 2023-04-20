@@ -12,6 +12,7 @@ class Baseline(Scene):
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
+        MathTex.set_default(color=BLACK)
         Brace.set_default(color=BLACK)
         ParametricFunction.set_default(color=BLACK)
 
@@ -22,7 +23,7 @@ class Baseline(Scene):
             x_length=10,
             y_length=10
         )
-        ax_label = ax.get_axis_labels(x_label=r"t")
+        ax_label = ax.get_x_axis_label(r"t")
 
         self.play(Create(ax), Write(ax_label))
 

@@ -27,12 +27,12 @@ class Baseline(Scene):
         ax = Axes(
             x_range=[0.005, 30, 0.1],
             y_range=[0, 0.25, 0.01],
-            x_length=14,
+            x_length=12,
             y_length=8,
             x_axis_config={"include_ticks": False},
             y_axis_config={"include_ticks": False}
         )
-        ax_label = ax.get_axis_labels(x_label=r"t")
+        ax_label = ax.get_x_axis_label(r"t")
 
         N_P_0 = 0
         N_P_1 = 0.5
