@@ -19,6 +19,7 @@ class Baseline(Scene):
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
+        MathTex.set_default(color=BLACK)
         Brace.set_default(color=BLACK)
         ParametricFunction.set_default(color=BLACK)
 
@@ -26,7 +27,7 @@ class Baseline(Scene):
         ax = Axes(
             x_range=[0.005, 30, 0.1],
             y_range=[0, 0.25, 0.01],
-            x_length=12,
+            x_length=14,
             y_length=8,
             x_axis_config={"include_ticks": False},
             y_axis_config={"include_ticks": False}

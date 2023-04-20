@@ -30,6 +30,7 @@ class Equilibrium(Scene):
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
+        MathTex.set_default(color=BLACK)
         Brace.set_default(color=BLACK)
         ParametricFunction.set_default(color=BLACK)
 
@@ -37,7 +38,7 @@ class Equilibrium(Scene):
         ax = Axes(
             x_range=[0, 1.2, 0.05],
             y_range=[0, 0.7, 0.05],
-            x_length=12,
+            x_length=11,
             y_length=6
         )
         ax.shift(UP * 0.5)

@@ -370,6 +370,27 @@ I consider two cases:
 
 ## Results graphically
 
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+
+
+:::
+
 
 # Summary
 
@@ -414,3 +435,93 @@ I consider two cases:
 ::: {#refs}
 :::
 
+# Appendix
+
+## Baseline model
+
+:::: {.columns}
+
+::: {.column width="100%"}
+
+Set of all players: $N = \{P, A_1, \dots, A_n\}$
+
+**Assumption**: the platform is the only way for firms to
+reach users and that all $n$ firms are identical
+$$
+v(C) = \begin{cases}
+   0                                           & \text{if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right) & \text{otherwise}.
+\end{cases}
+$$
+$\forall\, C \subset N$.
+:::
+
+::::
+
+::: {.notes}
+ - Not only platforms. Also describes
+   - upstream-downstream setups
+   - generally any setting with an important large players and many identical small ones
+:::
+
+## Value of the platform
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Characteristic function:
+$$
+\scriptsize
+v(C) = \begin{cases}
+   0 \;\text{ if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right)
+\end{cases}
+$$
+
+::: {.fragment .fade-in fragment-index=2}
+Shapley value:
+$$
+\scriptsize
+\varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
+$$
+:::
+::: {.fragment .fade-in fragment-index=5}
+$$
+\scriptsize
+\to \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_nof.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_bench.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/a_barg.mp4" />
+:::
+::: {.fragment fragment-index=6}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/pi_p_all.mp4" />
+:::
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+ - Think of the previous figure with the orderings
+ - Main insight: each ordering with the platform at position $k$ has the same probability
+:::
