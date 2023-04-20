@@ -12,6 +12,7 @@ class Baseline(Scene):
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
+        MathTex.set_default(color=BLACK)
         Brace.set_default(color=BLACK)
         ParametricFunction.set_default(color=BLACK)
 
@@ -22,16 +23,16 @@ class Baseline(Scene):
             x_length=10,
             y_length=10
         )
-        ax_label = ax.get_axis_labels(x_label=r"t")
+        ax_label = ax.get_x_axis_label(r"s")
 
         # Destinations
         f_orig = ax.plot(lambda x: log1p(x))
         f_positive = ax.plot(lambda x: x)
         f_negative = ax.plot(lambda x: log1p(exp(1) - 2 + x))
 
-        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, N_F)", direction=UP)
-        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', N_F)", direction=UP)
-        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', N_F)", direction=UP)
+        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, sN_F)", direction=UP)
+        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', sN_F)", direction=UP)
+        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', sN_F)", direction=UP)
 
         top_orig = ax.plot(lambda x: log1p(1))
         top_alt = ax.plot(lambda x: 1)

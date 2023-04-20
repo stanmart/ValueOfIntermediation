@@ -39,12 +39,12 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 ::: {.fragment}
  - Hybrid platform
     - Getting more and more common
-    - Seemingly obvious concerns and high-profire competition policy cases
+    - Seemingly obvious concerns and high-profile competition policy cases
     - Comparatively little reserach
 :::
 ::: {.fragment}
- - Bargaining between participants is rather overlooked in platform settings
-   - Most papers assume take-it-or-leave-it offers
+ - Bargaining between participants is understudied in the platform setting
+   - Authors generally assume take-it-or-leave-it offers
 :::
 
 ::: {.notes}
@@ -54,25 +54,31 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 
 ## Main ideas
 
- - Use the Shapley-value instead of an extensive-form bargaining model
+::: {.fragment}
+ - Shapley-value based bargaining rule
     - Analytically more tractable
     - Has bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
     - Has precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
- - Abstract away from all frictions
+:::
+::: {.fragment}
+ - Abstract away all frictions
     - Allows me to focus on the bargaining channel
     - Offers a good benchmark model
- - Focus on continuum of small players case for tractability
+:::
+::: {.fragment}
+ - Focus on a continuum of small players case for tractability
     - Good approximation of the finite player case even for not too many players
     - Results have a nice geometric interpretation
+:::
 
 
 ## Preview of results
 
 ::: {.fragment}
- - The effects of hybrid platforms depend on the substitutability of the products
+ - The impacts of hybrid platforms depend on the substitutability of the products
    - When they are substitutes, it increases the platform's profit share and decreases the fringe's profits
-   - In the presence of an investment cost, it leads to lower fringe entry
-   - With Logit-demand, hybrid operation leads to welfare losses
+   - In the presence of investment costs, it can lead to lower fringe entry
+   - With Logit demand, hybrid operation leads to welfare losses
 :::
 ::: {.fragment}
  - This modeling strategy seems promising
@@ -99,20 +105,20 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 ## Players
 
 ::: {.fragment}
- - One platform: $P$
+ - One **platform**: $P$
    - Without the platform, no value can be created
    - Might have its own products (hybrid mdoe)
 :::
 ::: {.fragment}
- - A continuum of potential fringe entrants: $F_i, i \in \mathbb{R}_0^+$
-   - Infinitesimal size
+ - A continuum of potential **fringe entrants**: $F_i, i \in \mathbb{R}_0^+$
+   - Infinitesimally small
    - Have one product each
    - Can only sell through the platform
 :::
 
 ## Production
 
-Reduced-form approach: assume some function for total profit:
+Reduced-form approach: assume some function for **total profit**:
 
 ::: {.fragment}
 $$
@@ -128,9 +134,10 @@ $$
 
 ## Profit sharing
 
+::: {.fragment}
  - Platform gets $$ \pi_P(N_P, N_F) = \int_0^1 w(s) f(N_P, sN_F) \mathrm{d}s $$
  - Fringe gets the rest
-
+:::
 ::: {.fragment}
  - Based on the Shapley-value 
    - Bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
@@ -268,18 +275,18 @@ Now let us endogeneize the number of fringe entrants!
 :::::
 
 
-# More concrete example
+# Microfounding the profit function
 
 ## Demand
 
 ::: {.incremental}
  - Follow @anderson2021hybrid
- - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \epsilon_{ij}^T$$
+ - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \varepsilon_{ij}^T$$
    - $T \in \{P, F, 0\}$
    - Unit mass of outside options at price $p_i^0 = 0$
    - $v_T$: value of the product
    - $\mu$: degree of horizontal differentiation
-   - $\epsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
+   - $\varepsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
 :::
 
 ## Demand
@@ -301,7 +308,7 @@ $$
 ::: {.fragment}
  - Assume that the platform prices its products as if they were made by seperate, competitive sellers
    - Possible interpretation: profit-maximizing subsidiaries
-   - More importantly: provides a nice benchmark
+   - More importantly: "best case scenario"
 :::
 ::: {.fragment}
  - The optimal price is an additive markup rule:
@@ -319,7 +326,7 @@ $$
 I consider two cases:
 
 ::: {.incremental}
- - **Benchmark**<br>platform can commit to any lump-sum fee $F_F$
+ - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
  - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
 :::
 
@@ -341,7 +348,7 @@ I consider two cases:
 ::: {.incremental}
  - Total profits as a function of entrants have a simple form:
  $$
- f(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}
+ f(N_P, N_F) = \mu \frac{N_F V_F + N_P V_P}{N_F V_F + N_P V_P + 1}
  $$
    - Satisfies the assumption for unique equilibrium
    - Has the form $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$
@@ -392,7 +399,7 @@ I consider two cases:
 :::
 
 
-# Summary
+# Conclusion
 
 ## Summary
 
@@ -423,7 +430,7 @@ I consider two cases:
 ::: {.fragment}
  - Longer term
    - Endogeneize consumer entry (possibly with them engaging in the negotiation)
-   - Apply this bargaining model to other, similar settings
+   - Apply this bargaining rule to other, similar settings
 :::
 
 
