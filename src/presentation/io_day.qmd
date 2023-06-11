@@ -162,19 +162,12 @@ $$
 
 ::: {.fragment fragment-index=2}
  - The platform likes being hybrid
-$$
-\small
-\frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0
-$$
+   - It's profits increase in $N_P$
 :::
 ::: {.fragment fragment-index=4}
  - It depends™ for the fringe
-$$
-\begin{align*}
-\small\mathrm{sign} \left( \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} \right) = \\
-\small\mathrm{sign} \left( \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} \right)
-\end{align*}
-$$
+   - It's profits increase if and only if platform and fringe products are complements:
+     $$ \scriptsize \frac{\partial f^2}{N_P N_F} > 0 $$
 :::
 
 ::::
@@ -293,7 +286,7 @@ $$
 :::
 
 ::: {.crossref .fragment}
-Microfoundations: @sec-utility-function
+Utility function: @sec-utility-function
 :::
 
 
@@ -327,11 +320,11 @@ I consider two cases:
 ## Bargaining equilibrium
 
 ::: {.incremental}
- - Total profits as a function of entrants have a simple form:
+ - Total profits as a function of number of entrants have a simple form:
  $$
  f(N_P, N_F) = \mu \frac{N_F V_F + N_P V_P}{N_F V_F + N_P V_P + 1}
  $$
-   - Satisfies the assumption for unique equilibrium
+   - Satisfies the assumption for a unique equilibrium
    - Has the form $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$
    - $g$ is concave
  - Therefore,
@@ -424,7 +417,7 @@ I consider two cases:
 :::
 ::: {.fragment}
  - Longer term
-   - Endogeneize consumer entry (possibly with them engaging in the negotiation)
+   - Endogeneize consumer entry (possibly with consumers also engaging in the negotiation)
    - Apply this bargaining rule to other, similar settings
 :::
 
