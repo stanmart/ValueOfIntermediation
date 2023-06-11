@@ -1,0 +1,599 @@
+---
+title: "Hybrid platforms and bargaining"
+subtitle: "Swiss IO day 2023"
+author:
+  - name: Martin Stancsics
+    email: martin.stancsics@econ.uzh.ch
+    affiliations:
+      - name: University of Zürich
+date: 2023-06-16
+date-format: long
+format:
+    revealjs:
+        embed-resources: true
+        html-math-method: mathjax
+        transition: fade
+        touch: true
+        toc: true
+        toc-depth: 1
+        toc-title: Agenda
+        slide-number: c
+        progress: true
+        controls: false
+        theme:
+         - default
+         - css/custom.scss
+        include-in-header:
+         - js/mathjax-settings.html
+bibliography: references.bib
+---
+
+# Introduction
+
+<style>
+    ul li li {
+        font-size: 0.75em;
+        line-height: 1.2em;
+    }
+</style>
+
+## Motivation
+
+::: {.highlight-block}
+Examine the bargaining power implications of hybrid platforms and its welfare consequences
+:::
+
+::: {.fragment}
+ - Hybrid platform
+    - Getting more and more common
+    - Seemingly obvious concerns and high-profile competition policy cases
+    - Comparatively little reserach
+:::
+::: {.fragment}
+ - Bargaining between participants is understudied in the platform setting
+   - Authors generally assume take-it-or-leave-it offers
+:::
+
+::: {.notes}
+
+:::
+
+
+## Main ideas
+
+::: {.fragment}
+ - Shapley-value based bargaining rule
+    - Analytically more tractable
+    - Has bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+    - Has precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+:::
+::: {.fragment}
+ - Abstract away all frictions
+    - Allows me to focus on the bargaining channel
+    - Offers a good benchmark model
+:::
+::: {.fragment}
+ - Focus on a continuum of small players case for tractability
+    - Good approximation of the finite player case even for not too many players
+    - Results have a nice geometric interpretation
+:::
+
+
+## Preview of results
+
+::: {.fragment}
+ - The impacts of hybrid platforms depend on the substitutability of the products
+   - When they are substitutes, it increases the platform's profit share and decreases the fringe's profits
+   - In the presence of investment costs, it can lead to lower fringe entry
+   - With Logit demand, hybrid operation leads to welfare losses
+:::
+::: {.fragment}
+ - This modeling strategy seems promising
+   - The model is surprisingly tractable
+   - Quite general results can be obtained
+:::
+
+
+## Related literature
+
+::: {.incremental}
+ - **Hybrid platform markets**<br>
+ @anderson2021hybrid, @gutierrez2021welfare, @hagiu2022should
+ - Similarly structured markets
+   - Private labels in retail [@steiner2004nature]
+   - Vertical integration [@hart1990vertical; @de2005vertical; @montez2007downstream]
+ - Cooperative games in IO<br>
+ @hart1990property, @levy1997individual, @inderst2003bargaining, @montez2007downstream
+
+:::
+
+# Model
+
+## Players
+
+::: {.fragment}
+ - One **platform**: $P$
+   - Without the platform, no value can be created
+   - Might have its own products (hybrid mdoe)
+:::
+::: {.fragment}
+ - A continuum of potential **fringe entrants**: $F_i, i \in \mathbb{R}_0^+$
+   - Infinitesimally small
+   - Have one product each
+   - Can only sell through the platform
+:::
+
+## Production
+
+Reduced-form approach: assume some function for **total profit**:
+
+::: {.fragment}
+$$
+f(N_P, N_F)
+$$
+:::
+
+::: {.fragment}
+ - $N_P$ is the number of platform products
+ - $N_F$ is the number of fringe products/firms
+ - Assume that $f$ is increasing in both arguments
+:::
+
+## Profit sharing
+
+::: {.fragment}
+ - Platform gets $$ \pi_P(N_P, N_F) = \int_0^1 w(s) f(N_P, sN_F) \mathrm{d}s $$
+ - Fringe gets the rest
+:::
+::: {.fragment}
+ - Based on the Shapley-value 
+   - Bargaining interpretation [e.g. @hart1996bargaining; @gul1989bargaining]
+   - Precedents in the IO literature [e.g. @hart1990property; @montez2007downstream]
+ - $w(s)$ is a weighting function with $\int_0^1 w(s) \mathrm{d}s = 1$
+   - Related to the weighted value for a certain class of functions
+:::
+
+## Some simple comparative statics
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+
+::: {.fragment fragment-index=2}
+ - The platform likes being hybrid
+$$
+\small
+\frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0
+$$
+:::
+::: {.fragment fragment-index=4}
+ - It depends™ for the fringe
+$$
+\begin{align*}
+\small\mathrm{sign} \left( \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} \right) = \\
+\small\mathrm{sign} \left( \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} \right)
+\end{align*}
+$$
+:::
+
+::::
+
+:::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=2}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/cross_derivative_positive.mp4" />
+:::
+::: {.fragment fragment-index=3}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/back_to_original.mp4" />
+:::
+::: {.fragment fragment-index=4}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_n_p_on_shares/800p60/sections/cross_derivative_negative.mp4" />
+:::
+
+:::
+
+::::
+
+:::::
+
+## Entry and equilibrium
+
+Now let us endogeneize the number of fringe entrants!
+
+::: {.fragment}
+ - Unlimited number of potential entrants
+:::
+::: {.incremental}
+ - Timing
+    - Hybrid mode is exogeneously determined $\to N_P$
+    - Each fringe firm decides whether to invest at cost $I_F$ $\to N_F$
+    - Platform and firms produce and sell products $\to f(N_P, N_F)$
+    - Profits are shared according to previous rule $\to \pi_P(N_P, N_F), \pi_F(N_P, N_F)$
+:::
+
+## Equilibrium
+
+::: {.incremental}
+ - Free entry equilibrium: fringe firms make zero net profits
+   $$ \pi_F(N_P, N_F^*) = I_F N_F^* $$
+ - In order to guarantee uniqueness, let us assume
+   $$
+   \scriptsize
+   \begin{gather*}
+       f'_{n_F} (N_P, N_F) < \int_0^1 s w(s) f'_{n_F} (N_P, s N_F) \mathrm{d}s \\
+       \text{or} \\
+       f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \mathrm{d}s.
+   \end{gather*}
+   $$
+     - Holds for certain interesting cases, such as the example application
+:::
+
+## Equilibrium comparative statics
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+
+::: {.fragment fragment-index=3}
+ - If $\frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0$, hybrid mode reduces fringe entry
+
+:::
+::: {.fragment fragment-index=4}
+ - And sometimes total profits, too
+ $$
+ \begin{gather*}
+   g(\alpha N_P + \beta N_F), \\
+   g'' < 0, w(s) \equiv 1
+ \end{gather*}
+ $$
+ $$
+ \implies \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}
+ $$
+:::
+
+::::
+
+:::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=2}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/mark_equilibrium.mp4" />
+:::
+::: {.fragment fragment-index=3}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/alternate_equilibrium.mp4" />
+:::
+::: {.fragment fragment-index=4}
+  <video data-autoplay src="../../out/manim_figures/videos/comparative_equilibrium_entry/800p60/sections/show_loss.mp4" />
+:::
+
+:::
+
+::::
+
+:::::
+
+
+# Microfounding the profit function
+
+## Demand
+
+::: {.incremental}
+ - Follow @anderson2021hybrid
+ - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \varepsilon_{ij}^T$$
+   - $T \in \{P, F, 0\}$
+   - Unit mass of outside options at price $p_i^0 = 0$
+   - $v_T$: value of the product
+   - $\mu$: degree of horizontal differentiation
+   - $\varepsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
+:::
+
+## Demand
+
+::: {.fragment}
+Logit-like demand:
+$$
+x_{Ti} = \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}
+$$
+:::
+::: {.fragment}
+where
+$$
+A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \mathrm{d}i + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \mathrm{d}i + 1
+$$
+:::
+
+## Production
+::: {.fragment}
+ - Assume that the platform prices its products as if they were made by seperate, competitive sellers
+   - Possible interpretation: profit-maximizing subsidiaries
+   - More importantly: "best case scenario"
+:::
+::: {.fragment}
+ - The optimal price is an additive markup rule:
+ $$
+ \begin{align*}
+ p^*_{Ti} &= c_T + \mu \\
+ \pi^{v*}_{Ti} &= \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}
+ \end{align*}
+ $$
+:::
+
+
+## Entry and equilibrium
+
+I consider two cases:
+
+::: {.incremental}
+ - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
+ - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
+:::
+
+
+## Benchmark equilibrium
+
+::: {.incremental}
+ - Optimal entry fee is independent of $N_P$:
+   $$ F_F^* = \sqrt{\mu I_F V_F} - I_F $$
+ - Size of the aggregate is independent* of $N_P$:
+   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
+ - **Consumer surplus** is also **independent*** of $N_P$:
+   $$ CS^* \propto \log(A^*) $$
+:::
+
+
+## Bargaining equilibrium
+
+::: {.incremental}
+ - Total profits as a function of entrants have a simple form:
+ $$
+ f(N_P, N_F) = \mu \frac{N_F V_F + N_P V_P}{N_F V_F + N_P V_P + 1}
+ $$
+   - Satisfies the assumption for unique equilibrium
+   - Has the form $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$
+   - $g$ is concave
+ - Therefore,
+ $$
+ \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F}
+ $$
+:::
+
+
+## Bargaining equilibrium
+
+::: {.incremental}
+ - Equilibrium aggregate and total profits are decreasing in $N_P$
+ $$
+ \frac{\partial A^*}{\partial N_P} < 0
+ $$
+   - Platform profits are increasing in $N_P$, though
+ - **Consumer surplus** is also **decreasing** in $N_P$
+ $$
+ \frac{\partial CS^*}{\partial N_P} < 0
+ $$
+:::
+
+
+## Results graphically
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/draw_graph.mp4" />
+:::
+::: {.fragment fragment-index=2}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_nof.mp4" />
+:::
+::: {.fragment fragment-index=3}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_bench.mp4" />
+:::
+::: {.fragment fragment-index=4}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/a_barg.mp4" />
+:::
+::: {.fragment fragment-index=5}
+  <video height="500" data-autoplay src="../../out/manim_figures/videos/equilibrium_outcomes/800p60/sections/pi_p_all.mp4" />
+:::
+
+
+:::
+
+
+# Conclusion
+
+## Summary
+
+::: {.fragment}
+ - **Tractable model** of hybrid platforms in which **bargaining** plays a key role
+   - Applicable to other settings, too (e.g. vertical markets, franchises)
+:::
+::: {.fragment}
+ - Highlight an important aspect if hybrid platforms
+   - **Hybridness increases bargaining power** against entrants
+   - This can have **negative welfare consequences**
+:::
+::: {.fragment}
+ - Policy implications for such markets
+   - Amazon operating in hybrid mode
+   - Microsoft acquiring Activision/Blizzard for $68bn
+:::
+
+
+## Future directions
+
+::: {.fragment}
+ - In this paper
+   - Endogenenize hybridness ($N_P$)
+   - Relax separate pricing assumption
+   - Alternative benchmarks (e.g. exogeneous split)
+:::
+::: {.fragment}
+ - Longer term
+   - Endogeneize consumer entry (possibly with them engaging in the negotiation)
+   - Apply this bargaining rule to other, similar settings
+:::
+
+
+# Thank you {.unnumbered .unlisted}
+
+
+## References
+
+::: {#refs}
+:::
+
+# Appendix
+
+## The Shapley-value
+
+Each player gets their expected marginal contribution
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.r-stack}
+
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/draw_objects.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_P12.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_P21.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_2P1.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_1P2.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_12P.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/value_21P.mp4" />
+:::
+::: {.fragment}
+   <video data-autoplay src="../../out/manim_figures/videos/shapley_value_demo/800p60/sections/final.mp4" />
+:::
+
+:::
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+Coalition | Profits
+----------|---------
+$\{P\}$     |  0
+$\{A_i\}$   | 1
+$\{A_1, A_2\}$  | 2
+$\{P, A_i\}$  | 3
+$\{P, A_1, A_2\}$  | 6
+:::
+
+::::
+
+::: {.notes}
+ - Most direct definition of Shapley value
+ - Closed-form expression
+ - Generally computationally expensive, but not in this case
+:::
+
+## Baseline model
+
+:::: {.columns}
+
+::: {.column width="100%"}
+
+Set of all players: $N = \{P, A_1, \dots, A_n\}$
+
+**Assumption**: the platform is the only way for firms to
+reach users and that all $n$ firms are identical
+$$
+v(C) = \begin{cases}
+   0                                           & \text{if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right) & \text{otherwise}.
+\end{cases}
+$$
+$\forall\, C \subset N$.
+:::
+
+::::
+
+::: {.notes}
+ - Not only platforms. Also describes
+   - upstream-downstream setups
+   - generally any setting with an important large players and many identical small ones
+:::
+
+## Value of the platform
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+Characteristic function:
+$$
+\scriptsize
+v(C) = \begin{cases}
+   0 \;\text{ if } P \notin C \\
+   f\left(\frac{|C \setminus \{P\}|}{n}\right)
+\end{cases}
+$$
+
+::: {.fragment .fade-in fragment-index=2}
+Shapley value:
+$$l 
+\scriptsize
+\varphi_P^n(f) = \frac{1}{n+1} \sum_{k=0}^{n} f(k)
+$$
+:::
+::: {.fragment .fade-in fragment-index=5}
+$$
+\scriptsize
+\to \int_0^1 f(t) \, \mathrm{d}t
+$$
+:::
+
+:::
+
+::: {.column width="60%"}
+
+::: {.r-stack}
+
+::: {.fragment fragment-index=1}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/draw_bars.mp4" />
+:::
+::: {.fragment fragment-index=2}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/add_brace.mp4" />
+:::
+::: {.fragment fragment-index=3}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/more_firms.mp4" />
+:::
+::: {.fragment fragment-index=4}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/continuous_approximation.mp4" />
+:::
+::: {.fragment fragment-index=6}
+   <video data-autoplay src="../../out/manim_figures/videos/proposition_main/800p60/sections/surplus_division.mp4" />
+:::
+
+:::
+
+:::
+
+::::
+
+::: {.notes}
+ - Think of the previous figure with the orderings
+ - Main insight: each ordering with the platform at position $k$ has the same probability
+:::
