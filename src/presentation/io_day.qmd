@@ -222,16 +222,9 @@ Now let us endogeneize the number of fringe entrants!
 ::: {.incremental}
  - Free entry equilibrium: fringe firms make zero net profits
    $$ \pi_F(N_P, N_F^*) = I_F N_F^* $$
- - In order to guarantee uniqueness, let us assume
-   $$
-   \scriptsize
-   \begin{gather*}
-       f'_{n_F} (N_P, N_F) < \int_0^1 s f'_{n_F} (N_P, s N_F) \mathrm{d}s \\
-       \text{or} \\
-       f''_{n_F} (N_P, N_F) < \int_0^1 s^2 f''_{n_F} (N_P, s N_F) \mathrm{d}s.
-   \end{gather*}
-   $$
-     - Holds for certain interesting cases, such as the example application
+ - An extra assumption on $f$ is needed for uniqueness.
+   - It guarantees a concave or hump-shaped $\pi_F(N_P, N_F^*)$
+   - It is satisfied in the example application
 :::
 
 ## Equilibrium comparative statics
@@ -286,18 +279,6 @@ Now let us endogeneize the number of fringe entrants!
 
 ## Demand
 
-::: {.incremental}
- - Follow @anderson2021hybrid
- - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \varepsilon_{ij}^T$$
-   - $T \in \{P, F, 0\}$
-   - Unit mass of outside options at price $p_i^0 = 0$
-   - $v_T$: value of the product
-   - $\mu$: degree of horizontal differentiation
-   - $\varepsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
-:::
-
-## Demand
-
 ::: {.fragment}
 Logit-like demand:
 $$
@@ -310,6 +291,11 @@ $$
 A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \mathrm{d}i + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \mathrm{d}i + 1
 $$
 :::
+
+::: {.crossref .fragment}
+Microfoundations: @sec-utility-function
+:::
+
 
 ## Production
 ::: {.fragment}
@@ -335,18 +321,6 @@ I consider two cases:
 ::: {.incremental}
  - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
  - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
-:::
-
-
-## Benchmark equilibrium
-
-::: {.incremental}
- - Optimal entry fee is independent of $N_P$:
-   $$ F_F^* = \sqrt{\mu I_F V_F} - I_F $$
- - Size of the aggregate is independent* of $N_P$:
-   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
- - **Consumer surplus** is also **independent*** of $N_P$:
-   $$ CS^* \propto \log(A^*) $$
 :::
 
 
@@ -382,7 +356,21 @@ I consider two cases:
 :::
 
 
+## Benchmark equilibrium
+
+::: {.incremental}
+ - Optimal entry fee is independent of $N_P$:
+   $$ F_F^* = \sqrt{\mu I_F V_F} - I_F $$
+ - Size of the aggregate is independent* of $N_P$:
+   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
+ - **Consumer surplus** is also **independent*** of $N_P$:
+   $$ CS^* \propto \log(A^*) $$
+:::
+
+
 ## Results graphically
+
+<!-- TODO: CS instead of A, labels -->
 
 ::: {.r-stack}
 
@@ -596,4 +584,17 @@ $$
 ::: {.notes}
  - Think of the previous figure with the orderings
  - Main insight: each ordering with the platform at position $k$ has the same probability
+:::
+
+
+## Utility function {#sec-utility-function}
+
+::: {.incremental}
+ - Follow @anderson2021hybrid
+ - Unit mass of customers, each choosing one product maximizing $$u_{ij}^T = v^T - p_i^T + \mu \varepsilon_{ij}^T$$
+   - $T \in \{P, F, 0\}$
+   - Unit mass of outside options at price $p_i^0 = 0$
+   - $v_T$: value of the product
+   - $\mu$: degree of horizontal differentiation
+   - $\varepsilon_{ij}^T \sim \mathrm{Gumbel}(0, 1)$: taste shocks
 :::
