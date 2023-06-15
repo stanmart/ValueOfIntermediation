@@ -28,32 +28,19 @@ class Baseline(Scene):
             y_axis_config={"include_ticks": False},
 
         )
-        x_ax_label, y_ax_label = ax.get_axis_labels(x_label=r"N_P", y_label=r"A^*(N_P)")
+        x_ax_label, y_ax_label = ax.get_axis_labels(x_label=r"N_P", y_label=r"CS^*(N_P)")
 
         # Destiniations
         A_noF =  (ax.plot_line_graph(
-            x_values=data["N_P"], y_values=data["A_noF"],
+            x_values=data["N_P"], y_values=data["CS_noF"],
             line_color=BLACK, add_vertex_dots=False
         ))
         A_bench = ax.plot_line_graph(
-            data["N_P"], data["A_bench"],
+            data["N_P"], data["CS_bench"],
             line_color=BLUE_D, add_vertex_dots=False
         )
         A_barg = ax.plot_line_graph(
-            data["N_P"], data["A"],
-            line_color=RED_D, add_vertex_dots=False
-        )
-
-        pi_P_noF = (ax.plot_line_graph(
-            data["N_P"], data["pi_P_noF"],
-            line_color=BLACK, add_vertex_dots=False
-        ))
-        pi_P_bench = ax.plot_line_graph(
-            data["N_P"], data["pi_P_bench"],
-            line_color=BLUE_D, add_vertex_dots=False
-        )
-        pi_P_barg = ax.plot_line_graph(
-            data["N_P"], data["pi_P"],
+            data["N_P"], data["CS"],
             line_color=RED_D, add_vertex_dots=False
         )
 
@@ -78,21 +65,29 @@ class Baseline(Scene):
         f_bench = A_bench.copy()
         f_barg = A_barg.copy()
 
+        # Legend
+        legend_noF = MathTex(r"\text{No Fringe}", color=BLACK)
+        legend_bench = MathTex(r"\text{Benchmark}", color=BLUE_D)
+        legend_barg = MathTex(r"\text{Bargaining}", color=RED_D)
+
+        legend_noF.next_to(ax.c2p(1, 2.3), RIGHT)
+        legend_bench.next_to(ax.c2p(1, 2.1), RIGHT)
+        legend_barg.next_to(ax.c2p(1, 1.9), RIGHT)
 
         # First phase: draw axes
         self.play(Create(ax), Write(x_ax_label), Write(y_ax_label))
 
         # Second phase: no fringe
         self.next_section("a_nof")
-        self.play(Create(f_noF))
+        self.play(Create(f_noF), Write(legend_noF))
 
         # Third phase: benchmark
         self.next_section("a_bench")
-        self.play(Create(f_bench))
+        self.play(Create(f_bench), Write(legend_bench))
 
         # Fourth phase: bargaining
         self.next_section("a_barg")
-        self.play(Create(f_barg))
+        self.play(Create(f_barg), Write(legend_barg))
 
         # Fifth : platform_profits
         self.next_section("pi_p_all")
