@@ -271,7 +271,7 @@ Now let us endogeneize the number of fringe entrants!
 :::::
 
 
-# Microfounding the profit function
+# A concrete example
 
 ## Demand {#sec-demand}
 
@@ -284,11 +284,12 @@ $$
 ::: {.fragment}
 where
 $$
+\scriptsize
 A = \int_0^{N_F} \exp\left( \frac{v_F - p_{Fi}}{\mu} \right) \mathrm{d}i + \int_0^{N_P} \exp\left( \frac{v_P - p_{Pi}}{\mu} \right) \mathrm{d}i + 1
 $$
 :::
 
-::: {.crossref .fragment}
+::: {.crossref}
 Utility function: @sec-utility-function
 :::
 
@@ -302,10 +303,7 @@ Utility function: @sec-utility-function
 ::: {.fragment}
  - The optimal price is an additive markup rule:
  $$
- \begin{align*}
- p^*_{Ti} &= c_T + \mu \\
- \pi^{v*}_{Ti} &= \mu \frac{\exp \left( \frac{v_T - c_T - \mu}{\mu} \right)}{A}
- \end{align*}
+ p^*_{Ti} &= c_T + \mu
  $$
 :::
 
@@ -315,8 +313,8 @@ Utility function: @sec-utility-function
 I consider two cases:
 
 ::: {.incremental}
- - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
  - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
+ - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
 :::
 
 
@@ -355,11 +353,11 @@ I consider two cases:
 ## Benchmark equilibrium
 
 ::: {.incremental}
- - Optimal entry fee is independent of $N_P$:
+ - Optimal entry fee is independent of $N_P$
  - Size of the aggregate is independent* of $N_P$:
-   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} $$
+   $$ A^* = \sqrt{\frac{\mu V_F}{I_F}} = \text{constant} $$
  - **Consumer surplus** is also **independent*** of $N_P$:
-   $$ CS^* \propto \log(A^*) $$
+   $$ CS^* \propto \log(A^*) = \text{constant}$$
 :::
 
 
@@ -413,14 +411,15 @@ I consider two cases:
 
 ::: {.fragment}
  - In this paper
-   - Endogenenize hybridness ($N_P$)
-   - Relax separate pricing assumption
+   - Endogenenize "hybridness" ($N_P$)
+   - Relax separate product pricing assumption
    - Alternative benchmarks (e.g. exogeneous split)
 :::
 ::: {.fragment}
  - Longer term
-   - Endogeneize consumer entry (possibly with consumers also engaging in the negotiation)
-   - Apply this bargaining rule to other, similar settings
+   - Endogeneize consumer entry
+   - Three-sided negotiation (platform, firms, consumers)
+   - Test bargaining through lab experiment
 :::
 
 

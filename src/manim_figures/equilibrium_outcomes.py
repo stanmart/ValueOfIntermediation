@@ -57,7 +57,7 @@ class Baseline(Scene):
             line_color=RED_D, add_vertex_dots=False
         )
 
-        y_ax_label_pi = MathTex(r"\pi_P")
+        y_ax_label_pi = MathTex(r"\pi_P^*(N_P)")
         y_ax_label_pi.move_to(y_ax_label.get_center())
 
         # Plotted objects
@@ -70,9 +70,9 @@ class Baseline(Scene):
         legend_bench = MathTex(r"\text{Benchmark}", color=BLUE_D)
         legend_barg = MathTex(r"\text{Bargaining}", color=RED_D)
 
-        legend_noF.next_to(ax.c2p(1, 2.3), RIGHT)
-        legend_bench.next_to(ax.c2p(1, 2.1), RIGHT)
-        legend_barg.next_to(ax.c2p(1, 1.9), RIGHT)
+        legend_noF.next_to(ax.c2p(1, 2.5), RIGHT + DOWN)
+        legend_bench.next_to(ax.c2p(1, 2.3), RIGHT + DOWN)
+        legend_barg.next_to(ax.c2p(1, 2.1), RIGHT + DOWN)
 
         # First phase: draw axes
         self.play(Create(ax), Write(x_ax_label), Write(y_ax_label))
