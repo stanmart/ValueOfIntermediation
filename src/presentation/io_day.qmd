@@ -303,7 +303,7 @@ Utility function: @sec-utility-function
 ::: {.fragment}
  - The optimal price is an additive markup rule:
  $$
- p^*_{Ti} &= c_T + \mu
+ p^*_{Ti} = c_T + \mu
  $$
 :::
 
@@ -313,8 +313,8 @@ Utility function: @sec-utility-function
 I consider two cases:
 
 ::: {.incremental}
- - **Bargaining**<br>total profits are shared according to the Shapley-value-based rule
- - **Benchmark**<br>platform can commit to any lump-sum entry fee $F_F$
+ - **Bargaining**<br>Total profits are shared according to the Shapley-value-based rule
+ - **Benchmark**<br>The platform can commit to any lump-sum entry fee $F_F$
 :::
 
 
@@ -328,10 +328,11 @@ I consider two cases:
    - Satisfies the assumption for a unique equilibrium
    - Has the form $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$
    - $g$ is concave
- - Therefore,
- $$
- \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F}
- $$
+:::
+::: {.fragment}
+$$
+\implies \quad \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F}
+$$
 :::
 
 
@@ -397,7 +398,7 @@ I consider two cases:
 :::
 ::: {.fragment}
  - Highlight an important aspect if hybrid platforms
-   - **Hybridness increases bargaining power** against entrants
+   - **Hybrid mode increases bargaining power** against entrants
    - This can have **negative welfare consequences**
 :::
 ::: {.fragment}
@@ -410,8 +411,8 @@ I consider two cases:
 ## Future directions
 
 ::: {.fragment}
- - In this paper
-   - Endogenenize "hybridness" ($N_P$)
+ - Low-hanging fruit
+   - Endogenenize hybrid mode ($N_P$)
    - Relax separate product pricing assumption
    - Alternative benchmarks (e.g. exogeneous split)
 :::
@@ -512,6 +513,10 @@ v(C) = \begin{cases}
 \end{cases}
 $$
 $\forall\, C \subset N$.
+:::
+
+::: {.crossref}
+Back: @sec-profit-sharing
 :::
 
 ::::

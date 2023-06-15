@@ -49,8 +49,8 @@ class Baseline(Scene):
         # Destinations
         pi_F_orig = ax.plot(lambda x: pi_F(N_P_0, x), color=BLUE_D)
         pi_F_alt = ax.plot(lambda x: pi_F(N_P_1, x), color=RED_D)
-        pi_F_orig_label = ax.get_graph_label(pi_F_orig, r"\pi_F(0, N_F)", direction=UP)
-        pi_F_alt_label = ax.get_graph_label(pi_F_alt, r"\pi_F(0.5, N_F)", direction=DOWN)
+        pi_F_orig_label = ax.get_graph_label(pi_F_orig, r"\pi_F(N_P, N_F)", direction=UP)
+        pi_F_alt_label = ax.get_graph_label(pi_F_alt, r"\pi_F(N_P', N_F)", direction=DOWN)
 
         N_F_opt_0_bar = ax.get_vertical_line(N_F_opt_point_0, color=BLACK)
         N_F_opt_1_bar = ax.get_vertical_line(N_F_opt_point_1, color=BLACK)
