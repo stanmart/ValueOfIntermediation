@@ -169,8 +169,8 @@ Value of the platform: @sec-platform-value
 :::
 ::: {.fragment fragment-index=4}
  - It depends™ for the fringe
-   - It's profits increase if and only if platform and fringe products are complements:
-     $$ \scriptsize \frac{\partial f^2}{N_P N_F} > 0 $$
+   - It's profits decrease if platform and fringe products are substitutes:
+     $$ \scriptsize \frac{\partial f^2}{N_P N_F} < 0 $$
 :::
 
 ::::
@@ -230,7 +230,7 @@ Now let us endogeneize the number of fringe entrants!
 :::: {.column width="40%"}
 
 ::: {.fragment fragment-index=3}
- - If $\frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0$, hybrid mode reduces fringe entry
+ - If $\frac{\partial^2 f(N_P, N_F)}{\partial N_P \partial N_F} < 0$, hybrid mode reduces fringe entry
 
 :::
 ::: {.fragment fragment-index=4}
@@ -346,7 +346,7 @@ $$
    - Platform profits are increasing in $N_P$, though
  - **Consumer surplus** is also **decreasing** in $N_P$
  $$
- \frac{\partial CS^*}{\partial N_P} < 0
+ CS^* \propto \log(A^*) \implies \frac{\partial CS^*}{\partial N_P} < 0
  $$
 :::
 
@@ -397,7 +397,7 @@ $$
    - Applicable to other settings, too (e.g. vertical markets, franchises)
 :::
 ::: {.fragment}
- - Highlight an important aspect if hybrid platforms
+ - Highlight an important aspect of hybrid platforms
    - **Hybrid mode increases bargaining power** against entrants
    - This can have **negative welfare consequences**
 :::
