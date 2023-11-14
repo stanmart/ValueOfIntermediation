@@ -201,6 +201,55 @@ Finally, the following corollary highlights that, even though the individual sha
 \end{corollary}
 
 
+% TODO: find a better place for this
+Let us now turn to the case of more general random order values.
+For any finite number of fringe players, the random order value can be expressed as follows:
+\begin{align*}
+    \varphi_P^n = \frac{1}{(n+1)!} \sum_{R} \Pr(R) [ v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R) ]
+\end{align*}
+where $R$ is a permutation of all players, and $\mathcal{P}_P^R$ is the set of players before $P$ in the permutation $R$. \footnote{
+    For example, if $R = \{A_1, P, A_2\}$, then $\mathcal{P}_P^R = \{A_1\}$.
+}
+Utilizing the fact that the value of any coalition is zero without $P$, and that -- conditional on player $P$ being in a coalition -- a coalition's value only depends on the number of fringe firms in it, the above expression can be simplified to the following:
+\begin{align*}
+    \varphi_P^n = \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| = k) f(k/n),
+\end{align*}
+where $\Pr(|\mathcal{P}_P| = k)$ is determined by the probability distribution over the permutations.
+
+Now let us look at the asymptotic limit of this expression, as the number of fringe players goes to infinity.
+
+\begin{proposition}
+    \label{prop:one_sided_general}
+    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{\mathrm{d}} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
+    Then
+    \begin{align*}
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \mathrm{d}G(t) = \int_0^1 g(t) f(t) \dt,
+    \end{align*}
+    with the last equality holding if $X$ is a continuous random variable.
+\end{proposition}
+
+
+\begin{proof}[Proof of Proposition \ref{prop:one_sided_general}]
+    First, observe that $f$ is continuous on the compact set $[0, 1]$, and is therefore also bounded.
+    Furthermore,
+    \begin{align*}
+        \varphi_P^n = \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) = \E[X_n].
+    \end{align*}
+    As $f$ is continuous and bounded, and $X_n \xrightarrow[]{\mathrm{d}} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Putting it together,
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^n &= \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) \\
+        &= \lim_{n \to \infty} \E[X_n] \\
+        &= \E[X] \\
+        &= \int_0^1 f(t) \mathrm{d}G(t).
+    \end{align*}
+    Furthermore, if $G$ is differentiable, then
+    \begin{align*}
+        \int_0^1 f(t) \mathrm{d}G(t) = \int_0^1 g(t) f(t) \dt.
+    \end{align*}
+\end{proof}
+
+
 \subsection{Weighted values}
 
 Now let us turn to an extension of the Shapley-value, where the symmetry of the players is relaxed: the weighted value.
@@ -435,6 +484,47 @@ One surprising element of the result is that one only has to integrate over the 
 The intuition for that relies on a law-of-large-numbers-type reasoning.
 If the number of fringe players is large, then it is very unlikely that, after a random ordering, their proportion is too different on any interval.
 Consequently, when taking the expectation over all orderings, those with very unequal numbers of the various types have little impact on it.
+
+
+\subsection{Random order values}
+
+Let us start by establishing the analog of \cref{prop:one_sided_general} for the many-sided case.
+\begin{proposition}
+    \label{prop:many_sided_general}
+    Let $f$ be continuous on $[0, 1]^L$. Furthermore, let us denote the random vector of the proportions of the various types of fringe players before $P$ as $X_n$:
+    \begin{align*}
+        X_n = \left( \frac{n_{A_1}(\mathcal{P}_P)}{n}, \dots, \frac{n_{A_L}(\mathcal{P}_P)}{n} \right).
+    \end{align*}
+    Assume that $X_n \xrightarrow[]{\mathrm{d}} X$ with cdf $G_X(t_1, \dots, t_L)$ and (if exists) pdf $g(t_1, \dots, t_L)$.
+    Then
+    \begin{align*}
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n &= \int_0^1 \dots \int_0^1 f(t_1, \dots, t_L) \mathrm{d}G(t_1, \dots t_L) \\
+        &= \int_0^1\dots \int_0^1 g(t) f(t_1, \dots, t_L) \dt_1 \dots \dt_L,
+    \end{align*}
+    with the last equality holding if $X$ is a continuous random variable.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{prop:many_sided_general}]
+    The proof mirrors that of \cref{prop:one_sided_general}.
+    First, note that the random order value can be expressed as follows:
+    \begin{align*}
+        \varphi_P^n &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr(n_{A_1}(\mathcal{P}_P) = k_1, \dots, n_{A_L}(\mathcal{P}_P) = k_L) f\left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
+        &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr(n X_n = (k_1, \dots, k_L)) f\left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
+        &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr \left( X_n = \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \right) f \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
+        &= \E[f(X_n)].
+    \end{align*}
+    Furthermore, as $f$ is continuous (and therefore bounded on $[0, 1]^L$), and $X_n \xrightarrow[]{\mathrm{d}} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Putting it together,
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \E[f(X_n)] \\
+        &= \E[f(X)] \\
+        &= \int_0^1 \dots \int_0^1 f(t_1, \dots, t_L) \mathrm{d}G(t_1, \dots t_L).
+    \end{align*}
+    Finally, if $X$ is a continuous random variable, then
+    \begin{align*}
+        \int_0^1 \dots \int_0^1 f(t_1, \dots, t_L) \mathrm{d}G(t_1, \dots t_L) = \int_0^1\dots \int_0^1 g(t_1, \dots, t_L) f(t_1, \dots, t_L) \dt_1 \dots \dt_L.
+    \end{align*}
+\end{proof}
 
 
 \subsection{Multiple big players}
