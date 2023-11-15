@@ -32,6 +32,9 @@
 \newcommand{\ds}{\mathrm{d}s}
 \newcommand{\di}{\mathrm{d}i}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \title{The value of intermediation}
 \author{Martin Stancsics}
@@ -220,7 +223,7 @@ Now let us look at the asymptotic limit of this expression, as the number of fri
 
 \begin{proposition}
     \label{prop:one_sided_general}
-    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{\mathrm{d}} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
+    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
     Then
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \mathrm{d}G(t) = \int_0^1 g(t) f(t) \dt,
@@ -235,7 +238,7 @@ Now let us look at the asymptotic limit of this expression, as the number of fri
     \begin{align*}
         \varphi_P^n = \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) = \E[X_n].
     \end{align*}
-    As $f$ is continuous and bounded, and $X_n \xrightarrow[]{\mathrm{d}} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    As $f$ is continuous and bounded, and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
     Putting it together,
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^n &= \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) \\
@@ -285,7 +288,7 @@ Then, the probability of player $P$ having at most $k$ players of type $A$ befor
 The following lemma establishes the continuous analogue of this statement.
 \begin{lemma}
     \label{lem:entry_distr}
-     As $n \to \infty$, $X_n \xrightarrow[]{\mathrm{d}} X$ with the cdf $G_X(t) = \lambda^t$.
+     As $n \to \infty$, $X_n \xrightarrow[]{d} X$ with the cdf $G_X(t) = \lambda^t$.
      Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
 
@@ -495,7 +498,7 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
     \begin{align*}
         X_n = \left( \frac{n_{A_1}(\mathcal{P}_P)}{n}, \dots, \frac{n_{A_L}(\mathcal{P}_P)}{n} \right).
     \end{align*}
-    Assume that $X_n \xrightarrow[]{\mathrm{d}} X$ with cdf $G_X(t_1, \dots, t_L)$ and (if exists) pdf $g(t_1, \dots, t_L)$.
+    Assume that $X_n \xrightarrow[]{d} X$ with cdf $G_X(t_1, \dots, t_L)$ and (if exists) pdf $g(t_1, \dots, t_L)$.
     Then
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n &= \int_0^1 \dots \int_0^1 f(t_1, \dots, t_L) \mathrm{d}G(t_1, \dots t_L) \\
@@ -513,7 +516,7 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
         &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr \left( X_n = \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \right) f \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
         &= \E[f(X_n)].
     \end{align*}
-    Furthermore, as $f$ is continuous (and therefore bounded on $[0, 1]^L$), and $X_n \xrightarrow[]{\mathrm{d}} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Furthermore, as $f$ is continuous (and therefore bounded on $[0, 1]^L$), and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
     Putting it together,
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \E[f(X_n)] \\
@@ -524,6 +527,150 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
     \begin{align*}
         \int_0^1 \dots \int_0^1 f(t_1, \dots, t_L) \mathrm{d}G(t_1, \dots t_L) = \int_0^1\dots \int_0^1 g(t_1, \dots, t_L) f(t_1, \dots, t_L) \dt_1 \dots \dt_L.
     \end{align*}
+\end{proof}
+
+While the above proposition is very general in terms of requirements on the permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire unit hypercube.
+It would be much more convenient, if one only had to be concerned with a one-dimensional manifold within the hypercube instead.
+It turns out, that for a couple of important cases (namely, the Shapley-value and the weighted value) it is indeed the case.
+
+Let us start by establishing a general result, after which I will show that the Shapley-value and the weighted value are special cases of it.
+
+\begin{lemma}
+    % TODO: check notation!
+    \label{lem:many_sided_manifold}
+    Assume that $X_n \xrightarrow[]{d} X$ where $X$ is a degenerate distribution in the following sense: $\exists \, a_l: [0, 1] \to [0, 1], l = 1, \dots, L$, such that
+    \begin{align*}
+        X = (a_1(\xi), \dots, a_L(\xi)),
+    \end{align*}
+    where $\xi$ is a random variable on $[0, 1]$ with cdf $H(s)$.
+    In words, the whole probability mass is concentrated on the manifold $(a_1(s), \dots a_L(s)), t \in [0, 1]$.
+    Then
+    \begin{align*}
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n &= \int_0^1 f(a_1(s), \dots a_L(s)) \mathrm{d}H(s).
+    \end{align*}
+\end{lemma}
+
+\begin{proof}[Proof of Lemma \ref{lem:many_sided_manifold}]
+    Just like in the proof of \cref{prop:many_sided_general}, the random order value can be expressed as follows:
+    \begin{align*}
+        \varphi_P^n &= \E[f(X_n)].
+    \end{align*}
+    Furthermore, as $f$ is continuous and bounded on $[0, 1]^L$, and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Therefore,
+    \begin{align*}
+        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \E[f(X_n)] \\
+        &= \E[f(X)] \\
+        &= \E[f(a_1(\xi), \dots, a_L(\xi))] \\
+        &= \int_0^1 f(a_1(s), \dots a_L(s)) \mathrm{d}H(s).
+    \end{align*}
+\end{proof}
+
+
+The Shapley-value:
+
+\begin{proposition}
+    \label{prop:many_sided_shapley}
+    Let $f$ be continuous on $[0, 1]^L$.
+    Then,
+    \begin{align*}
+        \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt
+    \end{align*}
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{prop:many_sided_shapley}]
+    Let us show than $X_n$ converges in distribution to the degenerate random variable $X = (U, \dots, U)$, where $U$ is uniformly distributed on $[0, 1]$.
+
+    Let us first define the random variable $S_n = \sum_l[X_n]_l / L$, the total number of small players placed before $P$.
+    Also, define $h(s) = (s, \dots, s)$.
+    Now let us look at the conditional distribution $n X_n | n L S_n = k$.
+    As all permutations have equal probability, this is the same as picking $kL$ firms from the set $N \setminus \{P\}$ without replacement.
+    The numbers of each type in this sample will follow a multinomial distribution with $kL$ trials, $L$ events and probabilities $1/L$.
+
+    Let us now show that $\Pr(X_n < x \mid S_n = s) \xrightarrow[]{\mathrm{u}} \mathbf{1}[(s, \dots, s) \leq x]$ on $s \in \mathrm{supp}(S_n)$.
+
+    First, observe that
+    \begin{align*}
+        [\E(n X_n | nS_n = \lfloor ns \rfloor)]_l &= \lfloor ns \rfloor, \\
+        [\Var(n X_n | nS_n = \lfloor ns \rfloor)]_l &= \lfloor ns \rfloor \frac{L-1}{L}
+    \end{align*}
+    for all $\quad l = 1, \dots, L$.
+    Consequently,
+    \begin{align*}
+        [\E(X_n | nS_n = \lfloor ns \rfloor)]_l &= \frac{\lfloor ns \rfloor}{n}, \\
+        [\Var(X_n | nS_n = \lfloor ns \rfloor)]_l &= \frac{\lfloor ns \rfloor}{n^2} \frac{L-1}{L}
+    \end{align*}
+    for all $\quad l = 1, \dots, L$.
+
+    Notice that, as $n \to \infty$, $[\Var(X_n | nS_n = \lfloor ns \rfloor)]_l \to 0$.
+    Furthermore, $\E(X_n | nS_n = \lfloor ns \rfloor) \to h(s)$.
+    Thus, for any $s \in [0, 1], X_n | nS_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$.
+
+    % Notice that, regardless of $s$, the variance $\Var(X_n | S_n = s)$ is bounded by $\frac{1}{n}$.
+    % By Chebyshev's inequality,
+    % \begin{align*}
+    %     \Pr( \| X_n - (s, \dots, s) \| > \epsilon \mid S_n = s) \leq \frac{L}{n \epsilon^2}.
+    % \end{align*}
+
+    Let us now turn to the random variable $S_n$.
+    Observe that because the probability of each permutation is the same, player $P$ has the same probability of being in any position.
+    In other words, $S_n$ follows a uniform distribution on $0, \frac{1}{nL}, \frac{2}{nL} \dots, 1$.
+    Consequently, $S_n$ converges in distribution to the uniform distribution $U[0, 1]$.
+
+    I have now shown that the assumptions of \cref{lem:convergence_to_manifold} are satisfied.
+    % TODO
+
+    Then, by \cref{lem:many_sided_manifold}, the Shapley-value is
+    \begin{align*}
+        \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt.
+    \end{align*}
+
+\end{proof}
+
+
+\begin{lemma}
+    \label{lem:convergence_to_manifold}
+    Consider the random vector $X_n$ with values from $[0, 1]^L$.
+    Let $S_n = \sum_l[X_n]_l / L$, with the cumulative distribution function $G_n(s)$.
+    Assume that for every $s \in [0, 1]$, $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$ where $h(s)$ is some continuous function.
+    Let $S_n \xrightarrow[]{d} S$.
+    Then $X_n \xrightarrow[]{d} h(S)$.
+\end{lemma}
+
+\begin{proof}[Proof of lemma \ref{lem:convergence_to_manifold}]
+    We have to show that
+    \begin{align*}
+        \lim_{n \to \infty} \Pr(X_n \leq x) = \Pr(h(S) \leq x).
+    \end{align*}
+    for any $x$ where the cdf of $h(S)$ is continuous.
+
+    Let us start by conditioning on $S_n$:
+    \begin{align*}
+        \Pr(X_n \leq x) = \int_0^1 \Pr(X_n \leq x \mid S_n = s) \mathrm{d}G_n(s).
+    \end{align*}
+    Now consider the following:
+    \begin{align*}
+        \lim_{n \to \infty} \left| \Pr(X_n \leq x) - \Pr(h(S) \leq x) \right| &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \mathrm{d}G_n(s) - \Pr(h(S) \leq x) \right| \\
+        &\leq \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \mathrm{d}G_n(s) - \Pr(h(S_n) \leq x) \right| \\
+        &+ \lim_{n \to \infty} \left| \Pr(h(S_n) \leq x) - \Pr(h(S) \leq x) \right|
+    \end{align*}
+    for all $x \in [0, 1]^L$.
+    I will show that both limits on the right-hand side are zero.
+
+    Let us start with the first term.
+    \begin{align*}
+        \lim_{n \to \infty} &\left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \mathrm{d}G_n(s) - \Pr(h(S_n) \leq x) \right| \\
+        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \mathrm{d}G_n(s) - \int_0^1 \mathbf{1}[h(s) \leq s] \mathrm{d}G_n(s) \right| \\
+        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) - \mathbf{1}[h(s) \leq x] \mathrm{d}G_n(s) \right| \\
+        &= \lim_{n \to \infty} \left| \int_0^1 \underbrace{\Pr(X_n \leq x \mid nS_n = \lfloor ns \rfloor) - \mathbf{1}[h(s) \leq x]}_{\coloneqq r(s)} \mathrm{d}G_n(s) \right| \\
+        &\leq \lim_{n \to \infty} \int_0^1 \left| \Pr(X_n \leq x \mid nS_n = \lfloor ns \rfloor) - \mathbf{1}[h(s) \leq x] \right| \mathrm{d}G(s) \\
+        &+ \lim_{n \to \infty} \left| \int_0^1 r(s) \mathrm{d}G_n(s) - \int_0^1 r(s) \mathrm{d}G(s) \right| \\
+        &= 0.
+    \end{align*}
+    The first limit is zero because $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$.
+    The second limit is zero because of the continuous mapping theorem, as $S_n \xrightarrow[]{p} S$ and $\Pr_S(s : r\text{ is not continuous at }s)= 0$.
+
+    All that remains is to show that the second term is also zero.
+    This simply follows from the continuous mapping theorem, as $f$ is continuous and $S_n \xrightarrow[]{d} S$.
 \end{proof}
 
 
@@ -945,7 +1092,7 @@ Finally, with time, the cooperative approach to profit distribution could become
     \end{align*}
     where $X_n$ is defined as above.
     $f$ is continuous, and therefore bounded on the compact set $[0, 1]$.
-    As a consequence, $\frac{X_n}{n} \xrightarrow[]{\mathrm{d}} X$ implies $\E[f(X_n / n)] \to \E[f(X)]$, which in turn gives
+    As a consequence, $\frac{X_n}{n} \xrightarrow[]{d} X$ implies $\E[f(X_n / n)] \to \E[f(X)]$, which in turn gives
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^{n, \lambda} &= \lim_{n \to \infty} \E[f(X_n / n)] \\
         &= \E[f(X)] \\
