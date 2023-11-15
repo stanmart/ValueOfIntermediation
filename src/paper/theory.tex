@@ -674,34 +674,6 @@ The Shapley-value:
 \end{proof}
 
 
-\subsection{Multiple big players}
-
-The many-sided case can also simply be extended to incorporate multiple big players instead of just one.
-As before, assume that there are $m$ players of type $P$ which are perfect substitutes of each other:
-\begin{align*}
-    v(S) = \begin{cases}
-        0                                                & \text{if } P_i \notin S \; \forall \, i = 1, \dots, m \\
-        f\left(\frac{n_{A^1}(S)}{n}, \dots, \frac{n_{A^L}(S)}{n}\right) & \text{otherwise}.
-    \end{cases}
-\end{align*}
-
-It can be shown that the values of each type of player are rather similar to the single big player case.
-\begin{proposition}
-    The Shapley-values of the various types of players are
-    \begin{align*}
-        \varphi_{P_i}^{\infty, m} & = \int_0^1 (1-t)^{m-1} f(t, \dots, t) \dt                                 \\
-        \varphi_{A^l}^{\infty, m}     & = \int_0^1 [1 - (1-t)^m] \partial_l f(t, \dots, t) \dt.
-    \end{align*}
-\end{proposition}
-
-
-Similarly, as the next corollary demonstrates, the combined value of the big players is still decreasing in their number.
-\begin{corollary}
-    Let $\varphi_{P}^{\infty, m} = k\varphi_{P_i}^{\infty, m}$ denote the aggregated Shapley-values of players of type $P$.
-    Then $\varphi_{P}^{\infty, m}$ is decreasing in $k$ and $\varphi_{A^l}^{\infty, m}$ are increasing in $k$ unless $f$ is constant.
-\end{corollary}
-
-
 \section{Example Application}
 
 This section demonstrates the proposed cooperative approach via a model of a vertical market.
