@@ -232,7 +232,7 @@ Now let us look at the asymptotic limit of this expression, as the number of fri
 \end{proposition}
 
 
-\begin{proof}[Proof of Proposition \ref{prop:one_sided_general}]
+\begin{proof}[Proof of \cref{prop:one_sided_general}]
     First, observe that $f$ is continuous on the compact set $[0, 1]$, and is therefore also bounded.
     Furthermore,
     \begin{align*}
@@ -507,7 +507,7 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
     with the last equality holding if $X$ is a continuous random variable.
 \end{proposition}
 
-\begin{proof}[Proof of Proposition \ref{prop:many_sided_general}]
+\begin{proof}[Proof of \cref{prop:many_sided_general}]
     The proof mirrors that of \cref{prop:one_sided_general}.
     First, note that the random order value can be expressed as follows:
     \begin{align*}
@@ -550,7 +550,7 @@ Let us start by establishing a general result, after which I will show that the 
     \end{align*}
 \end{lemma}
 
-\begin{proof}[Proof of Lemma \ref{lem:many_sided_manifold}]
+\begin{proof}[Proof of \cref{lem:many_sided_manifold}]
     Just like in the proof of \cref{prop:many_sided_general}, the random order value can be expressed as follows:
     \begin{align*}
         \varphi_P^n &= \E[f(X_n)].
@@ -566,7 +566,7 @@ Let us start by establishing a general result, after which I will show that the 
 \end{proof}
 
 
-The Shapley-value:
+\subsection{Shapley-value}
 
 \begin{proposition}
     \label{prop:many_sided_shapley}
@@ -577,7 +577,7 @@ The Shapley-value:
     \end{align*}
 \end{proposition}
 
-\begin{proof}[Proof of Proposition \ref{prop:many_sided_shapley}]
+\begin{proof}[Proof of \cref{prop:many_sided_shapley}]
     Let us show than $X_n$ converges in distribution to the degenerate random variable $X = (U, \dots, U)$, where $U$ is uniformly distributed on $[0, 1]$.
 
     Let us first define the random variable $S_n = \sum_l[X_n]_l / L$, the total number of small players placed before $P$.
@@ -631,12 +631,12 @@ The Shapley-value:
     \label{lem:convergence_to_manifold}
     Consider the random vector $X_n$ with values from $[0, 1]^L$.
     Let $S_n = \sum_l[X_n]_l / L$, with the cumulative distribution function $G_n(s)$.
-    Assume that for every $s \in [0, 1]$, $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$ where $h(s)$ is some continuous function.
+    Assume that for every $s \in [0, 1]$, $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^1} h(s)$ where $h(s)$ is some continuous function.
     Let $S_n \xrightarrow[]{d} S$.
     Then $X_n \xrightarrow[]{d} h(S)$.
 \end{lemma}
 
-\begin{proof}[Proof of lemma \ref{lem:convergence_to_manifold}]
+\begin{proof}[Proof of \cref{lem:convergence_to_manifold}]
     We have to show that
     \begin{align*}
         \lim_{n \to \infty} \Pr(X_n \leq x) = \Pr(h(S) \leq x).
@@ -666,11 +666,36 @@ The Shapley-value:
         &+ \lim_{n \to \infty} \left| \int_0^1 r(s) \mathrm{d}G_n(s) - \int_0^1 r(s) \mathrm{d}G(s) \right| \\
         &= 0.
     \end{align*}
-    The first limit is zero because $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$.
+    The first limit is zero because $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^1} h(s)$.
     The second limit is zero because of the continuous mapping theorem, as $S_n \xrightarrow[]{p} S$ and $\Pr_S(s : r\text{ is not continuous at }s)= 0$.
 
     All that remains is to show that the second term is also zero.
     This simply follows from the continuous mapping theorem, as $f$ is continuous and $S_n \xrightarrow[]{d} S$.
+\end{proof}
+
+
+\subsection{Weighted value}
+
+Let us now examine the weighted value in the multi-sided case.
+The set of players and the characteristic function are the same as in the previous section, but players have the following weights: player $P$ has weight $\lambda_P$, while players $A^l_i$ have weight $\lambda_l$.
+I will show, that as with the Shapley-value, the limit of the weighted value can also be expressed as an integral over a one-dimensional path.
+However, this path is not the diagonal of the unit hypercube, and depends on the ratio of the fringe players' weights.
+
+\begin{proposition}
+    \label{prop:many_sided_weighted}
+    Let $f$ be continuous on $[0, 1]^L$.
+    Then,
+    \begin{align*}
+        \varphi_P^\infty & = \int_0^1 f(t^{\lambda_1}, \dots, t^{\lambda^L}) \lambda_P t^{\lambda_P} \dt.
+    \end{align*}
+\end{proposition}
+
+\begin{proof}[Proof of \cref{prop:many_sided_weighted}]
+    The proof uses the same approach as that of \cref{prop:many_sided_shapley}.
+    I will show that $X_n \xrightarrow[]{d} h(\xi)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $\xi$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
+
+    
+
 \end{proof}
 
 
@@ -916,7 +941,7 @@ Finally, with time, the cooperative approach to profit distribution could become
     \end{align*}
     Then $\Delta_n \xrightarrow[]{\mathrm{u}} \Delta$ uniformly on $[t, 1]$ for any $t > 0, \lambda > 0$.
 \end{lemma}
-\begin{proof}[Proof of Lemma \ref{lemma:log_convergence}]
+\begin{proof}[Proof of \cref{lemma:log_convergence}]
     First, note that $\Delta_n$ and $\Delta$ are all continuous functions.
     Then, following the standard proof for $\frac{\mathrm{d}}{\mathrm{d}s}log(s) = \frac{1}{s}$ rewrite $\Delta_n(s)$ as
     \begin{align*}
@@ -937,7 +962,7 @@ Finally, with time, the cooperative approach to profit distribution could become
         \lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) = \int_0^1 f(t) \dt.
     \end{align*}
 \end{lemma}
-\begin{proof}[Proof of Lemma \ref{lemma:integral_convergence}]
+\begin{proof}[Proof of \cref{lemma:integral_convergence}]
     \begin{align*}
         &\lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) \\
         &= \lim_{n \to \infty} \frac{b-a}{n} \left[ \sum_{k=1}^n f \left( a + \frac{b-a}{n} \right) + \sum_{k=1}^n \left( f_n \left( a + \frac{b-a}{n} \right) - f \left( a + \frac{b-a}{n} \right) \right) \right] \\
@@ -952,14 +977,14 @@ Finally, with time, the cooperative approach to profit distribution could become
 
 \section{Proofs of propositions and lemmas in the main text}
 
-\begin{proof}[Proof of Proposition \ref{prop:monotone}]
+\begin{proof}[Proof of \cref{prop:monotone}]
     Monotonicity is evident.
     For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$.
     WLOG assume it is the latter, therefore $v(S_2) = 0$.
     As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
 \end{proof}
 
-\begin{proof}[Proof of Proposition \ref{prop:one_sided}]
+\begin{proof}[Proof of \cref{prop:one_sided}]
     Let $R$ denote a permutation of the set of players ($N$).
     Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$.
     The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
@@ -1003,7 +1028,7 @@ Finally, with time, the cooperative approach to profit distribution could become
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of Lemma \ref{lem:entry_distr}] %\textcolor{red}{(Might have to fix sum indices)} \\
+\begin{proof}[Proof of \cref{lem:entry_distr}] %\textcolor{red}{(Might have to fix sum indices)} \\
     The probability of $P$ having at most fraction $t$ of the other players before itself is
     \begin{align*}
         \Pr(X_n \leq nt) &= \Pr(X_n \leq nt ) \\
@@ -1052,7 +1077,7 @@ Finally, with time, the cooperative approach to profit distribution could become
     The inequalities become strict if $f$ is not constant on the whole interval.
 \end{proof}
 
-\begin{proof}[Proof of Proposition \ref{prop:one_sided_weighted}]
+\begin{proof}[Proof of \cref{prop:one_sided_weighted}]
     The weighted value of player $P$ is its expected contribution across all permutations, with each permutation weighted by its probability of occurring.
     \begin{align*}
         \varphi_P^{n, \lambda} = \sum_R \Pr(R) [v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)]
@@ -1091,7 +1116,7 @@ Finally, with time, the cooperative approach to profit distribution could become
     $\lim_{\lambda \to \infty} \varphi^{\infty, \lambda}_P = f(1)$ can be shown along the same lines.
 \end{proof}
 
-\begin{proof}[Proof of Proposition \ref{prop:multiple_platforms}]
+\begin{proof}[Proof of \cref{prop:multiple_platforms}]
     \label{prop:one_sided_multiple}
     First, let us rewrite the expected marginal contribution of player $P_i$ in the following way:
     \begin{align*}
