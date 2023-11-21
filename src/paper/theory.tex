@@ -185,7 +185,7 @@ In other words, even though the fringe players become smaller and more numerous,
     \end{align*}
     Furthermore, if $f$ is differentiable on $[0, 1]$, then the value of the fringe can also be expressed as
     \begin{align*}
-        \varphi_A^\infty = \int_0^1 t G(t) f'(t) \dt.
+        \varphi_A^\infty = \int_0^1 G(t) f'(t) \dt.
     \end{align*}
 \end{corollary}
 
@@ -281,7 +281,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
         \end{tikzpicture}
         \caption{Fringe players are each other's complements}
     \end{subfigure}
-    \caption{Distribution of value between player $P$ and the fringe}
+    \caption{Distribution of value between player $P$ (red) and the fringe (blue)}
     \label{fig:one_sided}
 \end{figure}
 
@@ -294,21 +294,20 @@ Finally, the following corollary highlights that, even though the individual sha
 
 \subsection{Weighted values}
 
-Now let us turn to an extension of the Shapley-value, where the symmetry of the players is relaxed: the weighted value.
-Imagine a general non-cooperative game $(N, v)$ with $N = \{1, \dots, n\}$.
-Assume that, in addition to the value function $v : 2^n \to \mathbb{R}$, the game is now also endowed with a weight system $\lambda \in \mathbb{R}^n$.
-The main idea behind the weighted value is that, in contrast to the Shapley-value, even players that have the same contribution to each possible coalition do not necessarily get the same value.
+This section investigates the case when players have different levels of innate bargaining power.
+One way to model this is by using weighted values \parencite{shapley1953additive}, which are a generalization of the Shapley value.
+The idea behind them is that, in addition to the set of players and the characteristic function, the game is also endowed with a weight system, which is a vector of non-negative numbers, one for each player.
+These weights determine how the value of a coalition is distributed amongst its members in the case when they are all equally important for the coalition.
+This is a way to relax the symmetry axiom of Shapley values, while retaining more structure than in the case of the more general random order values.
 
-These weights can be thought of as measures of innate bargaining power \parencite{shapley1953additive}, not reflected in the value function.
-Further support for this interpretation can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{
+These weights can be thought of as the measure of some innate bargaining power, not reflected in the value function.\footnote{
+    Although, this interpretation is not always appropriate.
+    As \textcite{owen1968communications} demonstrates, there are games where the weighted value is not monotone increasing in a player's weight.
+}
+Further support for this interpretation in certain games can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{
     For example, only one player having a positive value corresponds to them making take it or leave it offers.
 }
-
-Although the values of oceanic games (i.e. the limits of the Shapley values of their finite approximations in finite games) are well known in the relevant literature, there are no similar results for weighted (Shapley) values.
-While providing very general results in the form of \textcite[]{fogelman1980asymptotic} is outside the scope of the paper\footnote{
-    They show that the (within some constraints) any discretization of an oceanic game converges to the same value.
-} the results in this section still provide some new insights into the weighted values of oceanic games.
-In particular, I show that the weighted value of a game with one large and many small players converges to a rather simple and intuitive expression, if the size of the small players go to zero at the same rate.
+Additionally, \textcite{stole1996intra} provides an alternative microfoundation for the weighted value in the case of non-binding contracts.
 
 For my purposes, it is sufficient to deal with the case of simple weights.
 I.e., assume that there is at most one player with zero weight.
@@ -321,9 +320,10 @@ This yields a well-defined probability for each permutation of players.
 Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively.
 Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the previously described procedure.
 Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
-\begin{align*}
-    \Pr(X_n \leq k) = \prod_{j=k+1}^n \frac{j}{j + \lambda} .
-\end{align*}
+\begin{align}
+    \label{eq:entry_distr_discrete}
+    \Pr(X_n \leq k) = \prod_{j=k+1}^n \frac{j}{j + \lambda}.
+\end{align}
 The following lemma establishes the continuous analogue of this statement.
 \begin{lemma}
     \label{lem:entry_distr}
@@ -331,8 +331,11 @@ The following lemma establishes the continuous analogue of this statement.
      Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
 
-Now let us turn to the main proposition of this section: the weighted value of player $P$ can again be expressed as an integral over the share of fringe players, but now it is weighted according to the previous probability distribution.
-Depending on the shape of this distribution (which in turn depends on the weight $\lambda$), regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
+Now we have everything we need to derive the weighted value of both types of players.
+Having \cref{eq:entry_distr_discrete} and \cref{lem:entry_distr} allows us to invoke \cref{prop:one_sided_general} to obtain the following proposition.\footnote{
+    \textcite{stole1996intra} also derives essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
+}
+
 \begin{proposition}
     \label{prop:one_sided_weighted}
     Let $f(t)$ be continuous on $[0, 1]$. Then
@@ -340,7 +343,16 @@ Depending on the shape of this distribution (which in turn depends on the weight
         \varphi_P(\lambda, \infty) = \int_0^1 g(t) f(t) \dt
     \end{align*}
     where $g(t) = \lambda t^{\lambda - 1}$.
+
+    Furthermore,
+    \begin{align*}
+        \varphi_A(\lambda, \infty) &= 1 - \int_0^1 g(t) f(t) \dt \\
+                                   &= \int_0^1 G(t) f'(t) \dt,
+    \end{align*}
+    where $G(t) = t^\lambda$.
 \end{proposition}
+
+Depending on the shape of this distribution (which in turn depends on the weight $\lambda$), regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
 
 \begin{figure}[ht]
     \centering
@@ -390,7 +402,7 @@ This set of results highlights that utilizing (weighted) Shapley values to model
     If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
 
-\subsection{Multiple big players}
+\subsection{Shapley value with multiple big players}
 
 Now imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
 That is, the fringe players still need one at least of them to achieve any value, but it does not matter which and how many of them are present.
@@ -413,8 +425,7 @@ For example, \textcite{hart1996bargaining} propose an interpretation when there 
 
 As before, the main proposition in this section provides us with an expression of the limit of the value for this variant of the game.
 Notably, as in the case of the weighted value, the share of player $P$ can again be expressed as an integral of $f$ and some weighting\footnote{
-    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case.
-    Nevertheless, it highlights the parallel between multiple big players and weighted values.
+    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case (\cref{fig:multiple_platforms}).
 } function $h(t)$, with the latter depending only on the number of big players.
 \begin{proposition}
     \label{prop:multiple_platforms}
@@ -425,13 +436,10 @@ Notably, as in the case of the weighted value, the share of player $P$ can again
     where $h(t) = (1-t) ^ {m-1}$.
 \end{proposition}
 
-\begin{corollary}
-    \label{cor:multiple_platforms}
-    The per-unit Shapley-value of the fringe is
-    \begin{align*}
-        \varphi_A^{\infty, m} = 1 - m\int_0^1 (1-t) ^ {m-1} f(t) \dt = \int_0^1 [1 - (1-t)^m] f'(t) \dt .
-    \end{align*}
-\end{corollary}
+As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation.
+Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit interval.
+The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players.
+That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
 
 \begin{figure}[ht]
     \centering
@@ -460,23 +468,177 @@ Notably, as in the case of the weighted value, the share of player $P$ can again
         \end{tikzpicture}
         \caption{$\int_0^t h(s) \ds$}
     \end{subfigure}
-    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case.}
+    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case -- individual big player.}
     \label{fig:multiple_platforms}
 \end{figure}
 
-As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation, and could have been obtained directly using the axiomatic approach.
-Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit cube.
-The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players.
-That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
+Let us examine the total value of all the big players.
+Denote the aggregated value of players of type $P$ as $\varphi_{P}^{\infty, m} \coloneqq \sum_{j=1}^m\varphi_{P_j}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$.
+It immediately follows from the previous proposition that
+\begin{align*}
+    \varphi_{P}^{\infty, m} = \int_0^1 g(t) f(t) \dt,
+\end{align*}
+where $g(t) = m (1-t) ^ {m-1}$.
+Notice that $g(t)$ now integrates to one, and is thus a probability distribution (\cref{fig:multiple_platforms_total}).
+Therefore, the Shapley value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
+The probability distribution for the corresponding random order value has a specific form, and its only parameter is the number of big players.
+Thus, all the results from the previous section apply to this case as well.
 
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=3.1, samples at={0, 0.02, 0.04, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0, 1, 2, 3}, axis lines=left, xlabel={$t$}, legend pos=north west]
+                \addplot[ultra thick] {1};
+                \addplot[ultra thick, dashed] {2 * (1-x)};
+                \addplot[ultra thick, dotted] {3 * ((1-x)^2)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$g(t)$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.1, samples at={0, 0.02, ..., 0.98, 1},
+                xtick={0, 1}, ytick={0, 1}, axis lines=left, xlabel={$t$}, legend pos=north west]
+                \addplot[ultra thick] {x};
+                \addplot[ultra thick, dashed] {2 * (x - x^2/2)};
+                \addplot[ultra thick, dotted] {3 * (x - x^2 + x^3/3)};
+                \legend{$m = 1$, $m = 2$, $m = 3$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\int_0^t g(s) \ds$}
+    \end{subfigure}
+    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case -- total of big players.}
+    \label{fig:multiple_platforms_total}
+\end{figure}
 
-The next corollary again demonstrates that the predicted outcomes confirm intuition.
-As the major players become more and more substitutable, the portion of the surplus they can capture decreases, and the aggregated value of the fringe increases (\cref{fig:multiple_platforms}).
+Now let us look at how the value of the big players and the fringe changes as a function of the number of the big players.
+Proposition \cref{cor:multiple_platforms_2} again confirms our intuition: more players means that they become more substitutable, and thus their bargaining power decreases.
+This not only means that the value of each individual big player decreases, but also that their total value goes down.
 
 \begin{corollary}
     \label{cor:multiple_platforms_2}
     Let $\varphi_{P}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant.
 \end{corollary}
+
+Finally, let us show that the value of the fringe has a similar, marginal contribution-based interpretation as in the case of a single big player.
+
+\begin{corollary}
+    \label{cor:multiple_platforms}
+    The per-unit Shapley-value of the fringe is
+    \begin{align*}
+        \varphi_A^{\infty, m} = 1 - \int_0^1 f(t) \dG(t) = \int_0^1 G(t) f'(t) \dt ,
+    \end{align*}
+    where $G(t) = 1 - (1-t)^m$.
+\end{corollary}
+
+
+\subsection{Non-indispensable big player}
+
+As a final extension for the one-sided case, let us examine what happens when the big player is not indispensable.
+Assume that it provides some value to any coalition, but a coalition of fringe players can achieve a positive value without it.
+Formally, the value function is the following:
+\begin{align*}
+    v(S) = \begin{cases}
+        f_0\left(\frac{n_A(S)}{n}\right) & P \notin S \\
+        f\left(\frac{n_A(S)}{n}\right)   & \text{otherwise}.
+    \end{cases}
+\end{align*}
+
+As in the case of multiple big players, monotonicity is straightforward to establish.
+\begin{proposition}
+    The game is monotone if $f$ is increasing and $f(t) \geq f_0(t) \geq 0 \forall t$.
+\end{proposition}
+Also similarly, superadditivity is not straightforward in general.
+Therefore, the simultaneous formation of multiple coalitions must be excluded in this setting as well.
+
+On the other hand, the random order values and their limits are very straightforward to characterize.
+The value of the big player is still its average marginal contribution.
+The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not simply $f(s)$, but rather $f(s) - f_0(s)$.
+This is because the big player is not indispensable, and thus the fringe can achieve some value without it.
+
+\begin{proposition}
+    \label{prop:one_sided_non_indispensable}
+    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
+    Then
+    \begin{align*}
+        \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \dG(t) = \int_0^1 g(t) [f(t) - f_0(t)] \dt,
+    \end{align*}
+    with the last equality holding if $X$ is a continuous random variable.
+\end{proposition}
+
+The value of the fringe is also similar to the baseline case, except now fringe players have a non-zero marginal contribution even when $P$ is not present.
+Therefore, there is an additional term in the integral, corresponding to the marginal value of the fringe when $P$ is not present.
+
+\begin{corollary}
+    \label{cor:fringe_value_non_indispensable}
+    The aggregated value of the fringe is
+    \begin{align*}
+        \varphi_A^\infty = f(1) - \int_0^1 f(t) - f_0(t) \dG(t).
+    \end{align*}
+    Furthermore, if $f$ and $f_0$ are differentiable on $[0, 1]$, then the value of the fringe can also be expressed as
+    \begin{align*}
+        \varphi_A^\infty = \int_0^1 G(t) f'(t) + (1 - G(t)) f'_0(t) \dt.
+    \end{align*}
+\end{corollary}
+
+It is clear that the value of the big player is decreasing in $f_0$ (\cref{fig:non_indispensable}).
+Consequently, the value of the fringe is increasing in $f_0$, which is essentially its outside option (what it can achieve without the big player).
+This is a natural result, and again, it is in line with what one would expect from bargaining theory.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                \addplot[name path=f, ultra thick] {x^0.5};
+                \addplot[name path=f0, ultra thick] {0.3 * x^0.5};
+                \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
+                \node[anchor=south west] at (axis cs: .8, .3*.8^0.5) {$f_0$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and f0];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f0 and bottom];
+
+                \node[anchor=north west, align=left] at (axis cs: .05, .95) {$\varphi_A^\infty$};
+                \node[anchor=south east, align=left] at (axis cs: .95, .05) {$\varphi_A^\infty$};
+                \node[anchor=north west, align=right] at (axis cs: .5, .5) {$\varphi_P^\infty$};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe can achieve relatively little without $P$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+                    xtick={0, 1}, ytick={0}, xlabel={$s$}]
+                \addplot[name path=f, ultra thick] {x^0.5};
+                \addplot[name path=f0, ultra thick] {0.7 * x^0.5};
+                \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
+                \node[anchor=north west] at (axis cs: .8, .7*.8^0.5) {$f_0$};
+                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+
+                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and f0];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+                \addplot [fill=red, fill opacity=0.05] fill between [of=f0 and bottom];
+
+                \node[anchor=north west, align=left] at (axis cs: .05, .95) {$\varphi_A^\infty$};
+                \node[anchor=south east, align=left] at (axis cs: .95, .05) {$\varphi_A^\infty$};
+                \node[anchor=north west, align=right] at (axis cs: .5, .7) {$\varphi_P^\infty$};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Fringe can achieve relatively more without $P$}
+    \end{subfigure}
+    \caption{Distribution of value between player $P$ (blue) and the fringe (red)}
+    \label{fig:non_indispensable}
+\end{figure}
 
 
 \section{Many-sided case}
