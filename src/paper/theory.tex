@@ -681,6 +681,7 @@ This is a natural result, and again, it is in line with what one would expect fr
 
 
 \section{Many-sided case}
+\label{sec:many_sided}
 
 Up until this point, we have only considered games with a single type of small player.
 Now imagine that, in addition to player $P$, there are $L$ types of smaller players: $\{A^l_1, \dots, A^l_n\}$ where $1 \leq l \leq L$.
@@ -870,10 +871,6 @@ Therefore, the integral is not taken with respect to the uniform distribution, b
 The result is the following: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
 The following, simple corollary formalizes this idea.
 
-
-
-
-
 \begin{figure}
     \centering
     \begin{tikzpicture}
@@ -902,6 +899,136 @@ The following, simple corollary formalizes this idea.
     $\varphi_P^\infty$ is increasing in $\lambda_P$ unless $f$ is constant.
 \end{corollary}
 
+
+\section{Example application}
+
+In this section I will apply the results of the previous sections to a simple model of two-sided platforms.
+I follow the modelling approach of the monopoly platform case in \textcite{armstrong2006competition}, with a few extensions.
+There are two major departures from the original model.
+First, and most importantly, instead of letting the platform choose entry fees, I assume that they are the result of a bargaining process, and the outcomes are described by the weighted value.
+Second, instead of assuming that each player's utility is linear in the number of the other side's players, I allow for more general (power) functions, which lets me capture the substitutability of the two sides.
+
+\subsection{Model}
+
+Imagine a two-sided market with a continuum of players on both sides.
+Furthermore, assume that there is a single platform that connects the two sides.
+The utility that a player on side $i$ derives from participating in the market is an increasing function\footnote{
+    \textcite{armstrong2006competition} -- along with much of the literature on two-sided markets \parencite[e.g.][]{rochet2003platform,hagiu2006pricing} -- assumes that the utility of a player is linear in the number of players on the other side.
+    Using a more general function allows me to model different degrees of network effects.
+} of the number of players on the other side ($n_j$), minus the entry fee charged by the platform ($p_i$):
+\begin{align*}
+    u_i = \alpha_i n_j ^ {\gamma_i} - p_i,
+\end{align*}
+where $\alpha \geq 0$ and $\gamma > 0$ determine the strength and shape of the network effects, respectively.
+
+Following \textcite{armstrong2006competition}, let us also model player entry in a reduced form manner.
+Assume that there is a continuum of potential entrants on both sides, and the number of actual entrants is an increasing function of the utility achieved after entering\footnote{
+    One possible microfoundation of this is assuming some idiosyncratic entry cost for the players.
+    Then, the number of entrants is the number of players for whom the utility of entering is higher than the entry cost.
+}:
+\begin{align*}
+    n_i = \phi_i(u_i).
+\end{align*}
+
+Finally, let us assume that the platform can charge lump-sum entry fees to both sides.
+These fees can also be negative, in which case they are interpreted as subsidies.
+The platform's profit is the sum of entry fees, minus the cost of serving the entrants ($F_i$ for each entrant):
+\begin{align*}
+    \pi(n_1, n_2) = n_1 p_1 + n_2 p_2 - F_1 n_1 - F_2 n_2.
+\end{align*}
+
+I will consider two cases as to the timing and nature of the price-setting process, as well as a welfare-maximizing benchmark.
+For the latter, I derive the entry fees that maximize social welfare, i.e. the sum of the utilities of the two sides plus the platform's profit.
+After that, I will first consider a model analogous to that in \textcite{armstrong2006competition}, where the platform can unilaterally commit to any entry fees it wishes.
+Finally, I consider a model in which entry fees are the result of a bargaining process in such a way that the resulting utilities and profits correspond to the various players' weighted values.
+
+\subsection{Benchmark: welfare-maximizing entry fees}
+
+Let us consider first what entry fees would maximize social welfare.
+Instead of approaching this problem directly, let us rely on the following observation: if entry fees correspond to the externality that a player's entry imposes on the other side, then the resulting choices are welfare-maximizing.
+In this specific case, there are two externalities to consider.
+First, it costs the platform $F_i$ to serve an additional player on side $i$.
+Second, the entry of a player on side $i$ increases the utility on side $j$ due to positive network effects.
+Welfare is maximized when the price reflects the balance of these two  factors:
+\begin{align*}
+    p_i^* &= F_i - n_j \frac{\partial u_j}{\partial n_i} \\
+          &= F_i - \alpha_j \gamma_j n_j n_i^{\gamma_j - 1}.
+\end{align*}
+As in \textcite{armstrong2006competition}, for any $\alpha_j > 0$ welfare-maximizing $F_i$ is below the platform's cost of serving player $i$.
+Thus, the platform's profit would necessarily be negative.
+It naturally cannot happen in the case when the platform sets the entry fees, or even the bargaining case.
+
+As an immediate corollary, utilities in this case are given by
+\begin{align*}
+    u_i^* = \alpha_i n_j ^ {\gamma_i} + \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} - F_i.
+\end{align*}
+Furthermore, the utility of type $i$ depends positively on both $\alpha_i$ (mechanically) and $\alpha_j$ (a stronger positive externality on the other players implies a lower entry fee and thus higher utility).
+Finally, if $n_i \geq e^{-\frac{1}{\gamma_j}}$, then $u_i$ is also increasing in $\gamma_j$.
+Both of the latter two effects are related to player $i$ being compensated for the positive externality it imposes on the other side.
+
+\subsection{Platform sets prices unilaterally}
+
+Now let us examine what happens when the platform sets the entry fees unilaterally.
+First, rewrite the platform's profit as a function of utilities, rather than the number of entrants:
+\begin{align*}
+    \pi(u_1, u_2) = \phi_1(u_1) [\alpha_1 \phi_2(u_2) ^ {\gamma_1} - u_1 - F_1] + \phi_2(u_2) [\alpha_2 \phi_1(u_1) ^ {\gamma_2} - u_2 - F_2].
+\end{align*}
+
+Let us assume that the above expression is concave, and thus the first order conditions characterize its maximum.
+Then, simply taking the partial derivatives with respect to $u_i$ yields the following condition for the optimal entry fees.
+\begin{proposition}
+    \label{prop:platform_unilateral}
+    If the platform can set entry fees unilaterally, then optimal entry fees for side $i$ are characterized by
+    \begin{align*}
+        p_i^u &= F_i - \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} + \frac{\phi_1(u_1)}{\phi'_1(u_1)} \\
+              &= p_i^* + \frac{\phi_1(u_1)}{\phi'_1(u_1)}.
+    \end{align*}
+\end{proposition}
+
+As one would expect, profit-maximizing entry fees are higher than welfare-maximizing ones.
+In addition to the comparative statics of the welfare-maximizing case, the platform's entry fees also depend on the elasticity of entry.
+When it is low, the platform will set a high entry fee, as the loss of entrants is small.
+
+For ease of comparison with the bargaining case, let us also derive the utilities in this case:
+\begin{align*}
+    u_i^u = \alpha_i n_j ^ {\gamma_i} + \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} - F_i - \frac{\phi_1(u_1)}{\phi'_1(u_1)}.
+\end{align*}
+Clearly, as equilibrium utilities must be smaller than in the welfare-maximizing case, due to $\phi_i$ being increasing, the number of entrants is also lower.
+
+\subsection{Bargaining}
+
+Finally, let us consider the case when the platform and the players bargain over the entry fees.
+To do this, let us impose some structure on the timing of the game.
+The idea is that even though the platform cannot commit to a specific entry fee structure anymore, it can commit to a bargaining process.
+Specifically, it is able to commit to a bargaining weight for each side and itself: $\lambda_P, \lambda_1, \lambda_2$.
+
+Then, the game proceeds as follows.
+In the first period, the platform chooses $\lambda_P, \lambda_1$ and $\lambda_2$.
+After that, potential antrants on both sides simultaneously decide whether to enter or not.
+Finally, in the last period, the platform and the entrants bargain over the entry fees, and utilities are realized according to their weighted values.
+
+Let us start by looking at the last period.
+Assume that $n_1$ and $n_2$ players have decided to enter on sides $1$ and $2$, respectively.
+Furthermore, assume that bargaining weights are $\lambda_1, \lambda_2$ and $\lambda_P$.
+
+The characteristic function of the game takes a similar form to that in \cref{sec:many_sided}.
+If the platform is not part of the coalition, then the value is zero.
+Otherwise, it is simply the sum of the utilities of the two sides minus the cost of serving them.\footnote{
+    The entry fees do not matter, as they are simply payments between coalition members, and thus do not affect the total value.
+}
+This value, as a function of the number of entrants, is
+\begin{align*}
+    f(n_1, n_2) = n_1 \alpha_1 n_2^{\gamma_1} + n_2 \alpha_2 n_1^{\gamma_2} - F_1 n_1 - F_2 n_2.
+\end{align*}
+
+The share received by each type of player is then easily established using \cref{prop:many_sided_weighted}.
+\begin{proposition}
+    \label{prop:platform_bargaining_last_period}
+    \begin{align*}
+        \pi_P(n_1, n_2) &= \int_0^1 \lambda_P t^{\lambda_P - 1} f(t_1^{\lambda_1} n_1, t_1^{\lambda_2} n_2) \dt \\
+        u_i(n_1, n_2) &= \int_0^1 t^{\lambda_P} \partial_i f(t_1^{\lambda_1} n_1, t_1^{\lambda_2} n_2) \dt
+    \end{align*}
+\end{proposition}
 
 \section{Conclusions}
 
