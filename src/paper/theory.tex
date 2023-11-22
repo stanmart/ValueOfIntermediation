@@ -753,11 +753,11 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
     with the last equality holding if $X$ is a continuous random variable.
 \end{proposition}
 
-While the above proposition is very general in terms of requirements on the permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire unit hypercube.
+While the above proposition is very general in terms of permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire unit hypercube.
 It would be much more convenient, if one only had to be concerned with a one-dimensional manifold within the hypercube instead.
-It turns out, that for a couple of important cases (namely, the Shapley-value and the weighted value) it is indeed the case.
+It turns out, that for a couple of important cases (namely, the Shapley value and the weighted value) it is indeed the case.
 
-Let us start by establishing a general result, after which I will show that the Shapley-value and the weighted value are special cases of it.
+Let us start by establishing a general result, after which I will show that the Shapley value and the weighted value are special cases of it.
 
 \begin{lemma}
     % TODO: check notation!
@@ -772,13 +772,28 @@ Let us start by establishing a general result, after which I will show that the 
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n &= \int_0^1 f(a_1(s), \dots a_L(s)) \mathrm{d}H(s).
     \end{align*}
-    Furthermore, the value of fringe $l$ has the following limit:
+    Furthermore, if $f$'s partial derivatives exist on $\{(a_1(t), \dots, a_L(t)) : t \in [0, 1]\}$ the value of fringe $l$ has the following limit:
     \begin{align*}
         \varphi_{A^l}^\infty = \lim_{n \to \infty} \varphi_{A^l}^n &= \int_0^1 H(s) \partial_l f(a_1(s), \dots a_L(s)) \ds.        
     \end{align*}
 \end{lemma}
 
+The lemma above states, that -- if its assumptions are satisfied -- one only has to be concerned with just a tiny fraction of the production function $f$.
+Namely, we only need to know how the function behaves on the set $\{(a_1(t), \dots, a_L(t)) : t \in [0, 1]\} \subset [0, 1]^L$.\footnote{
+    For the fringe players, we also need the partial derivatives.
+    Therefore, technically, the behavior of $f$ on some arbitrarily small neighborhood of the set also matters.
+}
+This result is essentially a generalization of the diagonal formula from \textcite{aumann2015values} or \textcite{stole1996intra} to the case where permutation probabilities are not uniform.
+The intuition behind it is the same: if the number of fringe players is large, then it is very unlikely that, after a random ordering, their proportion is very different from \emph{what it should be}.
+The main difference is that, in this case, the ``what it should be'' part is not uniform, but rather given by the $a_l$ functions.
+
+In the remainder of this section, I will show that the Shapley value satisfy the assumptions of the above lemma, and thus the limit of those values can be expressed as an integral over a one-dimensional path.
+
 \subsection{Shapley-value}
+
+Now let us turn our attention to the Shapley-value.
+As mentioned before, due to the uniformity of the permutation probabilities, we get a diagonal formula in this case.
+\Cref{prop:many_sided_shapley} establishes this result formally.
 
 \begin{proposition}
     \label{prop:many_sided_shapley}
@@ -792,6 +807,36 @@ Let us start by establishing a general result, after which I will show that the 
         \varphi_{A^l}^\infty = \int_0^1 t \partial_l f(t, \dots, t) \dt.
     \end{align*}
 \end{proposition}
+
+As displayed on \cref{fig:many_sided_shapley}, The value of player $P$ is the integral of $f$ over the diagonal of the unit hypercube.\footnote{
+    \textcite{stole1996intra} also obtain this expression for the limiting case of their bargaining game.
+    The proof of this proposition demonstrates a way to obtain it as a limit of the Shapley value of the finite games.
+}
+Furthermore, this result also demonstrates how the rest of the value is divided amongst the fringe players.
+Namely, those having higher marginal contributions along the diagonal get a larger share of the value.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$a_1$}, ylabel={$a_2$}, zlabel={$f(a_1,, a_2)$},
+            domain=0:1, y domain=0:1,
+            zmin=0, zmax=1,
+            xtick={0, 1}, ytick={0, 1}, ztick={0, 1},
+            zticklabels={0, {$f(1, 1)$}}, % use the literal expression as a label
+            view={60}{30}
+        ]
+            % plot the function
+            \addplot3[surf, shader=flat, draw=none, name path=f, fill opacity=0] {x*y};
+            % highlight the diagonal
+            \addplot3[black, name path=diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {0});
+            \addplot3[black, name path=f_diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {x^2});
+            \addplot[blue, fill opacity=0.5] fill between[of=diagonal and f_diagonal];
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Illustration of the Shapley value in the case of two types of fringe players. The blue area corresponds to the value of the platform (with a scaling factor of $\sqrt{2}$ to account for the length of the diagonal)}
+    \label{fig:many_sided_shapley}
+\end{figure}
 
 
 \subsection{Weighted value}
@@ -813,6 +858,49 @@ However, this path is not the diagonal of the unit hypercube, and depends on the
         \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt.
     \end{align*}
 \end{proposition}
+
+The intuition is the following.
+A higher weight for a player means that it has a higher chance of being relatively late in a random permutation.
+Therefore, conditional on $s$ proportion of the fringe coming before $P$, the various types' proportions do not reflect their population shares ($1/L$).
+For any $s \in (0, 1)$, the proportion of fringe players with a higher weight is lower than their population share, while the proportion of fringe players with a lower weight is higher than their population share.
+\Cref{fig:many_sided_weighted} illustrates this phenomenon in the case of two types of fringe players.
+
+Finally, player $P$'s probability of coming after $s$ proportion of the fringe is also not uniform, but rather influenced by the relationship between its own and the fringe players' weights.
+Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that of \cref{prop:one_sided_weighted}.
+The result is the following: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
+The following, simple corollary formalizes this idea.
+
+
+
+
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$a_1$}, ylabel={$a_2$}, zlabel={$f(a_1,, a_2)$},
+            domain=0:1, y domain=0:1,
+            zmin=0, zmax=1,
+            xtick={0, 1}, ytick={0, 1}, ztick={0, 1},
+            zticklabels={0, {$f(1, 1)$}}, % use the literal expression as a label
+            view={60}{30}
+        ]
+            % plot the function
+            \addplot3[surf, shader=flat, draw=none, name path=f, fill opacity=0] {x*y};
+            % highlight the diagonal
+            \addplot3[black, name path=diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {0});
+            \addplot3[black, name path=f_diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {x^4});
+            \addplot[blue, fill opacity=0.5] fill between[of=diagonal and f_diagonal];
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Illustration of the weighted value in the case of two types of fringe players. Players of type $A^2$ have a higher weight than those of type $A^1$, thus the integral is not taken over the diagonal. The blue area corresponds to the value of the platform (the area have to be scaled so that the length of the path integrated over is one)}
+    \label{fig:many_sided_weighted}
+\end{figure}
+
+\begin{corollary}
+    \label{cor:platform_value_multiple_sides_weighted}
+    $\varphi_P^\infty$ is increasing in $\lambda_P$ unless $f$ is constant.
+\end{corollary}
 
 
 \section{Example Application}
