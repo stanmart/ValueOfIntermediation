@@ -292,6 +292,45 @@ Finally, the following corollary highlights that, even though the individual sha
 \end{corollary}
 
 
+\paragraph{Example: power function.}
+
+Let us illustrate the results of this section with a simple example.
+Consider the case when $f(n) = n^\alpha$, for some $\alpha > 0$.
+Assume that the bargaining takes place between player $P$ and a measure $\bar{n}$ of fringe players.
+Thus, the value that the grand coalition can achieve is $\bar{n}^\alpha$.
+
+\Cref{prop:many_sided_shapley} shows that the value of player $P$ in this case is
+\begin{align*}
+    \varphi_P^\infty(\bar{n}) = \int_0^1 (s \bar{n})^\alpha = \frac{1}{\alpha + 1} \bar{n}^\alpha,
+\end{align*}
+while the fringe gets the rest, i.e.,
+\begin{align*}
+    \varphi_A^\infty(\bar{n}) = \bar{n}^\alpha - \frac{1}{\alpha + 1} \bar{n}^\alpha = \frac{\alpha}{\alpha + 1} \bar{n}^\alpha.
+\end{align*}
+
+In words, regardless of the value of $\bar{n}$, the two types of players share the total value in the same proportion.
+This proportion depends on the parameter $\alpha$ (\cref{fig:power_function_example}), which can be interpreted as the degree of substitutability between the fringe players.
+More specifically, the higher $\alpha$ is, the more complementary the fringe players are to each other, and the larger the share they obtain.
+In the limit, when $\alpha \to \infty$, the fringe obtains all the value, as essentially all players become indispensable, and share the total value equally.
+On the other hand, when $\alpha \to 0$, the big players can appropriate all the value.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[xmin=0, xmax=5, ymin=0, ymax=1, samples at={0, 0.05, ..., 4.95, 5},
+                xtick={0, 1, 2, 3, 4, 5}, ytick={0, 1},
+                xlabel={Complementarity between fringe players ($\alpha$)}, ylabel={Share of the fringe}]
+            \addplot[name path=f, ultra thick] {x / (1 + x)};
+            \node[anchor=north west] at (axis cs: 3, 3/4) {$\frac{\varphi_A^\infty(\bar{n})}{f(\bar{n})}$};
+            \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+            \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Example: share of the fringe as a function of $\alpha$ (degree of complementarity between fringe players)}
+    \label{fig:power_function_example}
+\end{figure}
+
+
 \subsection{Weighted values}
 
 This section investigates the case when players have different levels of innate bargaining power.
@@ -733,6 +772,10 @@ Let us start by establishing a general result, after which I will show that the 
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n &= \int_0^1 f(a_1(s), \dots a_L(s)) \mathrm{d}H(s).
     \end{align*}
+    Furthermore, the value of fringe $l$ has the following limit:
+    \begin{align*}
+        \varphi_{A^l}^\infty = \lim_{n \to \infty} \varphi_{A^l}^n &= \int_0^1 H(s) \partial_l f(a_1(s), \dots a_L(s)) \ds.        
+    \end{align*}
 \end{lemma}
 
 \subsection{Shapley-value}
@@ -743,6 +786,10 @@ Let us start by establishing a general result, after which I will show that the 
     Then,
     \begin{align*}
         \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt
+    \end{align*}
+    and
+    \begin{align*}
+        \varphi_{A^l}^\infty = \int_0^1 t \partial_l f(t, \dots, t) \dt.
     \end{align*}
 \end{proposition}
 
@@ -759,17 +806,13 @@ However, this path is not the diagonal of the unit hypercube, and depends on the
     Let $f$ be continuous on $[0, 1]^L$.
     Then,
     \begin{align*}
-        \varphi_P^\infty & = \int_0^1 f(t^{\lambda_1}, \dots, t^{\lambda^L}) \lambda_P t^{\lambda_P} \dt.
+        \varphi_P^\infty & = \int_0^1 \lambda_P t^{\lambda_P - 1} f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt
+    \end{align*}
+    and
+    \begin{align*}
+        \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt.
     \end{align*}
 \end{proposition}
-
-\begin{proof}[Proof of \cref{prop:many_sided_weighted}]
-    The proof uses the same approach as that of \cref{prop:many_sided_shapley}.
-    I will show that $X_n \xrightarrow[]{d} h(\xi)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $\xi$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
-
-    
-
-\end{proof}
 
 
 \section{Example Application}
@@ -1383,6 +1426,14 @@ Finally, with time, the cooperative approach to profit distribution could become
     \begin{align*}
         \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt.
     \end{align*}
+
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:many_sided_weighted}]
+    The proof uses the same approach as that of \cref{prop:many_sided_shapley}.
+    I will show that $X_n \xrightarrow[]{d} h(\xi)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $\xi$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
+
+    
 
 \end{proof}
 
