@@ -775,7 +775,7 @@ Let us start by establishing a general result, after which I will show that the 
     \end{align*}
     Furthermore, if $f$'s partial derivatives exist on $\{(a_1(t), \dots, a_L(t)) : t \in [0, 1]\}$ the value of fringe $l$ has the following limit:
     \begin{align*}
-        \varphi_{A^l}^\infty = \lim_{n \to \infty} \varphi_{A^l}^n &= \int_0^1 H(s) \partial_l f(a_1(s), \dots a_L(s)) \ds.        
+        \varphi_{A^l}^\infty = \lim_{n \to \infty} \varphi_{A^l}^n &= \int_0^1 H(s) a_l'(s) \partial_l f(a_1(s), \dots a_L(s)) \ds.        
     \end{align*}
 \end{lemma}
 
@@ -856,7 +856,7 @@ However, this path is not the diagonal of the unit hypercube, and depends on the
     \end{align*}
     and
     \begin{align*}
-        \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt.
+        \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt.
     \end{align*}
 \end{proposition}
 
@@ -1018,16 +1018,18 @@ Otherwise, it is simply the sum of the utilities of the two sides minus the cost
 }
 This value, as a function of the number of entrants, is
 \begin{align*}
-    f(n_1, n_2) = n_1 \alpha_1 n_2^{\gamma_1} + n_2 \alpha_2 n_1^{\gamma_2} - F_1 n_1 - F_2 n_2.
+    w(n_1, n_2) = n_1 \alpha_1 n_2^{\gamma_1} + n_2 \alpha_2 n_1^{\gamma_2} - F_1 n_1 - F_2 n_2.
 \end{align*}
 
 The share received by each type of player is then easily established using \cref{prop:many_sided_weighted}.
 \begin{proposition}
     \label{prop:platform_bargaining_last_period}
-    \begin{align*}
-        \pi_P(n_1, n_2) &= \int_0^1 \lambda_P t^{\lambda_P - 1} f(t_1^{\lambda_1} n_1, t_1^{\lambda_2} n_2) \dt \\
-        u_i(n_1, n_2) &= \int_0^1 t^{\lambda_P} \partial_i f(t_1^{\lambda_1} n_1, t_1^{\lambda_2} n_2) \dt
-    \end{align*}
+    Let $f(t_1, t_2) = w(t_1 n_1, t_2 n_2)$. Then the weighted values of the various sides are
+    \begin{alignat*}{4}
+        \varphi_P(n_1, n_2) &= \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_P^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_P^{b_2}} \alpha_2 n_2 n_1^{\gamma_2} &&- \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_1}}_{\coloneqq S_P^{c_1}} n_1 F_1 &&- \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_2}}_{\coloneqq S_P^{c_2}} n_2 F_2 \\
+        \varphi_1(n_1, n_2) &= \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_1^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_1 \gamma_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_1^{b_2}}  \alpha_2 n_2 n_1^{\gamma_2} &&- \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1}}_{\coloneqq S_1^{c_1}} n_1 F_1 && \\
+        \varphi_2(n_1, n_2) &= \underbracket{\frac{\lambda_2\gamma_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_2^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_2^{b_1}} \alpha_2 n_2 n_1^{\gamma_2} && &&- \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2}}_{\coloneqq S_2^{c_2}} n_2 F_2.
+    \end{alignat*}
 \end{proposition}
 
 \section{Conclusions}
