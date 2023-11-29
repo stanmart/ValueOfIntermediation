@@ -924,18 +924,18 @@ where $\alpha \geq 0$ and $\gamma > 0$ determine the strength and shape of the n
 
 Following \textcite{armstrong2006competition}, let us also model player entry in a reduced form manner.
 There is a continuum of potential entrants on both sides of the market.
-Assume that the total utility of a player on side $i$ also includes an idiosyncratic component.
-Let us order the players on side $i$ by this idiosyncratic utility in a decreasing manner.
-That is, if we denote the idiosyncratic utility of player $n$ on side $i$ as $\epsilon_i(n)$, then $\epsilon_i$ is strictly decreasing in $n$.
-Also assume that $\lim_{n \to \infty} \epsilon_i(n) = -\infty$.
+Assume that the total utility of an entrant on side $i$ also includes an idiosyncratic cost component.
+Let us order the players on side $i$ by this idiosyncratic cost in an increasing manner.
+That is, if we denote the idiosyncratic utility of player $n$ on side $i$ as $\kappa_i(n)$, then $\kappa_i$ is strictly increasing in $n$.
+Also assume that $\lim_{n \to \infty} \kappa_i(n) = \infty$.
 
 Entry is given by the usual assumption that a player enters if and only if the total utility of entering is non-negative.
 
-Due to the properties of $\epsilon_i$, this implies that there is a well-defined, finite number of entrants on each side.
+Due to the properties of $\kappa_i$, this implies that there is a well-defined, finite number of entrants on each side.
 Let us denote the number of entrants as a function of their non-idiosyncratic utility as $\phi_i(u_i)$.
 Then, the total number of players on side $i$ is 
 \begin{align*}
-    n_i = \phi_i(u_i) = \epsilon_i^{-1}(u_i),
+    n_i = \phi_i(u_i) = \kappa_i^{-1}(u_i),
 \end{align*}
 where $\phi_i$ has the same role as in \textcite{armstrong2006competition}.
 
@@ -979,9 +979,10 @@ Finally, if $n_i \geq e^{-\frac{1}{\gamma_j}}$, then $u_i$ is also increasing in
 Both of the latter two effects are related to player $i$ being compensated for the positive externality it imposes on the other side.
 
 One can also obtain the total welfare of side $i$, as it is simply the number of entrants plus the non-idiosyncratic utility of its players, plus the sum (integral) of the idiosyncratic utilities.
-\begin{align*}
-    w_i^*(n_i, n_j) = \alpha_i n_i n_j ^ {\gamma_i} + \gamma_j \alpha_j n_j n_i^{\gamma_j} - n_i F_i + \int_0^{n_i} \epsilon_i(s) \ds.
-\end{align*}
+\begin{align}
+    \label{eq:W_star}
+    W_i^*(n_i, n_j) = \alpha_i n_i n_j ^ {\gamma_i} + \gamma_j \alpha_j n_j n_i^{\gamma_j} - n_i F_i - \int_0^{n_i} \kappa_i(s) \ds.
+\end{align}
 
 \subsection{Platform sets prices unilaterally}
 
@@ -1009,27 +1010,25 @@ When it is low, the platform will set a high entry fee, as the loss of entrants 
 For ease of comparison with the bargaining case, let us also derive the utilities in this case:
 \begin{align*}
     u_i^u(n_1, n_2) &= \alpha_i n_j ^ {\gamma_i} + \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} - F_i - \frac{\phi_1(u_i)}{\phi'_1(u_i)} \\
-    &= \alpha_i n_j ^ {\gamma_i} + \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} - F_i - n_i \epsilon'_i(n_i).
+    &= \alpha_i n_j ^ {\gamma_i} + \alpha_j \gamma_j n_j n_i^{\gamma_j - 1} - F_i - n_i \kappa'_i(n_i).
 \end{align*}
 Welfare of side $i$ immediately follows in this case, too:
 \begin{align*}
-    U_i^u(n_1, n_2) = \alpha_i n_i n_j ^ {\gamma_i} + \gamma_j \alpha_j n_j n_i^{\gamma_j} - n_i F_i - n_i^2 \epsilon'_i(n_i) + \int_0^{n_i} \epsilon_i(s) \ds.
+    \label{eq:W_u}
+    W_i^u(n_1, n_2) = \alpha_i n_i n_j ^ {\gamma_i} + \gamma_j \alpha_j n_j n_i^{\gamma_j} - n_i F_i - n_i^2 \kappa'_i(n_i) - \int_0^{n_i} \kappa_i(s) \ds.
 \end{align*}
 Clearly, equilibrium utilities must be smaller than in the welfare-maximizing case, due to $\phi_i$ being increasing, the number of entrants is also lower.
 
 \subsection{Bargaining}
 
 Finally, let us consider the case when the platform and the players bargain over the value they generate.
-To do this, let us impose some structure on the timing of the game.
-The idea is that even though the platform cannot commit to a specific entry fee structure anymore, it can commit to a bargaining process.
-Specifically, it is able to commit to a bargaining weight for each side and itself: $\lambda_P, \lambda_1, \lambda_2$.
+I will approach this problem in two steps.
+First, I will examine the distribution of the value generated in the case of no idiosyncratic cost.
+I do this because this partial result has a neat interpretation, and is very tractable.
+After that, I derive how the total idiosyncratic cost is distributed between the players.
+Because of the linearity of random order values, the total welfare in the general case is simply the sum of these two building blocks.
 
-Then, the game proceeds as follows.
-In the first period, the platform chooses $\lambda_P, \lambda_1$ and $\lambda_2$.
-After that, potential antrants on both sides simultaneously decide whether to enter or not.
-Finally, in the last period, the platform and the entrants bargain over the entry fees, and utilities are realized according to their weighted values.
-
-Let us start by looking at the last period.
+Let us start by examining the case when there is no idiosyncratic cost.
 Assume that $n_1$ and $n_2$ players have decided to enter on sides $1$ and $2$, respectively.
 Furthermore, assume that bargaining weights are $\lambda_1, \lambda_2$ and $\lambda_P$.
 
@@ -1046,11 +1045,11 @@ This value, as a function of the number of entrants, is
 The share received by each type of player is then easily established using \cref{prop:many_sided_weighted}.
 \begin{proposition}
     \label{prop:platform_bargaining_last_period}
-    Let $f(t_1, t_2) = w(t_1 n_1, t_2 n_2)$. Then the weighted values of the various sides are
+    The weighted values of the various sides without idiosyncratic costs are
     \begin{alignat*}{4}
         \pi_P^b(n_1, n_2) &= \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_P^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_P^{b_2}} \alpha_2 n_2 n_1^{\gamma_2} &&- \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_1}}_{\coloneqq S_P^{c_1}} n_1 F_1 &&- \underbracket{\frac{\lambda_P}{\lambda_P + \lambda_2}}_{\coloneqq S_P^{c_2}} n_2 F_2 \\
-        U_1^b(n_1, n_2) &= \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_1^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_1 \gamma_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_1^{b_2}}  \alpha_2 n_2 n_1^{\gamma_2} &&- \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1}}_{\coloneqq S_1^{c_1}} n_1 F_1 && \\
-        U_2^b(n_1, n_2) &= \underbracket{\frac{\lambda_2\gamma_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_2^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_2^{b_1}} \alpha_2 n_2 n_1^{\gamma_2} && &&- \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2}}_{\coloneqq S_2^{c_2}} n_2 F_2.
+        w_1^b(n_1, n_2) &= \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_1^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_1 \gamma_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_1^{b_2}}  \alpha_2 n_2 n_1^{\gamma_2} &&- \underbracket{\frac{\lambda_1}{\lambda_P + \lambda_1}}_{\coloneqq S_1^{c_1}} n_1 F_1 && \\
+        w_2^b(n_1, n_2) &= \underbracket{\frac{\lambda_2\gamma_1}{\lambda_P + \lambda_1 + \lambda_2\gamma_1}}_{\coloneqq S_2^{b_1}} \alpha_1 n_1 n_2^{\gamma_1} &&+ \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2 + \lambda_1\gamma_2}}_{\coloneqq S_2^{b_1}} \alpha_2 n_2 n_1^{\gamma_2} && &&- \underbracket{\frac{\lambda_2}{\lambda_P + \lambda_2}}_{\coloneqq S_2^{c_2}} n_2 F_2.
     \end{alignat*}
 \end{proposition}
 
@@ -1064,7 +1063,60 @@ Furthermore, all of these shares are increasing in one's own bargaining weight, 
 Finally, the share of side $i$ from the value generated on side $j$ is also increasing in $\gamma_j$.
 This means that if players on side $i$ are less substitutable / more complementary in terms of generating utility on side $j$, then they will receive a larger share of the value generated on that side.
 
-Let us look at the per-player utilities to 
+Let us now turn our attention to the idiosyncratic cost component.
+Assume that, even though entrants with different costs have different contribution to the total value, there can be no discrimination between them.
+That is, they each must share the same fraction of the total idiosyncratic cost (e.g. have the same value).
+
+Let us denote the total idiosyncratic cost incurred by all players on both sides as $K(n_1, n_2)$.
+Also, suppose that if $n_i$ players enter on side $i$, then they are the ones with the lowest idiosyncratic cost.
+Then, the total idiosyncratic cost is simply the sum of the idiosyncratic costs of the entrants on both sides:
+\begin{align*}
+    K(n_1, n_2) = \int_0^{n_1} \kappa_1(s) \ds + \int_0^{n_2} \kappa_2(s) \ds.
+\end{align*}
+Again, one can obtain the weighted values of all sides using \cref{prop:many_sided_weighted}.
+\begin{proposition}
+    \label{prop:platform_bargaining_idiosyncratic}
+    The weighted values of the idiosyncratic cost component are
+    \begin{align*}
+        K_P(n_1, n_2) &= \sum_{i \in \{1, 2\}} \int_0^{n_1} \left[ 1 - \lambda_i \left( \frac{s}{n_i} \right)^{\lambda_P + \lambda_i - 1} \right] \kappa_i(s) \ds, \\
+        K_i(n_1, n_2) &= \lambda_i \int_0^{n_1} \left( \frac{s}{n_i} \right)^{\lambda_P + \lambda_i - 1} \kappa_i(s) \ds.
+    \end{align*}
+\end{proposition}
+
+That is, each side only has to bear some part of the total idiosyncratic cost, and the rest is shared with the platform.
+As with the rest of the value, the share of the idiosyncratic cost is increasing in one's own bargaining weight.
+This might seem counterintuitive at first, as one may expect that a player with a higher bargaining weight would be able to shift more of the cost to the other side.
+However, in the case of random order values, this intuition is only correct for monotonic games, which it is not in this case.
+One has to keep in mind though that this is just part of the final payoffs, and the other parts are increasing in one's own bargaining weight.
+Therefore, as long as the combined game is monotonic, the final payoffs will be increasing in one's own bargaining weight.
+
+Let us finally consider total welfare.
+As mentioned before, it is simply the sum of the value generated and the idiosyncratic cost.
+That is, the welfare of side $i \in \{1, 2\}$ is
+\begin{align*}
+    W_i^b(n_1, n_2) &= \frac{\lambda_i}{\lambda_P + \lambda_i + \lambda_j\gamma_i} \alpha_i n_i n_j^{\gamma_i} + \frac{\lambda_i \gamma_j}{\lambda_P + \lambda_j + \lambda_i\gamma_j} \alpha_j n_j n_i^{\gamma_j} - \frac{\lambda_i}{\lambda_P + \lambda_i} n_i F_i \\
+    &- \lambda_i \int_0^{n_1} \left( \frac{s}{n_i} \right)^{\lambda_P + \lambda_i - 1} \kappa_i(s) \ds.
+\end{align*}
+It is remarkably similar in structure to the welfare maximizing case in \cref{eq:W_star}.
+The main difference is that each part (both costs and positive utilities) is reweighted, and side $i$ only receives a fraction of it.
+It is also worth noting that $W_i^b(n_1, n_2) < W_i^*(n_1, n_2)$, and, as a consequence, entry is lower than what would be socially optimal.\footnote{
+    The easiest way to see it is that in the welfare-maximizing case the platform's profit is negative, while in the bargaining case it is positive.
+    Therefore, fringe utilities must be lower in the latter case.
+}
+
+For better comparison, let us also examine implied entry fees and non-idiosyncratic utilities.
+The latter is the difference between the average welfare and the average idiosyncratic cost:
+\begin{align*}
+    u_i^b(n_1, n_2) &= \frac{\lambda_i}{\lambda_P + \lambda_i + \lambda_j\gamma_i} \alpha_i n_j^{\gamma_i} + \frac{\lambda_i \gamma_j}{\lambda_P + \lambda_j + \lambda_i\gamma_j} \alpha_j n_j n_i^{\gamma_j - 1} - \frac{\lambda_i}{\lambda_P + \lambda_i} F_i \\
+    &+ \int_0^{n_1} \left[ 1 - \lambda_i \left( \frac{s}{n_i} \right)^{\lambda_P + \lambda_i - 1} \right] \kappa_i(s) \ds.
+\end{align*}
+If one wished to close the model, the number of entrants in equilibrium could be obtained by solving the system of equations $\kappa_i(n_i) = u_i(n_1, n_2), n \in \{1, 2\}$.
+Finally, the implied entry fees can be calculated from the equation $u_i = \alpha_i n_j^{\gamma_i} - p_i$, yielding
+\begin{align*}
+    p_i^b(n_1, n_2) &= \frac{\lambda_i}{\lambda_P + \lambda_i} F_i - \frac{\lambda_i \gamma_j}{\lambda_P + \lambda_j + \lambda_i\gamma_j} \alpha_j n_j n_i^{\gamma_j - 1} + \frac{\lambda_P + \lambda_j\gamma_i}{\lambda_P + \lambda_i + \lambda_j\gamma_i} \alpha_i n_j^{\gamma_i} \\
+    &- \int_0^{n_1} \left[ 1 - \lambda_i \left( \frac{s}{n_i} \right)^{\lambda_P + \lambda_i - 1} \right] \kappa_i(s) \ds.
+\end{align*}
+
 
 
 \section{Conclusions}
