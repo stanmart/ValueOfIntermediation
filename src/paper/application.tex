@@ -215,8 +215,9 @@ The following assumption describes this case.
     Each type of player gets their Shapley value in this game:
     \begin{align*}
         \pi_P(N_P, N_F, N_C) &= \varphi_P(\mathcal{G}), \\
-        \pi_F(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}).
+        \pi_F(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}),
     \end{align*}
+    where $\varphi_i(\mathcal{G})$ denotes the Shapley value of player(s) $i$ in game $\mathcal{G}$.
 \end{assumption}
 
 While this assumption might seem somewhat abstract, the resulting profit allocations are remarkably simple, and can be expressed as integrals (expectations) over the marginal contributions of the players.
@@ -259,7 +260,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, black, thick] {x^2};
-                \node[anchor= east] at (axis cs: .9, .9^2) {$N_C f(N_P, sN_F)$};
+                \node[anchor= east] at (axis cs: .5, .5^2) {$N_C f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
     
@@ -278,7 +279,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, black, thick] {x^0.5};
-                \node[anchor=north west] at (axis cs: .6, .6^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
+                \node[anchor=north west] at (axis cs: .5, .5^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
     
@@ -312,8 +313,9 @@ The cooperative game describing this situation is formalized in \cref{ass:profit
     \begin{align*}
         \pi_P(N_P, N_F, N_C) &= \varphi_P(\mathcal{G}), \\
         \pi_F(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}), \\
-        \pi_C(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}).
+        \pi_C(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}),
     \end{align*}
+    where $\varphi_i(\mathcal{G})$ denotes the Shapley value of player(s) $i$ in game $\mathcal{G}$.
 \end{assumption}
 
 As in the one-sided case, simple expressions exist for these various shares.
@@ -401,18 +403,18 @@ This particular shape is also the main driver for the following results about th
     \centering
     \begin{tikzpicture}[xscale=2,yscale=2,samples=200]
         \draw[->] (0,0) -- (0,2);
-        \draw[->] (0,0) -- (5.5,0) node[below] {$n_F$};
+        \draw[->] (0,0) -- (5.5,0) node[below] {$N_F$};
 
         \draw[name path=piF,domain=0.01:5.5,variable=\x,black,thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
         \draw[name path=IF,domain=0.01:5.5,variable=\x,black,dashed,thick] plot ({\x},{(\x)/3});
-        \node[anchor=north east] at (5,1) {$\pi_F(N_P, N_F)$};
+        \node[anchor=north east] at (5,1) {$\pi_F(N_P, N_F, N_C)$};
         \node[anchor=south east] at (5,5/3) {$I_F N_F$};
 
         \fill [name intersections={of=piF and IF, name=i, total=\t}]
             [black] (i-2) circle (1pt);
         \draw[dashed] (i-2) -- (i-2 |- 0,0) node[below] {$N_F^*$};
     \end{tikzpicture}
-    \caption{An example free entry equilibrium under \cref{ass:single_crossing}}
+    \caption{An example free entry equilibrium. \Cref{ass:single_crossing} states that the fringe profit function is concave or hump-shaped in $N_F$, guaranteeing at most one intersection with the linear entry cost function.}
     \label{fig:equilibrium}
 \end{figure}
 
@@ -548,7 +550,7 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
         \end{tikzpicture}
         \caption{Profit shares with $N_P = 0.5$}
     \end{subfigure}
-    \caption{Illustration of \cref{prop:share_of_fringe} (fringe firms are substitutes, $f(N_P, N_F) = \sqrt{N_P + N_F}$)}
+    \caption{Illustration of \cref{prop:share_of_fringe} when fringe and platforrm products are substitutes. An increase in the platform's product variety increases total profits, yet, the fringe's share decreases in absolute terms.}
     \label{fig:increase_N_P_fringe}
 \end{figure}
 
@@ -570,7 +572,7 @@ The previous proposition implies an almost immediate corollary regarding the equ
     \end{align*}
 \end{corollary}
 That is, the equilibrium number of entrants increases as a response to an increase in $N_P$ if the fringe firms are mostly complements, and decreases if they are mostly substitutes.
-The reason simply lies in the concave or hump-shaped fringe profit function.
+The underlyong reason is again the concave or hump-shaped fringe profit function.
 If $N_F^*$ is an equilibrium, then fringe profits minus entry costs are strictly positive for all $N_F \leq N_F^*$ and strictly negative for all $N_F > N_F^*$.
 Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F \geq 0$, equilibrium can be restored by decreasing the number of fringe entrants, and vice versa for the other case (\cref{fig:comparative_N_F}).
 
@@ -578,14 +580,14 @@ Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F
     \centering
     \begin{tikzpicture}[xscale=2,yscale=2,samples=200]
         \draw[->] (0,0) -- (0,2);
-        \draw[->] (0,0) -- (5.5,0) node[below] {$n_F$};
+        \draw[->] (0,0) -- (5.5,0) node[below] {$N_F$};
 
         \draw[name path=piF,domain=0.01:5.5,variable=\x,black, thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
         \draw[name path=piF2,domain=0.01:5.5,variable=\x,black, thick] plot ({\x},{6*((\x)/(0.3+\x))-6*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
         \draw[name path=IF,domain=0.01:5.5,variable=\x,black,dashed,thick] plot ({\x},{(\x)/3});
 
-        \node[anchor=south] at (5,1) {$\pi_F(N_P, n_F)$};
-        \node[anchor=north] at (5,0.6) {$\pi_F(N_P', n_F)$};
+        \node[anchor=south] at (5,1) {$\pi_F(N_P, N_F, N_C)$};
+        \node[anchor=north] at (5,0.6) {$\pi_F(N_P', N_F, N_C)$};
         \node[anchor=south east] at (5,5/3) {$I_F n_F$};
 
         \fill [name intersections={of=piF and IF, name=i, total=\t}]
@@ -593,11 +595,11 @@ Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F
         \draw[dashed] (i-2) -- (i-2 |- 0,0) node[below] {$N_F^*$};
         \fill [name intersections={of=piF2 and IF, name=i2, total=\t}]
             [black] (i2-2) circle (1pt);
-        \draw[dashed] (i2-2) -- (i2-2 |- 0,0) node[below] {$N_F^{*'}$};
+        \draw[dashed] (i2-2) -- (i2-2 |- 0,0) node[below] {${N_F^*}'$};
 
         \draw[->] (i-2 |- 0,0.5) -- (i2-2 |- 0,0.5);
     \end{tikzpicture}
-    \caption{Illustration of comparative statics for equilibrium entry}
+    \caption{Illustration of comparative statics for equilibrium entry. If the change in $N_P$ decreases the fringe's profits for every $N_F \geq 0$, equilibrium can be restored by decreasing the number of fringe entrants, and vice versa for the other case.}
     \label{fig:comparative_N_F}
 \end{figure}
 
@@ -619,19 +621,26 @@ Intuitively, this means that -- in terms of total profits generated -- the platf
     \begin{align*}
         \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}.
     \end{align*}
+    Furthermore,
+    \begin{align*}
+        \frac{\partial \Pi(N_P, N_F^*(N_P), N_C)}{\partial N_P} < 0.
+    \end{align*}
 \end{proposition}
-As opposed to the previous results, this proposition tells us something about the total profits generated by the platform and the fringe firms as a function of the platform's product variety, and under equilibrium entry behavior by the fringe firms.
-In particular, it states that total profits increase if the total profit function is convex (products are substitutes), and decreases otherwise.
+
+The first part of this proposition is a stronger version of \cref{cor:fringe_entry}.
+It states that, not only does the equilibrium number of fringe firms decrease as a response to an increase in $N_P$, but it establishes a lower bound for this decrease.
+And, as the second part shows, this bound is sufficient to guarantee that the total size of the pie ($\Pi(N_P, N_F, N_C)$) also decreases in equilibrium.
+
 This result has particularly strong implications in models where total profits (or total product variety) has a monotone relationship with consumer welfare, such as those in \textcite{anderson2020aggregative}.
-\Cref{sec:example} also presents a model in which this is the case.
+\Cref{sec:example} also presents a demand system which satisfies this property.
 
 
 \section{Logit demand}
 \label{sec:example}
 
 Let us now add more structure to the model, and microfound the profit function $\Pi$.
-The model in this section is heavily inspired by the logit-like demand structure and hybrid platform setting in  \textcite{anderson2021hybrid}.
-The setting is a (possibly hybrid) platform market with monopolistically competing fringe firms.
+The model in this section is heavily inspired by the logit-like demand structure and hybrid platform setting in \textcite{anderson2021hybrid}.
+The setting can be thought of as a (possibly hybrid) platform market with monopolistically competing fringe firms.
 
 \subsection{Setup}
 
@@ -1112,6 +1121,35 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 \section{Proofs and additional lemmas}
 
 \begin{lemma}
+    \label{lem:single_crossing_affine_transformation}
+    Let $g: \mathbb{R}^+ \to \mathbb{R}$ be a twice continuously differentiable function.
+    Define
+    \begin{align*}
+        G(x) = \int_0^x g(sx) \ds.
+    \end{align*}
+    Assume that for any $x \geq 0$, $G'(x) < 0$ or $G''(x) < 0$.
+
+    Let $h(x) = c g(a + bx)$ for some $a, c > 0$ and $b > 0$.
+    Then the function $H(x) = \int_0^1 h(sx) \ds$ satisfies the same conditions: for any $x \geq 0$, $h'(x) < 0$ or $h''(x) < 0$.
+\end{lemma}
+\begin{proof}[Proof of \cref{lem:single_crossing_affine_transformation}]
+    Differentiating $H$ yields
+    \begin{align*}
+        H'(x) &= \int_0^1 h'(sx) \ds \\
+              &= \int_0^1 c b g'(a + bsx) \ds \\
+              &= c b G'(a + bsx).
+    \end{align*}
+    Similarly, the second derivative is
+    \begin{align*}
+        H''(x) &= \int_0^1 h''(sx) \ds \\
+               &= \int_0^1 c b^2 g''(a + bsx) \ds \\
+               &= c b^2 G''(a + bsx).
+    \end{align*}
+    Now, for any $x \geq 0$, $y = a + bsx \geq 0$, therefore $G'(y) < 0$ or $G''(y) < 0$.
+    As $c, b > 0$, this implies that $H'(x) < 0$ or $H''(x) < 0$.
+\end{proof}
+
+\begin{lemma}
     \label{lem:slope_at_eq}
     Let the conditions in \cref{ass:single_crossing} hold. Then for any $N_F^* > 0$ for which $\pi_F(N_P, N_F^*) = I_F$, the partial derivative with respect to the number of fringe firms is smaller than the investment cost:
     \begin{align*}
@@ -1237,7 +1275,15 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     Therefore, the initial assumption that $\frac{\partial N_F^*}{\partial N_P} \geq -\frac{\alpha}{\beta}$ was wrong.
     As we have from \cref{cor:fringe_entry} that $\frac{\partial N_F^*}{\partial N_P}$ exists, it must be the case that
     \begin{align*}
-        \frac{\partial N_F^*}{\partial N_P} < \frac{\alpha}{\beta}
+        \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}.
+    \end{align*}
+
+    To prove the second part of the proposition, differentiate total profits with respect to $N_P$:
+    \begin{align*}
+        \frac{\partial \Pi(N_P, N_F^*(N_P), N_C)}{\partial N_F} &= \frac{\partial}{\partial N_F} N_C g(\alpha N_P + \beta N_F^*(N_P)) \\
+        &= \underbrace{N_C g'(\alpha N_P + \beta N_F^*(N_P))}_{> 0} \left[ \alpha + \beta \frac{\partial N_F^*(N_P)}{\partial N_P} \right] \\
+        &< N_C g'(\alpha N_P + \beta N_F^*(N_P)) \left[ \alpha + \beta \left( -\frac{\alpha}{\beta} \right) \right] \\
+        &= 0.
     \end{align*}
 \end{proof}
 
