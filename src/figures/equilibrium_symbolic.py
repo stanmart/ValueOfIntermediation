@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import fsolve
 from collections.abc import Iterable
 import typer
-from sympy import Symbol, integrate, simplify, log
+from sympy import Symbol, integrate, simplify, log, lambdify
 
 
 def create_plot_data(
@@ -39,23 +39,9 @@ def create_plot_data(
         pi_F_symbolic = simplify(integrate(s**2 * f.diff(s), (s, 0, 1)))
     else:
         raise typer.BadParameter(f"Unknown bargaining mode: {bargaining}")
-
-    def pi_P(N_P, N_F):
-        if not isinstance(N_P, Iterable):
-            N_P = [N_P]
-        return np.array(
-            [pi_P_symbolic.subs({N_P_sp: n_P, N_F_sp: n_F}) for n_P, n_F in zip(N_P, N_F)],
-            dtype=float
-        )
-
-    def pi_F(N_P, N_F):
-        if not isinstance(N_P, Iterable):
-            N_P = [N_P]
-        x = np.array(
-            [pi_F_symbolic.subs({N_P_sp: n_P, N_F_sp: n_F}) for n_P, n_F in zip(N_P, N_F)],
-            dtype=float
-        )
-        return x
+    
+    pi_P = lambdify((N_P_sp, N_F_sp), pi_P_symbolic)
+    pi_F = lambdify((N_P_sp, N_F_sp), pi_F_symbolic)
 
     def pi_F_t(N_P, N_F):
         return pi_F(N_P, N_F) - I_F * N_F
