@@ -12,6 +12,7 @@ def create_plot_data(
     V_P: float = 1,
     V_F: float = 1,
     I_F: float = 0.2,
+    N_C: float = 1,
     N_P_range: tuple[float, float] = (0, 1),
     num_obs: int = 500,
     value_function: str = "profit",
@@ -21,8 +22,8 @@ def create_plot_data(
     N_P_sp, N_F_sp = Symbol("N_P"), Symbol("N_F")
     s = Symbol("s")
 
-    f_profit = mu * (s * N_F_sp * V_F + N_P_sp * V_P) / (s * N_F_sp * V_F + N_P_sp * V_P + 1)
-    f_surplus = mu * log(s * N_F_sp * V_F + N_P_sp * V_P + 1)
+    f_profit = N_C * mu * (s * N_F_sp * V_F + N_P_sp * V_P) / (s * N_F_sp * V_F + N_P_sp * V_P + 1)
+    f_surplus = N_C * mu * log(s * N_F_sp * V_F + N_P_sp * V_P + 1)
 
     if value_function == "profit":
         f = f_profit
