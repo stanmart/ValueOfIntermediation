@@ -638,9 +638,19 @@ This result has particularly strong implications in models where total profits (
 \section{Logit demand}
 \label{sec:example}
 
-Let us now add more structure to the model, and microfound the profit function $\Pi$.
-The model in this section is heavily inspired by the logit-like demand structure and hybrid platform setting in \textcite{anderson2021hybrid}.
+Let us now add more structure to the model, place the function $\Pi$ on more solid microfoundations.
+The modeling strategy is heavily inspired by the logit-like demand structure and hybrid platform setting of \textcite{anderson2021hybrid}.
 The setting can be thought of as a (possibly hybrid) platform market with monopolistically competing fringe firms.
+
+In the main model, I consider the case when the total profit function only includes the sales of the platform's and fringe firms' products.
+That is, the platform does not charge any entry fees to the consumers.
+Here, I consider two variants of the model: a benchmark where the platform can unilaterally commit to any entry fee, and a bargaining model where the platform and the fringe firms negotiate over the distribution of profits.
+
+As an extension, I also examine what happens if the platform is able to extract consumer surplus by charging a flat entry fee, and the platform and the firms bargain over this larger sum.
+Furthermore, I also consider the case of two-sided bargaining, where the consumers also participate in the negotiation over the value produced.
+
+Throughout the analysis, I treat the product variety of the platform and the number of consumers as exogenous, and focus on the equilibrium number of fringe firms.
+Nevertheless, the results regarding equilibrium platform profits and consumer surplus are somewhat indicative of the potential general equilibrium behavior of the former two, as well.
 
 \subsection{Setup}
 
@@ -654,7 +664,7 @@ Customer $j$ derives the following utility from buying product $i$:
 \end{align*}
 where $v^F_i$ is the value of product $i$, $p^F_i$ is its price, and $\epsilon^F_{ij}$ is an idiosyncratic taste shock.
 Throughout this section I assume that the value of each product is the same: $v^F_i = v^F$.
-This is to simplify the analysis, but is not crucial for getting the results.  % TODO: look into relaxing this assumption
+This is to simplify the analysis, but is not crucial for the results.  % TODO: look into relaxing this assumption
 
 Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$. $\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
 
