@@ -687,7 +687,7 @@ This is to simplify the example, but I expect that it does not affect the main r
 
 \subsubsection{Intermediation}
 
-As in \cref{sec:model}, assume that the sellers and the consumers can only interact through an intermediary platform, denoted by $P$.
+The overall structure of the model comes from \cref{sec:model}: assume that the sellers and the consumers can only interact through an intermediary platform, denoted by $P$.
 Without the platform, the fringe firms are not able to sell their products, and thus make no profits.
 For this service, the platform can charge a lump-sum entry fee $F_F$ to each fringe firm.\footnote{
     This is a critical difference from \textcite[]{anderson2021hybrid}, where the platform charges a per-unit royalty.
@@ -697,23 +697,29 @@ In the baseline model, I assume that entry is free for the consumers, and they a
     This essentially means that I assume a one-sided platform, without the usual network effects.
     % TODO: see if I can relax this assumption
 }
+Later on, I look at the case of the platform obtaining consumer surplus, and also the case of consumers participating in the bargaining over the total surplus.
 
 As mentioned above, instead of operating as a pure marketplace, the platform may also produce and offer its own products.
-In case it does, it is called a hybrid platform.
+Therefore, there are three potential modes of operation.
+First, it can offer no product on its own ($N_P = 0$), and operate as a pure marketplace.
+Second, it can offer a selection of products alongside with a number of competing fringe firms also being present on the platform ($N_P, N_F > 0$).
+In this case, it is a hybrid platform.
+Finally, it can operate as a pure retailer, offering its own products, but no products from other sellers ($N_P > 0, N_F = 0$).
 
 \subsubsection{Entry and timing}
 
-The structure of the game follows closely that of the more general model in \cref{sec:model}.
-In addition, a benchmark model without bargaining is presented, for comparison.
 There is an infinite measure of fringe firms, who are deciding whether to enter the market.
 Entering has two, separate costs: an exogenous investment cost $I_F$, and the platform entry fee $F_F$.
 One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
-Meanwhile, the second is a payment for using the platform's services.
+Meanwhile, the second is a payment to the platform for using its services.
 
-In the benchmark model, the game starts by the platform announcing its entry fee $F_F$.
+In the benchmark model, the game starts by the platform announcing and committing to an entry fee $F_F$.\footnote{
+    Without no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
+    This would lead to a trivial equilibrium, where no firm enters.
+}
 In the bargaining case, the platform cannot commit to entry fees, so this step is skipped.
 Next, each fringe firm decides whether to create a product at cost $I_F$ and enter the market.
-In the bargaining model, the entry fee is decided at this point, as a result of a negotiation between the platform and the firms that have made the investment.
+% In the bargaining model, the entry fee is decided at this point, as a result of a negotiation between the platform and the firms that have made the investment.
 After that, the firms that have made the investment decide if they also want to enter the platform for the announced fee $F_F$.\footnote{
     In the benchmark model, separating these two decisions is redundant, as, in any subgame perfect equilibrium, any firm that makes the investment will also enter the platform.
     However, in the model with bargaining, this distinction is crucial.
@@ -721,10 +727,13 @@ After that, the firms that have made the investment decide if they also want to 
 Finally, the platform and the fringe firms simultaneously choose the prices for their products.
 Each consumer then chooses the one maximizing their utility, and profits are realized.
 
+In the baseline model, each player gets their profits from the sales of their products, plus the pre-agreed entry fees from the first period.
+In the model with bargaining, the platform and the fringe distribute total profits according to their Shapley values.
+One can also think of the latter as agreeing on an entry fee that makes final profits net entry fees equal to the Shapley value of the various players.
+
 The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
 In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
 On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
-In particular, I use the profit sharing rule from \cref{ass:profit_sharing} with $w(s) \equiv 1$.
 
 
 \subsection{Equilibrium}
@@ -1398,7 +1407,36 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 \end{proof}
 
 \begin{proof}[Proof of \cref{lem:profit_assumptions}]
-    
+    First, consider the function
+    \begin{align*}
+        g(x) = \frac{sx}{1 + sx}.
+    \end{align*}
+    Also, let us define
+    \begin{align*}
+        G(x) &= \int_0^1 s g(sx) \ds \\
+        &= \frac{\log(x+1)}{x} + \frac{1}{x(x+1)} - \frac{1}{x}.
+    \end{align*}
+
+    Differentiation with respect to $x$ yields that
+    \begin{align*}
+        G'(x) < 0 \iff \log(x+1) > \frac{x (2x+1)}{(x+1)^2}
+    \end{align*}
+    and
+    \begin{align*}
+        G''(x) < 0 \iff \log(x+1) < \frac{x (5x^2 + 5x + 2)}{2 (x+1)^3}.
+    \end{align*}
+    There exists $\bar{x} > 0$\footnote{
+        $\bar{x} = 3$ is such a number.
+    }, such that the first equality holds for all $x > \bar{x}$, and the second for all $x < \bar{x}$.
+    Therefore, $G$ is either concave or decreasing for all $x > 0$.
+
+    Now let us consider the function $h(x) = N_C \mu g(N_P V_P + V_F x)$.
+    By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
+    Finally, notice that $H(x)$ is exactly the profit function of the fringe:
+    \begin{align*}
+        \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
+    \end{align*}
+    and thus the lemma is proven.
 \end{proof}
 
 
