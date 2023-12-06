@@ -42,6 +42,9 @@
 \newcommand{\di}{\mathrm{d}i}
 \newcommand{\E}{\mathbb{E}}
 
+\definecolor{myblue}{rgb}{0.3, 0.45, 0.69}
+\definecolor{myred}{rgb}{0.87, 0.52, 0.32}
+
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
 
 \title{Hybrid platforms and bargaining power}
@@ -255,7 +258,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
             \centering
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick=\empty, xlabel={$s$}]
-                \addplot[name path=f, blue,ultra thick] {x^2};
+                \addplot[name path=f, black, thick] {x^2};
                 \node[anchor= east] at (axis cs: .9, .9^2) {$N_C f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -274,7 +277,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, xlabel={$s$}]
-                \addplot[name path=f, blue,ultra thick] {x^0.5};
+                \addplot[name path=f, black, thick] {x^0.5};
                 \node[anchor=north west] at (axis cs: .6, .6^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -400,10 +403,10 @@ This particular shape is also the main driver for the following results about th
         \draw[->] (0,0) -- (0,2);
         \draw[->] (0,0) -- (5.5,0) node[below] {$n_F$};
 
-        \draw[name path=piF,domain=0.01:5.5,variable=\x,blue,ultra thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
-        \draw[name path=IF,domain=0.01:5.5,variable=\x,red,ultra thick] plot ({\x},{(\x)/3});
-        \node[anchor=north east] at (5,1) {$\pi_F(N_P, n_F)$};
-        \node[anchor=south east] at (5,5/3) {$I_F n_F$};
+        \draw[name path=piF,domain=0.01:5.5,variable=\x,black,thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
+        \draw[name path=IF,domain=0.01:5.5,variable=\x,black,dashed,thick] plot ({\x},{(\x)/3});
+        \node[anchor=north east] at (5,1) {$\pi_F(N_P, N_F)$};
+        \node[anchor=south east] at (5,5/3) {$I_F N_F$};
 
         \fill [name intersections={of=piF and IF, name=i, total=\t}]
             [black] (i-2) circle (1pt);
@@ -442,8 +445,8 @@ As this result shows, this decrease cannot be large enough to decrease the platf
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
-                \addplot[name path=f, blue,ultra thick] {ln(1+x)};
-                \addplot[name path=tildef, dashed, black] {x};
+                \addplot[name path=f, black, thick] {ln(1+x)};
+                % \addplot[name path=tildef, dashed, black] {x};
                 \node[anchor=north west] at (axis cs: .5, .4) {$N_C f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,0.693) -- (axis cs:1,0.693);
@@ -464,7 +467,7 @@ As this result shows, this decrease cannot be large enough to decrease the platf
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {ln(1+x)};
-                \addplot[name path=tildef, blue,ultra thick] {x};
+                \addplot[name path=tildef, black, thick] {x};
                 \node[anchor=south east] at (axis cs: 0.6, 0.6) {$N_C f(N_P', sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -507,9 +510,9 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.225, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
-                \addplot[name path=f, blue,ultra thick] {sqrt(x)};
-                \addplot[name path=tildef, dashed, black] {sqrt(0.5+x)};
-                \node[anchor=north west] at (axis cs: .6, 0.77) {$f(0, sN_F)$};
+                \addplot[name path=f, black, thick] {sqrt(x)};
+                % \addplot[name path=tildef, dashed, black] {sqrt(0.5+x)};
+                \node[anchor=north west] at (axis cs: .6, 0.77) {$N_C f(0, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
                 \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1);
@@ -529,10 +532,11 @@ On the other hand, when the fringe firms are mostly complements the fringe's pro
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.225, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {sqrt(x)};
-                \addplot[name path=tildef, blue,ultra thick] {sqrt(0.5+x)};
-                \node[anchor=north west] at (axis cs: 0, 0.7) {$f(0.5, sN_F)$};
+                \addplot[name path=tildef, black, thick] {sqrt(0.5+x)};
+                \node[anchor=north west] at (axis cs: 0.05, 0.75) {$N_C f(N_P', sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,1.225) -- (axis cs:1,1.225);
+                \draw[name path=top_old, dashed] (axis cs:0,1) -- (axis cs:1,1);
                 \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1.225);
     
                 \addplot [fill=blue, fill opacity=0.05] fill between [of=tildef and bottom];
@@ -576,9 +580,9 @@ Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F
         \draw[->] (0,0) -- (0,2);
         \draw[->] (0,0) -- (5.5,0) node[below] {$n_F$};
 
-        \draw[name path=piF,domain=0.01:5.5,variable=\x,blue,ultra thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
-        \draw[name path=piF2,domain=0.01:5.5,variable=\x,blue,ultra thick] plot ({\x},{6*((\x)/(0.3+\x))-6*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
-        \draw[name path=IF,domain=0.01:5.5,variable=\x,red,ultra thick] plot ({\x},{(\x)/3});
+        \draw[name path=piF,domain=0.01:5.5,variable=\x,black, thick] plot ({\x},{8*((\x)/(0.3+\x))-8*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
+        \draw[name path=piF2,domain=0.01:5.5,variable=\x,black, thick] plot ({\x},{6*((\x)/(0.3+\x))-6*((\x-0.3*ln(\x+0.3)-0.361)/(\x))});
+        \draw[name path=IF,domain=0.01:5.5,variable=\x,black,dashed,thick] plot ({\x},{(\x)/3});
 
         \node[anchor=south] at (5,1) {$\pi_F(N_P, n_F)$};
         \node[anchor=north] at (5,0.6) {$\pi_F(N_P', n_F)$};
@@ -896,8 +900,8 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                 axis lines=left,
                 xtick=\empty, ytick=\empty
             ]
-            \addplot[color=red,mark=none,very thick] table[x=N_P,y=N_F_bench]{\equilibrium};
-            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=N_F]{\equilibrium};
+            \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
+            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
             \addplot[color=black,mark=none,thick,dotted] table[x=N_P,y=N_F_cf]{\equilibrium};
             \legend{Benchmark, Bargaining, Fixed aggregate}
         \end{axis}
@@ -920,8 +924,8 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                 xtick=\empty, ytick=\empty,
                 legend pos=south east
             ]
-            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=A_bench]{\equilibrium};
-            \addplot[color=red,mark=none,very thick] table[x=N_P,y=A]{\equilibrium};
+            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=A_bench]{\equilibrium};
+            \addplot[color=myred,mark=none,thick] table[x=N_P,y=A]{\equilibrium};
             \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A_noF]{\equilibrium};
             \legend{Benchmark, Bargaining, Pure retail}
         \end{axis}
@@ -944,8 +948,8 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                 xtick=\empty, ytick=\empty,
                 legend pos=south east
             ]
-            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
-            \addplot[color=red,mark=none,very thick] table[x=N_P,y=pi_P]{\equilibrium};
+            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
+            \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
             \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
             \legend{Benchmark, Bargaining, Pure retail}
         \end{axis}
@@ -968,8 +972,8 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                 xtick=\empty, ytick=\empty,
                 legend pos=north east
             ]
-            \addplot[color=blue,mark=none,very thick] table[x=N_P,y=F_F_opt]{\equilibrium};
-            \addplot[color=red,mark=none,very thick] table[x=N_P,y=F_F_implied]{\equilibrium};
+            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
+            \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
             \legend{Benchmark (optimal), Bargaining (implied)}
         \end{axis}
     \end{tikzpicture}

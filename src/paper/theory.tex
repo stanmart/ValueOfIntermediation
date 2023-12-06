@@ -248,7 +248,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick={0}, xlabel={$s$}]
-                \addplot[name path=f, ultra thick] {x^0.5};
+                \addplot[name path=f, thick] {x^0.5};
                 \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -267,7 +267,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick={0}, xlabel={$s$}]
-                \addplot[name path=f, ultra thick] {x^1.5};
+                \addplot[name path=f, thick] {x^1.5};
                 \node[anchor=south east] at (axis cs: .8, .8^1.5) {$f$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -321,7 +321,7 @@ On the other hand, when $\alpha \to 0$, the big players can appropriate all the 
         \begin{axis}[xmin=0, xmax=5, ymin=0, ymax=1, samples at={0, 0.05, ..., 4.95, 5},
                 xtick={0, 1, 2, 3, 4, 5}, ytick={0, 1},
                 xlabel={Complementarity between fringe players ($\alpha$)}, ylabel={Share of the fringe}]
-            \addplot[name path=f, ultra thick] {x / (1 + x)};
+            \addplot[name path=f, thick] {x / (1 + x)};
             \node[anchor=north west] at (axis cs: 3, 3/4) {$\frac{\varphi_A^\infty(\bar{n})}{f(\bar{n})}$};
             \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
             \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
@@ -401,9 +401,9 @@ Depending on the shape of this distribution (which in turn depends on the weight
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=3, samples at={0.02, 0.04, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1, 2, 3}, axis lines=left, xlabel={$t$}, legend pos=south east]
-                \addplot[ultra thick] {0.5 * x ^ (-0.5)};
-                \addplot[ultra thick, dashed] {1};
-                \addplot[ultra thick, dotted] {1.5 * x ^ (0.5)};
+                \addplot[thick] {0.5 * x ^ (-0.5)};
+                \addplot[thick, dashed] {1};
+                \addplot[thick, dotted] {1.5 * x ^ (0.5)};
             \end{axis}
         \end{tikzpicture}
         \caption{$g(t)$}
@@ -413,9 +413,9 @@ Depending on the shape of this distribution (which in turn depends on the weight
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1}, axis lines=left, xlabel={$t$}, legend pos=south east]
-                \addplot[ultra thick] {x ^ (0.5)};
-                \addplot[ultra thick, dashed] {x};
-                \addplot[ultra thick, dotted] {x ^ (1.5)};
+                \addplot[thick] {x ^ (0.5)};
+                \addplot[thick, dashed] {x};
+                \addplot[thick, dotted] {x ^ (1.5)};
                 \legend{$\lambda = 0.5$, $\lambda = 1$, $\lambda = 1.5$}
             \end{axis}
         \end{tikzpicture}
@@ -488,9 +488,9 @@ That is, for any $t_i$, the probability if $P_i$ being the first is related to t
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.1, samples at={0, 0.02, 0.04, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1}, axis lines=left, xlabel={$t$}, legend pos=north west]
-                \addplot[ultra thick] {1};
-                \addplot[ultra thick, dashed] {1-x};
-                \addplot[ultra thick, dotted] {(1-x)^2};
+                \addplot[thick] {1};
+                \addplot[thick, dashed] {1-x};
+                \addplot[thick, dotted] {(1-x)^2};
             \end{axis}
         \end{tikzpicture}
         \caption{$h(t)$}
@@ -500,9 +500,9 @@ That is, for any $t_i$, the probability if $P_i$ being the first is related to t
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1}, axis lines=left, xlabel={$t$}, legend pos=north west]
-                \addplot[ultra thick] {x};
-                \addplot[ultra thick, dashed] {x - x^2/2};
-                \addplot[ultra thick, dotted] {x - x^2 + x^3/3};
+                \addplot[thick] {x};
+                \addplot[thick, dashed] {x - x^2/2};
+                \addplot[thick, dotted] {x - x^2 + x^3/3};
                 \legend{$m = 1$, $m = 2$, $m = 3$}
             \end{axis}
         \end{tikzpicture}
@@ -531,9 +531,9 @@ Thus, all the results from the previous section apply to this case as well.
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=3.1, samples at={0, 0.02, 0.04, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1, 2, 3}, axis lines=left, xlabel={$t$}, legend pos=north west]
-                \addplot[ultra thick] {1};
-                \addplot[ultra thick, dashed] {2 * (1-x)};
-                \addplot[ultra thick, dotted] {3 * ((1-x)^2)};
+                \addplot[thick] {1};
+                \addplot[thick, dashed] {2 * (1-x)};
+                \addplot[thick, dotted] {3 * ((1-x)^2)};
             \end{axis}
         \end{tikzpicture}
         \caption{$g(t)$}
@@ -543,9 +543,9 @@ Thus, all the results from the previous section apply to this case as well.
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1.1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick={0, 1}, axis lines=left, xlabel={$t$}, legend pos=north west]
-                \addplot[ultra thick] {x};
-                \addplot[ultra thick, dashed] {2 * (x - x^2/2)};
-                \addplot[ultra thick, dotted] {3 * (x - x^2 + x^3/3)};
+                \addplot[thick] {x};
+                \addplot[thick, dashed] {2 * (x - x^2/2)};
+                \addplot[thick, dotted] {3 * (x - x^2 + x^3/3)};
                 \legend{$m = 1$, $m = 2$, $m = 3$}
             \end{axis}
         \end{tikzpicture}
@@ -635,8 +635,8 @@ This is a natural result, and again, it is in line with what one would expect fr
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick={0}, xlabel={$s$}]
-                \addplot[name path=f, ultra thick] {x^0.5};
-                \addplot[name path=f0, ultra thick] {0.3 * x^0.5};
+                \addplot[name path=f, thick] {x^0.5};
+                \addplot[name path=f0, thick] {0.3 * x^0.5};
                 \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
                 \node[anchor=south west] at (axis cs: .8, .3*.8^0.5) {$f_0$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -658,8 +658,8 @@ This is a natural result, and again, it is in line with what one would expect fr
         \begin{tikzpicture}[scale=0.8]
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick={0}, xlabel={$s$}]
-                \addplot[name path=f, ultra thick] {x^0.5};
-                \addplot[name path=f0, ultra thick] {0.7 * x^0.5};
+                \addplot[name path=f, thick] {x^0.5};
+                \addplot[name path=f0, thick] {0.7 * x^0.5};
                 \node[anchor=north west] at (axis cs: .8, .8^0.5) {$f$};
                 \node[anchor=north west] at (axis cs: .8, .7*.8^0.5) {$f_0$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
@@ -831,8 +831,8 @@ Namely, those having higher marginal contributions along the diagonal get a larg
             % plot the function
             \addplot3[surf, shader=flat, draw=none, name path=f, fill opacity=0] {x*y};
             % highlight the diagonal
-            \addplot3[black, name path=diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {0});
-            \addplot3[black, name path=f_diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {x^2});
+            \addplot3[black, name path=diagonal, very thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {0});
+            \addplot3[black, name path=f_diagonal, very thick, domain=0:1, samples=100, samples y=0] ({x}, {x}, {x^2});
             \addplot[blue, fill opacity=0.5] fill between[of=diagonal and f_diagonal];
         \end{axis}
     \end{tikzpicture}
@@ -886,8 +886,8 @@ The following, simple corollary formalizes this idea.
             % plot the function
             \addplot3[surf, shader=flat, draw=none, name path=f, fill opacity=0] {x*y};
             % highlight the diagonal
-            \addplot3[black, name path=diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {0});
-            \addplot3[black, name path=f_diagonal, ultra thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {x^4});
+            \addplot3[black, name path=diagonal, very thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {0});
+            \addplot3[black, name path=f_diagonal, very thick, domain=0:1, samples=100, samples y=0] ({x}, {x^3}, {x^4});
             \addplot[blue, fill opacity=0.5] fill between[of=diagonal and f_diagonal];
         \end{axis}
     \end{tikzpicture}
