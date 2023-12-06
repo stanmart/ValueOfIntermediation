@@ -273,12 +273,13 @@ rule figure_equilibrium:
     conda:
         "envs/python-analysis.yaml"
     input:
-        script = "src/figures/equilibrium.py"
+        script = "src/figures/equilibrium_symbolic.py"
     output:
-        csv = "out/figures/equilibrium.csv"
+        csv = "out/figures/equilibrium_{value_function}_{bargaining}.csv"
     shell:
         "python {input.script} {output.csv} \
-         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1.5 --num-obs 200"
+         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1.5 --num-obs 200 \
+         --value-function {wildcards.value_function} --bargaining {wildcards.bargaining}"
 
 
 rule figure_equilibrium_entry:
