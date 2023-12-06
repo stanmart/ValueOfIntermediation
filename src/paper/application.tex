@@ -381,8 +381,8 @@ In particular, it will be satisfied for the logit-type demand in \cref{sec:examp
 \label{sec:results}
 
 This section presents some general result that only depend on the abstract model structure described in the previous section, and the assumptions therein.
-It is remarkable that even within such a stylized setting and simple model, one can derive some interesting and non-trivial results.
-\Cref{sec:example} will then build on these results to derive some stronger implications in a more specific model.
+It turns out that even within such a general setting, one can derive some interesting and non-trivial results.
+\Cref{sec:example} will then build on these results to derive stronger results in a more fully specific model.
 
 Let us start by a technical, but highly useful result.
 \begin{proposition}
@@ -414,21 +414,25 @@ This particular shape is also the main driver for the following results about th
 \end{figure}
 
 For the following two propositions, let us ignore free entry and equilibrium behavior, and consider the number of fringe entrants $N_F$ as fixed.
-The following statement says that the platform's profit is increasing in its own product variety.
+The following statement claims that -- in both the one-sided and two-sided bargaining cases -- the platform's profits are increasing in its own product variety.
 \begin{proposition}
     \label{prop:share_of_platform}
     Assume that $f$ is continuously differentiable with respect to $N_P$ and also twice differentiable.
     Let $N_F \geq 0$.
     Then $\pi_P$ is also differentiable and
-    $$\frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0$$.
+    \begin{align*}
+        \frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0.
+    \end{align*}
 \end{proposition}
 While it might seem obvious, let us still examine what this result does and does not mean.
 First, remember that $f$ is increasing in both arguments, and $N_F$ is fixed.
 Therefore, an increase in $N_P$ also increases the size of the pie the participants bargain over.
-This result states that the size of the pie that the platform gets increases in this case, too.
-It does not mean, however, that the \emph{relative share} of the pie that the platform gets is also bigger -- increase is also guaranteed in absolute terms.
-For example, it is possible that for the new, higher value of $N_P$, the complementarities between the fringe firms become stronger, and the platform's bargaining power decreases.
-This decrease cannot be so strong, however, to decrease the platform's profits in absolute terms.
+This result states that the slice of the pie that the platform gets increases in this case, too.
+It does not mean, however, that the \emph{relative share} of the pie that the platform gets is also bigger -- increase is only guaranteed in absolute terms.
+For example, it is possible that for the new, higher value of $N_P$, the complementarities between the fringe firms become stronger, and the platform's bargaining power decreases.\footnote{
+    In fact, one can show that this is the case if the cross-derivatives of $f$ are negative.
+}
+As this result shows, this decrease cannot be large enough to decrease the platform's profits in absolute terms.
 \cref{fig:increase_N_P_platform} shows an example of this situation.
 
 \begin{figure}[ht]
@@ -440,7 +444,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {ln(1+x)};
                 \addplot[name path=tildef, dashed, black] {x};
-                \node[anchor=north west] at (axis cs: .6, 0.5) {$f(N_P, sN_F)$};
+                \node[anchor=north west] at (axis cs: .5, .4) {$N_C f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,0.693) -- (axis cs:1,0.693);
                 \draw[name path=right] (axis cs:1,0) -- (axis cs:1,0.693);
@@ -461,7 +465,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
                 xtick={0, 1}, ytick=\empty, axis lines=left, xlabel={$s$}]
                 \addplot[name path=f, dashed, black] {ln(1+x)};
                 \addplot[name path=tildef, blue,ultra thick] {x};
-                \node[anchor=south east] at (axis cs: 0.6, 0.6) {$f(N_P', sN_F)$};
+                \node[anchor=south east] at (axis cs: 0.6, 0.6) {$N_C f(N_P', sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \draw[name path=top] (axis cs:0,1) -- (axis cs:1,1);
                 \draw[name path=right] (axis cs:1,0) -- (axis cs:1,1);
@@ -475,7 +479,7 @@ This decrease cannot be so strong, however, to decrease the platform's profits i
         \end{tikzpicture}
         \caption{Profit shares with $N_P'$}
     \end{subfigure}
-    \caption{Illustration of \cref{prop:share_of_platform} ($N_P < N_P'$)}
+    \caption{Illustration of \cref{prop:share_of_platform} in the one-sided bargaining case. The right hand side figure shows a world with larger platform product variety ($N_P < N_P'$). Even though the platform's share of the total profits is smaller in relative terms in that case, it is still larger in absolute terms.}
     \label{fig:increase_N_P_platform}
 \end{figure}
 
@@ -1113,16 +1117,8 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \end{align*}
 \end{lemma}
 \begin{proof}[Proof of \cref{lem:slope_at_eq}]
-    Let us use Leibniz' rule to obtain the first two derivatives of the fringe's profit with respect to the number of fringe firms:
-    \begin{align*}
-        \frac{\partial f(N_P, sN_F)}{\partial N_F} &= \frac{\partial}{\partial N_F} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, sN_F) \ds \right] \\
-        &= \frac{\partial f(N_P, N_F)}{\partial N_F} - \int_0^1 s w(s) \frac{\partial f(N_P, sN_F)}{\partial N_F} \ds, \\
-        \frac{\partial^2 f(N_P, sN_F)}{\partial N_F^2} &= \frac{\partial^2}{\partial N_F^2} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, sN_F) \ds \right] \\
-        &= \frac{\partial^2 f(N_P, N_F)}{\partial N_F^2} - \int_0^1 s^2 w(s) \frac{\partial f(N_P, sN_F)}{\partial N_F^2} \ds.
-    \end{align*}
-    Therefore, \cref{ass:single_crossing} implies that at any $N_F$, $\pi_F(N_P, N_F)$ is either concave or decreasing.
-
-    In the remainder, for ease of notation, let us denote partial derivatives as follows:
+    \cref{ass:single_crossing} states that at any $N_F \geq 0$, $\pi_F(N_P, N_F)$ is either concave or decreasing.
+    In the remainder, for ease of notation drop $N_C$ from the arguments of $\pi_F$ profit function as it is simply a multiplicative constant, and let us denote partial derivatives as follows:
     \begin{align*}
         \partial_F \pi_F(N_P^*, N_F^*) \coloneqq \left. \frac{\partial \pi_F(N_P, N_F)}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*}.
     \end{align*}
@@ -1152,9 +1148,11 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 \begin{proof}[Proof of \cref{prop:share_of_platform}]
     $f(N_P, N_F)$ is continuously differentiable in $N_P$, therefore the Leibniz rule can be applied to obtain
     \begin{align*}
-        \frac{\partial \pi_P(N_P, N_F)}{\partial N_P} &= \frac{\partial}{\partial N_P} \int_0^1 w(s) f(N_P, N_F) \ds \\
-        &= \int_0^1 w(s) \underbrace{\frac{\partial f(N_P, sN_F)}{\partial N_P}}_{> 0} \ds > 0.
+        \frac{\partial \pi_P(N_P, N_F, N_C)}{\partial N_P} &= N_C \frac{\partial}{\partial N_P} \int_0^1 w(s) f(N_P, N_F) \ds \\
+        &= \int_0^1 w(s) \underbrace{\frac{\partial f(N_P, sN_F)}{\partial N_P}}_{> 0} \ds > 0
     \end{align*}
+    for any continuous $w(s)$.
+    In particular, this holds for $w(s) = 1$ and $w(s) = s$, which correspond to assumptions \cref{ass:profit_sharing} and \cref{ass:profit_sharing_two_sided}, respectively.
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:share_of_fringe}]
