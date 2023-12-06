@@ -609,9 +609,7 @@ Intuitively, this means that -- in terms of total profits generated -- the platf
 }
 \begin{proposition}
     \label{prop:aggregate_size_additive}
-    Let the weight function be constant ($w(t) \equiv 1$).
-    % TODO: I think the weight function assumption is not necessary.
-    Furthermore, let $f$ have the following, additive form:
+    Let $f$ have the following, additive form:
     \begin{align*}
         f(N_P, N_F) = g(\alpha N_P + \beta N_F)
     \end{align*}
@@ -1162,25 +1160,22 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 \begin{proof}[Proof of \cref{prop:share_of_fringe}]
     Remember that
     \begin{align*}
-        \pi_F(N_P, N_F) = f(N_P, N_F) - \int_0^1 w(s) f(N_P, N_F) \ds.
+        \pi_F(N_P, N_F, N_C) = N_C \int_0^1 w(s) N_F \partial_2 f(N_P, s N_F) \ds,
     \end{align*}
-    $f(N_P, N_F)$ is continuously differentiable in $N_P$, therefore the Leibniz rule can be applied to obtain
+    where $w(s)$ is either $s$ or $s^2$, depending on whether one assumes one or two-sided bargaining.
+    By assumption, $f$ is twice continuously differentiable, therefore $\partial_2$ is also continuously differentiable in $N_P$.
+    Thus the Leibniz rule can be applied to obtain
     \begin{align*}
-        \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} &= \frac{\partial}{\partial N_P} \left[ f(N_P, N_F) - \int_0^1 w(s) f(N_P, N_F) \ds \right]\\
-        &= \frac{\partial f(N_P, N_F)}{\partial N_P} - \int_0^1 w(s) \frac{\partial f(N_P, sN_F)}{\partial N_P} \ds \\
-        &= \underbrace{h(N_F)}_{(*)} - \underbrace{\int_0^1 w(s) h(s N_F)}_{(**)}
+        \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P} &= \frac{\partial}{\partial N_P} N_C \int_0^1 w(s) N_F \partial_2 f(N_P, s N_F) \ds \\
+        &= N_C \int_0^1 w(s) N_F \frac{\partial}{\partial N_P} \partial_2 f(N_P, s N_F) \ds \\
+        &= N_C \int_0^1 w(s) N_F \partial^2_{12} f(N_P, s N_F) \ds.
     \end{align*}
-    where $h(N_F) = \frac{\partial h(N_F)}{\partial N_P}$.
 
-    Notice that $(*)$ and $(**)$ are both positive.
-    Furthermore, $(**)$ is the weighed average of $(*)$ over the interval $[0, N_F]$.
-    Therefore, if $h(N_F)$ is strictly increasing, then $(*) > (**)$, and the whole expression is positive.
-    Conversely, it is negative if $h(N_F)$ is strictly decreasing.
-
-    If $h(N_F)$ is differentiable, then it is equivalent to saying that
+    As $w(s) > 0$ for $s > 0$, if $\partial_2 f(N_P, s N_F)$ has the same sign over $[0, N_F]$, then the integral also has the same sign.
+    Formally,
     \begin{align*}
-        \frac{\mathrm{d}h(N_F)}{\mathrm{d}N_F} = \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} < 0 &\implies \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0 \\
-        \frac{\mathrm{d}h(N_F)}{\mathrm{d}N_F} = \frac{\partial^2 f(N_P, n_F)}{\partial n_P \partial n_F} > 0 &\implies \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} > 0
+        \forall n_F \in [0, N_F] \enspace \frac{\partial^2 f(N_P, n_F)}{\partial N_P \partial n_F} < 0 &\implies \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P} < 0 \\
+        \forall n_F \in [0, N_F] \enspace \frac{\partial^2 f(N_P, n_F)}{\partial N_P \partial n_F} > 0 &\implies \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P} > 0
     \end{align*}
 \end{proof}
 
@@ -1188,13 +1183,13 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \Cref{prop:unique_equilibrium} establishes that if an equilibrium with $N_F > 0$ exists, it is unique.
     Use the implicit function theorem on the equation from \cref{ass:free_entry} to obtain
     \begin{align*}
-        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F)}{\partial N_P}}{I_F - \frac{\partial \pi_F (N_P, N_F)}{\partial N_F}}
+        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P}}{I_F - \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F}}
     \end{align*}
-    The derivative exists if the above expression is well-defined, i.e. $\frac{\partial \pi_F (N_P, N_F)}{\partial N_F} \neq I_F$.
-    Remember from \cref{prop:share_of_fringe} that the numerator of this expression is negative under the condition $\frac{\partial^2 f(N_P, N_F)}{\partial N_P \partial N_F}$.
+    The derivative exists if the above expression is well-defined, i.e. $\frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} \neq I_F$.
+    Remember from \cref{prop:share_of_fringe} that the numerator of this expression is negative under the condition $\frac{\partial^2 f(N_P, N_F, N_C)}{\partial N_P \partial N_F}$.
     Now all we need to show to conclude the proof is that
     \begin{align*}
-        \frac{\partial \pi_F (N_P, N_F)}{\partial N_F} < I_F,
+        \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} < I_F,
     \end{align*}
     which is the statement of \cref{lem:slope_at_eq}.
 \end{proof}
@@ -1204,16 +1199,12 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     Then, for $\forall K > 0$, $\exists \Delta \in (0, K)$ such that $N_F^*(N_P' + \Delta) \geq N_F^*(N_P') - \frac{\alpha}{\beta}\Delta$. For ease of notation, let us denote $N_P'' = N_P' + \Delta$, $N_F' = N_F^*(N_P')$ and $N_F'' = N_F^*(N_P'')$.
 
     First, let us show that fringe profits are lower than total investment costs if $\bar N_F = N_F^*(N_P') - \frac{\alpha}{\beta}\Delta$.
-    In order to do this, consider this formulation of fringe profits:
+    In order to do this, consider the following formulation of the fringe profit function:
     \begin{align*}
-        \pi_F(N_P', N_F') &= f(N_P', N_F') - \int_0^1 w(s) f(N_P', t N_F') \dt \\
-        &= \int_0^1 t \frac{\partial f(N_P', n_F')}{\partial n_F} \bigg|_{n_F = t N_F'},
+        \pi_F(N_P', N_F', N_C) &= \int_0^1 w(t) \frac{\Pi(N_P, t N_F, N_C)}{\partial t} \dt \\
+        &= N_C \int_0^1 w(t) \underbrace{\frac{\partial}{\partial t}g(\alpha N_P + \beta t N_F)}_{\coloneq D(N_P, N_F)} \dt,
     \end{align*}
-    which can be obtained by integration by parts.
-    Now let us use the functional form assumption $f(N_P, N_F) = g(\alpha N_P + \beta N_F)$ to obtain
-    \begin{align*}
-        \pi_F(N_P, N_F) = \int_0^1 t \underbrace{\frac{\partial}{\partial t}g(\alpha N_P + \beta t N_F)}_{\coloneq D(N_P, N_F)} \dt.
-    \end{align*}
+    where $w(t) = t$ or $w(t) = t^2$ in the one-sided and two-sided bargaining cases, respectively.
 
     Let us focus on the term $D(N_P, N_F)$.
     First, calculate
@@ -1226,22 +1217,22 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
     \end{align*}
     Substitute these expressions into $\pi_F$ to get
     \begin{align*}
-        \pi_F(N_P', N_F') &= N_F' \beta \int_0^1 t g'(\alpha N_P' + \beta t N_F') \dt, \\
-        \pi_F(N_P'', \bar{N}_F) &= \bar{N}_F \beta \int_0^1 t g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt.
+        \pi_F(N_P', N_F', N_C) &= N_C N_F' \beta \int_0^1 w(t) g'(\alpha N_P' + \beta t N_F') \dt, \\
+        \pi_F(N_P'', \bar{N}_F, N_C) &= N_C \bar{N}_F \beta \int_0^1 w(t) g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt.
     \end{align*}
     Finally, let us bound the difference between $\pi_F(N''_Pm \bar{N}_F) - I_F \bar{N}_F$ from above:
     \begin{align*}
-        \pi_F(N_P'', \bar{N}_F) - I_F \bar{N}_F &= \frac{\bar{N}_F}{N_F'}\left[\beta \int_0^1 t g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt - I_F N_F' \right] \\
-        &< \frac{\bar{N}_F}{N_F'}\left[\beta \int_0^1 t g'(\alpha N_P' + \beta t N_F') \dt - I_F N_F' \right] \\
-        &= \frac{\bar{N}_F}{N_F'}\left[ \pi_F(N_P', N_F') - I_F N_F \right] \\
+        \pi_F(N_P'', \bar{N}_F, N_C) - I_F \bar{N}_F &= \frac{\bar{N}_F}{N_F'}\left[\beta N_C \int_0^1 w(t) g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt - I_F N_F' \right] \\
+        &< \frac{\bar{N}_F}{N_F'}\left[\beta N_C \int_0^1 w(t) g'(\alpha N_P' + \beta t N_F') \dt - I_F N_F' \right] \\
+        &= \frac{\bar{N}_F}{N_F'}\left[ \pi_F(N_P', N_F', N_C) - I_F N_F \right] \\
         &= 0.
     \end{align*}
-    The inequality is due to the concavity of $g$, and the final equality is the result of profits being zero in the equilibrium $(N_P', N_F')$.
+    The inequality is due to the concavity of $g$, and the final equality is the result of profits being zero in the equilibrium $(N_P', N_F', N_C)$.
 
-    All that remains to be shown is that $\pi_F(N_P'', N_F'') < N_F'' I_F$.
+    All that remains to be shown is that $\pi_F(N_P'', N_F'', N_C) < N_F'' I_F$.
     This is a consequence of the fact that, under \cref{ass:single_crossing}, $\pi_F$ is either concave or decreasing in $N_F$.
-    As a consequence, if it at some point ($\bar{N}_F$) dips below the linear function $N_F \mapsto I_F N_F$, it can never reach it again for any $N_F'' > \bar{N}_F$.
-    With this we arrive at a contradiction, as $(N_P'', N_F'')$ cannot be an equilibrium.
+    Therefore, if it at some point ($\bar{N}_F$) dips below the linear function $N_F \mapsto I_F N_F$, it can never reach it again for any $N_F'' > \bar{N}_F$.
+    With this we arrive at a contradiction, as $(N_P'', N_F'', N_C)$ cannot be an equilibrium.
 
     Therefore, the initial assumption that $\frac{\partial N_F^*}{\partial N_P} \geq -\frac{\alpha}{\beta}$ was wrong.
     As we have from \cref{cor:fringe_entry} that $\frac{\partial N_F^*}{\partial N_P}$ exists, it must be the case that
