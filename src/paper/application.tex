@@ -151,24 +151,33 @@ The bargaining rule, as well as other details of the model, are described in the
 \subsection{Production}
 
 I make use of a reduced-form, but quite general approach to model production and demand.
-First, I assume that all fringe firms are ex-ante identical.
-This implies that the total profits of the platform and the fringe taken together have a simple functional form $f(n_P, n_F)$.
+First, I assume that all fringe firms and consumers are ex-ante identical.
+This implies that the total profits of the platform and the fringe taken together have a simple functional form $n_C f(n_P, n_F)$.
 \begin{assumption}
     \label{ass:identical_fringe}
-    The total profits of the platform and the fringe are described by some function $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
+    The total profits of the platform and the fringe are described by 
+    \begin{align*}
+        \Pi(n_P, n_F, n_C) = n_C f(n_P, n_F),
+    \end{align*}
+    where $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
 \end{assumption}
-Here, $n_F$ is the mass of fringe sellers, and $n_P$ measures the degree to which the platform sells its own products.
+Here, $n_F$ is the mass of fringe sellers, $n_C$ is the mass of consumers, and $n_P$ measures the degree to which the platform sells its own products.
 For example, in a setting with differentiated products and monopolistic competition, $n_F$ and $n_P$ represents the product variety of the fringe and the platform, respectively.
 In case the platform operates as a pure intermediary, $n_P = 0$.
+This formulation also assumes that total profits are linear in the number of consumers.\footnote{
+    While normally this would exclude fixed production costs, this is not the case here.
+    $\Pi$ only describes profits conditional on $N_C$ and $N_F$ players entering the platform.
+    Fixed costs can be incorporated into the first stage of the game, where fringe firms decide whether to enter or not.
+}
 
-I will assume that total profits are increasing in both arguments.
+I will assume that, in addition to being increasing in the number of consumers, total profits are also increasing in both the number of fringe firms and the platform' products.
 \begin{assumption}
     \label{ass:monotone_profits}
     $f(n_P, n_F)$ is increasing in both $n_P$ and $n_F$.
 \end{assumption}
-Such profit functions arise in a variety of settings in which the profit reduction from increased competition is dominated by extra sales due to increased variety.
+Such profit functions arise in a variety of settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
 One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
-Alternatively, indirect network effects, such as in two-sided markets, can also result in such profit functions.
+Alternatively, indirect network effects, such as in two-sided markets, can also result in such increasing profits.
 
 
 \subsection{Profit sharing}
@@ -177,40 +186,65 @@ Let us assume that the fringe firms are unable to sell their products directly t
 Instead, they must sell through the platform.
 For this service, the platform may charge a fee, and obtain a share of the fringe's profits.
 
-Let us assume that the platform and the fringe shares their total profits according to the following rule.
+In the benchmark model, the platform will be able to set and commit to any lump-sum entry fee it wishes to.\footnote{
+    The focus is on fees and entry of fringe producers, but I will also consider the case when the platform can set an entry fee for consumers, as well.
+}
+The main contribution of this paper is to deviate this usual assumption, and instead consider a setting in which the platform and the fringe engage in some form of bargaining over the entry fee.
+To model this bargaining in a theoretically sound, but still tractable way, I will borrow a solution concept from cooperative game theory.
+Similarly to a number of other papers in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}, I will assume that the resulting allocation for each player is given by their Shapley value.
+This value (and the game itself) depends on who is assumed to participate in the bargaining process.
+I will consider two different cases.
+
+\paragraph{One-sided case} In the first setting, the platform and the fringe firms bargain over the total profits of the platform and the fringe taken together, and the consumers are not included in the negotiations.
+The following assumption describes this case.
 \begin{assumption}
     \label{ass:profit_sharing}
-    Let $w: [0, 1] \to \mathbb{R}_0^+$ such that $\int_0^1 w(s) \ds = 1$. 
+    Consider the following cooperative game $\mathcal{G} = (\mathcal{N}, v)$.
+    The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i\}, i \in [0, N_F]$.
+    The value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
     \begin{align*}
-        \pi_P(N_P, N_F) &= \int_0^1 w(s) f(N_P, s N_F) \ds, \\
-        \pi_F(N_P, N_F) &= f(N_P, N_F) - \int_0^1 w(s) f(N_P, s N_F) \ds.
+        v(S) = \begin{cases}
+            0 & \text{if } P \notin S \\
+            N_C f(N_P, n_F(S)) & \text{if } P \in S
+        \end{cases},
+    \end{align*}
+    where $n_F(S)$ is the measure of fringe firms in $S$.
+    Each type of player gets their Shapley value in this game:
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= \varphi_P(\mathcal{G}), \\
+        \pi_F(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}).
     \end{align*}
 \end{assumption}
-While somewhat more complex than a simple percentage split, it has quite a few advantages compared to the latter.\footnote{
-    This way of modeling bargaining has precedents in the industrial organization literature \parencite[e.g.][]{hart1990property,segal2003collusion,inderst2003bargaining,montez2007downstream}.
-    Furthermore, a number of papers show that various extensive-form bargaining games result in this outcome \parencite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,stole1996intra}.
-}
-On the theoretical side, the main argument in favor of this particular rule is its relation to the Shapley-value.\footnote{
-    \cref{sec:profit_sharing} shows that in the case of $w(s) \equiv 1$, $\pi_P(N_P, N_F)$ and $\pi_F(N_P, N_F)$ are the Shapely values of the platform and the fringe, respectively.
-}
-Shapley-value in turn has deep connections to bargaining theory.
-\textcite{gul1989bargaining,stole1996intra,hart1996bargaining,inderst2003bargaining}, along with a number of other papers, show that in various extensive-form bargaining games in the players' expected payoffs in the subgame perfect equilibrium correspond to their Shapley values.
 
-The other main justification for this rule its intuitive behavior in terms of comparative statistics when varying $f$ and $w$.
-To illustrate this, let us examine the various parts of this rule, and then discuss how they impact the platform's profit share.
+While this assumption might seem somewhat abstract, the resulting profit allocations are remarkably simple, and can be expressed as integrals (expectations) over the marginal contributions of the players.
+\begin{proposition}
+    \label{prop:profit_sharing}
+    Consider the case when only the platform and the fringe firms participate in the bargaining process.
+    Then, the resulting profit shares are given by
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 f(N_P, s N_F) \ds, \\
+        \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 s N_F \partial_2 f(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
 
-The main feature of this rule is that the platform's bargaining power depends on the degree to which the fringe firms are complements or substitutes of each other.
+\begin{proof}[proof of \cref{prop:profit_sharing}]
+    This result is a direct application of Proposition 3 and Corollary 2 in \textcite{stancsics2023value}.
+\end{proof}
+
+As mentioned before, one main justification for this profit allocation rule its intuitive behavior in terms of comparative statistics.
+To illustrate this, let us examine what happens when one varies the substitutability between the fringe firms.
+As it turns out, the platform's share increases if the fringe firms are more substitutable.
 The following observation demonstrates this idea.
 \begin{observation}
     \label{prop:outcome_based_bargaining_power}
-    Fix some $N_P \geq 0$. Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different total profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(N_P, n_F) \leq \tilde{f}(N_P, n_F)$ for all $n_F < N_F$.
+    Fix some $N_P, N_C \geq 0$. Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(N_P, n_F) \leq \tilde{f}(N_P, n_F)$ for all $n_F < N_F$.
     Furthermore, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
     
     Then, $\pi_P \leq \tilde{\pi}_P$.
 \end{observation}
 
-In words, \cref{prop:outcome_based_bargaining_power} describes two alternative profit functions, under which $N_F$ fringe firms (along with the platform and it's $N_P$ products) are able to achieve the same total profit level.
-However, in one of these cases, the fringe firms are more substitutable to each other, in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
+In words, \cref{prop:outcome_based_bargaining_power} describes two alternative worlds, in which $N_F$ fringe firms (assuming a platform with $N_P$ product variety and $N_C$ consumers) are able to achieve the same total profit level.
+However, in one of these cases, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
 The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
 This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
 
@@ -222,7 +256,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                     xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^2};
-                \node[anchor= east] at (axis cs: .9, .9^2) {$f(N_P, sN_F)$};
+                \node[anchor= east] at (axis cs: .9, .9^2) {$N_C f(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
     
@@ -241,7 +275,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
                 xtick={0, 1}, ytick=\empty, xlabel={$s$}]
                 \addplot[name path=f, blue,ultra thick] {x^0.5};
-                \node[anchor=north west] at (axis cs: .6, .6^0.5) {$\tilde{f}(N_P, sN_F)$};
+                \node[anchor=north west] at (axis cs: .6, .6^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
     
@@ -254,73 +288,93 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \end{tikzpicture}
         \caption{Fringe firms are substitutes}
     \end{subfigure}
-    \caption{Distribution of value between the platform and the fringe (with $w(s) \equiv 1$)}
-    \label{fig:outcome_based_bargaining_power}
+    \caption{Distribution of value between the platform and the fringe. Profit shares correspond to the shaded areas. The platform's profit share is higher when the fringe firms are more substitutable.}
 \end{figure}
 
+\paragraph{Two-sided case} Alternatively, in certain settings, it might be appropriate to assume that the consumers (or, more generally, the entities on the other side of the market) also engage in the bargaining process.
+The cooperative game describing this situation is formalized in \cref{ass:profit_sharing_two_sided}.
+\begin{assumption}
+    \label{ass:profit_sharing_two_sided}
+    Consider the following cooperative game $\mathcal{G} = (\mathcal{N}, v)$.
+    The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i, C_j\}, i \in [0, N_F], j \in [0, N_C]$.
+    The value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
+    \begin{align*}
+        v(S) = \begin{cases}
+            0 & \text{if } P \notin S \\
+            n_C(S) f(N_P, n_F(S)) & \text{if } P \in S
+        \end{cases},
+    \end{align*}
+    where $n_F(S)$ and $n_C(S)$ is the measure of fringe firms and consumers, respectively, in $S$.
+    Each type of player gets their Shapley value in this game:
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= \varphi_P(\mathcal{G}), \\
+        \pi_F(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}), \\
+        \pi_C(N_P, N_F, N_C) &= \varphi_F(\mathcal{G}).
+    \end{align*}
+\end{assumption}
 
-The other main ingredient of the sharing rule, $w(s)$, captures the platform's \emph{innate} bargaining power.
-It is independent of the production function, demand, or the fringe firms' substitutability, and might represent, for example, that the platform and the fringe firms have different power to propose allocations during the (not explicitly modeled) negotiation process.\footnote{
-    For a more thorough exploration of this idea, see \textcite{hart1996bargaining}.
+As in the one-sided case, simple expressions exist for these various shares.
+\begin{proposition}
+    \label{prop:profit_sharing_two_sided}
+    Consider the case when only the platform and the fringe firms participate in the bargaining process.
+    Then, the resulting profit shares are given by
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds, \\
+        \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 s^2 N_F \partial_2 f(N_P, s N_F) \ds \\
+        \pi_C(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
+\begin{proof}[proof of \cref{prop:profit_sharing}]
+    This result is a direct application of Proposition 11 in \textcite{stancsics2023value}.
+\end{proof}
+One thing to note is that the platform's and fringe firms' shares are lower than in the one-sided case.
+This is due to the fact of needing to share the pie with the consumers, too.
+Additionally, the platform's share is identical to the consumers' (aggregated) share.\footnote{
+    This stems from the linearity of the profit function in the number of consumers.
 }
-
-One way to think about the weighting is that the platform's share is the expectation of the total profit, when the number of fringe firms is drawn from $[0, N_F]$ according to some distribution.\footnote{
-    In fact, this is exactly the idea behind the Shapley value: the platform (and other players, too) gets its expected marginal contribution to the total profit.
-    As the fringe cannot create any value without the platform, the latter's marginal contribution to a coalition of $n_F$ fringe firms is simply $f(n_F)$.
-}
-An obvious choice is to use the uniform distribution, in which case the shares correspond to the Shapley value.
-However, this is not the only possible choice.
-If, for example, we want to assume that the platform has a higher innate bargaining power, we can use a distribution with a higher mass on the right tail.\footnote{
-    Specific choices for $w$ can also be motivated by cooperative game theoretical concepts.
-    For example using, $w(s) = \lambda t^{\lambda - 1}$ leads to the weighted Shapley value, with weights $\lambda$ and $1$ for the platform and the fringe firms, respectively.
-}
-When the distribution $W_1$ first order stochastically dominates another distribution $W_2$, the platform is more likely to draw a value from with a higher mass of fringe firms, and therefore obtain a higher profit share in case of $W_1$ than in the case of $W_2$.
-The next observation formalizes this idea.
-\begin{observation}
-    \label{prop:innate_bargaining_power}
-    Let $w, \tilde{w}: [0, 1] \to \mathbb{R}_0^+$ be two different weight functions such that $\int_0^x w_1(s) \ds \leq \int_0^x w_2(s) \ds$ for all $x \in [0, 1]$.
-    As before, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
-    
-    Then, $\pi_P(N_P, N_F) \leq \tilde{\pi}_P(N_P, N_F) \; \forall\, N_P \geq 0, N_F > 0$.
-    Furthermore, this inequality is strict if $\int_0^x w_1(s) \ds < \int_0^x w_2(s) \ds$ on some non-zero measure set.
-\end{observation}
-
-Although the reasoning is straightforward, it establishes that $w$ can indeed be used to represent some form of innate bargaining power.
-For example, if one has reason to believe that the platform has a stronger voice in the negotiation process, one can use a weight function with a higher mass on larger values.
+This foreshadows the idea that -- even though it might not be welfare-maximizing -- what's good for the platform might also good for the consumers in the two-sided case.
 
 
 \subsection{Entry and equilibrium}
 
+Throughout the paper, I will assume that the number of consumers is fixed and exogenous.
+They are thus passive in the sense that they do not make a decision about whether to enter the market or not.
+However, when developing microfoundations for $f$ in \cref{sec:example}, consumers will make consumption choices, and their welfare will be of interest.
+The product variety of the platform is also exogeneous.
+
 Let us now turn to the determination of the equilibrium number of fringe firms.
 Assume that there is an unlimited number of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
-In the first stage of the game, each fringe firm must create a viable product at the investment cost $I_F > 0$.
+In the first stage of the game, each fringe firm must create a viable product at an investment cost $I_F > 0$.
 In the second stage, firms that made this investment plus the platform engage in producing and selling their respective products.
-If there are $N_F$ fringe entrants and $N_P$ platform products, then, as discussed previously, the total profit they make together is given by $f(N_P, N_F)$.
-Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}.
+If there are $N_F$ fringe entrants along with $N_P$ platform products and $N_C$ consumers, then, as discussed previously, the total value they create together is given by $\Pi(N_P, N_F, N_C) = N_C f(N_P, N_F)$.
+Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing} or \cref{ass:profit_sharing_two_sided}, and the fringe gets $\pi_F(N_P, N_F, N_C)$.
 
-The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' profits should be equal to the investment cost.
+The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' total profits should be equal to the aggregated investment cost.
 \begin{definition}
     \label{ass:free_entry}
     Let us define a free entry equilibrium by the following conditions:
     \begin{itemize}
-        \item Profits are shared according to \cref{ass:profit_sharing}.
+        \item Profits are shared according to \cref{ass:profit_sharing} or \cref{ass:profit_sharing}.
         \item Entrants make zero profits: $\pi_F(N_P, N_F) = I_F N_F$ after accounting for entry costs.
     \end{itemize}
 \end{definition}
 
-Finally, in order to guarantee a unique equilibrium, let us make the following, an additional assumption about the profit and bargaining weight functions.
+Finally, in order to guarantee a unique equilibrium, let us make the following, an additional assumption about the profit function.
 \begin{assumption}
     \label{ass:single_crossing}
-    Let $f$ and $w$ be such that the following holds for all $N_F, N_P \geq 0$:
-    \begin{gather*}
-        f'_{n_F} (N_P, N_F) < \int_0^1 s w(s) f'_{n_F} (N_P, s N_F) \ds \\
-        \text{or} \\
-        f''_{n_F} (N_P, N_F) < \int_0^1 s^2 w(s) f''_{n_F} (N_P, s N_F) \ds.
-    \end{gather*}
+    Let $f$ be such that the following holds for all $N_F, N_P, N_C \geq 0$:
+    \begin{align*}
+        \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} < 0 \text{ or } \frac{\partial^2 \pi_F(N_P, N_F, N_C)}{\partial N_F^2} < 0
+    \end{align*}
 \end{assumption}
-The above assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with the total entry cost (apart from the obvious $N_F=0$ intersection).
-While the conditions is not very simple to interpret, they can be verified once a specific choice for $f$ and $w$ is made.
-In particular, this assumption will be satisfied in the example in \cref{sec:example}.
+This assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with the --linear -- total entry cost (apart from the obvious $N_F=0$ intersection).
+The interpretation of the assumption itself is simple: total fringe profits, as a function of the number of fringe firms, must be either concave or hump-shaped.\footnote{
+    As it turns out, even though total industry profits are assumed to be increasing in $n_f$, it is not necessarily true for fringe profits.
+    For certain profit functions, it happens that even though the size of the pie increases, the bargaining position of the fringe deteriorates so much that they get a smaller share even in absolute value.
+}
+What it requires of $f$, however, is not so obvious, and also depends on whether one assumes one-sided or two-sided bargaining.
+Nevertheless, when microfounding the profit function, one can simply check whether this assumption holds or not.
+In particular, it will be satisfied for the logit-type demand in \cref{sec:example}.
 
 
 \section{General results}
@@ -566,10 +620,10 @@ This result has particularly strong implications in models where total profits (
 \Cref{sec:example} also presents a model in which this is the case.
 
 
-\section{Example application}
+\section{Logit demand}
 \label{sec:example}
 
-Let us now turn to an example application of the somewhat abstract model presented in the previous sections.
+Let us now add more structure to the model, and microfound the profit function $\Pi$.
 The model in this section is heavily inspired by the logit-like demand structure and hybrid platform setting in  \textcite{anderson2021hybrid}.
 The setting is a (possibly hybrid) platform market with monopolistically competing fringe firms.
 
@@ -1070,7 +1124,7 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 
     In the remainder, for ease of notation, let us denote partial derivatives as follows:
     \begin{align*}
-        \partial_F \pi_F(N_P^*, N_F^*) := \left. \frac{\partial \pi_F(N_P, N_F)}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*}.
+        \partial_F \pi_F(N_P^*, N_F^*) \coloneqq \left. \frac{\partial \pi_F(N_P, N_F)}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*}.
     \end{align*}
 
     Notice that the fact that $\pi_F$ is concave or decreasing in $N_F$ implies that if $\partial_F \pi_F(N_P, N_F')$ for some $N_F' \geq 0$, then $\partial_F \pi_F(N_P, N_F'') < \partial_F \pi_F(N_P, N_F')$ for any $\tilde{N_F} < \bar{N_F}$.
@@ -1173,7 +1227,7 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
         \pi_F(N_P', N_F') &= N_F' \beta \int_0^1 t g'(\alpha N_P' + \beta t N_F') \dt, \\
         \pi_F(N_P'', \bar{N}_F) &= \bar{N}_F \beta \int_0^1 t g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt.
     \end{align*}
-    Finally, let the following hold:
+    Finally, let us bound the difference between $\pi_F(N''_Pm \bar{N}_F) - I_F \bar{N}_F$ from above:
     \begin{align*}
         \pi_F(N_P'', \bar{N}_F) - I_F \bar{N}_F &= \frac{\bar{N}_F}{N_F'}\left[\beta \int_0^1 t g'(\alpha N_P' + \beta t N_F' + \Delta \alpha (1-t)) \dt - I_F N_F' \right] \\
         &< \frac{\bar{N}_F}{N_F'}\left[\beta \int_0^1 t g'(\alpha N_P' + \beta t N_F') \dt - I_F N_F' \right] \\
