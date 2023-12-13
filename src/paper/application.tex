@@ -58,9 +58,9 @@
 \maketitle
 
 \begin{abstract}
-    This paper studies the effects of a platform selling their own products in addition to acting as intermediaries (hybrid platforms) in a setting when bargaining takes place between the platform and the potential entrants.
-    It highlights a so-far underexplored aspect of hybrid platforms: having their own products increases their bargaining power over the other sellers.
-    As shown through a more concrete example, this change in bargaining power can have negative welfare consequences for the consumers.
+    This paper explores the effects of a platform selling their own products in addition to acting as intermediaries (hybrid platforms) in a setting when bargaining takes place between the platform and the potential entrants.
+    It highlights a so-far underappreciated aspect of hybrid platforms: having their own products increases their bargaining power over the other sellers.
+    This change in bargaining might lead to lower entry, and thus reduced product variety which in turn can have negative welfare consequences for the consumers.
     The results and methods described in this paper are also applicable to other similar settings, such as vertical integration with a monopolistic upstream supplier.
 \end{abstract}
 
@@ -143,14 +143,15 @@ Finally, \cref{sec:conclusion} summarizes the results and discusses possible fut
 
 This section introduces the model used throughout the paper.
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
-However, the model is more general, and the results apply to a broader class of settings.
-An important example of those is an upstream-downstream setting with a single upstream producer and a continuum of downstream sellers.
+However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
 
-Assume that there are two types of players in the market: a platform $P$ and a continuum of fringe sellers $F_i$.
-The fringe firms each have one product, which they can only sell through the platform.
-The platform itself may also have its own products in addition to acting as an intermediary between the fringe and the consumers.
-In that case it is referred to as a hybrid platform.
-The main feature of the model is that, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
+Assume that there are three types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in [0, N_C$) and a continuum of consumers $C_j$ ($j \in [0, N_C$]).
+The fringe firms have one product each, which they can only sell through the platform.
+Without the platform, they make zero profits.
+In addition to acting as an intermediary between the fringe and the consumers, the platform itself may also produce and sell a number of products directly to the consumers.
+If it does, it is referred to as a hybrid platform.
+
+The main distinguishing feature of this model is that, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
 The bargaining rule, as well as other details of the model, are described in the rest of this section.
 
 
@@ -158,46 +159,50 @@ The bargaining rule, as well as other details of the model, are described in the
 
 I make use of a reduced-form, but quite general approach to model production and demand.
 First, I assume that all fringe firms and consumers are ex-ante identical.
-This implies that the total profits of the platform and the fringe taken together have a simple functional form $n_C f(n_P, n_F)$.
-\begin{assumption}
-    \label{ass:identical_fringe}
-    The total profits of the platform and the fringe are described by 
-    \begin{align*}
-        \Pi(n_P, n_F, n_C) = n_C f(n_P, n_F),
-    \end{align*}
-    where $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
-\end{assumption}
-Here, $n_F$ is the mass of fringe sellers, $n_C$ is the mass of consumers, and $n_P$ measures the degree to which the platform sells its own products.
-For example, in a setting with differentiated products and monopolistic competition, $n_F$ and $n_P$ represents the product variety of the fringe and the platform, respectively.
-In case the platform operates as a pure intermediary, $n_P = 0$.
-This formulation also assumes that total profits are linear in the number of consumers.\footnote{
+This implies two things: (1) per-consumer profits are just a function of the number of fringe and platform products, and (2) the platform's and the fringe's profits are linear in the number of consumers.\footnote{
     While normally this would exclude fixed production costs, this is not the case here.
     $\Pi$ only describes profits conditional on $N_C$ and $N_F$ players entering the platform.
     Fixed costs can be incorporated into the first stage of the game, where fringe firms decide whether to enter or not.
 }
+Therefore, the total profits of the platform and the fringe taken together have a simple functional form $N_C f(N_P, N_F)$.\footnote{
+    Based on the same reasoning, it is easy to see that total welfare has a similar form.
+}
+Formally, this is described by the following assumption.
+\begin{assumption}
+    \label{ass:identical_fringe}
+    The total profits of the platform and the fringe are described by 
+    \begin{align*}
+        \Pi(N_P, N_F, N_C) = N_C f(N_P, N_F),
+    \end{align*}
+    where $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
+\end{assumption}
+Here, $N_F$ is the mass of fringe sellers, $N_C$ is the mass of consumers, and $N_P$ measures the degree to which the platform sells its own products.
+For example, in a setting with differentiated products and monopolistic competition, $N_F$ and $N_P$ represent the product variety of the fringe and the platform, respectively.
+$N_P = 0$ corresponds to the case when the platform is a pure intermediary, and $N_F = 0$ to the case then the platform is a pure retailer.
 
 I will assume that, in addition to being increasing in the number of consumers, total profits are also increasing in both the number of fringe firms and the platform' products.
 \begin{assumption}
     \label{ass:monotone_profits}
     $f(n_P, n_F)$ is increasing in both $n_P$ and $n_F$.
 \end{assumption}
-Such profit functions arise in a variety of settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
+Such profit functions arise in settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
 One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
-Alternatively, indirect network effects, such as in two-sided markets, can also result in such increasing profits.
+Alternatively, indirect network effects, such as those in two-sided markets, can also result in such increasing profits.
+Finally, if we assume that the platform can extract consumer surplus through entry fees or some similar mechanism, then this assumption will be true for any demand system in which total surplus is increasing in product variety.
 
 
 \subsection{Profit sharing}
 
-Let us assume that the fringe firms are unable to sell their products directly to consumers.
+I assume that fringe firms are unable to sell their products directly to consumers.
 Instead, they must sell through the platform.
 For this service, the platform may charge a fee, and obtain a share of the fringe's profits.
 
 In the benchmark model, the platform will be able to set and commit to any lump-sum entry fee it wishes to.\footnote{
-    The focus is on fees and entry of fringe producers, but I will also consider the case when the platform can set an entry fee for consumers, as well.
+    The focus of this paper is on fees paid and entry decisions made by fringe producers, but I will also consider the case when consumers might also face entry fees or subsidies.
 }
-The main contribution of this paper is to deviate this usual assumption, and instead consider a setting in which the platform and the fringe engage in some form of bargaining over the entry fee.
-To model this bargaining in a theoretically sound, but still tractable way, I will borrow a solution concept from cooperative game theory.
-Similarly to a number of other papers in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}, I will assume that the resulting allocation for each player is given by their Shapley value.
+The main contribution of this paper is to deviate from this usual assumption, and instead consider a setting in which the platform and the fringe engage in some form of bargaining over the total profits.
+To model this in a theoretically sound, but still tractable way, I borrow a solution concept from cooperative game theory.
+Similarly to a number of other papers in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}, I assume that the resulting allocation for each player is given by their Shapley value.
 This value (and the game itself) depends on who is assumed to participate in the bargaining process.
 I will consider two different cases.
 
@@ -372,8 +377,8 @@ The equilibrium number of entrants is determined by a free entry condition: in t
     \label{ass:free_entry}
     Let us define a free entry equilibrium by the following conditions:
     \begin{itemize}
-        \item Profits are shared according to \cref{ass:profit_sharing} or \cref{ass:profit_sharing}.
-        \item Entrants make zero profits: $\pi_F(N_P, N_F) = I_F(N_F)$ after accounting for entry costs.
+        \item Profits are shared according to \cref{ass:profit_sharing} (one-sided bargaining) or \cref{ass:profit_sharing_two_sided} (two-sided bargaining).
+        \item Entrants make zero profits after accounting for entry costs: $\pi_F(N_P, N_F) = I_F(N_F)$.
     \end{itemize}
 \end{definition}
 
@@ -400,17 +405,17 @@ In particular, it will be satisfied for the logit-type demand in \cref{sec:examp
 
 This section presents some general result that only depend on the abstract model structure described in the previous section, and the assumptions therein.
 It turns out that even within such a general setting, one can derive some interesting and non-trivial results.
-\Cref{sec:example} will then build on these results to derive stronger results in a more fully specific model.
+\Cref{sec:example} then builds on these results to derive stronger ones under a specific demand system.
 
-Let us start by a technical, but highly useful result.
+Let us start with a technical, but very useful result.
 \begin{proposition}
     \label{prop:unique_equilibrium}
     Under the conditions in \cref{ass:single_crossing}, the equilibrium is unique if it exists.
 \end{proposition}
 The intuition behind this result is that \cref{ass:single_crossing} ensures that the total profits achieved by the fringe is either concave or hump-shaped.
-Consequently, it has at most one crossing with the linear total entry cost (for $n_F > 0$).
+Consequently, it has at most one crossing with the -- convex and increasing -- total entry cost function (for $n_F > 0$).
 An example for this is shown in \cref{fig:equilibrium}.
-This particular shape is also the main driver for the following results about the comparative statics of equilibrium profits and entry.
+This particular shape (concave or hump-shaped) is also the main driver for the later results about the comparative statics of equilibrium profits and entry.
 
 \begin{figure}[ht]
     \centering
@@ -889,7 +894,7 @@ This yields the following closed-form expressions for the total profits of the p
         \pi^t_P &=\int_0^1 f(N_P, sN_F) \ds \\
                 &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
     \end{align*}
-    The total profits of the whole fringe is given by
+    The total profits of the whole fringe are given by
     \begin{align*}
         \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F(N_F).
     \end{align*}
@@ -1051,6 +1056,70 @@ In general, I believe this approach for modeling bargaining is a rather good com
 \appendix
 
 \printbibliography
+
+
+\section{Extensions}
+\label{sec:extensions}
+
+In this section, I look at a number of extensions of the model presented in \cref{sec:example}.
+The common theme of these extensions is that the consumer surplus is also included in the sum that is bargained over.
+That is, $\Pi(N_P, N_F, N_C)$ now represents total surplus.
+
+First, \cref{sec:total_welfare} looks at the case when consumer can be extracted by the platform, but consumers are still passive, and the bargaining is between the platform and the fringe.
+Then, \cref{sec:two_sided} explores what happens when all three sides engage in the negotiation over the same total surplus.
+I will only consider the bargaining outcomes under assumptions \cref{ass:profit_sharing} and \cref{ass:profit_sharing_two_sided}, respectively, and do not look at a benchmark with unilateraly set entry fees for the fringe.
+
+\subsection{Platform can extract consumer surplus}
+\label{sec:total_welfare}
+
+In this section, I assume that the platform can extract consumer surplus by charging a flat entry fee $F_C$.
+As consumers are identical, and the platform can set any entry fee, this implies that the platform can extract all consumer surplus in this case.\footnote{
+    Note, that I still assume that all $N_C$ consumers are present on the market by default, they do not have to pay any cost that would be analogous to the entry fee ($I_F$) of the fringe firms.
+    Therefore, they enter the market if and only if they are expected to have non-negative utility, which in turn means that the platform sets the entry fee to be equal to the consumer surplus.
+}
+
+Let us start by deriving total profits (which, in this case is the total surplus) as a function of $N_P, N_F$ and $N_C$.
+Under the logit-like demand structure described in \cref{sec:example}, the total surplus is given by
+\begin{proposition}
+    \label{prop:profits_total_surplus}
+    If the platform can extract consumer surplus, then the total profits that the platform and the fringe firms can achieve are given by
+    \begin{align*}
+        \Pi(N_P, N_F, N_C) = \mu N_C \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} + \log(N_P V_P + N_F V_F + 1) \right].
+    \end{align*}
+\end{proposition}
+\begin{proof}[Proof of \cref{prop:profits_total_surplus}]
+    \textcite{small1981applied} show that the total surplus in a logit demand system is given by this expression.
+    As total consumer surplus is zero, the total profits are equal to the total surplus.
+\end{proof}
+Note, that this expression is of the form $\Pi(N_C, N_P, N_F) = N_C f(N_P, N_F)$.
+Furthermore, $f(N_P, N_F) = g(V_P N_P + V_F N_F)$ for an increasing, strictly concave $g$.
+
+Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:results} apply here, as well.
+The following lemma establishes this result.
+\begin{lemma}
+    \label{lem:profit_assumptions_total_surplus}
+    $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
+    Furthermore,
+    \begin{align*}
+        \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0.
+    \end{align*}
+\end{lemma}
+
+With this proven, we can rely on \cref{prop:aggregate_size_additive} to see that, in equilibrium, an increase in $N_P$ decreases $N_F$.
+Furthermore, this decrease is so large that total product variety, and thus total surplus (which in turn is equal to total profits) also decreases.\footnote{
+    As long as the market is in the hybrid regime.
+    If $N_F^* = 0$, then an increase in $N_P$ mechanically increases total aggregate, and thus total surplus.
+}
+Thus, as in the case without consumer entry fees, a platform becoming increasingly hybrid has generally negative consequences.
+
+The difference is that, due to the platform appropriating all the consumer surplus, it does not hurt consumer welfare -- it is zero regardless of $N_P$.
+Coupled with the fact that fringe firms also make zero profits in equilibrium, this means that the outcome is not so negative, after all.
+In particular, the platform's profits are increasing in $N_P$, and thus it prefers to operate in hybrid mode, as long as it is feasible.
+So even though the total pie gets smaller, the platform gets a larger slice, while the consumers and the fringe are just as well off.
+
+
+\subsection{Consumers also engage in bargaining}
+\label{sec:two_sided}
 
 
 \section{Shapley value in the platform game}
@@ -1441,6 +1510,32 @@ Finally, the aggregated value of the fringe can be obtained using the efficiency
 
     Now let us consider the function $h(x) = N_C \mu g(N_P V_P + V_F x)$.
     By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
+    Finally, notice that $H(x)$ is exactly the profit function of the fringe:
+    \begin{align*}
+        \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
+    \end{align*}
+    and thus the lemma is proven.
+\end{proof}
+
+
+\begin{proof}[Proof of \cref{lem:profit_assumptions_total_surplus}]
+    To show this, I go through the same steps as in the proof of \cref{lem:profit_assumptions}.
+    Consider the function
+    \begin{align*}
+        g(x) = \frac{sx}{1 + sx} + \log(1 + sx).
+    \end{align*}
+    Also, let us define
+    \begin{align*}
+        G(x) &= \int_0^1 s g(sx) \ds \\
+        &= \frac{1}{x + 1}.
+    \end{align*}
+    Clearly, $G$ is a strictly concave function of $x$.
+
+    Now let us consider $h(x) = N_C \mu g(N_P V_P + V_F x).$
+    By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also strictly concave in $x$.\footnote{
+        Technically, the lemma establishes concavity \emph{or} being monotone decreasing.
+        It does not matter for this application, but it is easy to see that $H$ is indeed strictly concave.
+    }
     Finally, notice that $H(x)$ is exactly the profit function of the fringe:
     \begin{align*}
         \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
