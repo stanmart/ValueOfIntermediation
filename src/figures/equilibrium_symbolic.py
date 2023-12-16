@@ -81,6 +81,13 @@ def create_plot_data(
         np.nan
     )
 
+    hybrid_mode = np.where(
+        N_F_vec > 1e-5,
+        100,
+        0
+    )
+       
+
 
     data = pd.DataFrame(
         {
@@ -97,6 +104,7 @@ def create_plot_data(
             "CS_noF": CS_noF,
             "pi_P_noF": pi_P_noF,
             "F_F_implied": F_F_implied,
+            "hybrid": hybrid_mode,
         }
     )
 

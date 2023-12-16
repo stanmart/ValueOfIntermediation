@@ -46,9 +46,10 @@
 \definecolor{myred}{rgb}{0.87, 0.52, 0.32}
 
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-0.3.csv}\equilibriumFullSurplusOneSided
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.5_lambda-1.csv}\equilibriumFullSurplusOneSided
+% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv}\equilibriumProfitOneSided
+\pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.6_lambda-1.csv}\equilibriumFullSurplusOneSided
 % \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1_lambda-1.csv}\equilibriumFullSurplusTwoSided
+% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1_lambda-0.5.csv}\equilibriumProfitOneSidedLowLambda
 
 \title{Hybrid platforms and bargaining power}
 \author{Martin Stancsics}
@@ -1110,7 +1111,68 @@ Furthermore, this decrease is so large that total product variety, and thus tota
     As long as the market is in the hybrid regime.
     If $N_F^* = 0$, then an increase in $N_P$ mechanically increases total aggregate, and thus total surplus.
 }
+\Cref{fig:equilibrium_full_surplus_one_sided} displays equilibrium outcomes for an example parametrization
 Thus, as in the case without consumer entry fees, a platform becoming increasingly hybrid has generally negative consequences.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3.1, % adjust these values as needed
+                    axis lines=left,
+                    xtick=\empty, ytick=\empty,
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusOneSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusOneSided};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A]{\equilibriumFullSurplusOneSided};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusOneSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$N_P$, $N_F$, $A$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform product variety and number of fringe entrants}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.2, % adjust these values as needed
+                    axis lines=left,
+                    xtick=\empty, ytick=\empty,
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusOneSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusOneSided};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusOneSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$\pi_P(N_P)$, $\pi_F(N_P)$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform and fringe profits}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the whole surplus is bargained over ($N_C = 0.6, V_P = 1, V_F = 1, I_F = 0.2$). As in the case of bargaining over profits, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Consumer surplus does not matter in this case, as it is extracted by the platform. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_full_surplus_one_sided}
+\end{figure}
+
 
 The difference is that, due to the platform appropriating all the consumer surplus, it does not hurt consumer welfare -- it is zero regardless of $N_P$.
 Coupled with the fact that fringe firms also make zero profits in equilibrium, this means that the outcome is not so negative, after all.
