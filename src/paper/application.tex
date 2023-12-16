@@ -46,9 +46,9 @@
 \definecolor{myred}{rgb}{0.87, 0.52, 0.32}
 
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1.csv}\equilibriumProfitOneSided
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.5.csv}\equilibriumFullSurplusOneSided
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1.csv}\equilibriumFullSurplusTwoSided
+% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-0.3.csv}\equilibriumFullSurplusOneSided
+% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.5_lambda-1.csv}\equilibriumFullSurplusOneSided
+% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1_lambda-1.csv}\equilibriumFullSurplusTwoSided
 
 \title{Hybrid platforms and bargaining power}
 \author{Martin Stancsics}
@@ -1116,6 +1116,11 @@ The difference is that, due to the platform appropriating all the consumer surpl
 Coupled with the fact that fringe firms also make zero profits in equilibrium, this means that the outcome is not so negative, after all.
 In particular, the platform's profits are increasing in $N_P$, and thus it prefers to operate in hybrid mode, as long as it is feasible.
 So even though the total pie gets smaller, the platform gets a larger slice, while the consumers and the fringe are just as well off.
+
+The catch is that, in this comparative statics exercise, the platforms' increased product variety came out of thin air.
+Specifically, when looking at the platform's profits, this increase in product variety is not associated with any increase in investment costs.
+If we were to include those at the same level of the fringe's investment costs, then the platform's profits would be decreasing in $N_P$, and it would not make the investment.
+Nevertheless, if it were to make it for some reason, it would not have the negative consequences that it had in \cref{sec:example}.
 
 
 \subsection{Consumers also engage in bargaining}

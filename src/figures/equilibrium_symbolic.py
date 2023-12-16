@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from scipy.integrate import quad
 from scipy.optimize import fsolve
 from collections.abc import Iterable
 import typer
@@ -15,6 +16,7 @@ def create_plot_data(
     N_C: float = 1,
     N_P_range: tuple[float, float] = (0, 1),
     num_obs: int = 500,
+    lambda_P: float = 1,
     value_function: str = "profit",
     bargaining: str = "one-sided",
 ):
@@ -32,17 +34,20 @@ def create_plot_data(
     else:
         raise typer.BadParameter(f"Unknown value function: {value_function}")
     
+    f_num = lambdify((N_P_sp, N_F_sp, s), f)
+    f_diff_num = lambdify((N_P_sp, N_F_sp, s), f.diff(s))
+
     if bargaining == "onesided":
-        pi_P_symbolic = simplify(integrate(f, (s, 0, 1)))
-        pi_F_symbolic = simplify(integrate(s * f.diff(s), (s, 0, 1)))
+        pi_P_scalar = lambda N_P, N_F: quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s  ** (lambda_P - 1), 0, 1)[0]
+        pi_F_scalar = lambda N_P, N_F: quad(lambda s: f_diff_num(N_P, N_F, s) * s ** lambda_P, 0, 1)[0]
     elif bargaining == "twosided":
-        pi_P_symbolic = simplify(integrate(s * f, (s, 0, 1)))
-        pi_F_symbolic = simplify(integrate(s**2 * f.diff(s), (s, 0, 1)))
+        pi_P_scalar = lambda N_P, N_F: quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** lambda_P, 0, 1)[0]
+        pi_F_scalar = lambda N_P, N_F: quad(lambda s: f_diff_num(N_P, N_F, s) * s ** (lambda_P + 1), 0, 1)[0]
     else:
         raise typer.BadParameter(f"Unknown bargaining mode: {bargaining}")
     
-    pi_P = lambdify((N_P_sp, N_F_sp), pi_P_symbolic)
-    pi_F = lambdify((N_P_sp, N_F_sp), pi_F_symbolic)
+    pi_P = np.vectorize(pi_P_scalar)
+    pi_F = np.vectorize(pi_F_scalar)
 
     def pi_F_t(N_P, N_F):
         return pi_F(N_P, N_F) - I_F * N_F
