@@ -44,12 +44,13 @@
 
 \definecolor{myblue}{rgb}{0.3, 0.45, 0.69}
 \definecolor{myred}{rgb}{0.87, 0.52, 0.32}
+\definecolor{mygreen}{rgb}{0.34, 0.68, 0.45}
 
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
 % \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv}\equilibriumProfitOneSided
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.6_lambda-1.csv}\equilibriumFullSurplusOneSided
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1_lambda-1.csv}\equilibriumFullSurplusTwoSided
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-1_lambda-0.5.csv}\equilibriumProfitOneSidedLowLambda
+\pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-0.6_lambda-1.csv}\equilibriumFullSurplusTwoSided
+\pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-0.5.csv}\equilibriumProfitOneSidedLowLambda
 
 \title{Hybrid platforms and bargaining power}
 \author{Martin Stancsics}
@@ -1125,13 +1126,13 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
                     xmin=0, xmax=1.5, % adjust these values as needed
                     ymin=0, ymax=3.1, % adjust these values as needed
                     axis lines=left,
-                    xtick=\empty, ytick=\empty,
+                    xtick={0, 1.5},
                     legend pos=south east,
                     width=\textwidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusOneSided};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusOneSided};
-                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A]{\equilibriumFullSurplusOneSided};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumFullSurplusOneSided};
                 
                 \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusOneSided};
                 \addplot[draw=none,name path=bottom] {0};
@@ -1153,7 +1154,7 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
                     xmin=0, xmax=1.5, % adjust these values as needed
                     ymin=0, ymax=1.2, % adjust these values as needed
                     axis lines=left,
-                    xtick=\empty, ytick=\empty,
+                    xtick={0, 1.5},
                     legend pos=north west,
                     width=\textwidth,
                 ]
@@ -1164,7 +1165,7 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
                 \addplot[draw=none,name path=bottom] {0};
                 \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
 
-                \legend{$\pi_P(N_P)$, $\pi_F(N_P)$}
+                \legend{$\pi_P$, $\pi_F$}
             \end{axis}
         \end{tikzpicture}
         \caption{Platform and fringe profits}
@@ -1187,6 +1188,191 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
 
 \subsection{Consumers also engage in bargaining}
 \label{sec:two_sided}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3.1, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumFullSurplusTwoSided};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$N_P$, $N_F$, $A$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform product variety and number of fringe entrants}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.2, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$\pi_P$, $\pi_F$, $CS$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform and fringe profits}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the whole surplus is bargained over ($N_C = 0.6, V_P = 1, V_F = 1, I_F = 0.2$), and both consumers and fringe firms participate in the bargaining. As before, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. On the other hand, consumer welfare is equal to platform profits, therefore it is increasing in $N_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_full_surplus_two_sided}
+\end{figure}
+
+
+\subsection{Platform has lower innate bargaining power}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3.1, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumProfitOneSidedLowLambda};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$N_P$, $N_F$, $A$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform product variety and number of fringe entrants}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.2, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=CS]{\equilibriumProfitOneSidedLowLambda};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$\pi_P$, $\pi_F$, $CS$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform and fringe profits}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_low_lambda}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=0.4, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=F_F_opt]{\equilibriumProfitOneSidedLowLambda};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$F_F$, $F_F^{opt}$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Optimal and actual (implied) entry fees}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0.25, ymax=0.35, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.22]{\equilibriumProfitOneSidedLowLambda};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$I_P = 0.18$, $I_P = 0.2$, $I_P = 0.22$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform profits net of investment costs}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_low_lambda_entry_fees}
+\end{figure}
 
 
 \section{Shapley value in the platform game}

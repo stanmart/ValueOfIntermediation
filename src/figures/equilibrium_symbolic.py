@@ -57,6 +57,14 @@ def create_plot_data(
             return np.array([N_F_opt(n) for n in N_P])
         else:
             return fsolve(lambda N_F: pi_F_t(N_P, N_F), 3)[0]
+        
+    def F_F_opt():
+        return np.sqrt(mu * I_F * V_F) - I_F
+    
+    def N_F_opt_bench(N_P):
+        F_F = F_F_opt()
+        N_F_candidate = mu / (F_F + I_F) - N_P * V_P / V_F - 1 / V_F
+        return np.maximum(N_F_candidate, 0)
 
     N_P_vec = np.linspace(N_P_range[0], N_P_range[1], num_obs)
     N_F_vec = N_F_opt(N_P_vec)
@@ -75,6 +83,17 @@ def create_plot_data(
     pi_P_noF = mu * N_P_vec * V_P / A_noF
 
     pi_P_var_vec = mu * N_P_vec * V_P / A_vec
+
+    if bargaining == "onesided" and value_function == "profit":
+        N_F_bench = N_F_opt_bench(N_P_vec)
+        F_F_opt_vec = np.where(
+            N_F_bench > 1e-5,
+            F_F_opt(),
+            np.nan
+        )
+    else:
+        F_F_opt_vec = np.ones_like(N_P_vec, dtype=float) * np.nan
+
     F_F_implied = np.where(
         N_F_vec > 1e-5,
         (pi_P_vec - pi_P_var_vec) / N_F_vec,
@@ -83,10 +102,10 @@ def create_plot_data(
 
     hybrid_mode = np.where(
         N_F_vec > 1e-5,
-        100,
+        10,
         0
     )
-       
+
 
 
     data = pd.DataFrame(
@@ -104,6 +123,7 @@ def create_plot_data(
             "CS_noF": CS_noF,
             "pi_P_noF": pi_P_noF,
             "F_F_implied": F_F_implied,
+            "F_F_opt": F_F_opt_vec,
             "hybrid": hybrid_mode,
         }
     )
