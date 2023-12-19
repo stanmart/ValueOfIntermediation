@@ -302,6 +302,7 @@ This coincides with the intuitive idea that the platform's bargaining power is h
         \caption{Fringe firms are substitutes}
     \end{subfigure}
     \caption{Distribution of value between the platform and the fringe. Profit shares correspond to the shaded areas. The platform's profit share is higher when the fringe firms are more substitutable.}
+    \label{fig:outcome_based_bargaining_power}
 \end{figure}
 
 \paragraph{Two-sided case} Alternatively, in certain settings, it might be appropriate to assume that the consumers (or, more generally, the entities on the other side of the market) also engage in the bargaining process.
@@ -683,7 +684,7 @@ Customer $j$ derives the following utility from buying product $i$:
 \end{align*}
 where $v^F_i$ is the value of product $i$, $p^F_i$ is its price, and $\epsilon^F_{ij}$ is an idiosyncratic taste shock.
 Throughout this section I assume that the value of each product is the same: $v^F_i = v^F$.
-This is to simplify the analysis, but is not crucial for the results.  % TODO: look into relaxing this assumption
+This is to simplify the analysis, but is not crucial for the results.
 
 Additionally, customers can also choose from a unit mass of outside options, yielding utility $u^0_ij = \mu\epsilon^0_{ij}$. $\epsilon^F_{ij}$ and $\epsilon^0_{ij}$ are assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution. This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
 
@@ -711,7 +712,6 @@ For this service, the platform can charge a lump-sum entry fee $F_F$ to each fri
 }
 In the baseline model, I assume that entry is free for the consumers, and they are always present on the platform, no matter the other players' entry and pricing decisions.\footnote{
     This essentially means that I assume a one-sided platform, without the usual network effects.
-    % TODO: see if I can relax this assumption
 }
 Later on, I look at the case of the platform obtaining consumer surplus, and also the case of consumers participating in the bargaining over the total surplus.
 
@@ -807,17 +807,13 @@ Then, equilibrium per-product demand and variable profit can be expressed as $V_
 \end{align*}
 
 Finally, another important feature of this demand system is that, assuming optimal pricing, consumer welfare only depends on the size of the aggregate \parencite{anderson2020aggregative}.
-In particular, consumer surplus is proportional to the logarithm of the aggregate:
-\begin{align*}
-    CS = \mu N_C \log(A).
-\end{align*}
-This fact makes welfare analysis rather simple in this setting.
+In particular, consumer surplus is proportional to the logarithm of the aggregate: $CS = \mu N_C \log(A)$. This fact makes welfare analysis rather simple in this setting.
 
-\subsubsection{The benchmark model}
+\subsubsection{Benchmark: platform sets entry fee unilaterally}
 
 Recall that there is an infinity of potential fringe entrants looking to enter the market.
 Therefore, total profits in equilibrium must be zero.
-Combined with the simple profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
+Combined with the  profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
 \begin{proposition}
     \label{prop:equilibrium_aggregate}
     If entry costs $I_F$ and $F_F$ are low enough, the equilibrium size of the aggregate is
@@ -834,12 +830,12 @@ Combined with the simple profit function, this gives the following expressions f
         A = N_P V_P + 1.
     \end{align*}
 \end{proposition}
-Note that in the first case (\cref{eq:aggregate_eq})., the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
+Note that in the first case (\cref{eq:aggregate_eq}), the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
 The intuition behind this is that per-firm fringe profits only depend on these factors indirectly, through the size of the aggregate.
 That is, unless the fringe is not feasible, an increase in $N_P$ will simply replace some fringe entrants, but the free entry condition will pin down the same aggregate, as before.
 
 Now let us turn to the optimal entry fee set by the platform, and its total profits (consisting of revenue from its own sales and the collected entry fees).
-The following proposition establishes these both for the hybrid and the pure retail regimes.
+The following proposition establishes these both for the hybrid and the pure retail regimes, and \cref{fig:entry_fee,fig:platform_profits} demonstrates them graphically.
 
 \begin{proposition}
     \label{prop:optimal_entry_fee}
@@ -857,7 +853,7 @@ The following proposition establishes these both for the hybrid and the pure ret
     \end{align*}
     in the retail regime.
 \end{proposition}
-Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:F_F_eq,fig:pi_P_eq}).
+Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:platform_profits,fig:entry_fee}).
 This is only due to the fact that the platform's product does not require any investment cost.
 If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on investment costs, which is essentially wasted.
 Consequently, in the hybrid regime, the marginal derivative of optimal profits with respect to the platform's product variety is simply the fringe's investment cost, adjusted for the possible difference in product advantage:
@@ -869,46 +865,45 @@ Furthermore, if the platform does have to pay an investment cost $I_P$, then it 
 As a consequence, as long as the fringe is feasible at the optimal entry fee, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
 In contrast, when the fringe is not present in the market, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
 This effect is purely mechanical: more variety leads to higher welfare.
+\Cref{fig:fringe_entry_eq} illustrates this effect.
 
-Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, whenever the former is feasible.
-Therefore, the platform prefers to operate in hybrid mode, and does not want to exclude fringe firms from the market.\footnote{
-    This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
-    It implies that there is no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
-}
-Therefore, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.\footnote{
+Finally, note that the profit of the platform under the hybrid regime is higher than under the retail regime, whenever the former is feasible.
+Therefore, for a given $N_P$, the platform prefers to operate in hybrid mode, and does not want to exclude fringe firms from the market.
+As a corollary, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.\footnote{
     This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets higher royalties to create a price advantage for its own products.
     The reason for this difference lies in the type of entry fee: they assume a revenue-based, proportional fee, which distorts prices.
     In contrast, in this paper, I assume a non-distortive lump sum fee.
 }
-\subsubsection{The bargaining model}
+\subsubsection{Main model: bargaining between platform and fringe}
 
 Now consider the case where, instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
-As the platform cannot choose 
+As the platform cannot choose and commit to an entry fee, the first period from the benchmark model is skipped.
 Instead, the game starts by fringe firms' investment decisions.
 After that, in the second period, bargaining takes place between the platform and the fringe firms that have entered the market.
 
-The participants negotiate over the aggregate profits that they can achieve in the subsequent period (assuming non-collusive, monopolistic pricing, as before).
-I assume that bargaining outcomes are determined according to \cref{ass:profit_sharing}, where $f(N_P, N_F)$ is defined as the total profits that the platform and the entrants can achieve by selling their products.
+The participants negotiate over the aggregate profits that they expect to obtain in the subsequent period (assuming the same non-collusive, monopolistic pricing, as before).
+I assume that bargaining outcomes are determined according to \cref{ass:profit_sharing}, where $\Pi(N_P, N_F, N_C)$ is defined as the sum of profits that the platform and the entrants acquire by selling their products.
 From \cref{eq:optimal_profit}, the total profit achieved by the platform and $N_F$ fringe firms is given by
 \begin{align*}
-    f(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
+    \Pi(N_P, N_F, N_C) = N_C \underbracket{\mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}}_{\coloneqq f(N_P, N_F)}.
 \end{align*}
-This yields the following closed-form expressions for the total profits of the participants.
+Based on \cref{prop:profit_sharing}, one can even obtain closed-form expressions for platform and fringe profit shares for this class of demand systems.
 \begin{proposition}
     \label{prop:platform_profits_bargaining}
     The platform's total profits are
     \begin{align*}
-        \pi^t_P &=\int_0^1 f(N_P, sN_F) \ds \\
-                &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
+        \pi^t_P &= N_C \int_0^1 f(N_P, sN_F) \ds \\
+                &= \mu N_C \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
     \end{align*}
-    The total profits of the whole fringe are given by
+    The total profits of the whole fringe (including investment costs) are given by
     \begin{align*}
-        \pi^t_F = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F(N_F).
+        \pi^t_F = \mu N_C \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F .
     \end{align*}
 \end{proposition}
 
 Now let us turn to how the platform's dual mode operation affects product variety and consumer welfare.
-Let us start by establishing some properties of the total profit function $f(n_P, n_F)$.
+I will rely on results from \cref{sec:results} to establish comparative statics for the equilibrium aggregate.
+Let us start by showing that $f(n_P, n_F)$ satisfies the assumptions those results rely on.
 \begin{lemma}
     \label{lem:profit_assumptions}
     $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
@@ -920,24 +915,46 @@ Let us start by establishing some properties of the total profit function $f(n_P
 Using this, \cref{prop:unique_equilibrium} gives that the equilibrium is unique.
 Furthermore, \cref{cor:fringe_entry} implies that an increase in the number of the platform's products leads to a reduction in the number of fringe firms that enter the market.
 
-Owing to the additive nature of the total profit function, an even stronger result can be established.
+Owing to the additive nature of the total profit function, an even stronger result can be obtained.
 Notice that $f$ has the functional form required for proposition \ref{prop:aggregate_size_additive} with $g(x) = \frac{x}{1+x}, \alpha = V_P, \beta = V_F$.
 Therefore, the same proposition implies that
 \begin{align*}
     \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F},
 \end{align*}
-that is, an increase in the platform's products leads to a more than proportional reduction in the number of fringe products (\cref{fig:fringe_entry_eq}).\footnote{
-    The intuition behind this is demonstrated in \cref{fig:entry_fee}.
-    As the platform's product variety grows, its bargaining power also increases.
-    This can be thought of as an increase in (implied) entry fees, which in turn discourages fringe entry.
-}
-Conversely, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
-    The same result also holds true for an increase in $V_P$.
+that is, an increase in the platform's products leads to a more than proportional reduction in the number of fringe products (\cref{fig:fringe_entry_eq}).
+
+As a consequence of this, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
+    The same result also holds true for an increase in the paltform's product advantage $V_P$.
 }
 As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:welfare}).
 Therefore, as opposed to the benchmark model, the platform becoming more hybrid leads to a reduction in consumer welfare.\footnote{
     Unless $V_P N_P$ is high enough that the platform would operate in pure retail mode in the benchmark model, too.
 }
+
+The intuition behind this is demonstrated in can be captured by looking at entry fees.
+First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms, less the investment cost:
+\begin{align*}
+    F_F^{\text{impl}} = \pi_F^v - \pi_F^t + I_F.
+\end{align*}
+As shown before, the platform's product variety grows, its bargaining power also increases.
+This can be thought of as an increase in (implied) entry fees $F_F^{\text{impl}}$, which in turn discourages fringe entry \cref{fig:entry_fee}.
+
+In this specific demand system and parametrization, the implied entry fee is higher than what the platform would prefer to set for any $N_P \geq 0$.
+If it could, it would commit to a lower entry fee to incentivize more fringe entry, and thus increase total profits.
+This is an example that bargaining instead of unilateral pricing does not necessarily lead to lower platform shares, or better welfare outcomes: it can be a lose-lose situation for both the platform and the consumers.
+\Cref{sec:lower_bargaining_power} explores an alternative model where the platform has less bargaining power, and thus -- for sufficiently low values of $N_P$ -- the implied entry fee it achieves in the bargaining model is lower than what it would set unilaterally.
+
+Finally, let us look at the platform's profits in equilibrium.
+As in the benchmark model, they are increasing in the number platform's product variety $N_P$ (\cref{fig:platform_profits}). % TODO: can I make it a proper proposition?
+However, in contrast to that case, there is an important difference in the hybrid regime.
+In the benchmark model, the entry fee was independent of the platform's product variety.
+On the other hand, with bargaining, it is increasing in $N_P$ (\cref{fig:entry_fee}).
+Therefore, if the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits than it would otherwise.
+This is the case in the example parametrization displayed on the figures for every $N_P \geq 0$.
+
+This means that, if the platform had to create its product variety at a per-unit investment cost of $I_P$, it would make different (inefficient) choices compared to the benchmark model.
+In particular, it might invest in some products even if it has a product disadvantage, and it might not invest in some products even if it has a product disadvantage.
+This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is lower than optimal, and is explored in more detail in \cref{sec:lower_bargaining_power}.
 
 \begin{figure}
     \centering
@@ -952,9 +969,9 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                     axis lines=left,
                     xtick={0, 1.5},
                 ]
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
-                \legend{Bargaining, Benchmark}
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
+                \legend{Benchmark, Bargaining}
 
                 \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
                 \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
@@ -1090,6 +1107,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
 \section{Extensions}
 
 \subsection{Platform has lower innate bargaining power}
+\label{sec:lower_bargaining_power}
 
 
 \begin{figure}
@@ -1099,27 +1117,26 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    ylabel={},
                     xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=3.1, % adjust these values as needed
+                    ymin=0, ymax=1.8, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
                     axis lines=left,
                     xtick={0, 1.5},
-                    legend pos=south east,
-                    width=\textwidth,
                 ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumProfitOneSidedLowLambda};
-                
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumProfitOneSidedLowLambda};
+                \legend{Benchmark, Bargaining ($\lambda = 1$), Bargaining ($\lambda = 0.5$)}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_alt] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
                 \addplot[draw=none,name path=bottom] {0};
                 \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                
-                \legend{$N_P$, $N_F$, $A$}
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_alt and bottom];
             \end{axis}
         \end{tikzpicture}
-        \caption{Platform product variety and number of entrants}
+        \caption{Equilibrium number of fringe firms ($N_F$)}
+        \label{fig:fringe_entry_eq_low_lambda}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
@@ -1127,26 +1144,26 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    ylabel={},
                     xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=1.2, % adjust these values as needed
+                    ymin=0, ymax=3, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
                     axis lines=left,
                     xtick={0, 1.5},
-                    legend pos=north west,
-                    width=\textwidth,
+                    legend pos=south east,
                 ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=black,mark=none,thick] table[x=N_P,y=CS]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=A_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=A]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=A]{\equilibriumProfitOneSidedLowLambda};
+                \legend{Benchmark, Bargaining ($\lambda = 1$), Bargaining ($\lambda = 0.5$)}
 
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_alt] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
                 \addplot[draw=none,name path=bottom] {0};
                 \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$\pi_P$, $\pi_F$, $CS$}
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_alt and bottom];
             \end{axis}
         \end{tikzpicture}
-        \caption{Profits and consumer surplus}
+        \caption{Equilibrium number of fringe firms ($N_F$)}
     \end{subfigure}
     \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
     \label{fig:equilibrium_low_lambda}
@@ -1166,7 +1183,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=south east,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
@@ -1196,7 +1213,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=south east,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
@@ -1231,7 +1248,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=north west,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibrium};
@@ -1258,7 +1275,7 @@ Therefore, as opposed to the benchmark model, the platform becoming more hybrid 
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=south west,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibriumProfitOneSidedLowLambda};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibriumProfitOneSidedLowLambda};
@@ -1374,7 +1391,7 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=south east,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusOneSided};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusOneSided};
@@ -1402,7 +1419,7 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=north west,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusOneSided};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusOneSided};
@@ -1449,7 +1466,7 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
                     axis lines=left,
                     xtick={0, 1.5},
                     legend pos=south east,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusTwoSided};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusTwoSided};
@@ -1477,7 +1494,7 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
                     axis lines=left,
                     xtick={0, 0.6},
                     legend pos=north west,
-                    width=\textwidth,
+                    width=\linewidth,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusTwoSided};
@@ -1497,102 +1514,7 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
 \end{figure}
 
 
-\section{Shapley value in the platform game}
-\label{app:shapley_value}
-
-Consider a cooperative game with two types of players: a major player $P$ and $n$ smaller players.
-I.e., $N = \{P, F_1, \dots, F_n\}$.
-Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $F_i$ are identical.
-Let $n_T(S)$ denote the number of players of type $T \in \{P, F\}$ in coalition $S$. Then, the value that any coalition $S \subset N$ can achieve is the following:
-\begin{align*}
-    v(S) = \begin{cases}
-        0                              & \text{if } P \notin S \\
-        f\left(\frac{n_F(S)}{n}\right) & \text{otherwise}.
-    \end{cases}
-\end{align*}
-This coalition-form game corresponds to the setting in this paper with a (one-sided) platform and a number of potential entrants.
-
-I start by characterizing the case when the game is superadditive to provide some support for using the Shapley value as the bargaining outcome.\footnote{For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.}
-
-\begin{proposition}
-    \label{prop:monotone}
-    The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$. % It is supermodular if and only if $f$ is convex.
-\end{proposition}
-
-\begin{proof}[Proof% of Proposition \ref{prop:monotone}
-    ]
-    Monotonicity is evident. For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$. WLOG assume it is the latter, therefore $v(S_2) = 0$. As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
-\end{proof}
-
-Now let us look at the limit of the Shapley-values as the number of fringe firms goes to infinity.\footnote{
-    As this game is of bounded variation, this result can also be obtained in a more direct way using the main theorem from \textcite{fogelman1980asymptotic}.
-    However, I believe the following proof is instructive, and drives home the idea that the continuous approximation is rather accurate even in the case of a relatively small number of players.
-}
-I use the following notation: $\varphi_P^n$ denotes the Shapley-value of player $P$ if there exist $n$ players of type $F$.
-The next proposition shows that the Shapley value of the platform can be described by a simple integral.
-
-\begin{proposition}
-    \label{prop:one_sided}
-    Let $f$ be continuous on [0, 1]. Then
-    \begin{align*}
-        \varphi_P^\infty = \lim_{n \to \infty} \varphi_p^n = \int_0^1 f(t) \dt .
-    \end{align*}
-\end{proposition}
-
-\begin{proof}[Proof% of Proposition \ref{prop:one_sided}
-    ]
-    Let $R$ denote a permutation of the set of players ($N$). Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$. The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
-    \begin{align*}
-        \varphi_P^n = \frac{1}{(n+1)!} \sum_R v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)
-    \end{align*}
-    First, note that $v(\mathcal{P}_P^R) = 0$ for any permutation, as no coalition can achieve a positive value without player $P$. Furthermore, using the fact that all agents of type $A$ are identical implies that $v(\mathcal{P}_P^R \cup \{i\})$ only depends on the number of agents in the coalition. More precisely, 
-    \begin{align*}
-        v(\mathcal{P}_P^R \cup \{i\}) = f(n_A(\mathcal{P}_P^R \cup \{i\}) / n) = f(|\mathcal{P}_P^R| / n).
-    \end{align*}
-    Finally, the set of permutations in which $k$ number of players precede $P$ is independent of $n$, i.e.
-    \begin{align*}
-        \{R \mid |\mathcal{P}_P^R| = k\} = n! \quad \forall\, k.
-    \end{align*}
-    Putting all the above together, the value of player $P$ can be expressed as
-    \begin{align*}
-        \varphi_P^n &= \frac{1}{(n+1)!} \sum_{k=0}^n n! f(k / n) \\
-        &= \frac{1}{n+1} \sum_{k=0}^n f(k / n) \\
-        &= \frac{n}{n+1} \underbrace{\frac{1}{n} \sum_{k=0}^{n-1} f(k / n)}_{=S_n} + \frac{1}{n+1} f(1).
-    \end{align*}
-    $S_n$ are just the left Riemann-sums of function $f$ on the interval $[0, 1]$. Therefore, if $f$ is continuous (and thus Riemann-integrable), then $S_n \to \int_0^1 f(t)$, and thus
-    \begin{align*}
-        \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \frac{1}{n+1} \sum_{k=1}^n f(k / n) \\
-        &= \lim_{n \to \infty}\underbrace{\frac{n}{n+1}}_{\to 1} \frac{1}{n} \sum_{k=0}^{n-1} f(k / n) + \underbrace{\frac{1}{n+1} f(1)}_{\to 0} \\
-        &= \int_0^1 f(t) \dt .
-    \end{align*}
-\end{proof}
-
-Finally, the aggregated value of the fringe can be obtained using the efficiency of the Shapley value.
-
-\begin{corollary}
-    \label{cor:fringe_value}
-    The aggregated Shapley-value of the fringe is
-    \begin{align*}
-        \varphi_F^\infty = f(1) - \int_0^1 f(t) \dt.
-    \end{align*}
-    Furthermore, if $f$ is differentiable on $[0, 1]$, Then the value of the fringe can also be expressed as
-    \begin{align*}
-        \varphi_F^\infty = \int_0^1 t f'(t) \dt.
-    \end{align*}
-\end{corollary}
-
-\begin{proof}[Proof% of Corollary \ref{cor:fringe_value}
-    ]
-    The first equality comes from the efficiency of the Shapley-value. The values of all players sum up to $f(1)$ for all $n \in \mathbb{N}$, therefore
-    \begin{align*}
-        \lim_{n \to \infty} \sum_{i=1}^n \varphi_{F_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
-    \end{align*}
-    The second can be obtained by integration by parts:
-    \begin{align*}
-        \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
-    \end{align*}
-\end{proof}
-
+% TODO: do I want a section on Shapley-values, or move some cooperative stuff here?
 
 \section{Proofs and additional lemmas}
 
