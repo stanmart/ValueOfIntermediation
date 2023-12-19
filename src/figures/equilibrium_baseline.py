@@ -76,6 +76,18 @@ def create_plot_data(
         np.nan
     )
 
+    hybrid = np.where(
+        N_F_vec > 1e-5,
+        10,
+        0
+    )
+
+    hybrid_bench = np.where(
+        N_F_bench_vec > 1e-5,
+        10,
+        0
+    )
+
 
     data = pd.DataFrame(
         {

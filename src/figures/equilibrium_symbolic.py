@@ -86,13 +86,26 @@ def create_plot_data(
 
     if bargaining == "onesided" and value_function == "profit":
         N_F_bench = N_F_opt_bench(N_P_vec)
+        A_bench = N_P_vec * V_P + N_F_bench * V_F + 1   
+        CS_bench = np.log(A_bench)
+        pi_P_bench = F_F_opt() * N_F_bench + mu * N_P_vec * V_P / A_bench
         F_F_opt_vec = np.where(
             N_F_bench > 1e-5,
             F_F_opt(),
             np.nan
         )
+        hybrid_mode_bench = np.where(
+            N_F_bench > 1e-5,
+            10,
+            0
+        )
     else:
+        N_F_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
+        A_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
+        CS_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
+        pi_P_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
         F_F_opt_vec = np.ones_like(N_P_vec, dtype=float) * np.nan
+        hybrid_mode_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
 
     F_F_implied = np.where(
         N_F_vec > 1e-5,
@@ -106,7 +119,9 @@ def create_plot_data(
         0
     )
 
-
+    A_noF = N_P_vec * V_P + 1
+    CS_noF = np.log(A_noF)
+    pi_P_noF = mu * N_P_vec * V_P / A_noF
 
     data = pd.DataFrame(
         {
@@ -125,6 +140,11 @@ def create_plot_data(
             "F_F_implied": F_F_implied,
             "F_F_opt": F_F_opt_vec,
             "hybrid": hybrid_mode,
+            "N_F_bench": N_F_bench,
+            "A_bench": A_bench,
+            "CS_bench": CS_bench,
+            "pi_P_bench": pi_P_bench,
+            "hybrid_bench": hybrid_mode_bench,
         }
     )
 

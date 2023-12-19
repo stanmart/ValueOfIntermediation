@@ -46,8 +46,7 @@
 \definecolor{myred}{rgb}{0.87, 0.52, 0.32}
 \definecolor{mygreen}{rgb}{0.34, 0.68, 0.45}
 
-\pgfplotstableread[col sep=comma]{out/figures/equilibrium.csv}\equilibrium
-% \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv}\equilibriumProfitOneSided
+\pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv}\equilibrium
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_onesided_scale-0.6_lambda-1.csv}\equilibriumFullSurplusOneSided
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium_welfare_twosided_scale-0.6_lambda-1.csv}\equilibriumFullSurplusTwoSided
 \pgfplotstableread[col sep=comma]{out/figures/equilibrium_profit_onesided_scale-1_lambda-0.5.csv}\equilibriumProfitOneSidedLowLambda
@@ -810,7 +809,7 @@ Then, equilibrium per-product demand and variable profit can be expressed as $V_
 Finally, another important feature of this demand system is that, assuming optimal pricing, consumer welfare only depends on the size of the aggregate \parencite{anderson2020aggregative}.
 In particular, consumer surplus is proportional to the logarithm of the aggregate:
 \begin{align*}
-    CS \propto \log(A).
+    CS = \mu N_C \log(A).
 \end{align*}
 This fact makes welfare analysis rather simple in this setting.
 
@@ -830,16 +829,17 @@ Combined with the simple profit function, this gives the following expressions f
     \begin{align*}
         N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
     \end{align*}
-
-    Otherwise, if they are sufficiently high, $N_F = 0$ and the equilibrium size of the aggregate is
+    Otherwise,  $N_F = 0$ and the equilibrium size of the aggregate is
     \begin{align*}
         A = N_P V_P + 1.
     \end{align*}
 \end{proposition}
-Note that in the first case, the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage (\cref{eq:aggregate_eq}).
+Note that in the first case (\cref{eq:aggregate_eq})., the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
+The intuition behind this is that per-firm fringe profits only depend on these factors indirectly, through the size of the aggregate.
+That is, unless the fringe is not feasible, an increase in $N_P$ will simply replace some fringe entrants, but the free entry condition will pin down the same aggregate, as before.
 
-Now let us turn to the optimal entry fee set by the platform, and its total profits, consisting of revenue from its own sales and the collected entry fees.
-First, let us examine the case when the fees are low enough for the fringe to be feasible.
+Now let us turn to the optimal entry fee set by the platform, and its total profits (consisting of revenue from its own sales and the collected entry fees).
+The following proposition establishes these both for the hybrid and the pure retail regimes.
 
 \begin{proposition}
     \label{prop:optimal_entry_fee}
@@ -857,28 +857,33 @@ First, let us examine the case when the fees are low enough for the fringe to be
     \end{align*}
     in the retail regime.
 \end{proposition}
-Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:F_F_eq,fig:pi_P_eq}).\footnote{
-    This is only due to the fact that the platform's product does not require any investment cost.
-    If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on investment costs, which is essentially wasted.
-    If the platform's products also require investment, and their cost is proportional to the platform's product advantage, then $N_P$ has no effect on platform profits within the hybrid regime.
-}
+Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:F_F_eq,fig:pi_P_eq}).
+This is only due to the fact that the platform's product does not require any investment cost.
+If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on investment costs, which is essentially wasted.
+Consequently, in the hybrid regime, the marginal derivative of optimal profits with respect to the platform's product variety is simply the fringe's investment cost, adjusted for the possible difference in product advantage:
+\begin{align*}
+    N_F > 0 \implies \frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F.
+\end{align*}
+Furthermore, if the platform does have to pay an investment cost $I_P$, then it will only have its own products if $\frac{I_P}{V_P} \leq \frac{I_F}{V_F}$, which is efficient from a welfare perspective.
+
 As a consequence, as long as the fringe is feasible at the optimal entry fee, the size of the aggregate, and hence consumer welfare is also unaffected by the platform operating in hybrid mode.
 In contrast, when the fringe is not present in the market, total aggregate, and hence consumer welfare are increasing in the number of the platform's products.
-This is purely mechanical: more variety leads to higher welfare.
+This effect is purely mechanical: more variety leads to higher welfare.
 
 Finally, note that the profit of the platform in the hybrid regime is higher than in the retail regime, whenever the former is feasible.
-Therefore, the platform prefers to operate in hybrid mode, and does not want to exclude fringe firms from the market.
-This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
-It implies that there is no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
+Therefore, the platform prefers to operate in hybrid mode, and does not want to exclude fringe firms from the market.\footnote{
+    This is a consequence of the fact that equation \eqref{eq:hybrid_profit} is strictly concave in $F_F$, therefore $F_F^*$ is a global maximum.
+    It implies that there is no point where the fringe would be feasible under optimal entry fees, but the platform would prefer to operate in retail mode.
+}
 Therefore, in the benchmark model, a platform becoming a hybrid platform, or increasing the number of its own products, always has a weakly positive effect on the aggregate, and thus consumer welfare.\footnote{
-    This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets a higher entry fee to advantage its own products, which in turn leads to a smaller aggregate.
+    This is in contrast to \textcite{anderson2021hybrid}, where a platform operating in hybrid mode sets higher royalties to create a price advantage for its own products.
     The reason for this difference lies in the type of entry fee: they assume a revenue-based, proportional fee, which distorts prices.
     In contrast, in this paper, I assume a non-distortive lump sum fee.
 }
 \subsubsection{The bargaining model}
 
-Now consider the case when instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
-In this case, the timing is slightly different, as the platform cannot commit to an entry fee in the first period.
+Now consider the case where, instead of the platform setting take it or leave it entry fees, it must negotiate with the fringe about the division of profits.
+As the platform cannot choose 
 Instead, the game starts by fringe firms' investment decisions.
 After that, in the second period, bargaining takes place between the platform and the fringe firms that have entered the market.
 
@@ -922,115 +927,356 @@ Therefore, the same proposition implies that
     \frac{\partial N_F^*}{\partial N_P} < -\frac{V_P}{V_F},
 \end{align*}
 that is, an increase in the platform's products leads to a more than proportional reduction in the number of fringe products (\cref{fig:fringe_entry_eq}).\footnote{
-    The intuition behind this is demonstrated in \cref{fig:F_F_eq}.
+    The intuition behind this is demonstrated in \cref{fig:entry_fee}.
     As the platform's product variety grows, its bargaining power also increases.
     This can be thought of as an increase in (implied) entry fees, which in turn discourages fringe entry.
 }
 Conversely, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
     The same result also holds true for an increase in $V_P$.
 }
-As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:aggregate_eq}).
+As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:welfare}).
 Therefore, as opposed to the benchmark model, the platform becoming more hybrid leads to a reduction in consumer welfare.\footnote{
     Unless $V_P N_P$ is high enough that the platform would operate in pure retail mode in the benchmark model, too.
 }
+
 \begin{figure}
     \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-                xlabel={$N_P$},
-                ylabel={$N_F^*$},
-                xmin=0, xmax=1.5, % adjust these values as needed
-                ymin=0, ymax=1.4, % adjust these values as needed
-                width=10cm, % adjust the width of the plot
-                height=6cm, % adjust the height of the plot
-                axis lines=left,
-                xtick=\empty, ytick=\empty
-            ]
-            \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
-            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
-            \addplot[color=black,mark=none,thick,dotted] table[x=N_P,y=N_F_cf]{\equilibrium};
-            \legend{Benchmark, Bargaining, Fixed aggregate}
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Equilibrium number of fringe firms as a function of the number of platform products.}
-    \label{fig:fringe_entry_eq}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.4, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
+                    axis lines=left,
+                    xtick={0, 1.5},
+                ]
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
+                \legend{Bargaining, Benchmark}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Equilibrium number of fringe firms ($N_F$)}
+        \label{fig:fringe_entry_eq}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={$F_F$},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=0.65, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north east
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
+                \legend{Benchmark, Bargaining (implied)}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Optimal/implied entry fee ($F_F$)}
+        \label{fig:entry_fee}
+    \end{subfigure}
+    \caption{Equilibrium number of fringe entrants and (implied) entry fees ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, the entry fee does not depend on the platform's product variety, and an increase in $N_P$ leads to a proportional reduction in $N_F$. In contrast, in the bargaining case, the entry fee is increasing in $N_P$, and the reduction in $N_F$ is more than proportional. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+    \label{fig:entry_and_fees}
 \end{figure}
+
 
 \begin{figure}
     \centering
     \begin{tikzpicture}
         \begin{axis}[
                 xlabel={$N_P$},
-                ylabel={$A^*$},
-                xmin=0, xmax=1.5, % adjust these values as needed
-                ymin=0, ymax=3, % adjust these values as needed
-                width=10cm, % adjust the width of the plot
-                height=6cm, % adjust the height of the plot
-                axis lines=left,
-                xtick=\empty, ytick=\empty,
-                legend pos=south east
-            ]
-            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=A_bench]{\equilibrium};
-            \addplot[color=myred,mark=none,thick] table[x=N_P,y=A]{\equilibrium};
-            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A_noF]{\equilibrium};
-            \legend{Benchmark, Bargaining, Pure retail}
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Equilibrium aggregate as a function of the number of platform products. Note, that consumer surplus is monotone in the aggregate, therefore this figure also shows ordinal changes in the equilibrium consumer surplus.}
-    \label{fig:aggregate_eq}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-                xlabel={$N_P$},
-                ylabel={$\pi_P^{t*}$},
-                xmin=0, xmax=1.5, % adjust these values as needed
-                ymin=0, ymax=0.65, % adjust these values as needed
-                width=10cm, % adjust the width of the plot
-                height=6cm, % adjust the height of the plot
-                axis lines=left,
-                xtick=\empty, ytick=\empty,
-                legend pos=south east
-            ]
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=0.65, % adjust these values as needed
+                    width=0.5\linewidth, % adjust the width of the plot
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east
+                ]
             \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
             \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
             \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
             \legend{Benchmark, Bargaining, Pure retail}
+
+            \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+            \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+            \addplot[draw=none,name path=bottom] {0};
+            \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+            \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
         \end{axis}
     \end{tikzpicture}
-    \caption{Equilibrium platform profit as a function of the number of platform products.}
-    \label{fig:pi_P_eq}
+    \caption{Platform profits in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In both cases, platform profits are increasing in $N_P$. However, in the case of the hybrid regime under bargaining, this increase is lower, due to the fact that prices deviate further from optimal. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+    \label{fig:platform_profits}
 \end{figure}
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-                xlabel={$N_P$},
-                ylabel={$F_F$},
-                xmin=0, xmax=1.5, % adjust these values as needed
-                ymin=0, ymax=0.65, % adjust these values as needed
-                width=10cm, % adjust the width of the plot
-                height=6cm, % adjust the height of the plot
-                axis lines=left,
-                xtick=\empty, ytick=\empty,
-                legend pos=north east
-            ]
-            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
-            \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
-            \legend{Benchmark (optimal), Bargaining (implied)}
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Optimal/implied entry fee as a function of the number of platform products.}
-    \label{fig:F_F_eq}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=A_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=A]{\equilibrium};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=A_noF]{\equilibrium};
+                \legend{Benchmark, Bargaining, Pure retail}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Aggregate ($A$)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.5, % adjust these values as needed
+                    width=\linewidth, % adjust the width of the plot
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=CS_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=CS]{\equilibrium};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=CS_noF]{\equilibrium};
+                \legend{Benchmark, Bargaining, Pure retail}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Consumer surplus ($CS$)}
+    \end{subfigure}
+    \caption{Size of the aggregate and consumer surplus in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, an increase in platform product variety has no effect in the hybrid regime. Under bargaining, it does have a negative effect on total product variety, and, in turn, consumer surplus. The increase has a (mechanical) positive effect in the pure retail regime under both assumptions. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+    \label{fig:welfare}
 \end{figure}
 
 
+\section{Extensions}
+
+\subsection{Platform has lower innate bargaining power}
 
 
-% \section{Extensions}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3.1, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumProfitOneSidedLowLambda};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$N_P$, $N_F$, $A$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform product variety and number of entrants}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.2, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=CS]{\equilibriumProfitOneSidedLowLambda};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$\pi_P$, $\pi_F$, $CS$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Profits and consumer surplus}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_low_lambda}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=0.65, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
+
+                \legend{Benchmark, Bargaining ($\lambda = 1$), Bargaining ($\lambda = 0.5$)}
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=hybrid_orig] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_orig and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform profits}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=0.5, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibriumProfitOneSidedLowLambda};
+
+                \legend{Benchmark, Bargaining ($\lambda = 1$), Bargaining ($\lambda = 0.5$)}
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=hybrid_orig] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_orig and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Optimal/implied entry fee}
+    \end{subfigure}
+    \caption{Platform profits and (implied) entry fees ($\mu = 0.2, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). Regardless of lambda, platform profits and entry fees are increasing in $N_P$. However, when the platform's innate bargaining power is higher, entry fees are above optimal levels already for $N_P = 0$, and the additional increase somewhat mitigates the benefits of the platform's increased product variety. When $\lambda$ is lower, the entry fees are below optimal for low $N_P$, therefore increasing $N_P$ has a larger positive effect on profits. Dark shaded area represents hybrid mode under $\lambda=1$, while light shaded area represents additional hybrid mode under $\lambda=0.5$.}
+    \label{fig:platform_profits_low_lambda}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0.2, ymax=0.35, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=north west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.22]{\equilibrium};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$I_P = 0.18$, $I_P = 0.2$, $I_P = 0.22$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\lambda = 1$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0.2, ymax=0.35, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south west,
+                    width=\textwidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.22]{\equilibriumProfitOneSidedLowLambda};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$I_P = 0.18$, $I_P = 0.2$, $I_P = 0.22$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\lambda = 0.5$}
+    \end{subfigure}
+    \caption{Total platform profits if the platform incurs an investment cost for creating its own products ($\pi_P(N_P) - I_P N_P$). In the high bargaining power case (left), the platform never chooses to operate in hybrid mode. It either becomes a pure marketplace or a pure retailer. In the case of lower $\lambda_P$ (right), choosing the hybrid mode can be optimal depending on $I_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$).}
+    \label{fig:equilibrium_low_lambda_entry_fees}
+\end{figure}
+
 
 \section{Conclusion and future work}
 \label{sec:conclusion}
@@ -1229,7 +1475,7 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
                     xmin=0, xmax=1.5, % adjust these values as needed
                     ymin=0, ymax=1.2, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 0.6},
                     legend pos=north west,
                     width=\textwidth,
                 ]
@@ -1248,130 +1494,6 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
     \end{subfigure}
     \caption{Equilibrium outcomes in the case when the whole surplus is bargained over ($N_C = 0.6, V_P = 1, V_F = 1, I_F = 0.2$), and both consumers and fringe firms participate in the bargaining. As before, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. On the other hand, consumer welfare is equal to platform profits, therefore it is increasing in $N_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
     \label{fig:equilibrium_full_surplus_two_sided}
-\end{figure}
-
-
-\subsection{Platform has lower innate bargaining power}
-
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=3.1, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=south east,
-                    width=\textwidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumProfitOneSidedLowLambda};
-                
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                
-                \legend{$N_P$, $N_F$, $A$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Platform product variety and number of fringe entrants}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=1.2, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=north west,
-                    width=\textwidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=black,mark=none,thick] table[x=N_P,y=CS]{\equilibriumProfitOneSidedLowLambda};
-
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$\pi_P$, $\pi_F$, $CS$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Platform and fringe profits}
-    \end{subfigure}
-    \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
-    \label{fig:equilibrium_low_lambda}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=0.4, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=south east,
-                    width=\textwidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=F_F_opt]{\equilibriumProfitOneSidedLowLambda};
-                
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                
-                \legend{$F_F$, $F_F^{opt}$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Optimal and actual (implied) entry fees}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0.25, ymax=0.35, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=north west,
-                    width=\textwidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.18]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.2]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.22]{\equilibriumProfitOneSidedLowLambda};
-
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedLowLambda};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$I_P = 0.18$, $I_P = 0.2$, $I_P = 0.22$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Platform profits net of investment costs}
-    \end{subfigure}
-    \caption{Equilibrium outcomes in the case when the platform has lower innate bargaining power ($N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). As in every other case, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. Furthermore, consumer surplus is also decreasing as a result in a decrease in total product variety. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
-    \label{fig:equilibrium_low_lambda_entry_fees}
 \end{figure}
 
 
