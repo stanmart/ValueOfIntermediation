@@ -1282,6 +1282,131 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
 \end{figure}
 
 
+\subsection{Consumers also participate in bargaining}
+
+In the second extension, I consider the case when the consumers also participate in the bargaining process.
+This entails two changes compared to the main model.
+First, the players bargain over the total surplus generated on all sides of the market, not just total profits.
+Second, the outcomes are assumed to be described by a cooperative game with three types of players: the platform, the fringe firms, and the consumers.
+
+Let us start by deriving total surplus as a function of $N_P, N_F$ and $N_C$.
+Under the logit-like demand structure described in \cref{sec:example}, the total surplus is given by
+\begin{proposition}
+    \label{prop:profits_total_surplus}
+    If the platform can extract consumer surplus, then the total surplus is given by
+    \begin{align*}
+        \Pi(N_P, N_F, N_C) = \mu N_C \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} + \log(N_P V_P + N_F V_F + 1) \right].
+    \end{align*}
+\end{proposition}
+\begin{proof}[Proof of \cref{prop:profits_total_surplus}]
+    See \textcite{small1981applied} for a derivation for the discrete case.
+    The continuous case is analogous.
+\end{proof}
+Note, that this expression is of the form $\Pi(N_C, N_P, N_F) = N_C f(N_P, N_F)$.
+Furthermore, $f(N_P, N_F) = g(V_P N_P + V_F N_F)$ for an increasing, strictly concave $g$.
+
+Next, let us consider the bargaining outcomes in this three-sided setting.
+\Cref{sec:cooperative_game_two_sided} formally describes the corresponding cooperative game, and \cref{prop:profit_sharing_two_sided} establishes the resulting profit shares.
+To summarize, the shares of the various players are given by
+Then, the resulting profit shares are given by
+\begin{align*}
+    \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds, \\
+    \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 s^2 N_F \partial_2 f(N_P, s N_F) \ds \\
+    CS(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds.
+\end{align*}
+
+There are a number of things to note here.
+First, and most importantly, the consumers' share from total surplus is equal to the platform's.\footnote{
+    This is a consequence of the fact that the total surplus function is linear in the number of consumers.
+}
+As a consequence, what's good for the platform is also optimal for the consumers.
+Therefore, letting the platform choose the number of its products maximizes consumer welfare, as well (but not necessarily total surplus).
+
+Second, the expression for the fringe profits has the same structure as in \cref{ass:profit_sharing}.
+Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:results} apply here, as well.
+The following lemma establishes this result.
+\begin{lemma}
+    \label{lem:profit_assumptions_total_surplus}
+    $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
+    Furthermore,
+    \begin{align*}
+        \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0.
+    \end{align*}
+\end{lemma}
+
+With this proven, we can again rely on \cref{prop:aggregate_size_additive} to see that, in equilibrium, an increase in $N_P$ decreases $N_F$.
+Furthermore, this decrease is so large that total product variety, and thus total surplus (which in turn is equal to total profits) also decreases (\cref{fig:fringe_entry_eq_full_surplus_two_sided}).\footnote{
+    As long as the market is in the hybrid regime.
+    If $N_F^* = 0$, then an increase in $N_P$ mechanically increases total aggregate, and thus total surplus.
+}
+
+Nevertheless, there is an important distinction compared to the previous results.
+As before, platform profits are again increasing in $N_P$.
+However, in this case, it also implies that consumers' share is also increasing in this case (\cref{fig:profits_full_surplus_two_sided}).
+Therefore, consumers do prefer hybrid operation to the the platform being a pure marketplace.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=3.1, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 1.5},
+                    legend pos=south east,
+                    width=\linewidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumFullSurplusTwoSided};
+                
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                
+                \legend{$N_P$, $N_F$, $A$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform product variety and number of fringe entrants}
+        \label{fig:fringe_entry_eq_full_surplus_two_sided}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=1.5, % adjust these values as needed
+                    ymin=0, ymax=1.2, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 0.6},
+                    legend pos=north west,
+                    width=\linewidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusTwoSided};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$\pi_P$, $\pi_F$, $CS$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Platform and fringe profits}
+        \label{fig:profits_full_surplus_two_sided}
+    \end{subfigure}
+    \caption{Equilibrium outcomes in the case when the whole surplus is bargained over ($N_C = 0.6, V_P = 1, V_F = 1, I_F = 0.2$), and both consumers and fringe firms participate in the bargaining. As before, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. On the other hand, consumer welfare is equal to platform profits, therefore it is increasing in $N_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
+    \label{fig:equilibrium_full_surplus_two_sided}
+\end{figure}
+
 \section{Conclusion and future work}
 \label{sec:conclusion}
 
@@ -1554,65 +1679,7 @@ Nevertheless, if it were to make it for some reason, it would not have the negat
 \label{sec:two_sided}
 
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=3.1, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=south east,
-                    width=\linewidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_P]{\equilibriumFullSurplusTwoSided};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibriumFullSurplusTwoSided};
-                \addplot[color=black,mark=none,thick] table[x=N_P,y=A]{\equilibriumFullSurplusTwoSided};
-                
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
 
-                
-                \legend{$N_P$, $N_F$, $A$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Platform product variety and number of fringe entrants}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=1.2, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 0.6},
-                    legend pos=north west,
-                    width=\linewidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_F]{\equilibriumFullSurplusTwoSided};
-                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P]{\equilibriumFullSurplusTwoSided};
-
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumFullSurplusTwoSided};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$\pi_P$, $\pi_F$, $CS$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Platform and fringe profits}
-    \end{subfigure}
-    \caption{Equilibrium outcomes in the case when the whole surplus is bargained over ($N_C = 0.6, V_P = 1, V_F = 1, I_F = 0.2$), and both consumers and fringe firms participate in the bargaining. As before, the platform's profits are increasing in $N_P$, while the fringe's profits are decreasing. On the other hand, consumer welfare is equal to platform profits, therefore it is increasing in $N_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode.}
-    \label{fig:equilibrium_full_surplus_two_sided}
-\end{figure}
 
 
 \section{Proofs and additional lemmas}
