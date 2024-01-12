@@ -1070,7 +1070,30 @@ Specifically, when the weight of the platform is $\lambda_P$, the functions $w_P
     w_F(s) &= s ^ {\lambda_P}.
 \end{align*}
 
-TODO: can I show that \cref{ass:single_crossing} still holds for any $\lambda_P$? If not, focus on a specific case, such as the one on the graphs.
+\textcolor{red}{TODO: can I show that \cref{ass:single_crossing} still holds for any $\lambda_P$? If not, focus on a specific case, such as the one on the graphs.}
+
+The example parametrizatrion is the same as in the main model, with the only difference that the platform has a lower innate bargaining power ($\lambda_P = 0.5$).
+As the conditions in \cref{ass:single_crossing} are also satisfied in this case, the main observations from \cref{sec:results} also apply.
+That is, as shown on \cref{fig:fringe_entry_eq_low_lambda}, total aggregate is decreasing in $N_P$ throughout the hybrid regime, due to the platform's products displacing more fringe products than their total number.
+
+The main difference is that, due to the lower bargaining power of the platform, the implied entry fee (\cref{fig:platform_profits_low_lambda}) is lower than the benchmark, unilaterally set one for low enough $N_P$.
+As a consequence, total aggregate, and thus consumer surplus, is also above the benchmark outcome in that case.
+Furthermore, there exists some $\bar{N}_P$ for which the unilateral price setting and bargaining outcomes coincide in terms of all variables, due to the implied entry fee being the same.
+
+Another major difference pertains to the total profits of the platform as a function of $N_P$.
+It is still true that they are increasing in the number of the platform's products, but now this increase is even more pronounced for low values of $N_P$.
+The reason is that for low $N_P$, the implied entry fee is lower than the optimal one.
+Furthermore, it increases in $N_P$ as a result of the platform's increased bargaining power.
+Therefore, the platform's profits are increasing in $N_P$ even more than in the benchmark case or the main model, up to the point where the implied entry fee is equal to the optimal one.
+After that, the same effect as in the main model kicks in, and the increase in profits is lower than in the benchmark case.
+
+\Cref{fig:equilibrium_low_lambda_entry_fees} demonstrates an important consequence of this phenomenon.
+Imagine that the platform can decide on the number of its products at time 0, at an investment cost of $I_P$ per product.
+In the main model, due to the implied entry fee being higher than optimal even for $N_P = 0$, hybrid operation is never optimal.
+The platform would always prefer either pure retail or pure marketplace operation.
+In contrast, when the platform has lower bargaining power, there exists a range of $I_P$ values (e.g. $I_P = 0.2$) for which the platform would prefer to operate in hybrid mode.
+Furthermore, if hybrid operation is not allowed, the platform might switch to become a pure marketplace, thereby increasing consumer surplus.
+
 
 \begin{figure}
     \centering
@@ -1162,6 +1185,7 @@ TODO: can I show that \cref{ass:single_crossing} still holds for any $\lambda_P$
             \end{axis}
         \end{tikzpicture}
         \caption{Platform profits}
+        \label{fig:platform_profits_low_lambda}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
@@ -1191,9 +1215,10 @@ TODO: can I show that \cref{ass:single_crossing} still holds for any $\lambda_P$
             \end{axis}
         \end{tikzpicture}
         \caption{Optimal/implied entry fee}
+        \label{fig:entry_fee_low_lambda}
     \end{subfigure}
     \caption{Platform profits and (implied) entry fees ($\mu = 0.2, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). Regardless of lambda, platform profits and entry fees are increasing in $N_P$. However, when the platform's innate bargaining power is higher, entry fees are above optimal levels already for $N_P = 0$, and the additional increase somewhat mitigates the benefits of the platform's increased product variety. When $\lambda$ is lower, the entry fees are below optimal for low $N_P$, therefore increasing $N_P$ has a larger positive effect on profits. Dark shaded area represents hybrid mode under $\lambda=1$, while light shaded area represents additional hybrid mode under $\lambda=0.5$.}
-    \label{fig:platform_profits_low_lambda}
+    \label{fig:profits_and_entry_fees_low_lambda}
 \end{figure}
 
 
