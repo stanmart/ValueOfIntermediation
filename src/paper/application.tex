@@ -608,9 +608,10 @@ That is, the platform does not charge any entry fees to the consumers.
 Here, I consider two variants of the model: a benchmark where the platform can unilaterally commit to any entry fee, and a bargaining model where the platform and the fringe firms negotiate over the distribution of profits.
 Furthermore, I focus on a particular set of weight functions $w_P$ and $w_F$, which correspont to the Shapley-values of the players in the case of one-sided bargaining.
 
-As an extension, I also examine what happens when the platform and the fringe firms have unequal bargaining weights, while still retaining more structure than the very general bargaining rule from \cref{ass:profit_sharing}.
-In particular, I look at the case of bargaining outcomes being describet by weighted values, with all fringe players sharing the same weight.
-Furthermore, I also consider the case of two-sided bargaining, where the consumers also participate in the negotiation over the value produced.
+As an extension, in \cref{sec:lower_bargaining_power} I also examine what happens when the platform and the fringe firms have unequal bargaining weights, while still retaining more structure than the very general bargaining rule from \cref{ass:profit_sharing}.
+In particular, I look at the case of bargaining outcomes being described by weighted values, with all fringe players sharing the same weight.
+Furthermore, in \cref{sec:two_sided}, I also consider the case of two-sided bargaining, where the consumers also participate in the negotiation over the value produced.
+Finally, \cref{sec:total_welfare_one_sided} explores the case of the platform being able to extract all of the consumer surplus through from consumers.
 
 Throughout the analysis, I treat the product variety of the platform and the number of consumers as exogenous, and focus on the equilibrium number of fringe firms.
 Nevertheless, the results regarding equilibrium platform profits and consumer surplus are somewhat indicative of the potential general equilibrium behavior of the former two, as well.
@@ -718,10 +719,6 @@ As one would expect, demand is increasing in this net value, and decreasing in t
 Furthermore, demand for each product is increasing in $\mu$, which can be thought of as the degree of product differentiation or the importance of taste shocks.
 Finally, notice that, as each producer is infinitesimal, its pricing decision does not affect the aggregate $A$.
 This last property makes the optimal prices and profits of the producers very simple, as shown in the next proposition.
-% \begin{align}
-%     \pi^v_{Ti} = ( p_{Ti} - c_T ) \frac{\exp\left( \frac{v_T - p_{Ti}}{\mu} \right)}{A}.
-%     \label{eq:variable_profit}
-% \end{align}
 \begin{proposition}
     \label{prop:optimal_profit}
     The profit maximizing price for product $Ti$ is
@@ -735,11 +732,6 @@ This last property makes the optimal prices and profits of the producers very si
     \end{align}
 \end{proposition}
 
-% For fringe firms, their total profit (including the investment cost $I_F$ and the entry fee $F_F$) is given by
-% \begin{align}
-%     \pi^{t*}_F = \mu \frac{\exp \left( \frac{v_F - c_F - \mu}{\mu} \right)}{A} - I_F - F_F.
-%     \label{eq:fringe_profit}
-% \end{align}
 For ease of notation, let us define the following:
 \begin{align*}
     V_T = \exp \left( \frac{v_T - c_T - \mu}{\mu} \right).
@@ -1323,10 +1315,10 @@ As a consequence, what's good for the platform is also optimal for the consumers
 Therefore, letting the platform choose the number of its products maximizes consumer welfare, as well (but not necessarily total surplus).
 
 Second, the expression for the fringe profits has the same structure as in \cref{ass:profit_sharing}.
-Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:results} apply here, as well.
+Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:example} apply here, as well.
 The following lemma establishes this result.
 \begin{lemma}
-    \label{lem:profit_assumptions_total_surplus}
+    \label{lem:profit_assumptions_two_sided}
     $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
     Furthermore,
     \begin{align*}
@@ -1549,44 +1541,21 @@ Additionally, the platform's share is identical to the consumers' (aggregated) s
 This foreshadows the idea that -- even though it might not be welfare-maximizing -- what's good for the platform might also good for the consumers in the two-sided case.
 Finally, as in both examples before, these values satisfy \cref{ass:profit_sharing} with $w_P(s) = s$ and $w_F(s) = s^2$.
 
-\section{Extensions}
-\label{sec:extensions}
+\section{Two-sided bargaining over the full surplus}
+\label{sec:total_welfare_one_sided}
 
-In this section, I look at a number of extensions of the model presented in \cref{sec:example}.
-The common theme of these extensions is that the consumer surplus is also included in the sum that is bargained over.
+In this section, I look at what happens if the paltform and the firms bargain over the total surplus, instead of just their total profits.
 That is, $\Pi(N_P, N_F, N_C)$ now represents total surplus.
+One way to motivate this is to assume that the platform can extract consumer surplus by charging a flat entry fee $F_C$.
+As consumers are identical, and the platform can set any entry fee, this implies that the platform can extract all consumer surplus in this case.
+I will only consider the bargaining outcomes under assumptions \cref{ass:profit_sharing}, and do not look at a benchmark with unilateraly set entry fees for the fringe.
 
-First, \cref{sec:total_welfare} looks at the case when consumer can be extracted by the platform, but consumers are still passive, and the bargaining is between the platform and the fringe.
-Then, \cref{sec:two_sided} explores what happens when all three sides engage in the negotiation over the same total surplus.
-I will only consider the bargaining outcomes under assumptions \cref{ass:profit_sharing} and \cref{ass:profit_sharing_two_sided}, respectively, and do not look at a benchmark with unilateraly set entry fees for the fringe.
+As shown in \cref{prop:profits_total_surplus}, total surplus (which in case is also total profits) is given by
+\begin{align*}
+    \Pi(N_P, N_F, N_C) = \mu N_C \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} + \log(N_P V_P + N_F V_F + 1) \right].
+\end{align*}
 
-\subsection{Platform can extract consumer surplus}
-\label{sec:total_welfare}
-
-In this section, I assume that the platform can extract consumer surplus by charging a flat entry fee $F_C$.
-As consumers are identical, and the platform can set any entry fee, this implies that the platform can extract all consumer surplus in this case.\footnote{
-    Note, that I still assume that all $N_C$ consumers are present on the market by default, they do not have to pay any cost that would be analogous to the entry fee ($I_F$) of the fringe firms.
-    Therefore, they enter the market if and only if they are expected to have non-negative utility, which in turn means that the platform sets the entry fee to be equal to the consumer surplus.
-}
-
-Let us start by deriving total profits (which, in this case is the total surplus) as a function of $N_P, N_F$ and $N_C$.
-Under the logit-like demand structure described in \cref{sec:example}, the total surplus is given by
-\begin{proposition}
-    \label{prop:profits_total_surplus}
-    If the platform can extract consumer surplus, then the total profits that the platform and the fringe firms can achieve are given by
-    \begin{align*}
-        \Pi(N_P, N_F, N_C) = \mu N_C \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} + \log(N_P V_P + N_F V_F + 1) \right].
-    \end{align*}
-\end{proposition}
-\begin{proof}[Proof of \cref{prop:profits_total_surplus}]
-    \textcite{small1981applied} show that the total surplus in a logit demand system is given by this expression.
-    As total consumer surplus is zero, the total profits are equal to the total surplus.
-\end{proof}
-Note, that this expression is of the form $\Pi(N_C, N_P, N_F) = N_C f(N_P, N_F)$.
-Furthermore, $f(N_P, N_F) = g(V_P N_P + V_F N_F)$ for an increasing, strictly concave $g$.
-
-Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:results} apply here, as well.
-The following lemma establishes this result.
+The following lemma establishes that \cref{ass:single_crossing} is satisfied for this profit function as well, assuming two-sided bargaining with $\lambda_P = 1$ ($w_P(s) \equiv 1, w_F(s) = s$).
 \begin{lemma}
     \label{lem:profit_assumptions_total_surplus}
     $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
@@ -1664,7 +1633,7 @@ Thus, as in the case without consumer entry fees, a platform becoming increasing
 \end{figure}
 
 
-The difference is that, due to the platform appropriating all the consumer surplus, it does not hurt consumer welfare -- it is zero regardless of $N_P$.
+The difference is that, due to the platform appropriating all the consumer surplus, such an increase does not hurt consumer welfare -- it is zero regardless of $N_P$.
 Coupled with the fact that fringe firms also make zero profits in equilibrium, this means that the outcome is not so negative, after all.
 In particular, the platform's profits are increasing in $N_P$, and thus it prefers to operate in hybrid mode, as long as it is feasible.
 So even though the total pie gets smaller, the platform gets a larger slice, while the consumers and the fringe are just as well off.
@@ -1673,13 +1642,6 @@ The catch is that, in this comparative statics exercise, the platforms' increase
 Specifically, when looking at the platform's profits, this increase in product variety is not associated with any increase in investment costs.
 If we were to include those at the same level of the fringe's investment costs, then the platform's profits would be decreasing in $N_P$, and it would not make the investment.
 Nevertheless, if it were to make it for some reason, it would not have the negative consequences that it had in \cref{sec:example}.
-
-
-\subsection{Consumers also engage in bargaining}
-\label{sec:two_sided}
-
-
-
 
 
 \section{Proofs and additional lemmas}
