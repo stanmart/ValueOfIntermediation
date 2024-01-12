@@ -315,14 +315,14 @@ Notice that this only assumes weak convexity, and thus includes the case of cons
 
 In the second stage, firms that made this investment plus the platform engage in producing and selling their respective products.
 If there are $N_F$ fringe entrants along with $N_P$ platform products and $N_C$ consumers, then, as discussed previously, the total value they create together is given by $\Pi(N_P, N_F, N_C) = N_C f(N_P, N_F)$.
-Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing} or \cref{ass:profit_sharing_two_sided}, and the fringe gets $\pi_F(N_P, N_F, N_C)$.
+Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}, and the fringe gets $\pi_F(N_P, N_F, N_C)$.
 
 The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' total profits should be equal to the aggregated investment cost.
 \begin{definition}
     \label{ass:free_entry}
     Let us define a free entry equilibrium by the following conditions:
     \begin{itemize}
-        \item Profits are shared according to \cref{ass:profit_sharing} (one-sided bargaining) or \cref{ass:profit_sharing_two_sided} (two-sided bargaining).
+        \item Profits are shared according to \cref{ass:profit_sharing}.
         \item Entrants make zero profits after accounting for entry costs: $\pi_F(N_P, N_F) = I_F(N_F)$.
     \end{itemize}
 \end{definition}
@@ -1275,6 +1275,7 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
 
 
 \subsection{Consumers also participate in bargaining}
+\label{sec:two_sided}
 
 In the second extension, I consider the case when the consumers also participate in the bargaining process.
 This entails two changes compared to the main model.
@@ -1430,9 +1431,9 @@ In general, I believe this approach for modeling bargaining is a rather good com
 \section{The platform game and the (weighted) Shapley value}
 \label{sec:cooperative_game}
 
-In this section, I describe how the profit sharing rule from \cref{sec:profit_sharing} can be derived from various cooperative games.
+In this section, I describe how the profit sharing rule from \cref{ass:profit_sharing} can be derived from various cooperative games.
 In each of the following subsections, I formally define a cooperative game that models the platform setting, and derive the (weighted) Shapley values of the various players.
-I show that they correspond to the formulas given in \cref{sec:profit_sharing}, with a specific choice of weight functions $w_P$ and $w_F$ for each case.
+I show that they correspond to the formulas given in \cref{ass:profit_sharing}, with a specific choice of weight functions $w_P$ and $w_F$ for each case.
 
 I start with the simplest case: one-sided bargaining and the usual Shapley value \parencite{shapley1953additive}.
 Then, I look at weighted values \parencite{weber1988probabilistic} in the same cooperative game.
