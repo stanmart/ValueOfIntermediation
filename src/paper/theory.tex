@@ -23,6 +23,7 @@
 \usetikzlibrary{shapes}
 \pgfplotsset{compat=1.17}
 
+\newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
@@ -615,7 +616,7 @@ The set of players and the characteristic function are the same as in the previo
 I will show, that as with the Shapley-value, the limit of the weighted value can also be expressed as an integral over a one-dimensional path.
 However, this path is not the diagonal of the unit hypercube, and depends on the ratio of the fringe players' weights.
 
-\begin{proposition}
+\begin{theorem}
     \label{prop:many_sided_weighted}
     Let $f$ be continuous on $[0, 1]^L$.
     Then,
@@ -626,7 +627,7 @@ However, this path is not the diagonal of the unit hypercube, and depends on the
     \begin{align*}
         \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda^L}) \dt.
     \end{align*}
-\end{proposition}
+\end{theorem}
 
 The intuition is the following.
 A higher weight for a player means that it has a higher chance of being relatively late in a random permutation.
@@ -1260,9 +1261,8 @@ This is a natural result, and again, it is in line with what one would expect fr
 \begin{lemma}
     \label{lem:convergence_to_manifold}
     Consider the random vector $X_n$ with values from $[0, 1]^L$.
-    Let $S_n = \sum_l[X_n]_l / L$, with the cumulative distribution function $G_n(s)$.
-    Assume that for every $s \in [0, 1]$, $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^1} h(s)$ where $h(s)$ is some continuous function.
-    Let $S_n \xrightarrow[]{d} S$.
+    Let $S$, be a random variable with support $[0, 1]$ and cumulative distribution function $G_n(s)$.
+    Assume that for every $s \in [0, 1]$, $X_n \mid S = s \xrightarrow[]{a.s.} h(s)$ where $h(s)$ is some continuous function.
     Then $X_n \xrightarrow[]{d} h(S)$.
 \end{lemma}
 
@@ -1271,36 +1271,25 @@ This is a natural result, and again, it is in line with what one would expect fr
     \begin{align*}
         \lim_{n \to \infty} \Pr(X_n \leq x) = \Pr(h(S) \leq x).
     \end{align*}
-    for any $x$ where the cdf of $h(S)$ is continuous.
 
-    Let us start by conditioning on $S_n$:
+    First, note that 
+
+    Let us start by conditioning on $S$:
     \begin{align*}
-        \Pr(X_n \leq x) = \int_0^1 \Pr(X_n \leq x \mid S_n = s) \dG_n(s).
+        \Pr(X_n \leq x) = \int_0^1 \Pr(X_n \leq x \mid S = s) \dG(s).
     \end{align*}
     Now consider the following:
     \begin{align*}
-        \lim_{n \to \infty} \left| \Pr(X_n \leq x) - \Pr(h(S) \leq x) \right| &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \dG_n(s) - \Pr(h(S) \leq x) \right| \\
-        &\leq \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \dG_n(s) - \Pr(h(S_n) \leq x) \right| \\
-        &+ \lim_{n \to \infty} \left| \Pr(h(S_n) \leq x) - \Pr(h(S) \leq x) \right|
+        \lim_{n \to \infty} \left| \Pr(X_n \leq x) - \Pr(h(S) \leq x) \right| &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S = s) \dG(s) - \Pr(h(S) \leq x)\right| \\
+        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S = s) \dG(s) - \int_0^1 \mathbf{1}[h(s) \leq 1] \dG(s) \right| \\
+        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S = s) - \mathbf{1}[h(s) \leq x] \dG(s) \right| \\
+        &\leq \lim_{n \to \infty} \int_0^1 \left| \Pr(X_n \leq x \mid S = s) - \mathbf{1}[h(s) \leq x] \right| \dG(s) \\
+        &= \int_0^1 \lim_{n \to \infty} \left| \Pr(X_n \leq x \mid S = s) - \mathbf{1}[h(s) \leq x] \right| \dG(s) \\
+        &= 0
     \end{align*}
     for all $x \in [0, 1]^L$.
-    I will show that both limits on the right-hand side are zero.
-
-    Let us start with the first term.
-    \begin{align*}
-        \lim_{n \to \infty} &\left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \dG_n(s) - \Pr(h(S_n) \leq x) \right| \\
-        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) \dG_n(s) - \int_0^1 \mathbf{1}[h(s) \leq s] \dG_n(s) \right| \\
-        &= \lim_{n \to \infty} \left| \int_0^1 \Pr(X_n \leq x \mid S_n = s) - \mathbf{1}[h(s) \leq x] \dG_n(s) \right| \\
-        &= \lim_{n \to \infty} \left| \int_0^1 \underbrace{\Pr(X_n \leq x \mid nS_n = \lfloor ns \rfloor) - \mathbf{1}[h(s) \leq x]}_{\coloneqq r(s)} \dG_n(s) \right| \\
-        &\leq \lim_{n \to \infty} \int_0^1 \left| \Pr(X_n \leq x \mid nS_n = \lfloor ns \rfloor) - \mathbf{1}[h(s) \leq x] \right| \dG(s) \\
-        &+ \lim_{n \to \infty} \left| \int_0^1 r(s) \dG_n(s) - \int_0^1 r(s) \dG(s) \right| \\
-        &= 0.
-    \end{align*}
-    The first limit is zero because $X_n \mid n S_n = \lfloor ns \rfloor \xrightarrow[]{L^1} h(s)$.
-    The second limit is zero because of the continuous mapping theorem, as $S_n \xrightarrow[]{p} S$ and $\Pr_S(s : r\text{ is not continuous at }s)= 0$.
-
-    All that remains is to show that the second term is also zero.
-    This simply follows from the continuous mapping theorem, as $f$ is continuous and $S_n \xrightarrow[]{d} S$.
+    The exchange of the limit and the integral is justified by the fact that the integrand is dominated by a constant function, and therefore the dominated convergence theorem applies.
+    The last equality follows from the fact that $X_n \mid S = s \xrightarrow[]{a.s.} h(s)$. 
 \end{proof}
 
 
@@ -1556,40 +1545,30 @@ This is a natural result, and again, it is in line with what one would expect fr
 \begin{proof}[Proof of \cref{prop:many_sided_shapley}]
     Let us show than $X_n$ converges in distribution to the degenerate random variable $X = (U, \dots, U)$, where $U$ is uniformly distributed on $[0, 1]$.
 
-    Let us first define the random variable $S_n = \sum_l[X_n]_l / L$, the total number of small players placed before $P$.
-    Also, define $h(s) = (s, \dots, s)$.
-    Now let us look at the conditional distribution $n X_n | n L S_n = k$.
-    As all permutations have equal probability, this is the same as picking $kL$ firms from the set $N \setminus \{P\}$ without replacement.
-    The numbers of each type in this sample will follow a multinomial distribution with $kL$ trials, $L$ events and probabilities $1/L$.
+    First, let us switch to an alternative formulation of the problem.
+    Remember, that the probability of each permutation is the same.
+    Therefore, the following procedure leads to the same distribution over permutations: (1) for each player, draw a random number from the uniform distribution on $[0, 1]$, then sort the players according to the drawn numbers.
+    This is equivalent to the original problem, as the probability of each permutation is the same.
 
-    Let us now show that $\Pr(X_n < x \mid S_n = s) \xrightarrow[]{\mathrm{u}} \mathbf{1}[(s, \dots, s) \leq x]$ on $s \in \mathrm{supp}(S_n)$.
-
-    First, observe that
+    Now let us characterize $X_n$ in terms of this procedure.
+    $[X_n]_l$ is the proportion of players of type $A_l$ that are placed before player $P$, or, equivalently, the number of players of type $A_l$ that have drawn a number less than player $P$.
+    I.e.,
     \begin{align*}
-        [\E(n X_n | nS_n = \lfloor ns \rfloor)]_l &= \lfloor ns \rfloor, \\
-        [\Var(n X_n | nS_n = \lfloor ns \rfloor)]_l &= \lfloor ns \rfloor \frac{L-1}{L}
+        [X_n]_l = \frac{1}{n}\sum_{i = 1}^n \mathbf{1}[U_{li} < U_P].
     \end{align*}
-    for all $\quad l = 1, \dots, L$.
-    Consequently,
+    For any finite $n$, we can disregard ties, as they have probability zero.
+
+    Now let us condition this probability distriibution on the draw of player $P$:
     \begin{align*}
-        [\E(X_n | nS_n = \lfloor ns \rfloor)]_l &= \frac{\lfloor ns \rfloor}{n}, \\
-        [\Var(X_n | nS_n = \lfloor ns \rfloor)]_l &= \frac{\lfloor ns \rfloor}{n^2} \frac{L-1}{L}
+        [X_n]_l < x \mid U_P = u = \frac{1}{n} \sum_{i=1}^n \mathbf{1}[U_{li} < u].
     \end{align*}
-    for all $\quad l = 1, \dots, L$.
-
-    Notice that, as $n \to \infty$, $[\Var(X_n | nS_n = \lfloor ns \rfloor)]_l \to 0$.
-    Furthermore, $\E(X_n | nS_n = \lfloor ns \rfloor) \to h(s)$.
-    Thus, for any $s \in [0, 1], X_n | nS_n = \lfloor ns \rfloor \xrightarrow[]{L^2} h(s)$.
-
-    Let us now turn to the random variable $S_n$.
-    Observe that because the probability of each permutation is the same, player $P$ has the same probability of being in any position.
-    In other words, $S_n$ follows a uniform distribution on $0, \frac{1}{nL}, \frac{2}{nL} \dots, 1$.
-    Consequently, $S_n$ converges in distribution to the uniform distribution $U[0, 1]$.
-
-    I have now shown that the assumptions of \cref{lem:convergence_to_manifold} are satisfied.
-    % TODO
-
-    Then, by \cref{lem:many_sided_manifold}, the Shapley-value is
+    As the draws are independent, by the strong law of large numbers,
+    \begin{align*}
+        [X_n]_l < x \mid U_P \xrightarrow[a.s.]{} \E[\mathbf{1}[U_{li} < u]] = u.
+    \end{align*}
+    
+    Now we can use \cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (U, \dots, U)$.
+    Finally, by \cref{lem:many_sided_manifold}, the Shapley-value is
     \begin{align*}
         \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt.
     \end{align*}
