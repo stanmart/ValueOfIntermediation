@@ -339,6 +339,7 @@ On the other hand, when $\alpha \to 0$, the big players can appropriate all the 
 
 
 \subsection{Weighted values}
+\label{sec:weighted_one_sided}
 
 This section investigates the case when players have different levels of innate bargaining power.
 One way to model this is by using weighted values \parencite{shapley1953additive}, which are a generalization of the Shapley value.
@@ -1558,29 +1559,74 @@ This is a natural result, and again, it is in line with what one would expect fr
     \end{align*}
     For any finite $n$, we can disregard ties, as they have probability zero.
 
-    Now let us condition this probability distriibution on the draw of player $P$:
+    Now let us condition this probability distribution on the draw of player $P$:
     \begin{align*}
         [X_n]_l < x \mid U_P = u = \frac{1}{n} \sum_{i=1}^n \mathbf{1}[U_{li} < u].
     \end{align*}
     As the draws are independent, by the strong law of large numbers,
     \begin{align*}
-        [X_n]_l < x \mid U_P \xrightarrow[a.s.]{} \E[\mathbf{1}[U_{li} < u]] = u.
+        [X_n]_l < x \mid U_P \xrightarrow[]{a.s.} \E[\mathbf{1}[U_{li} < u]] = u.
     \end{align*}
     
     Now we can use \cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (U, \dots, U)$.
     Finally, by \cref{lem:many_sided_manifold}, the Shapley-value is
     \begin{align*}
-        \varphi_P^\infty & = \int_0^1 f(t, \dots, t) \dt.
+        \varphi_P^\infty & = \int_0^1 f(s, \dots, s) \dt
+    \end{align*}
+    and the value of fringe $l$ is
+    \begin{align*}
+        \varphi_{A_l}^\infty & = \int_0^1 \partial_l f(s, \dots, s) \ds
     \end{align*}
 
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:many_sided_weighted}]
     The proof uses the same approach as that of \cref{prop:many_sided_shapley}.
-    I will show that $X_n \xrightarrow[]{d} h(\xi)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $\xi$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
+    I will show that $X_n \xrightarrow[]{d} h(S)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $S$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
 
+    First, as before, let us characterize the probabilities of the various permutations.
+    The approach I am using relies on two main ideas.
+
+    First, as shown by \textcite{kalai1987weighted}, the probability of a permutation can be described by successively selecting the players with probabilities proportional to the weights of the players that have not been selected yet, and then reversing this ordering.\footnote{
+        For more details, see \cref{sec:weighted_one_sided}.
+    }
+
+    The other key result I rely on is the main proposition of \textcite{efraimidis2006weighted}.
+    It states that weighted random sampling without replacement can be also be achieved by the following procedure.
+    First, for each player $i$, draw a random number from the distribution $U^{\frac{1}{\lambda_i}}$, where $U$ is uniformly distributed on $[0, 1]$, and $\lambda_i$ is the sampling weight of player $i$.
+    Then, for a sample size of $m$, select the $m$ players with the largest numbers.
+
+    An immediate corollary of the latter result is that the procedure described by \textcite{kalai1987weighted} is equivalent to the following procedure.
+    First, for each player $i$, draw a random number from the distribution $V_i = U^{\frac{1}{\lambda_i}}$, where $U$ is uniformly distributed on $[0, 1]$.
+    Then, for each player $i$, sort the players according to the drawn numbers in ascending order.
+
+    Now let us characterize $X_n$ in terms of this procedure.
+    $[X_n]_l$ is the proportion of players of type $A_l$ that are placed before player $P$, or, equivalently, the number of players of type $A_l$ that have drawn a number less than player $P$.
+    I.e.,
+    \begin{align*}
+        [X_n]_l = \frac{1}{n}\sum_{i = 1}^n \mathbf{1}[V_{li} < V_P].
+    \end{align*}
+
+    Now let us condition this probability distribution on the draw of player $P$:
+    \begin{align*}
+        [X_n]_l < x \mid V_P = s = \frac{1}{n} \sum_{i=1}^n \mathbf{1}[V_{li} < u].
+    \end{align*}
+    Then use the strong law of large numbers to deduce that
+    \begin{align*}
+        [X_n]_l < x \mid V_P \xrightarrow[]{a.s.} \E[\mathbf{1}[V_{li} < u]] = u^{\lambda_l}.
+    \end{align*}
+    Then we can rely on \cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (V_P^{\lambda_1}, \dots, V_P^{\lambda_L})$.
+
+    Finally, by \cref{lem:many_sided_manifold}, the weighted value of player $P$ is
+    \begin{align*}
+        \varphi_P^\infty &= \int_0^1 f(s_1^{\lambda_1}, \dots, s_L^{\lambda_L}) \mathrm{d} V_P(s) \\
+        &= \int_0^1 f(s_1^{\lambda_1}, \dots, s_L^{\lambda_L}) \lambda_P s^{\lambda_P - 1} \ds,
+    \end{align*}
+    and the value of fringe $l$ is
+    \begin{align*}
+        \varphi_{A_l}^\infty &= \int_0^1 t^{\lambda_P} \lambda_l s^{\lambda_l - 1} \partial_l f(s_1^{\lambda_1}, \dots, s_L^{\lambda_L}) \lambda_P s^{\lambda_P - 1} \ds.
+    \end{align*}
     
-
 \end{proof}
 
 \end{document}
