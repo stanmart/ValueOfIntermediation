@@ -103,26 +103,31 @@ Finally, I demonstrate the usefulness of this approach by building a simple mode
 \section{One-sided case}
 
 In this section I examine the case of identical fringe players.
-Many of these results are known in the literature, but I include them here to build intuition, and highlight the similarities with the multi-sided case.
-I will first look at the simplest setting (one large player, which is completely indispensable), but in \ref{sec:extensions} I will somewhat relax this assumption.
-Let us start by defining the cooperative game that describes this situation.
+Many of these results are known in the literature, but I include them here for three reasons.
+First, to provide build intuition for the more general case later on.
+Second, to highlight the similarities to the multi-sided case, and to provide a bridge between the two.
+Finally, I also express the fringe's value in terms of its weighted marginal contributions, which is a useful result in its own right.
+In the main text, I only consider the most straightforward case (one large completely indispensable player), but in \ref{sec:extensions} I will somewhat relax these assumptions.
 
+Let us start by defining the cooperative game that describes this situation.
 Consider a game with two types of players: a major player $P$ and $n$ smaller players $A_i$, $1 \leq i \leq n$.
 Formally, let us denote the set of all players as $N = \{P, A_1, \dots, A_n\}$.
-Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical.
+Assume that (1) no coalition of players can achieve a positive value without the participation of $P$ and (2) players $A_i$ are identical to each other.
 Let $n_T(S)$ denote the number of players of type $T \in \{P, A\}$ in coalition $S$.
-Under these assumptions, the characteristic function of the game (the value that any coalition $S \subset N$ can achieve) is the following:
+Under these assumptions, the characteristic function of this game (the value that a coalition $S \subset N$ can achieve) is the following:
 \begin{align*}
     v(S) = \begin{cases}
         0                              & \text{if } P \notin S \\
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-One can think of this setting as a (one-sided) platform and a number of potential entrants, if the entrants can only reach their prospective consumers through the platform, or as a vertical supply chain with one upstream producer and a number of downstream firms.
+Such a game can represent, for example, a (one-sided) platform and a number of potential entrants, where the entrants can only reach their prospective consumers through the platform, or as a vertical supply chain with one upstream producer and a number of downstream sellers.
 
-First, let us characterize the conditions under which this game is monotone and superadditive.
-Superadditivity is a key property of cooperative games, as it ensures that it always pays off to form the grand coalition (i.e., the coalition that includes all players).
-Furthermore, in the context of bargaining, these properties provide some theoretical support for using Shapley-values as bargaining outcomes, as many results creating a link between non-cooperative bargaining and cooperative values often rely on these assumptions.\footnote{
+Before delving into the various values, let us characterize the conditions under which this game is monotone and superadditive.
+Monotonicity requires that the value of any coalition is weakly higher than the value of any of its subsets.
+Superadditivity on the other hand requires that the value of the union of two disjoint coalitions is weakly higher than the sum of their values.
+The latter is a key property of cooperative games, as it ensures that it always pays off to form the grand coalition (i.e., the coalition that includes all players).
+Furthermore, in the context of bargaining, these properties provide some theoretical support for using the Shapley-value or the weighted value to represent bargaining outcomes, as many results creating a link between non-cooperative bargaining games and the values of cooperative games often rely on these assumptions.\footnote{
     For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.
 }
 In this specific setting, characterizing monotonicity and superadditivity is extremely straightforward.
@@ -130,23 +135,31 @@ In this specific setting, characterizing monotonicity and superadditivity is ext
     \label{prop:monotone}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
+The intuition behind this result is quite straightforward.
+As player $P$ is necessary to create any value, no two disjoint coalitions can both achieve a positive value.
+Therefore, superadditivity is equivalent to monotonicity in this case.
 
 In the following, let us assume that the assumptions required for monotonicity are always satisfied (i.e., $f$ is monotone increasing).\footnote{
     This assumption is not entirely innocuous.
     For example, having more small firms could in theory lead to stronger competition, decreasing total profits.
     However, it often holds in models with network effects \parencite{rochet2003platform} or with consumers having taste for variety \parencite{anderson2020aggregative}.
 }
-As a side note, it also ensures that the games are of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies.
-Namely, both the asymptotic and axiomatic approach of characterizing the Shapley-value of the game lead to the same result\footnote{
+As a side note, it also ensures that the game is of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies.
+Namely, the asymptotic and the axiomatic approach of characterizing the Shapley-value of the game both lead to the same result\footnote{
     More precisely, the asymptotic value coincides with the axiomatic one derived using the uniform distribution.
     For a more detailed discussion, see \textcite{fogelman1980asymptotic}.
 }.
+This result could also be used to prove \cref{prop:one_sided} instead of the direct proof provided in \cref{sec:proofs}.
 
 \subsection{Random order values}
 
-For any finite number of fringe players, the random order value of a player \parencite{weber1988probabilistic} is simply its average marginal contribution to the value of all possible coalitions.
-More precisely, take all permutations of the players, and assign a probability to each of them.
-Then, the random order value of player $P$ is the expected marginal contribution of $P$ to the value of the coalition preceding it in these permutations.
+Random order values are a class of cooperative solution concepts characterized by efficiency, monotonicity, linearity and the null-player axiom \parencite{weber1988probabilistic}.
+That is, they are a generalization of the Shapley value, where the axiom of symmetry is relaxed.
+Another way to think about them is that they are the average marginal contribution of a player to all possible coalitions, where the average is taken according to some probability distribution over the permutations of the players.
+
+In this specific game, a random order value can be obtained in the following way.
+First, take all permutations of the players, and assign a probability to each permutation.
+Then, the random order value of player $P$ is the expected marginal contribution of $P$ to the value of the coalition preceding it, where the expectation is taken according to said probability distribution.
 
 For the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the (depending on section, Shapley, weighted or random order) value of player $P$ in the game with players $N = \{P, A_1, \dots, A_n\}$.
 Then, formally,
@@ -157,8 +170,8 @@ where $R$ is a permutation of all players, and $\mathcal{P}_P^R$ is the set of p
     For example, if $R = \{A_1, P, A_2\}$, then $\mathcal{P}_P^R = \{A_1\}$.
 }
 
-Random order values are of interest to us for a number of reasons.
-First, they are a natural extension to the Shapley value, where the axiom of symmetry is relaxed.
+Random order values are of interest for a number of reasons.
+First, they are a natural extension to the Shapley value and the weighted value.
 Furthermore, they provide a convenient framework, of which all subsequent results (Shapley value, weighted value, multiple big players) are special cases.
 
 Utilizing the fact that the value of any coalition is zero without $P$, and that -- conditional on player $P$ being in a coalition -- a coalition's value only depends on the number of fringe firms in it, the above expression can be simplified to the following:
@@ -169,6 +182,8 @@ where $\Pr(|\mathcal{P}_P| = k)$ is determined by the probability distribution o
 
 Now let us look at the asymptotic limit of this expression, as the number of fringe players goes to infinity.
 The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the value of the big player does not converge to the worth of the grand coalition, $f(1)$.
+Or, in other words, the fringe, even when its members are infinitesimally small, still retains some bargaining power.
+As a corollary, the continuous fringe model can be thought of as a more tractable approximation of bargaining between a finite number of fringe players, as it retains the latter's main features.
 
 \begin{proposition}
     \label{prop:one_sided_general}
@@ -197,13 +212,12 @@ In other words, even though the fringe players become smaller and more numerous,
 
 It also provides us with two ways of thinking about the value of the fringe.
 First, due to random order values being efficient, it can be thought of as the leftover from the total value after subtracting the value of the big player.
-Alternatively, as the second part of the corollary demonstrates, it is also related to the marginal contributions to the fringe agents.
-The only difference from the big player's value is that we have to weight this marginal contribution by the probability of the big player appearing before the fringe firm in question, as otherwise its marginal contribution is zero.
+Alternatively, as the second part of the corollary demonstrates, it is also related to the marginal contributions of the fringe agents.
+The only difference from the big player's value is that we have to multiply these marginal contributions by the probability of the big player appearing before the fringe firm in question, as otherwise they would be zero.
 The latter interpretation will be particularly useful when thinking about the value of the fringe in the multi-sided setting.
 
-It is immediately follows from the proposition above that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
-It is already apparent from Figure \ref{fig:one_sided} that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
-It corresponds to the case when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus (e.g. fringe players products are substitutes of each other).
+It also follows immediately from the previous proposition that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
+That is, when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus (e.g. fringe players' products are substitutes of each other), then player $P$ is able to appropriate a larger share of the total value.
 This result aligns with our natural intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms on board could obtain high values.
 In contrast, when fringe players are more complementary to each other, the big player can only obtain a smaller share, as its bargaining power is more limited.
 
@@ -215,7 +229,7 @@ It can be characterized by being the random order value that additionally also s
 This axiom requires that if two players are identical in terms of the characteristic function, then they should receive the same value.
 Equivalently, it is the same as requiring that all permutations have an equal probability.
 
-The following proposition and corollary derives the Shapley value of the big player and the fringe, respectively.
+The following proposition and corollary derives the limit of the Shapley value for the big player and the fringe, respectively.
 
 \begin{proposition}
     \label{prop:one_sided}
@@ -237,15 +251,17 @@ The following proposition and corollary derives the Shapley value of the big pla
     \end{align*}
 \end{corollary}
 
-Because the Shapley value is a special case of the random order value, these results follows quite straightforwardly from \cref{prop:one_sided_general} and \cref{cor:fringe_value_general}.
+Because the Shapley value is a special case of the random order value, these results are quite straightforward consequences of \cref{prop:one_sided_general} and \cref{cor:fringe_value_general}.
 One only has to notice that each permutation having an equal probability implies that the number of firms coming before $P$ is uniformly distributed on $1, \dots, n$, and thus the share of firms before $P$ converges in distribution to the uniform distribution on $[0, 1]$.
 Alternatively, a more direct proof is provided in \cref{sec:proofs}, or a probabilistic justification can be found in \textcite{levy1997individual}.
 
-The resulting Shapley values also have a nice geometric interpretation \cref{fig:one_sided}.
+The resulting Shapley values also have a nice geometric interpretation shown on \cref{fig:one_sided}.
 Consider a rectangle with sides of length 1 and $f(1)$, respectively.
-Then, due to superadditivity, the grand coalition forms and achieves the value $f(1)$, which is the area of the rectangle.
+The grand coalition achieves the value $f(1)$, which is also the area of the rectangle.\footnote{
+    Due to superadditivity, the grand coalition can be expected to form, and the main question is how the value is distributed between the big player and the fringe.
+}
 The value of the big player is then $\int_0^1 f(t) \dt$, which is simply the part of the rectangle below the graph of $f$, while the fringe gets the rest.
-Thus, the graph of $f$ partitions the area (total value) into what the big player and the fringe obtain.
+Thus, the graph of $f$ partitions the area (total value) into what the big player and the fringe can obtain.
 
 \begin{figure}
     \centering
@@ -341,11 +357,12 @@ On the other hand, when $\alpha \to 0$, the big players can appropriate all the 
 \subsection{Weighted values}
 \label{sec:weighted_one_sided}
 
-This section investigates the case when players have different levels of innate bargaining power.
+This section investigates the case of players having different levels of innate bargaining power.
 One way to model this is by using weighted values \parencite{shapley1953additive}, which are a generalization of the Shapley value.
+They are also a non-symmetric generalization of the Shapley value, albeit with more structure than random order values.
 The idea behind them is that, in addition to the set of players and the characteristic function, the game is also endowed with a weight system, which is a vector of non-negative numbers, one for each player.
 These weights determine how the value of a coalition is distributed amongst its members in the case when they are all equally important for the coalition.
-This is a way to relax the symmetry axiom of Shapley values, while retaining more structure than in the case of the more general random order values.
+Then, relying on the linearity of the value, this distribution can be extended to the case when the players are not equally important.
 
 These weights can be thought of as the measure of some innate bargaining power, not reflected in the value function.\footnote{
     Although, this interpretation is not always appropriate.
@@ -358,12 +375,15 @@ Additionally, \textcite{stole1996intra} provides an alternative microfoundation 
 
 For my purposes, it is sufficient to deal with the case of simple weights.
 I.e., assume that there is at most one player with zero weight.
-For my main result, I make use of the fact that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure \parencite{kalai1987weighted}.
+For my main result, I make use of an alternative, computational characterization of the weighted values. 
+\textcite{kalai1987weighted} demonstratesd that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
 Start with the set of all players.
 Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$.
 Continue until all players are exhausted.
 This yields a well-defined probability for each permutation of players.
 
+Now let us turn to deriving the weighted value and its limit for the big player and the fringe in this specific game.
+First, I propose a lemma that characterizes the distribution of the number of players before $P$ in the limit, and then use it to derive the weighted value of the big player and the fringe.
 Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively.
 Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the previously described procedure.
 Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
@@ -380,7 +400,7 @@ The following lemma establishes the continuous analogue of this statement.
 
 Now we have everything we need to derive the weighted value of both types of players.
 Having \cref{eq:entry_distr_discrete} and \cref{lem:entry_distr} allows us to invoke \cref{prop:one_sided_general} to obtain the following proposition.\footnote{
-    \textcite{stole1996intra} also derives essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
+    \textcite{stole1996intra} also derive essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
 }
 
 \begin{proposition}
@@ -399,7 +419,11 @@ Having \cref{eq:entry_distr_discrete} and \cref{lem:entry_distr} allows us to in
     where $G(t) = t^\lambda$.
 \end{proposition}
 
-Depending on the shape of this distribution (which in turn depends on the weight $\lambda$), regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
+As before, the value of the big player can still be expressed as an integral of the value function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
+The only difference is that, as in the case of the general random order value, the integrands are weighted by some probability distribution.
+Depending on the shape of this distribution, regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
+Contrary to \cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
+\Cref{fig:weigh_function} illustrates the weighting function for various values of $\lambda$.
 
 \begin{figure}[ht]
     \centering
@@ -426,28 +450,29 @@ Depending on the shape of this distribution (which in turn depends on the weight
                 \legend{$\lambda = 0.5$, $\lambda = 1$, $\lambda = 1.5$}
             \end{axis}
         \end{tikzpicture}
-        \caption{$\int_0^t g(s) \ds$}
+        \caption{$G(t)$}
     \end{subfigure}
     \caption{Illustration of the weighting function for various values of $\lambda$ in the weighted Shapley-value.}
     \label{fig:weigh_function}
 \end{figure}
 
-Now, let us examine how this weighting impacts the shares of the various players.
-It turns out, that a higher weight corresponds to a higher Shapley-value in this game.\footnote{
-    This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
-},
-supporting the interpretation of weights as some kind of innate bargaining power.
+Now, let us examine how these weights impact the shares of the various players.
 \begin{corollary}
     \label{cor:platform_value_weighted}
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
+It turns out, that a higher weight corresponds to a higher Shapley-value in this game.\footnote{
+    This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
+},
+supporting their interpretation as some kind of innate bargaining power.
 
-Furthermore, the following corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
-This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player.
+Furthermore, the next corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
 \begin{corollary}
     \label{cor:paltform_value_weighted_2}
     If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
+This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player, and thus a generalization of take-it-or-leave-it offers.
+
 
 
 \section{Many-sided case}
@@ -1380,7 +1405,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \begin{align*}
         \varphi_P^n = \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) = \E[X_n].
     \end{align*}
-    As $f$ is continuous and bounded, and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    As $f$ is continuous and bounded, and $X_n \xrightarrow[]{d} X$, by the portmanteau lemma, $\E[f(X_n)] \to \E[f(X)]$.
     Putting it together,
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^n &= \frac{1}{n+1} \sum_{k=0}^n \Pr(|\mathcal{P}_P| / n = k) f(k/n) \\
@@ -1432,7 +1457,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \begin{align*}
         \lim_{n \to \infty} \sum_{i=1}^n \varphi_{A_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
     \end{align*}
-    The second can be obtained by integration by parts:
+    The second one can be obtained by integration by parts:
     \begin{align*}
         \int_0^1 t f'(t) \dt = tf(t) \mid_0^1 - \int_0^1 f(t) \dt = f(1) - \int_0^1 f(t) \dt
     \end{align*}
@@ -1585,7 +1610,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
         &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr \left( X_n = \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \right) f \left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
         &= \E[f(X_n)].
     \end{align*}
-    Furthermore, as $f$ is continuous (and therefore bounded on $[0, 1]^L$), and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Furthermore, as $f$ is continuous (and therefore bounded on $[0, 1]^L$), and $X_n \xrightarrow[]{d} X$, by the portmanteau lemma, $\E[f(X_n)] \to \E[f(X)]$.
     Putting it together,
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \E[f(X_n)] \\
@@ -1603,7 +1628,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \begin{align*}
         \varphi_P^n &= \E[f(X_n)].
     \end{align*}
-    Furthermore, as $f$ is continuous and bounded on $[0, 1]^L$, and $X_n \xrightarrow[]{d} X$, by Portmanteau's lemma, $\E[f(X_n)] \to \E[f(X)]$.
+    Furthermore, as $f$ is continuous and bounded on $[0, 1]^L$, and $X_n \xrightarrow[]{d} X$, by the portmanteau lemma, $\E[f(X_n)] \to \E[f(X)]$.
     Therefore,
     \begin{align*}
         \lim_{n \to \infty} \varphi_P^n &= \lim_{n \to \infty} \E[f(X_n)] \\
