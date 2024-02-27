@@ -42,7 +42,13 @@
 
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
-\title{The value of being indispensable: a cooperative approach to bargaining with a continuum of players}
+\title{%
+    The value of being indispensable: a cooperative approach to bargaining with a continuum of players%
+    \thanks{
+        I would like to thank my advisors, Armin Schmutzler and Marek Pycia, for their guidance, support and encouragement throughout the writing of this paper.
+        I am also grateful to the participants of the Topics in Microeconomic Theory and Market Design seminars at the University of Zurich for their helpful comments.
+    }
+}
 \author{Martin Stancsics \\ \normalsize{University of Zurich}}
 \date{\thisdraft \\ \firstdraft \\ \latestversion}
 
@@ -659,12 +665,12 @@ A higher weight for a player means that it has a higher chance of being relative
 Therefore, conditional on $s$ proportion of the fringe coming before $P$, the various types' proportions do not reflect their population shares ($1/L$).
 For any $s \in (0, 1)$, the proportion of fringe players with a higher weight is lower than their population share, while the proportion of fringe players with a lower weight is higher than their population share.
 
-Cref{fig:many_sided_weighted} illustrates this phenomenon in the case of two types of fringe players.
+\Cref{fig:many_sided_weighted} illustrates this phenomenon in the case of two types of fringe players.
 Fringe players of type $A^2$ have a higher weight than those of type $A^1$, and thus the path the integral is taken over contains more of the latter than the former.
 
 Finally, player $P$'s probability of coming after $s$ proportion of the fringe is also not uniform, but rather influenced by the relationship between its own and the fringe players' weights.\footnote{
     This is the same mechanism as in the case of the one-sided weighted value.
-}
+} 
 Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that of \cref{prop:one_sided_weighted}.
 The result is the following: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
 The following, simple corollary formalizes this idea.
