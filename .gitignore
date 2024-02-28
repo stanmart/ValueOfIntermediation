@@ -5,6 +5,7 @@
 __pycache__
 /gh-pages/
 /playground/
+.envrc
 
 # Quarto currently renders into the qmd file's directory
 *.html
