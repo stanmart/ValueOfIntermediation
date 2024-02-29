@@ -65,51 +65,75 @@
 \end{abstract}
 
 
-\section{Motivation}
+\section{Introduction}
 
-Using cooperative game theory to model bargaining outcomes in a tractable way has quite a few examples in the industrial organization literature.
-This is in part motivated by the appealing properties of the resulting gain distributions, their tractability, but also by the long line of theoretical studies showing that various bargaining procedures lead to such outcomes.
-For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,} or, perhaps most relevant to this paper, \textcite{stole1996intra} all propose various extensive-form bargaining games in which the expected outcomes correspond to players' Shapley-values.
+Using cooperative game theory to model bargaining outcomes has quite a few precedents in the industrial organization literature.
+This is in part motivated by the appealing properties of the resulting gain distributions and their tractability.
+Furthermore, this practice also has solid theoretical justifications thanks to the long line of studies showing that various cooperative solution concepts are related to certain dynamic, non-cooperative bargaining games.
+For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining,} or, perhaps most relevant to this paper, \textcite{stole1996intra} all propose various extensive-form bargaining games in which the equilibrium corresponds to players' Shapley-values.
 
-In terms of applications, the case of one indispensable player and a large number of small ones is particularly important in a number of settings.
+For practical applications, the case of one indispensable player and a large number of small ones is particularly important in a number of settings.
 Examples include intra-firm ownership strutures \parencite{hart1990property}, wage bargaining \parencite{stole1996intra,stole1996organizational,levy1997individual}, collusion and mergers \parencite{segal2003collusion} and upstream-downstream supply chains \parencite{inderst2003bargaining,montez2007downstream}.
-The study of multi-sided markets (paltforms) is also a good fit for this modeling approach, as the platform is often indispensable for the fringe firms, but the latter are also numerous enough to be approximated by a continuum.\footnote{
-    \textcite{huang2022shapley} is one of the very few examples of using cooperative game theory in this setting.
+The study of multi-sided markets (or platforms) is also a good fit for this modeling approach, as the platform is often assumed to be indispensable for the various sides to interact.\footnote{
+    \textcite{huang2022shapley} is amongst the very few examples of using cooperative game theory in this setting.
 }
 
 A common feature of most of the aforementioned papers is that they assume a finite number of players.
-However, as is often the case in economics, infinite-player approximations turn out to be more tractable while retaining the main conclusions of the finite models from which they arise.
-Perhaps most importantly, the resulting profit shares become continuous and differentiable functions of the size of the fringe, which is particularly useful when embedding these results into more complex models.
+This paper explores the idea of using an infinite-player version of these models, where fringe players are represented as a continuum.
+As is often the case in economics, this infinite-player approximation turns out to be more tractable than the original, finite-player model, while retaining the main features of the latter.
+For example, the resulting profit shares depend on the production function similarly to the finite-player case, while becoming continuous and differentiable functions of the size of the fringe.
+This can be useful when embedding these results into more complex models.
 
-Cooperative games with a finite number of atomic players and a continuum of non-atomic ones are called mixed or oceanic games \parencite{milnor1978values}, and have been studied in the literature of cooperative game theory.
-Most papers in this line of research focus on questions such as for which games the Shapley-value exists and is unique \parencite{hart1973values}, and whether various approaches (namely, characterizing the value using a set of axioms, and taking the limit of the value of finite-player games) lead to the same result \parencite{fogelman1980asymptotic}.\footnote{
-    \textcite{hart1973values} shows that in the case of mixed games, the usual axioms do not characterize a unique value in general.
-    However, \textcite{fogelman1980asymptotic} demonstrates that, for a quite general subset of games, the asymptotic approach leads to one specific element from the set characterized by the axiomatic approach. 
-}
-My aim with this paper is both more general and more specific in certain aspects.
-For one, I am only interested in the asymptotic approach, and withing that, a specific series of finite games.
-Furthermore, I restrict my attention to one specific type of games, namely those with an indispensable player, and a continuum of fringe players consisting of a finite number of types.
-This in turn allows me to go beyond the usual Shapley-value, and obtain results for a more general set of solution concepts: random order values.
-In the case of multiple types of fringe players, I also present a number of new results for the Shapley value and the weighted value.
-In particular, I derive the value of the different types of fringe players in the multi-sided setting, and demonstrate how they are related to their marginal contributions.
-Additionally, due to having more structure in the model, I am able to provide more concrete results, investigate some comparative statics, as well.
-
-Despite their theoretical appeal and their tractability, oceanic games saw very little use in the industrial organization, and, more generally, applied economics literature.
-The most prominent examples are \textcite{stole1996intra, stole1996organizational} and \textcite{levy1997individual}, all of which use the Shapley-value to model wage bargaining, and consider the case of divisible labor (continuum of workers).
-The first two of these paper also provides microfoundations for the Shapley value and the weighted value in the intra-firm bargaining setting.
-To showcase the utility of this approach, I also build a simple model of two-sided markets.
-In addition to the aformentioned papers, this model includes two new features: (1) results about the distribution of the value between the various types of fringe players, and (2) using the weighted value in a multi-sided setting.
-
-In the following sections, I propose an oceanic game with the main feature that the large player is indispensable for creating value.\footnote{
+The main contribution of this paper is to provide a general framework for modeling bargaining outcomes in games with one indispensable player and a continuum of fringe players.
+I propose an oceanic game with the main feature that the large player is indispensable for creating value\footnote{
     This assumption will be somewhat relaxed throughout some of the generalizations.
+}, and examine the (Shapley, weighted and random order) values of the players in this game.
+I demonstrate that these values are described by very tractable expressions and have illuminating geometric interpretations.
+Just as importantly, I show that the outcomes are in line with one's intuitive expectations of bargaining power in such situations.
+
+On one hand, this paper provides a taxonomy of the various results found in some applied papers.
+Furthermore, it introduces some new results pertaining to the case of multiple types of fringe players.
+In particular, I highlight how the value of the fringe players can be expressed in terms of their marginal contributions, and how players' bargaining weights affect outcomes through changing the probability weights of orderings from which those marginal contributions are calculated.
+Finally, to showcase the utility of this approach, I also build a simple model of two-sided markets.
+My hope is that the results in this paper can be used as a tool-kit for embedding bargaining outcomes into more complex models.
+
+The present paper is closely related to two bodies of literature: a theoretical and an applied one.
+Cooperative games with a finite number of atomic players and a continuum of non-atomic ones are called mixed or oceanic games \parencite{milnor1978values}, and have been studied in the cooperative game theory literature.
+Most papers in this line of research focus on rather fundamental questions, such as for which games does the Shapley-value exist, when is it unique \parencite{hart1973values}, and whether the various ways of defining it\footnote{
+    One can characterize the value of the oceanic game directly, relying on a set of axioms (axiomatic approach). Alternatively the value of an infinite-player game can also be defined as the limit of the value of a series of finite-player games (asymptotic approach).
+} lead to the same result \parencite{fogelman1980asymptotic}.\footnote{
+    \textcite{hart1973values} shows that in the case of mixed games, the usual axioms do not in general characterize a unique value.
+    However, \textcite{fogelman1980asymptotic} demonstrates that, for a quite large subset of games, the asymptotic approach leads to one specific element from the set characterized by the axiomatic approach. 
 }
-Such a model applies to all the settings mentioned above, such as intra-firm bargaining, vertical supply chains, or multi-sided markets.
-I demonstrate that the random order values of the players in those models are described by very tractable expressions that have nice geometric interpretations.
-Additionally, the outcomes are in line with one's intuitive expectations of bargaining power in such situations.
-Finally, I demonstrate the usefulness of this approach by building a simple model of two-sided markets, where the various players' shares are determined by their (weighted) Shapley values.
+My aim with this paper is both somewhat more general and much more specific in certain aspects.
+For one, I focus on the asymptotic approach, and withing that, a specific way of approximating the infinite game of interest.
+This is motivated by the fact that I am not interested in the oceanic game per se, but rather in its ability to approximate finite-player games.
+Furthermore, I restrict my attention to a specific, but economically important subset of games: those with one indispensable player, and a continuum of fringe players consisting of a finite number of types.
+These two restrictions in turn allow me to go beyond the Shapley value, and obtain results for a more general set of solution concepts: random order values.
+Additionally, instead of looking at general results, such as existence, I can provide and interpret explicit expressions for the values of the various players.
+
+The other strand of research that is closely related to this paper belongs to the industrial organization literature.
+Despite the theoretical appeal and tractability of oceanic games, they, in general, saw remarkably little use in the industrial organization, and, more generally, applied economics.
+Nevertheless, there are a few prominent exceptions, such as \textcite{stole1996intra, stole1996organizational} and \textcite{levy1997individual}, which use the Shapley value to model wage bargaining under the assumption of divisible labor (continuum of workers).
+The first two of these paper also provides microfoundations for using the Shapley value and the weighted value in an intra-firm bargaining setting.
+The present paper contributes to this literature by generalizing some of its results, and an examinating some general properties of the various values in the context of such games.
+In particular, in addition to the aformentioned papers, the proposed model includes two new features: (1) results about the distribution of the value between the various types of fringe players, and (2) using random order values instead of the less general Shapley value or weighted value.
+Furthermore, I also provide results for the intersection of two important extensions in \textcite{stole1996intra}: the case of weighted values in the case of multiple types of fringe players.
+
+Finally, en example application is presented to demonstrate the usefulness of the proposed approach.
+This model is based on the seminal work of \textcite{armstrong2006competition} on multi-sided markets.
+Thus, although the present paper is mainly theoretical, it also has some minor contributions towards better understanding the functioning of multi-sided markets.
+
+The paper is organized as follows.
+In \cref{sec:one_sided}, I present the main results for the case of one indispensable player and a continuum of identical fringe players.
+\Cref{sec:many_sided} extends these results to the case of multiple types of fringe players.
+This is where the most novel results of the paper are presented.
+\Cref{sec:application} provides an example application of the results to a simple model of a two-sided market.
+Finally, \cref{sec:conclusion} concludes the paper.
 
 
 \section{One-sided case}
+\label{sec:one_sided}
 
 In this section I examine the case of identical fringe players.
 Many of these results are known in the literature, but I include them here for three reasons.
@@ -703,6 +727,7 @@ The following, simple corollary formalizes this idea.
 This result is analogous to \cref{cor:platform_value_weighted}, and demonstrates that a higher weight for player $P$ corresponds to a higher value in this game as well.
 
 \section{Example application}
+\label{sec:application}
 
 In this section I will apply the results of the previous sections to a simple model of two-sided platforms.
 I follow the modelling approach of the monopoly platform case in \textcite{armstrong2006competition}, with a few extensions.
