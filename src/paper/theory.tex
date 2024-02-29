@@ -129,7 +129,7 @@ In \cref{sec:one_sided}, I present the main results for the case of one indispen
 \Cref{sec:many_sided} extends these results to the case of multiple types of fringe players.
 This is where the most novel results of the paper are presented.
 \Cref{sec:application} provides an example application of the results to a simple model of a two-sided market.
-Finally, \cref{sec:conclusion} concludes the paper.
+Finally, \cref{sec:conclusions} concludes the paper.
 
 
 \section{One-sided case}
@@ -983,35 +983,41 @@ Therefore, while bargaining can be welfare-increasing compared to unilateral pri
 }
 
 \section{Conclusions}
+\label{sec:conclusions}
 
-In this paper, I examined the problem of bargaining between one indispensable player and a continuum of fringe players.
-I did so using the concept of random order values from cooperative game theory.
-I showed that random-order-value-based bargaining has some desirable properties, and that it coincides with intuitive expectations in terms of certain comparative statics.
-Furthermore, the resulting distributions of the value are also analytically tractable, and has neat geometric interpretations.
+In this paper, I examine the problem of bargaining between one indispensable player and a continuum of fringe players.
+I model this setting relying on the concept of random order values from cooperative game theory.
+I demonstrate that random-order-value-based outcomes have some desirable properties, and coincide with intuitive expectations in terms of comparative statics.
+Furthermore, the results are analytically tractable, and have neat interpretations both from a geometric perspective, and in terms of players' marginal contributions.
 
-I use random order values to provide a comprehensive framework for a number of important special cases.
-Some of those, such as the Shapley-value, or the weighted value in the one-sided case, is already known in the literature.\footnote{
-    Aside from looking at it in an abstract manner, my contribution to those cases mostly lie in showing how the fringe's value can be expressed as a kind of expected marginal contribution.
-    This is especially relevant in the multi-sided case, where it is important to know how the value not obtained by the indispensible player is distributed among the various sides.
-}
-Others, such as the weighted value in the multi-sided case, or the interpretation of substitutable "indispensible" players, are, to the best of my knowledge, new.
-As I demonstrate, they retain the simplicity and interpretability of the simpler cases, while making the model more general.
+Random order values offer a comprehensive framework for modeling bargaining outcomes, and also include important and well-known special cases, such as the Shapley value or the weighted value.
+Due to the former retaining many of the attractive properties of its more specialized counterparts, it might be a good candidate for modeling bargaining outcomes flexibly and in a tractable manner.
+Furthermore, as shown in \cref{sec:extensions}, the results can also be generalized to cases with not completely indispensable big players, while retaining the essential structure of the results.
+
+Another contribution of this paper is the derivation of the weighted value in the case of multiple types of fringe players.
+This provides a rather flexible model (one more general than the Shapley value) for modeling multi-sided markets.
+The proof of the corresponding theorem is also instructive in that it highlights how bargaining weights affect player's values through determining the probabilities of player orderings.
+
 Finally, I demonstrate how the proposed framework can be applied in practice by
-examining the two-sided platform model of \textcite{armstrong2006competition} with a small extension and a bargaining process over entry fees.
-I show that the resulting entry fees have a simple structure, but they also differ from the welfare-maximizing and unilateral price-setting cases in number of interesting ways.
-Therefore, in situations where bargaining between players is plausible, certain effects might be missed if one assumes unilateral price-setting.
+examining the two-sided platform model based on \textcite{armstrong2006competition}.
+I show that the resulting entry fees have some similarities to the welfare-maximizing and unilateral price setting benchmarks, but also differ in some important ways.
+In particular, the externalities that players entrants impose on the platform (cost of serving) and the other side (network externalities) are not fully incorporated into the entry fees, but shared across the affected players.
+Similarly, the value generated on each side also factors into the entry fee, contrary to the benchmark cases where it does not directly matter.
+This suggests, in situations where bargaining between players is plausible, certain effects might be overrepresented or missed if one assumes unilateral price-setting.
 
 There is a variety of ways in which this paper could be expanded or built upon.
 One obvious direction is to consider other solution concepts from cooperative game theory, such as the nuclelous\footnote{
-    It retains many of the desirable properties of the Shapley-value, such as existence and uniqueness, but it is contained in the core when the latter exists, and thus has a more immediate connection to non-cooperative bargaining theory.
+    It retains many of the desirable properties of the weighted values, such as existence and uniquenes while having a more immediate connection to non-cooperative bargaining theory.
 }.
-Another way to go is to build non-cooperative microfoundations for the random-order-value-based bargaining outcomes.
-Many such results exist for the Shapley value, and some also exist for the weighted value, but it might be interesting to see if some of the more general random order values can be motivated in a similar manner.
+Another is to consider either a wider, or different class of games, and see if the various values can be derived in a similar manner.
+A further direction is to consider is building non-cooperative microfoundations for the proposed random-order-value-based bargaining outcomes.
+Many such results exist for the Shapley value, and there are also a couple for the the weighted value, but motivating the more general random order value in a similar manner could be a significant step forward for bargaining theory.
 
-Besides those theoretical directions, the practical applications are no less interesting.
-The proposed profit sharing framework could be embedded in more realistic models of various settings.
-The example application in this paper is a streamlined example of this, while \textcite{stancsics2023hybrid} provides a more detailed model involving hybrid platforms.
-Due to the simplicity of the results, this approach might be a viable replacement of unilateral price setting in cases where one does not wish to ascribe all the bargaining power to one player.
+Besides these more theoretical directions, the practical applications are no less interesting.
+The proposed profit sharing framework could be embedded in more applied and detailed models describing various settings.
+The example application in this paper is a streamlined example of this, while \textcite{stancsics2023hybrid} is a further step in this direction, applying these ideas to a model of hybrid platforms.
+Due to the simplicity of the results, this approach might be a viable, almost drop-in replacement for unilateral price setting in cases where one does not wish to ascribe all the bargaining power to one player.
+
 
 
 \appendix
