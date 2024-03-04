@@ -87,7 +87,7 @@ For example, each of the largest digital distribution platforms for computer and
 In the video game industry, platform owners studios and publishing games under their own brand is the standard.
 Many video streaming services (e.g. Netflix, Amazon Prime Video, Hulu) offer a mix of their own and licensed content.
 One can also find examples of similar behavior outside the platform setting, too.
-For example BMW is preparing to sell cars directly to consumers in the US, competing with its dealership network.
+For example, a number of car manufacturers are planning to sell directly to consumers in addition to selling through their dealership networks.
 
 As deciding the rules of the game and competing in it at the same time gives rise to some obvious concerns, policymakers have been paying increasingly close attention to these platforms in the recent years.
 Various pieces of legislation have been proposed to regulate, or even ban e-commerce platforms from selling their own products \parencite[][]{phartiyal_2019,reynolds_2022,eu-2022}.
@@ -95,23 +95,23 @@ Furthermore, one of the most prominent ongoing antitrust cases, Microsoft attemp
 This merger would not only increase market concentration on the software side of the video game industry, but might also have further implications for the competition between Microsoft as a platform owner and the other game developers.
 The deal is currently under investigation by multiple antitrust authorities, including the US Federal Trade Commission, the European Commission, and the UK Competition and Markets Authority \parencite{livni_merced_2023}.
 
-In parallel to the increasing regulatory interest, the academic literature has also been steadily growing on the topic of hybrid platforms.
+In parallel to the increasing regulatory interest, the academic literature on the topic of hybrid platforms has also been steadily growing.
 \textcite{hagiu2022should} investigate how practices, such as self-preferencing and steering can distort competition on hybrid platforms.
-They argue, however, that if such behavior is regulated, the platform selling its own products can be beneficial for consumers.
+They argue that -- while such practices are problematic and can have negative welfare effects -- with proper regulation the platform selling its own products can be beneficial for consumers.
 In contrast to this positive result, \textcite[]{anderson2021hybrid} find that even in the absence of such behavior, allowing hybrid operation might have negative consequences due to platforms having an incentive to exclude competitors from the market.
 \textcite[]{gutierrez2021welfare} shows that general conclusions are hard to draw, and welfare effects are platform and product specific.
 For example, using a mechanism design approach, \textcite{kang2022contracting} demonstrate that welfare consequences greatly depend on whether the platform faces competition in the upstream market.
 
 This paper aims to contribute to this discussion by examining an important, but so far underexplored aspect of platforms: the bargaining power disparity between them and the other market participants, and how this disparity is affected by the platforms' hybrid operation.
 In particular, I propose an analytically tractable framework which captures many important aspects of bargaining between one large and a continuum of small players, and apply it to the setting of a hybrid platform facing a continuum of potential entrants.
-The framework quite general, and does not depend on a specific demand structure, investment cost assumptions, and there is even some flexibility to the assumptions about bargaining outcomes.
+The framework is quite general: it does not depend on a specific demand structure and investment cost assumptions, and there is even some flexibility to the assumptions about bargaining outcomes.
 Nevertheless, even in this stylized setting, I can highlight certain factors which might cause a platform's hybrid operation to potentially have negative effects. 
 In particular, when the platform's and the potential entrants' products are substitutes, increasing the platform's product variety will lead to a decrease in the number of entrants.
 Under slightly more restrictive assumptions about the functional form of the profit functions, I show that this decrease in entry is so large as to cause a decrease in total profits, as well.
 Due to the generality of this model, these results are applicable not only to hybrid platform, but to other similar settings, such as upstream producers having their own downstream outlets, or retailers with private labels, as well.
 
 As a more specific example, I also examine this phenomenon in a more fully specified model, too.
-In particular, I provide some sharper results under the assumption of logit-like demand and a specific form of the bargaiing rule.
+In particular, I provide some sharper results under the assumption of logit-like demand and a specific form of the bargaining rule.
 I show that, in the presence of bargaining, hybrid operation can indeed have negative welfare consequences for consumers.
 This result is particularly striking in this otherwise distortion-free\footnote{
     In the benchmark model without bargaining, the platform's hybrid operation does not affect consumer welfare.
@@ -120,9 +120,10 @@ The intuition is that hybrid operation increases the platform's bargaining power
 This in turn leads to a higher entry fee, fewer entrants, then results in lower consumer surplus.
 These observations constitute a so-far overlooked aspect of hybrid platforms that policymakers should be aware of.
 
-The closest paper to this second, more applied part of this one is \textcite{anderson2021hybrid}.
+The closest model to the second, more applied part of this paper one is the one proposed by \textcite{anderson2021hybrid}.
 The main difference between the two boils down to how the entry fee is decided.
-In the former, of the platform setting a percentage entry fee and being able to commit to it, I assume that (1) platforms charge a lump-sum entry fee and that (2) this entry fee is the result of a negotiation process\footnote{
+In \textcite{anderson2021hybrid}, the platform sets a percentage entry fee, and the entrants decide whether to enter or not.
+In contrast to this, I assume that (1) platforms charge a lump-sum entry fee and that (2) this entry fee is the result of a negotiation process\footnote{
     The bargaining process is modeled using a solution concept from cooperative game theory, namely the Shapley-value.
     This allows for a tractable analysis while at the same time capturing many of the important features of bargaining.
     Examples of this approach in the industrial organization literature include \textcite{montez2007downstream}, as well as \textcite{hart1990property}, \textcite{levy1997individual}, \textcite{inderst2003bargaining} and \textcite{brugemann2019intra} among others.
@@ -133,7 +134,7 @@ Furthermore, in contrast to \textcite{hagiu2022should}, this model is free from 
 
 The first set of results in this paper go beyond the aforementined studies in the sense that they illuminate the effects of hybridness as a more abstract phenomenon, and thus also highlight the similarities between the hybrid platform literature and adjacent ones.
 Certain structures, such as vertical relationships, or even traditional retail stores share a number of features with platforms (notably, the presence of a dominant, indispensable entity), and can be modeled in much the same way.
-Therefore, the methodology and results in this paper may also be of interest to researchers studying questions such as retailers having their own private labels \parencite{steiner2004nature} or vertical integration in upstream-downstream markets \parencite{hart1990vertical,aghion2006vertical}.
+Therefore, the methodology and results in this paper are also of interest to researchers studying questions such as retailers having their own private labels \parencite{steiner2004nature} or vertical integration in upstream-downstream markets \parencite{hart1990vertical,aghion2006vertical}.
 \textcite{de2005vertical} and \textcite{montez2007downstream}, in which bargaining between the upstream and downstream firms take the center stage, are particularly closely related.
 Among empirical studies in related settings, \textcite{ho2017insurer} looks at the effect of insurer competition on health care prices, while \textcite{crawford2018welfare} explores the effects of vertical integration on television markets.
 
@@ -162,7 +163,7 @@ This section introduces the model used throughout the paper.
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
 
-Assume that there are three types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in [0, N_C$) and a continuum of consumers $C_j$ ($j \in [0, N_C$]).
+Assume that there are three types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in [0, N_C$]) and a continuum of consumers $C_j$ ($j \in [0, N_C$]).
 The fringe firms have one product each, which they can only sell through the platform.
 Without the platform, they make zero profits.
 In addition to acting as an intermediary between the fringe and the consumers, the platform itself may also produce and sell a number of products directly to the consumers.
@@ -225,15 +226,13 @@ The interested reader can find a more detailed discussion of how it relates to r
 
 \begin{assumption}
     \label{ass:profit_sharing}
-    Let $N_P, N_F, N_C \geq 0$ be the number of platform products, fringe firms and consumers, respectively.
-    Thus, the value that players create together is given by $\Pi(N_P, N_F, N_C) = N_C f(N_P, N_F)$.
-    Let us denote the platform's and the fringe's profit shares by $\pi_P(N_P, N_F, N_C)$ and $\pi_F(N_P, N_F, N_C)$, respectively.
-    Then, the following holds:
+    Let $w_P, w_F: \mathbb{R}^+_0 \to \mathbb{R}^+_0$ be non-negative functions such that the following condition holds: $\pi_P(N_P, N_F, N_C) + \pi_F(N_P, N_F, N_C) \leq \Pi(N_P, N_F, N_C)$.
+    %TODO: can I make this condition nicer?
+    Then, the platform's profit ($\pi_P(N_P, N_F, N_C)$) and the fringe's profit ($\pi_F(N_P, N_F, N_C)$) are given by:
     \begin{align*}
         \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 w_P(s) f(N_P, s N_F) \ds, \\
         \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 w_F(s) N_F \partial_2 f(N_P, s N_F) \ds.
     \end{align*}
-    Furthermore, $w_P \geq 0$ and $w_F \geq 0$ are such that $\pi_P(N_P, N_F, N_C) + \pi_F(N_P, N_F, N_C) \leq \Pi(N_P, N_F, N_C)$.
 \end{assumption}
 
 Although the reason behind choosing this particular form for profit shares is discussed in detail in the appendix, let me highlight some important observations.
@@ -627,10 +626,10 @@ Furthermore, I focus on a particular set of weight functions $w_P$ and $w_F$, wh
 As an extension, in \cref{sec:lower_bargaining_power} I also examine what happens when the platform and the fringe firms have unequal bargaining weights, while still retaining more structure than the very general bargaining rule from \cref{ass:profit_sharing}.
 In particular, I look at the case of bargaining outcomes being described by weighted values, with all fringe players sharing the same weight.
 Furthermore, in \cref{sec:two_sided}, I also consider the case of two-sided bargaining, where the consumers also participate in the negotiation over the value produced.
-Finally, \cref{sec:total_welfare_one_sided} explores the case of the platform being able to extract all of the consumer surplus through from consumers.
+Finally, \cref{sec:total_welfare_one_sided} explores the case of the platform being able to extract all of the consumer surplus from consumers.
 
 Throughout the analysis, I treat the product variety of the platform and the number of consumers as exogenous, and focus on the equilibrium number of fringe firms.
-Nevertheless, the results regarding equilibrium platform profits and consumer surplus are somewhat indicative of the potential general equilibrium behavior of the former two, as well.
+Nevertheless, the results regarding equilibrium platform profits and consumer surplus are indicative of the potential general equilibrium behavior of the former two, as well.
 
 \subsection{Setup}
 
@@ -673,7 +672,7 @@ For this service, the platform can charge a lump-sum entry fee $F_F$ to each fri
 In the baseline model, I assume that entry is free for the consumers, and they are always present on the platform, no matter the other players' entry and pricing decisions.\footnote{
     This essentially means that I assume a one-sided platform, without the usual network effects.
 }
-Later on, I look at the case of the platform obtaining consumer surplus, and also the case of consumers participating in the bargaining over the total surplus.
+Later on, I look at the case of the platform appropriating consumer surplus, and also the case of consumers participating in the bargaining over the total surplus.
 
 As mentioned above, instead of operating as a pure marketplace, the platform may also produce and offer its own products.
 Therefore, there are three potential modes of operation.
@@ -752,10 +751,13 @@ For ease of notation, let us define the following:
 \begin{align*}
     V_T = \exp \left( \frac{v_T - c_T - \mu}{\mu} \right).
 \end{align*}
-Then, equilibrium per-product demand and variable profit can be expressed as $V_T/ A$ and $\mu V_T/ A$, respectively, and the total aggregate is simply
+$V_T$ can be thought of as the value of the product, also accounting for marginal costs and taste heterogeneity.
+In this logit demand system, the value of the product is the only parameter that matters for market shares and profits.
+In fact, equilibrium per-product demand and variable profit can simply be expressed as $V_T/ A$ and $\mu V_T/ A$, respectively, where
 \begin{align*}
-    A = N_P V_P + N_F V_F + 1.
+    A = N_P V_P + N_F V_F + 1
 \end{align*}
+denotes the total aggregate.
 
 Finally, another important feature of this demand system is that, assuming optimal pricing, consumer welfare only depends on the size of the aggregate \parencite{anderson2020aggregative}.
 In particular, consumer surplus is proportional to the logarithm of the aggregate: $CS = \mu N_C \log(A)$. This fact makes welfare analysis rather simple in this setting.
@@ -781,7 +783,7 @@ Combined with the  profit function, this gives the following expressions for the
         A = N_P V_P + 1.
     \end{align*}
 \end{proposition}
-Note that in the first case (\cref{eq:aggregate_eq}), the size of the aggregate does not depend on the platforms' product variety or the platform's product advantage.
+Note that in the first case (\cref{eq:aggregate_eq}), the size of the aggregate does not depend on the platforms' product variety or the platform's product value.
 The intuition behind this is that per-firm fringe profits only depend on these factors indirectly, through the size of the aggregate.
 That is, unless the fringe is not feasible, an increase in $N_P$ will simply replace some fringe entrants, but the free entry condition will pin down the same aggregate, as before.
 
@@ -807,7 +809,7 @@ The following proposition establishes these both for the hybrid and the pure ret
 Note, that even though the platform's profit is increasing in the number of its products, the optimal entry fee does not depend on it (\cref{fig:platform_profits,fig:entry_fee}).
 This is only due to the fact that the platform's product does not require any investment cost.
 If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on investment costs, which is essentially wasted.
-Consequently, in the hybrid regime, the marginal derivative of optimal profits with respect to the platform's product variety is simply the fringe's investment cost, adjusted for the possible difference in product advantage:
+Consequently, in the hybrid regime, the derivative of optimal profits with respect to the platform's product variety is simply the fringe's investment cost, adjusted for the possible difference in product value:
 \begin{align*}
     N_F > 0 \implies \frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F.
 \end{align*}
@@ -880,9 +882,9 @@ Therefore, the same proposition implies that
 that is, an increase in the platform's products leads to a more than proportional reduction in the number of fringe products (\cref{fig:fringe_entry_eq}).
 
 As a consequence of this, equilibrium total aggregate is also decreasing in $N_P$.\footnote{
-    The same result also holds true for an increase in the paltform's product advantage $V_P$.
+    The same result also holds true for an increase in the platform's product advantage $V_P$.
 }
-As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:welfare}).
+As, in this model, consumer welfare is monotone in the total aggregate, this implies that consumer welfare is decreasing in the number of the platform's products (\cref{fig:welfare_consumer_surplus}).
 Therefore, as opposed to the benchmark model, the platform becoming more hybrid leads to a reduction in consumer welfare.\footnote{
     Unless $V_P N_P$ is high enough that the platform would operate in pure retail mode in the benchmark model, too.
 }
@@ -1054,6 +1056,7 @@ This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is l
             \end{axis}
         \end{tikzpicture}
         \caption{Consumer surplus ($CS$)}
+        \label{fig:welfare_consumer_surplus}
     \end{subfigure}
     \caption{Size of the aggregate and consumer surplus in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, an increase in platform product variety has no effect in the hybrid regime. Under bargaining, it does have a negative effect on total product variety, and, in turn, consumer surplus. The increase has a (mechanical) positive effect in the pure retail regime under both assumptions. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
     \label{fig:welfare}
