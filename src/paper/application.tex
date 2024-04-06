@@ -23,6 +23,7 @@
 \usepgfplotslibrary{fillbetween}
 \usetikzlibrary{shapes}
 \usetikzlibrary{intersections}
+\usetikzlibrary{positioning}
 \pgfplotsset{compat=1.17}
 
 \newtheorem{definition}{Definition}
@@ -689,7 +690,7 @@ One can conceptualize the first as usual fixed costs, such as the cost of settin
 Meanwhile, the second is a payment to the platform for using its services.
 
 In the benchmark model, the game starts by the platform announcing and committing to an entry fee $F_F$.\footnote{
-    Without no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
+    With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
     This would lead to a trivial equilibrium, where no firm enters.
 }
 In the bargaining case, the platform cannot commit to entry fees, so this step is skipped.
@@ -702,13 +703,46 @@ After that, the firms that have made the investment decide if they also want to 
 Finally, the platform and the fringe firms simultaneously choose the prices for their products.
 Each consumer then chooses the one maximizing their utility, and profits are realized.
 
-In the baseline model, each player gets their profits from the sales of their products, plus the pre-agreed entry fees from the first period.
 In the model with bargaining, the platform and the fringe distribute total profits according to their Shapley values.
 One can also think of the latter as agreeing on an entry fee that makes final profits net entry fees equal to the Shapley value of the various players.
 
 The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
 In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
 On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
+\cref{fig:timing} illustrates this difference.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node[align=center] (entry_fee) {Platform unilaterally sets the entry fee \\ $[F_F]$};
+            \node[align=center] (entry_decision) [below of=entry_fee] {Potential entrants decide to enter \\ at cost $I_F + F_F$ \\ $[N_F]$};
+            \node[align=center] (sales) [below of=entry_decision] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
+            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \draw[->] (entry_fee) -- (entry_decision);
+            \draw[->] (entry_decision) -- (sales);
+            \draw[->] (sales) -- (final);
+        \end{tikzpicture}
+        \caption{Benchmark model (platform sets the entry fee unilaterally)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
+            \node[align=center] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[F_F]$};
+            \node[align=center] (sales) [below of=entry_fee] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
+            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \draw[->] (entry_decision) -- (entry_fee);
+            \draw[->] (entry_fee) -- (sales);
+            \draw[->] (sales) -- (final);
+        \end{tikzpicture}
+        \caption{Bargaining model (platform and fringe negotiate over the entry fee)}
+    \end{subfigure}
+    \caption{Timing of the models}
+    \label{fig:timing}
+\end{figure}
 
 
 \subsection{Equilibrium}
