@@ -161,6 +161,7 @@ Finally, \cref{sec:conclusion} summarizes the results and discusses possible fut
 \label{sec:model}
 
 This section introduces the model used throughout the paper.
+% TODO: better motivation
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
 
@@ -174,193 +175,330 @@ The main distinguishing feature of this model is that, instead of assuming that 
 The bargaining rule, as well as other details of the model, are described in the rest of this section.
 
 
-\subsection{Production}
+\subsection{Overview}
 
-I make use of a reduced-form, but quite general approach to model production and demand.
-First, I assume that all fringe firms and consumers are ex-ante identical.
-This implies two things: (1) per-consumer profits are just a function of the number of fringe and platform products, and (2) the platform's and the fringe's profits are linear in the number of consumers.\footnote{
-    While normally this would exclude fixed production costs, this is not the case here.
-    $\Pi$ only describes profits conditional on $N_C$ and $N_F$ players entering the platform.
-    Fixed costs can be incorporated into the first stage of the game, where fringe firms decide whether to enter or not.
+There is an infinite measure of fringe firms, who are deciding whether to enter the market.
+Entering has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $F_F$.
+One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
+Meanwhile, the second is a payment to the platform for using its services.
+While percentage fees are more common both in the literature and in practice, I assume a lump-sum fee for a few reasons.
+First, and most importantly, revenue-based fees enter the entrants' pricing decision, and thus create a channel through which platforms distort competition.
+I want to show that even in the absence such distortions, hybrid platforms can have a significant impact on competition.
+Furthermore, due to this distortion, the resulting game could not be represented as a transferable utility game, and the proposed solution concept would not be applicable.
+Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
+
+In the benchmark model, the game starts by the platform announcing and committing to an entry fee $F_F$.\footnote{
+    With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
+    This would lead to a trivial equilibrium, where no firm enters.
 }
+In the bargaining case, the platform cannot commit to entry fees at this point.
+Next, each fringe firm decides whether to create a product at cost $I_F$ and enter the market.
+In the bargaining model, the entry fee is decided at this point as a result of some negotiation\footnote{
+    The negotiation process, or rather its outcome is described in detail in \cref{sec:cooperative_game}.
+} between the platform and the firms that have made the investment.
+After this, the firms that made the investment pay the platform entry fees, too.
 
+From this point on, the game proceeds in the same way in both models.
+The platform and the fringe firms simultaneously choose the prices for their products, engaging in monopolistic competition.
+Finally, consumers make their purchase decisions, and profits are realized.
 
-As a consequence, the total profits of the platform and the fringe taken together have a simple functional form $N_C f(N_P, N_F)$.\footnote{
-    Based on the same reasoning, it is easy to see that total welfare has a similar form.
-}
-Formally, this is described by the following assumption.
-\begin{assumption}
-    \label{ass:identical_fringe}
-    The total profits of the platform and the fringe are described by 
-    \begin{align*}
-        \Pi(N_P, N_F, N_C) = N_C f(N_P, N_F),
-    \end{align*}
-    where $f: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$.
-\end{assumption}
-Here, $N_F$ is the mass of fringe sellers, $N_C$ is the mass of consumers, and $N_P$ measures the degree to which the platform sells its own products.
-For example, in a setting with differentiated products and monopolistic competition, $N_F$ and $N_P$ represent the product variety of the fringe and the platform, respectively.
-$N_P = 0$ corresponds to the case when the platform is a pure intermediary, and $N_F = 0$ to the case then the platform is a pure retailer.
+In the model with bargaining, the platform and the fringe distribute total profits according to their Shapley values.
+One can also think of the latter as agreeing on an entry fee that makes final profits net entry fees equal to the Shapley value of the various players.
 
-I will assume that, in addition to being increasing in the number of consumers, total profits are also increasing in both the number of fringe firms and the platform' products.
-\begin{assumption}
-    \label{ass:monotone_profits}
-    $f(n_P, n_F)$ is increasing in both $n_P$ and $n_F$.
-\end{assumption}
-Such profit functions arise in settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
-One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
-Alternatively, indirect network effects, such as those in two-sided markets, can also result in such increasing profits.
-Finally, if we assume that the platform can extract consumer surplus through entry fees or some similar mechanism, then this assumption will be true for any demand system in which total surplus is increasing in product variety.
-
-
-\subsection{Profit sharing}
-
-I assume that fringe firms are unable to sell their products directly to consumers.
-Instead, they must sell through the platform.
-For this service, the platform may charge a fee, and obtain a share of the fringe's profits.
-
-In the benchmark model, the platform will be able to set and commit to any lump-sum entry fee it wishes to.\footnote{
-    The focus of this paper is on fees paid and entry decisions made by fringe producers, but I will also consider the case when consumers also face entry fees or subsidies.
-}
-The main contribution of this paper is to deviate from this usual assumption, and instead consider a setting in which the platform and the fringe engage in some form of bargaining over the total profits.
-To model this in a tractable way, I propose a profit division rule that is based on the Shapley value \parencite{shapley1953additive}, or, more generally, random order values \parencite{weber1988probabilistic}.
-This way of modelling bargaining outcomes has many precedents in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}.
-In the main text, I simply propose a formula for the profit shares without going into the details of the underlying cooperative game.
-The interested reader can find a more detailed discussion of how it relates to random order values in \cref{sec:cooperative_game}.
-
-\begin{assumption}
-    \label{ass:profit_sharing}
-    Let $w_P, w_F: \mathbb{R}^+_0 \to \mathbb{R}^+_0$ be non-negative functions such that the following condition holds: $\pi_P(N_P, N_F, N_C) + \pi_F(N_P, N_F, N_C) \leq \Pi(N_P, N_F, N_C)$.
-    %TODO: can I make this condition nicer?
-    Then, the platform's profit ($\pi_P(N_P, N_F, N_C)$) and the fringe's profit ($\pi_F(N_P, N_F, N_C)$) are given by:
-    \begin{align*}
-        \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 w_P(s) f(N_P, s N_F) \ds, \\
-        \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 w_F(s) N_F \partial_2 f(N_P, s N_F) \ds.
-    \end{align*}
-\end{assumption}
-
-Although the reason behind choosing this particular form for profit shares is discussed in detail in the appendix, let me highlight some important observations.
-First, player's profit shares are closely related to their (weighted average) marginal contributions to the total value.
-In the case of the platform, its contribution is the total value, as it is indispensable, while the fringe firms' contribution is captured by the partial derivative of the total value with respect to the number of fringe firms.
-Second, the platform and the fringe do not necessarily get the entire value they create.
-This is due to the fact that I also want to allow for the possibility of consumers participating in the bargaining process and getting a share of the profits, too
-Finally, the profit shares depend on two types of factors: the production function $f$ and $w_P$ and $w_F$, which I will call bargaining weights.
-The former is determined by the technology and demand structure, while the latter can be thought of as some king of intrinsic bargaining power.
-
-In the later sections, I will consider specific examples for $f$ and $w_P$ and $w_F$, motivated by a Logit-like demand system, and (weighted) Shapley values, respectively.
-However, for a number of results, this level of detail is not necessary, and these quite general assumptions are sufficient.
-
-As mentioned before, one main justification for this profit allocation rule its intuitive behavior in terms of comparative statistics.
-To illustrate this, let us examine what happens when one varies the substitutability between the fringe firms.
-As it turns out, the platform's share increases if the fringe firms are more substitutable.
-The following observation demonstrates this idea.
-\begin{proposition}
-    \label{prop:outcome_based_bargaining_power}
-    Fix some $N_P, N_C \geq 0$. Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(N_P, n_F) \leq \tilde{f}(N_P, n_F)$ for all $n_F < N_F$.
-    Furthermore, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
-    
-    Then, $\pi_P \leq \tilde{\pi}_P$.
-\end{proposition}
-
-In words, \cref{prop:outcome_based_bargaining_power} describes two alternative worlds, in which $N_F$ fringe firms (assuming a platform with $N_P$ product variety and $N_C$ consumers) are able to achieve the same total profit level.
-However, in one of these cases, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
-The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
-This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
+The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
+In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
+On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
+\Cref{fig:timing} illustrates this difference.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \begin{tikzpicture}[scale=0.8]
-            \centering
-            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                    xtick={0, 1}, ytick=\empty, xlabel={$s$}]
-                \addplot[name path=f, black, thick] {x^2};
-                \node[anchor= east] at (axis cs: .5, .5^2) {$N_C f(N_P, sN_F)$};
-                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
-                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
-    
-                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
-                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
-    
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
-                \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Fringe firms are complements}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}{0.45\textwidth}
         \centering
-        \begin{tikzpicture}[scale=0.8]
-            \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
-                xtick={0, 1}, ytick=\empty, xlabel={$s$}]
-                \addplot[name path=f, black, thick] {x^0.5};
-                \node[anchor=north west] at (axis cs: .5, .5^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
-                \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
-                \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
-    
-                \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
-                \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
-    
-                \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
-                \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
-            \end{axis}
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node[align=center] (entry_fee) {Platform unilaterally sets the entry fee \\ $[F_F]$};
+            \node[align=center] (entry_decision) [below of=entry_fee] {Potential entrants decide to enter \\ at cost $I_F + F_F$ \\ $[N_F]$};
+            \node[align=center] (sales) [below of=entry_decision] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
+            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \draw[->] (entry_fee) -- (entry_decision);
+            \draw[->] (entry_decision) -- (sales);
+            \draw[->] (sales) -- (final);
         \end{tikzpicture}
-        \caption{Fringe firms are substitutes}
+        \caption{Benchmark model (platform sets the entry fee unilaterally)}
     \end{subfigure}
-    \caption{Distribution of value between the platform and the fringe. Profit shares correspond to the shaded areas. The platform's profit share is higher when the fringe firms are more substitutable.}
-    \label{fig:outcome_based_bargaining_power}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
+            \node[align=center] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[F_F]$};
+            \node[align=center] (sales) [below of=entry_fee] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
+            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \draw[->] (entry_decision) -- (entry_fee);
+            \draw[->] (entry_fee) -- (sales);
+            \draw[->] (sales) -- (final);
+        \end{tikzpicture}
+        \caption{Bargaining model (platform and fringe negotiate over the entry fee)}
+    \end{subfigure}
+    \caption{Timing of the models}
+    \label{fig:timing}
 \end{figure}
 
+In the rest of this section, I describe each step in detail, starting from the end of the game and working my way back to the beginning.
 
-\subsection{Entry and equilibrium}
+\subsection{Demand}
 
-Throughout the paper, I will assume that the number of consumers is fixed and exogenous.
-They are thus passive in the sense that they do not make a decision about whether to enter the market or not.
-However, when developing microfoundations for $f$ in \cref{sec:example}, consumers will make consumption choices, and their welfare will be of interest.
-The product variety of the platform is also exogeneous.
+Imagine that there is an $N_C$ mass of consumers, looking to buy one product each.
+They choose from a continuum of products, which are either produced by the fringe (indexed by $F_i$), by the platform ($P_i$) and a unit mass of outside options ($0_i$).
+Customer $j$ derives the following utility from buying product $T_i$:
+\begin{align*}
+    u^F_{{T_i}j} = v^{T_i} - p^{T_i} + \mu\epsilon^{T_i}_j \quad \text{for } T_i \in \{F, P\},
+\end{align*}
+where $v^T_i$ is the value of product $T_i$, $p^{T_i}$ is its price, and $\epsilon^{T_i}_j$ is an idiosyncratic taste shock.
+Throughout this section I assume that the value of each product within its category is the same.
+I.e., $v^T_i = v^T \, \forall\,i$.
+This is to simplify the analysis, but is not crucial for the results.
 
-Let us now turn to the determination of the equilibrium number of fringe firms.
-Assume that there is an unlimited number of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
-In the first stage of the game, each fringe firm must create a viable product at some investment cost.
-Let us denote the total investment costs of $N_F$ fringe firms by $I_F(N_F)$.
-\begin{assumption}
-    Assume that $I_F(N_F)$ is a strictly increasing, convex, twice differentiable function:
-    \begin{align*}
-        \frac{\partial I_F(N_F)}{\partial N_F} > 0, \quad \frac{\partial^2 I_F(N_F)}{\partial N_F^2} \geq 0.
-    \end{align*}
-\end{assumption}
-This assumption essentially states that the marginal investment cost of the fringe is increasing in the number of fringe firms.
-Notice that this only assumes weak convexity, and thus includes the case of constant marginal investment costs.
+$\epsilon^{T_i}_j$ is assumed to be independent and identically distributed (i.i.d.) across consumers and products, and follow a standardized Type I Extreme Value distribution.
+This distributional assumption, along with the fact that each consumer consumes only one product, will lead to a tractable, logit-form demand function.
 
-In the second stage, firms that made this investment plus the platform engage in producing and selling their respective products.
-If there are $N_F$ fringe entrants along with $N_P$ platform products and $N_C$ consumers, then, as discussed previously, the total value they create together is given by $\Pi(N_P, N_F, N_C) = N_C f(N_P, N_F)$.
-Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}, and the fringe gets $\pi_F(N_P, N_F, N_C)$.
+\subsubsection{Production}
 
-The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' total profits should be equal to the aggregated investment cost.
-\begin{definition}
-    \label{ass:free_entry}
-    Let us define a free entry equilibrium by the following conditions:
-    \begin{itemize}
-        \item Profits are shared according to \cref{ass:profit_sharing}.
-        \item Entrants make zero profits after accounting for entry costs: $\pi_F(N_P, N_F) = I_F(N_F)$.
-    \end{itemize}
-\end{definition}
+Each (horizontally differentiated) product is produced by a single, monopolistically competitive (fringe) seller.
+The production entails a constant marginal cost $c^{T_i}$.
+As with the value, I assume that the marginal cost is the same for all products: $c^{T_i} = c^T$.
+Facing the demand described in the previous paragraphs, the sellers choose their price $p^{T_i}$ to maximize profits.
+The price of the outside option is normalized to zero.
 
-Finally, in order to guarantee a unique equilibrium, let us make the following, an additional assumption about the profit function.
-\begin{assumption}
-    \label{ass:single_crossing}
-    Let $f$ be such that the following holds for all $N_F, N_P, N_C \geq 0$:
-    \begin{align*}
-        \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} < 0 \text{ or } \frac{\partial^2 \pi_F(N_P, N_F, N_C)}{\partial N_F^2} < 0
-    \end{align*}
-\end{assumption}
-This assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with the --linear -- total entry cost (apart from the obvious $N_F=0$ intersection).
-The interpretation of the assumption itself is simple: total fringe profits, as a function of the number of fringe firms, must be either concave or hump-shaped.\footnote{
-    As it turns out, even though total industry profits are assumed to be increasing in $n_f$, it is not necessarily true for fringe profits.
-    For certain profit functions, it happens that even though the size of the pie increases, the bargaining position of the fringe deteriorates so much that they get a smaller share even in absolute value.
+The pricing decision of the fringe sellers is rather straightforward, due to their infinitesimal market share: they do not have to take into account the effect of their prices on the aggregate demand.
+This normally is not the case for the platform, as it can affect a non-zero measure of the prices.
+Therefore, when setting the price for product $P_i$, it would optimally like to take into account how it affects demand on its other products $P_j$ $(j \neq i)$.
+Despite this, I assume that the platform prices its products as if they were produced by separate, monopolistically competitive sellers.
+
+I do this for a number of reasons.
+For one, it simplifies the analysis without affecting the main results qualitatively.
+More importantly, it lets me focus on the main question of this paper: how the platform's hybrid operation affects the bargaining power.
+If the platform priced its products strategically, there would be a quite mechanical effect that an increase in the number of products would lead to an increase in optimal prices, which would in fact decrease consumer surplus.
+This hard to disentangle the effects of hybrid operation from the effects of strategic pricing.
+Therefore, this assumption can be seen as a best-case scenario for consumers, and the results can be interpreted as a lower bound on the negative effects of hybrid operation.
+For a more thorough discussion of this assumption, see \cref{sec:separate_pricing}.
+
+Finally, this assumption is not as unrealistic as it might seem at first.
+For example, the platform might be producing its products through a number of subsidiaries, which are legally separate entities, thus having no control over operational decisions, but still getting the profits from the sales.
+Alternatively, there might be some kind of internal competition between the different product teams, which would lead to a similar outcome.
+
+\subsection{Fringe entry and platform fees}
+
+\subsubsection{Benchmark case}
+
+I assume that there is a continuum of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
+Each of them can create a product at an exogenous investment cost $I_F$.
+If they decide not to, they make zero profits and do not participate in the later stages of the game.
+Furthermore, these firms can only sell their products through the platform, for which the platform can charge a lump-sum entry fee $F_F$.
+The timing of these decisions is as follows: (1) the platform sets and commits to an entry fee $F_F$, (2) the fringe firms decide whether to enter the market, and (3) the firms that have entered pay the entry fee to the platform.
+
+\subsubsection{Bargaining case}
+
+In contrast to the benchmark model, in this case, the platform cannot commit to an entry fee: it is decided as a result of a negotiation between the platform and the fringe firms.
+For this reason, the timing of the model is also different.
+First, the fringe firms decide whether to invest in creating a product at cost $I_F$.
+After this, the platform and the firms that have made the investment negotiate the entry fee.
+Finally, the firms that have entered pay the entry fee to the platform.
+
+In order to keep the model tractable I model the negotiation process in a reduced form manner.
+In particular, I assume that the platform and the entrants agree on an entry fee $F_F$, which makes the total profits net entry fees equal to the Shapley value of the players.\footnote{
+    One simple extension would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
+    \Cref{sec:cooperative_game_weighted} takes a step in this direction by introducing bargaining weights and utilizing the weighted value.
 }
-What it requires of $f$, however, is not so obvious, and also depends on what one assumes about the innate bargaining weights $w_F$ and $w_P$.
-Nevertheless, when microfounding the profit function, one can simply check whether this assumption holds or not.
-In particular, it will be satisfied for the logit-type demand in \cref{sec:example}.
+This way of modelling bargaining outcomes has many precedents in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra} and has a number of appealing properties.
+For example, it is closely related to the marginal contributions of the players to the total value, and, as it will be shown, it is also quite intuitive in terms of comparative statistics.
+Furthermore, and perhaps more importantly, there are a number of ways to place it on non-cooperative microfoundations by setting up non-cooperative games for which the Shapley value is a subgame perfect equilibrium \parencite[e.g.][]{gul1989bargaining,hart1996bargaining,stole1996organizational}.\footnote{
+    For a possible microfoundation of this specific model, see \cref{sec:bargaining_microfoundation}.
+}
+
+For the Shapley value (or any other cooperative solution concept) to be well-defined, the corresponding coalitional game must be specified.
+\Cref{sec:cooperative_game} describes it in detail, but in short, the idea is the following: given any subset of the players (coalition), players can predict total, industry-wide profits assuming the monopolistic competition described previously.
+This is taken as the value of that coalition, thus defining a characteristic function.
+Then, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
+
+In practice, it looks like the following.
+Assume that $N_F$ fringe firms choose to invest in creating a product in the first stage of the game.
+Now, for every $s N_F$ ($s \in [0, 1]$), calculate the total profits that would be realized if the platform and $n_f$ fringe firms were the only players in the market, and they engaged in monopolistic competition as described in the previous paragraph.
+Let us denote these profits by $\pi^v_{F}(N_C, N_P, s N_F)$ and $\pi^v_{P}(N_C, N_P, s N_F)$, and the corresponding industry-wide total profits by $\Pi$ and $\Pi(N_C, N_P, s N_F)$.
+
+\begin{proposition}
+    \label{prop:shapley_value}
+    The Shapley value of the platform and the fringe firms, and thus final total profits, are given by:
+    \begin{align*}
+        \pi^t_P(N_P, N_F, N_C) &= N_C \int_0^1 \Pi(N_C, N_P, s N_F) \ds, \\
+        \pi^t_F(N_P, N_F, N_C) &= N_C \int_0^1 \partial_3 N_F \Pi(N_C, N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
+
+
+\subsection{Equilibrium}
+
+For both models, the previous sections describe a perfect-information extensive-form game.
+As a consequence, the solution concept I use is the subgame perfect equilibrium.
+As tha platform's product variety ($N_P$) is assumed to be exogenous, the only strategic variables are (1) the fringe players' entry decisions, (2) the platform's entry fee (only in the benchmark model), and (3) the prices of the products.
+
+Furthermore, the game can be solved via straightforward backward induction.
+In both models, the final subgame is simply a game of monopolistic competition with horizontally differentiated products.
+In the benchmark model, it is preceded by the platform setting the entry fee, while in the bargaining model the entry fee is set according to the previously described rule (which in turn can be motivated by an extensive form game).
+Finally, the first stage of the game is the fringe firms' investment decision.
+Due to the outside option being normalized to zero, the fringe firms will enter the market if and only if the expected profits from doing so are positive, leading to the usual free entry condition.
+
+
+
+
+% \subsection{Profit sharing}
+
+% I assume that fringe firms are unable to sell their products directly to consumers.
+% Instead, they must sell through the platform.
+% For this service, the platform may charge a fee, and obtain a share of the fringe's profits.
+
+% In the benchmark model, the platform will be able to set and commit to any lump-sum entry fee it wishes to.\footnote{
+%     The focus of this paper is on fees paid and entry decisions made by fringe producers, but I will also consider the case when consumers also face entry fees or subsidies.
+% }
+% The main contribution of this paper is to deviate from this usual assumption, and instead consider a setting in which the platform and the fringe engage in some form of bargaining over the total profits.
+% To model this in a tractable way, I propose a profit division rule that is based on the Shapley value \parencite{shapley1953additive}, or, more generally, random order values \parencite{weber1988probabilistic}.
+% This way of modelling bargaining outcomes has many precedents in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}.
+% In the main text, I simply propose a formula for the profit shares without going into the details of the underlying cooperative game.
+% The interested reader can find a more detailed discussion of how it relates to random order values in \cref{sec:cooperative_game}.
+
+% \begin{assumption}
+%     \label{ass:profit_sharing}
+%     Let $w_P, w_F: \mathbb{R}^+_0 \to \mathbb{R}^+_0$ be non-negative functions such that the following condition holds: $\pi_P(N_P, N_F, N_C) + \pi_F(N_P, N_F, N_C) \leq \Pi(N_P, N_F, N_C)$.
+%     %TODO: can I make this condition nicer?
+%     Then, the platform's profit ($\pi_P(N_P, N_F, N_C)$) and the fringe's profit ($\pi_F(N_P, N_F, N_C)$) are given by:
+%     \begin{align*}
+%         \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 w_P(s) f(N_P, s N_F) \ds, \\
+%         \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 w_F(s) N_F \partial_2 f(N_P, s N_F) \ds.
+%     \end{align*}
+% \end{assumption}
+
+% Although the reason behind choosing this particular form for profit shares is discussed in detail in the appendix, let me highlight some important observations.
+% First, player's profit shares are closely related to their (weighted average) marginal contributions to the total value.
+% In the case of the platform, its contribution is the total value, as it is indispensable, while the fringe firms' contribution is captured by the partial derivative of the total value with respect to the number of fringe firms.
+% Second, the platform and the fringe do not necessarily get the entire value they create.
+% This is due to the fact that I also want to allow for the possibility of consumers participating in the bargaining process and getting a share of the profits, too
+% Finally, the profit shares depend on two types of factors: the production function $f$ and $w_P$ and $w_F$, which I will call bargaining weights.
+% The former is determined by the technology and demand structure, while the latter can be thought of as some king of intrinsic bargaining power.
+
+% In the later sections, I will consider specific examples for $f$ and $w_P$ and $w_F$, motivated by a Logit-like demand system, and (weighted) Shapley values, respectively.
+% However, for a number of results, this level of detail is not necessary, and these quite general assumptions are sufficient.
+
+% As mentioned before, one main justification for this profit allocation rule its intuitive behavior in terms of comparative statistics.
+% To illustrate this, let us examine what happens when one varies the substitutability between the fringe firms.
+% As it turns out, the platform's share increases if the fringe firms are more substitutable.
+% The following observation demonstrates this idea.
+% \begin{proposition}
+%     \label{prop:outcome_based_bargaining_power}
+%     Fix some $N_P, N_C \geq 0$. Let $f, \tilde{f}: \mathbb{R}^+_0 \times \mathbb{R}^+_0 \to \mathbb{R}^+_0$ two different profit functions such that $f(N_P, N_F) = \tilde{f}(N_P, N_F)$ for some $N_P, N_F$ and $f(N_P, n_F) \leq \tilde{f}(N_P, n_F)$ for all $n_F < N_F$.
+%     Furthermore, let us denote the corresponding platform profit shares by $\pi_P$ and $\tilde{\pi}_P$.
+    
+%     Then, $\pi_P \leq \tilde{\pi}_P$.
+% \end{proposition}
+
+% In words, \cref{prop:outcome_based_bargaining_power} describes two alternative worlds, in which $N_F$ fringe firms (assuming a platform with $N_P$ product variety and $N_C$ consumers) are able to achieve the same total profit level.
+% However, in one of these cases, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
+% The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
+% This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
+
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \begin{tikzpicture}[scale=0.8]
+%             \centering
+%             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+%                     xtick={0, 1}, ytick=\empty, xlabel={$s$}]
+%                 \addplot[name path=f, black, thick] {x^2};
+%                 \node[anchor= east] at (axis cs: .5, .5^2) {$N_C f(N_P, sN_F)$};
+%                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+%                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+    
+%                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+%                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+    
+%                 \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
+%                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
+%             \end{axis}
+%         \end{tikzpicture}
+%         \caption{Fringe firms are complements}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=0.8]
+%             \begin{axis}[xmin=0, xmax=1, ymin=0, ymax=1, samples at={0, 0.02, ..., 0.98, 1},
+%                 xtick={0, 1}, ytick=\empty, xlabel={$s$}]
+%                 \addplot[name path=f, black, thick] {x^0.5};
+%                 \node[anchor=north west] at (axis cs: .5, .5^0.5) {$N_C \tilde{f}(N_P, sN_F)$};
+%                 \path[name path=bottom] (axis cs:0,0) -- (axis cs:1,0);
+%                 \path[name path=top] (axis cs:0,1) -- (axis cs:1,1);
+    
+%                 \addplot [fill=blue, fill opacity=0.05] fill between [of=f and bottom];
+%                 \addplot [fill=red, fill opacity=0.05] fill between [of=f and top];
+    
+%                 \node[anchor=north west] at (axis cs: .05, .95) {Fringe ($F$)};
+%                 \node[anchor=south east] at (axis cs: .95, .05) {Platform ($P$)};
+%             \end{axis}
+%         \end{tikzpicture}
+%         \caption{Fringe firms are substitutes}
+%     \end{subfigure}
+%     \caption{Distribution of value between the platform and the fringe. Profit shares correspond to the shaded areas. The platform's profit share is higher when the fringe firms are more substitutable.}
+%     \label{fig:outcome_based_bargaining_power}
+% \end{figure}
+
+
+% \subsection{Entry and equilibrium}
+
+% Throughout the paper, I will assume that the number of consumers is fixed and exogenous.
+% They are thus passive in the sense that they do not make a decision about whether to enter the market or not.
+% However, when developing microfoundations for $f$ in \cref{sec:example}, consumers will make consumption choices, and their welfare will be of interest.
+% The product variety of the platform is also exogeneous.
+
+% Let us now turn to the determination of the equilibrium number of fringe firms.
+% Assume that there is an unlimited number of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
+% In the first stage of the game, each fringe firm must create a viable product at some investment cost.
+% Let us denote the total investment costs of $N_F$ fringe firms by $I_F(N_F)$.
+% \begin{assumption}
+%     Assume that $I_F(N_F)$ is a strictly increasing, convex, twice differentiable function:
+%     \begin{align*}
+%         \frac{\partial I_F(N_F)}{\partial N_F} > 0, \quad \frac{\partial^2 I_F(N_F)}{\partial N_F^2} \geq 0.
+%     \end{align*}
+% \end{assumption}
+% This assumption essentially states that the marginal investment cost of the fringe is increasing in the number of fringe firms.
+% Notice that this only assumes weak convexity, and thus includes the case of constant marginal investment costs.
+
+% In the second stage, firms that made this investment plus the platform engage in producing and selling their respective products.
+% If there are $N_F$ fringe entrants along with $N_P$ platform products and $N_C$ consumers, then, as discussed previously, the total value they create together is given by $\Pi(N_P, N_F, N_C) = N_C f(N_P, N_F)$.
+% Finally, the platform and the entrants share this profit according to the profit sharing rule from \cref{ass:profit_sharing}, and the fringe gets $\pi_F(N_P, N_F, N_C)$.
+
+% The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' total profits should be equal to the aggregated investment cost.
+% \begin{definition}
+%     \label{ass:free_entry}
+%     Let us define a free entry equilibrium by the following conditions:
+%     \begin{itemize}
+%         \item Profits are shared according to \cref{ass:profit_sharing}.
+%         \item Entrants make zero profits after accounting for entry costs: $\pi_F(N_P, N_F) = I_F(N_F)$.
+%     \end{itemize}
+% \end{definition}
+
+% Finally, in order to guarantee a unique equilibrium, let us make the following, an additional assumption about the profit function.
+% \begin{assumption}
+%     \label{ass:single_crossing}
+%     Let $f$ be such that the following holds for all $N_F, N_P, N_C \geq 0$:
+%     \begin{align*}
+%         \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} < 0 \text{ or } \frac{\partial^2 \pi_F(N_P, N_F, N_C)}{\partial N_F^2} < 0
+%     \end{align*}
+% \end{assumption}
+% This assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with the --linear -- total entry cost (apart from the obvious $N_F=0$ intersection).
+% The interpretation of the assumption itself is simple: total fringe profits, as a function of the number of fringe firms, must be either concave or hump-shaped.\footnote{
+%     As it turns out, even though total industry profits are assumed to be increasing in $n_f$, it is not necessarily true for fringe profits.
+%     For certain profit functions, it happens that even though the size of the pie increases, the bargaining position of the fringe deteriorates so much that they get a smaller share even in absolute value.
+% }
+% What it requires of $f$, however, is not so obvious, and also depends on what one assumes about the innate bargaining weights $w_F$ and $w_P$.
+% Nevertheless, when microfounding the profit function, one can simply check whether this assumption holds or not.
+% In particular, it will be satisfied for the logit-type demand in \cref{sec:example}.
 % TODO: conjecture: it only has to hold for $f(N_P, N_F)$.
 
 
@@ -686,70 +824,7 @@ Finally, it can operate as a pure retailer, offering its own products, but no pr
 
 \subsubsection{Entry and timing}
 
-There is an infinite measure of fringe firms, who are deciding whether to enter the market.
-Entering has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $F_F$.
-One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
-Meanwhile, the second is a payment to the platform for using its services.
-While percentage fees are more common both in the literature and in practice, I assume a lump-sum fee for a few reasons.
-First, and most importantly, revenue-based fees enter the entrants' pricing decision, and thus create a channel through which platforms distort competition.
-I want to show that even in the absence such distortions, hybrid platforms can have a significant impact on competition.
-Furthermore, due to this distortion, the resulting game could not be represented as a transferable utility game, and the proposed solution concept would not be applicable.
-Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
 
-In the benchmark model, the game starts by the platform announcing and committing to an entry fee $F_F$.\footnote{
-    With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
-    This would lead to a trivial equilibrium, where no firm enters.
-}
-In the bargaining case, the platform cannot commit to entry fees, so this step is skipped.
-Next, each fringe firm decides whether to create a product at cost $I_F$ and enter the market.
-% In the bargaining model, the entry fee is decided at this point, as a result of a negotiation between the platform and the firms that have made the investment.
-After that, the firms that have made the investment decide if they also want to enter the platform for the announced fee $F_F$.\footnote{
-    In the benchmark model, separating these two decisions is redundant, as, in any subgame perfect equilibrium, any firm that makes the investment will also enter the platform.
-    However, in the model with bargaining, this distinction is crucial.
-}
-Finally, the platform and the fringe firms simultaneously choose the prices for their products.
-Each consumer then chooses the one maximizing their utility, and profits are realized.
-
-In the model with bargaining, the platform and the fringe distribute total profits according to their Shapley values.
-One can also think of the latter as agreeing on an entry fee that makes final profits net entry fees equal to the Shapley value of the various players.
-
-The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
-In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
-On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
-\cref{fig:timing} illustrates this difference.
-
-\begin{figure}
-    \centering
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[node distance=2cm, auto]
-            \node[align=center] (entry_fee) {Platform unilaterally sets the entry fee \\ $[F_F]$};
-            \node[align=center] (entry_decision) [below of=entry_fee] {Potential entrants decide to enter \\ at cost $I_F + F_F$ \\ $[N_F]$};
-            \node[align=center] (sales) [below of=entry_decision] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
-            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
-            \draw[->] (entry_fee) -- (entry_decision);
-            \draw[->] (entry_decision) -- (sales);
-            \draw[->] (sales) -- (final);
-        \end{tikzpicture}
-        \caption{Benchmark model (platform sets the entry fee unilaterally)}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}[node distance=2cm, auto]
-            \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
-            \node[align=center] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[F_F]$};
-            \node[align=center] (sales) [below of=entry_fee] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
-            \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
-            \draw[->] (entry_decision) -- (entry_fee);
-            \draw[->] (entry_fee) -- (sales);
-            \draw[->] (sales) -- (final);
-        \end{tikzpicture}
-        \caption{Bargaining model (platform and fringe negotiate over the entry fee)}
-    \end{subfigure}
-    \caption{Timing of the models}
-    \label{fig:timing}
-\end{figure}
 
 
 \subsection{Equilibrium}
