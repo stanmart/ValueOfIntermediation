@@ -964,7 +964,7 @@ In this case, the only products on the market are the platform's own products.
 Therefore, quite mechanically, the aggregate, and thus consumer surplus, are increasing in the number of the platform's products.
 \begin{corollary}
     \begin{align*}
-        N_F = 0 \implies \frac{\partial CS}{\partial N_P} = \frac{\mu V_P}{1 + N_P V_P} > 0.
+        N_F = 0 \implies \frac{\partial CS}{\partial N_P} = \frac{\mu V_P}{(1 + N_P V_P)^2} > 0.
     \end{align*}
 \end{corollary}
 
@@ -1147,20 +1147,48 @@ This model goes one step further.
 Due to the lump-sum nature of the entry fee and platforms pricing their products as if they were produced by separate sellers, this inventive is no more present (as demonstrated by the benchmark model).
 However, the fact that the platform having its own products improves its bargaining position leads to a different distortion: the platform sets higher entry fees than it would if it had no products on its own.
 
-\subsection{Comparison and example}
+\subsection{Example and comparison}
 
-% TODO: theorem summarizing the most important results.
+In this section, I look a specific example to illustrate the main results and compare the benchmark and bargaining models.
+But first, let us collect and state the most important results from the previous sections in one theorem each for both models.
 
+In the benchmark model, the platform having its own product variety has a weakly positive effect.
+As long as the market is in the hybrid regime, and there is a non-zero number of fringe firms, it has no effect on the aggregate or consumer surplus.
+When the fringe is no longer feasible, and the platform is in the pure retail regime, the platform's product variety mechanically increases both.
+\begin{theorem}
+    In the benchmark model with unilateral price setting, in a hybrid regime equilibrium (with $N_F > 0$), the following results hold:
+    \begin{itemize}
+        \item The equilibrium number of fringe firms decreases in the number of the platform's products: $\frac{\partial N_F}{\partial N_P} = -\frac{V_P}{V_F} 0$.
+        \item The aggregate is independent of the platform's product variety: $\frac{\partial A}{\partial N_P} = 0$.
+        \item Consumer surplus is independent of the platform's product variety: $\frac{\partial CS}{\partial N_P} = 0$.
+        % \item The platform's profit is increasing in the number of its products: $\frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F$.
+    \end{itemize}
+\end{theorem}
 
-The intuition behind this is demonstrated in can be captured by looking at entry fees.
-First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms, less the investment cost:
+In contrast, in the bargaining model, increasing the platform's product variety can have a negative effect on consumer welfare.
+The reason for this is that the platform's product variety increases its bargaining power, and thus decreases the share that the fringe firms obtain.
+This in turn leads to a decrease in the number of fringe firms, and this decrease is large enough to offset the increase in the platform's product variety.
+\begin{theorem}
+    In the bargaining model, in a hybrid regime equilibrium (with $N_F > 0$), the following results hold:
+    \begin{itemize}
+        \item The equilibrium number of fringe firms decreases in the number of the platform's products more than in the benchmark case: $\frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F} 0$.
+        \item The aggregate decreases in the platform's product variety: $\frac{\partial A}{\partial N_P} < 0$.
+        \item Consumer surplus decreases in the platform's product variety: $\frac{\partial CS}{\partial N_P} < 0$.
+    \end{itemize}
+\end{theorem}
+
+The statements of these theorems are illustrated in \cref{fig:comparative_N_F} and \cref{fig:welfare_aggregate} and \cref{fig:platform_profits}.
+The intuition behind these results can be demonstrated by looking at entry fees.
+First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms (bar the investment cost):
 \begin{align*}
-    F_F^{\text{impl}} = \pi_F^v - \pi_F^t + I_F.
+    F_F^{\text{impl}} = \pi_F^v - \pi_F^t.
 \end{align*}
-As shown before, the platform's product variety grows, its bargaining power also increases.
-This can be thought of as an increase in (implied) entry fees $F_F^{\text{impl}}$, which in turn discourages fringe entry \cref{fig:entry_fee}.
+As shown before, as the platform's product variety grows, its bargaining power also increases.
+This can be thought of as an increase in (implied) entry fees $F_F^{\text{impl}}$, which in turn discourages fringe entry.
+This is not happening in the benchmark model, as the optimal entry fee does not depend on the platform's product variety.
+\Cref{fig:entry_fee} demonstrates this effect.
 
-In this specific demand system and parametrization, the implied entry fee is higher than what the platform would prefer to set for any $N_P \geq 0$.
+In the example parametrization, the implied entry fee is higher than what the platform would prefer to set for any $N_P \geq 0$.
 If it could, it would commit to a lower entry fee to incentivize more fringe entry, and thus increase total profits.
 This is an example that bargaining instead of unilateral pricing does not necessarily lead to lower platform shares, or better welfare outcomes: it can be a lose-lose situation for both the platform and the consumers.
 \Cref{sec:lower_bargaining_power} explores an alternative model where the platform has less bargaining power, and thus -- for sufficiently low values of $N_P$ -- the implied entry fee it achieves in the bargaining model is lower than what it would set unilaterally.
@@ -1173,9 +1201,9 @@ On the other hand, with bargaining, it is increasing in $N_P$ (\cref{fig:entry_f
 Therefore, if the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits than it would otherwise.
 This is the case in the example parametrization displayed on the figures for every $N_P \geq 0$.
 
-This means that, if the platform had to create its product variety at a per-unit investment cost of $I_P$, it would make different (inefficient) choices compared to the benchmark model.
-In particular, it might invest in some products even if it has a product disadvantage, and it might not invest in some products even if it has a product disadvantage.
-This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is lower than optimal, and is explored in more detail in \cref{sec:lower_bargaining_power}.
+% This means that, if the platform had to create its product variety at a per-unit investment cost of $I_P$, it would make different (inefficient) choices compared to the benchmark model.
+% In particular, it might invest in some products even if it has a product disadvantage, and it might not invest in some products even if it has a product disadvantage.
+% This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is lower than optimal, and is explored in more detail in \cref{sec:lower_bargaining_power}.
 
 \begin{figure}
     \centering
@@ -1292,6 +1320,7 @@ This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is l
             \end{axis}
         \end{tikzpicture}
         \caption{Aggregate ($A$)}
+        \label{fig:welfare_aggregate}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
@@ -1333,17 +1362,18 @@ This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is l
 \label{sec:lower_bargaining_power}
 
 In the previous sections, I assumed that the platform and the fringe firms split total profits according to their Shapley values.
-Because of the symmetry property of the Shapley value, this excludes the possibility of players having some kind of innate bargaining power, which is not related to the profit functions.
-In this extension, I will relax this assumption, and assume instead that profits are shared according to \emph{weighed} Shapley values.
+Because of the symmetry property of the Shapley value, this excludes the possibility of players having some kind of innate bargaining power, which is not related to their profit functions.
+In this extension, I will relax this assumption, and assume instead that profits are shared according to \emph{weighed} values.
 These are a generalization of the Shapley value, where each player has a weight $w_i$ that can, in certain settings, be thought of as a parameter describing bargaining power.\footnote{
     \textcite{hart1996bargaining} and \textcite{stole1996intra} provide foundations for this interpretation.
 }
-Similarly to the standard Shapley value, one can show that outcomes based on weighted values also satisfy \cref{ass:profit_sharing}.
-Specifically, when the weight of the platform is $\lambda_P$, the functions $w_P$ and $w_F$ are given by
-\begin{align*}
-    w_P(s) &= \lambda_P s ^ {\lambda_P - 1} \\
-    w_F(s) &= s ^ {\lambda_P}.
-\end{align*}
+TODO: rewrite this
+% Similarly to the standard Shapley value, one can show that outcomes based on weighted values also satisfy \cref{ass:profit_sharing}.
+% Specifically, when the weight of the platform is $\lambda_P$, the functions $w_P$ and $w_F$ are given by
+% \begin{align*}
+%     w_P(s) &= \lambda_P s ^ {\lambda_P - 1} \\
+%     w_F(s) &= s ^ {\lambda_P}.
+% \end{align*}
 
 \textcolor{red}{TODO: can I show that \cref{ass:single_crossing} still holds for any $\lambda_P$? If not, focus on a specific case, such as the one on the graphs.}
 
