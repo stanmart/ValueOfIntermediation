@@ -416,7 +416,7 @@ Recall that there is an infinity of potential fringe entrants looking to enter t
 Therefore, total profits in equilibrium must be zero.
 Combined with the  profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
 \begin{proposition}
-    \label{prop:equilibrium_aggregate}
+    \label{prop:equilibrium_aggregate_benchmark}
     If entry costs $I_F$ and $F_F$ are low enough, the equilibrium size of the aggregate is
     \begin{align}
         A = \mu \frac{V_F}{F_F + I_F}.
@@ -459,7 +459,7 @@ First, let us look at the case when the platform finds it optimal to operate in 
 Notice that the optimal entry fee does not depend on either the platform's product value or product variety (\cref{fig:entry_fee}).
 This is because due to the lump-sum nature of the entry fee, the platform can extract all the surplus from the fringe firms, and thus chooses $F_F$ to maximize total industry profits.
 The latter is essentially a function of the aggregate, minus the investment costs of the fringe firms.
-As I have shown in \cref{prop:equilibrium_aggregate}, the aggregate is independent of the platform's product variety in the hybrid regime, and therefore the optimal entry fee is also independent of it.
+As I have shown in \cref{prop:equilibrium_aggregate_benchmark}, the aggregate is independent of the platform's product variety in the hybrid regime, and therefore the optimal entry fee is also independent of it.
 
 On the other hand, the platform's profit is increasing in the number of its products (\cref{fig:platform_profits}).
 This is a rather mechanical result: the platform's product variety is exogenous, and therefore possible investment costs are not modeled.
@@ -476,6 +476,7 @@ Otherwise, it would simply operate as a pure intermediary, and the number of fri
 
 Another important corollary of \cref{prop:optimal_entry_fee} is that consumer welfare is also unaffected by the platform's product variety in the hybrid regime.
 \begin{corollary}
+    \label{prop:consumer_surplus_benchmark}
     \begin{align*}
         N_F > 0 \implies \frac{\partial CS}{\partial N_P} = 0.
     \end{align*}
@@ -611,6 +612,7 @@ The following results shows that this is not the case in the bargaining model: a
 }
 
 \begin{proposition}
+    \label{prop:N_F_comparative_equilibrium}
     Assume that the platform is operating in the hybrid regime. Then, the equilibrium number of fringe firms is decreasing in the number of the platform's products. Furthermore, this decrease is more than proportional to the increase in the platform's product variety (also taking into account product value).
     \begin{align*}
         N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F} < 0.
@@ -618,6 +620,7 @@ The following results shows that this is not the case in the bargaining model: a
 \end{proposition}
 
 \begin{corollary}
+    \label{prop:aggregate_comparative_hybrid}
     Assume that the platform is operating in the hybrid regime. Then the equilibrium aggregate and consumer surplus is decreasing in the number of the platform's products.
     \begin{align*}
         N_F > 0 \implies \frac{\partial A}{\partial N_P}, \frac{\partial CS}{\partial N_P} < 0.
@@ -653,6 +656,7 @@ The following results shows that this is not the case in the bargaining model: a
 
 When the fringe is not viable, the platform's product variety has the same, mechanical effect on total aggregate and consumer surplus as in the benchmark model.
 \begin{proposition}
+    \label{prop:aggregate_comparative_retail}
     Assume that the platform is operating in the pure retail regime. Then the equilibrium aggregate and consumer surplus is increasing in the number of the platform's products.
     \begin{align*}
         N_F = 0 \implies \frac{\partial A}{\partial N_P}, \frac{\partial CS}{\partial N_P} > 0.
@@ -679,9 +683,10 @@ In the benchmark model, the platform having its own product variety has a weakly
 As long as the market is in the hybrid regime, and there is a non-zero number of fringe firms, it has no effect on the aggregate or consumer surplus.
 When the fringe is no longer feasible, and the platform is in the pure retail regime, the platform's product variety mechanically increases both.
 \begin{theorem}
+    \label{prop:benchmark_results}
     In the benchmark model with unilateral price setting, in a hybrid regime equilibrium (with $N_F > 0$), the following results hold:
     \begin{itemize}
-        \item The equilibrium number of fringe firms decreases in the number of the platform's products: $\frac{\partial N_F}{\partial N_P} = -\frac{V_P}{V_F} 0$.
+        \item The equilibrium number of fringe firms decreases in the number of the platform's products: $\frac{\partial N_F}{\partial N_P} = -\frac{V_P}{V_F} < 0$.
         \item The aggregate is independent of the platform's product variety: $\frac{\partial A}{\partial N_P} = 0$.
         \item Consumer surplus is independent of the platform's product variety: $\frac{\partial CS}{\partial N_P} = 0$.
         % \item The platform's profit is increasing in the number of its products: $\frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F$.
@@ -692,6 +697,7 @@ In contrast, in the bargaining model, increasing the platform's product variety 
 The reason for this is that the platform's product variety increases its bargaining power, and thus decreases the share that the fringe firms obtain.
 This in turn leads to a decrease in the number of fringe firms, and this decrease is large enough to offset the increase in the platform's product variety.
 \begin{theorem}
+    \label{prop:bargaining_results}
     In the bargaining model, in a hybrid regime equilibrium (with $N_F > 0$), the following results hold:
     \begin{itemize}
         \item The equilibrium number of fringe firms decreases in the number of the platform's products more than in the benchmark case: $\frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F} 0$.
@@ -1598,14 +1604,18 @@ Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F
 Finally, let us conclude this section by establishing a stronger result for a more restrictive class of profit functions.
 In the following, I assume that the profit function has an additive form.
 Intuitively, this means that -- in terms of total profits generated -- the platform's and the fringe firms' products are substitutable to each other according to some constant ratio.
-\begin{proposition}
-    \label{prop:aggregate_size_additive}
-    Let $f$ have the following, additive form:
+\begin{assumption}
+    \label{ass:additive_profit}
+    Assume that $f$ has the following, additive form in $N_P$ and $N_F$:
     \begin{align*}
         f(N_P, N_F) = g(\alpha N_P + \beta N_F)
     \end{align*}
-    where $\alpha, \beta > 0$.
-    Also assume that $g$ is twice differentiable and that $g'' < 0$.
+    where $\alpha, \beta > 0$, and $g$ is twice differentiable and that $g'' < 0$.
+\end{assumption}
+
+\begin{proposition}
+    \label{prop:aggregate_size_additive}
+    Let $f$ have the additive form from \cref{ass:additive_profit}.
     Then
     \begin{align*}
         \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}.
@@ -1933,7 +1943,7 @@ Finally, as in both examples before, these values satisfy \cref{ass:profit_shari
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:equilibrium_aggregate}]
+\begin{proof}[Proof of \cref{prop:equilibrium_aggregate_benchmark}]
     From \cref{prop:optimal_profit}, the variable profit of each fringe firm is $\pi_{F_i}^{v*} = \mu V_F / A$.
     Total profit after entry fees and investment costs is therefore $\pi_{F_i}^{t*} = \mu V_F / A - I_F - F_F$.
     Under free entry, total profits are zero:
@@ -2002,7 +2012,7 @@ Finally, as in both examples before, these values satisfy \cref{ass:profit_shari
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
+\begin{proof}[Proof of \cref{lem:shape_of_fringe_profit}]
     First, consider the function
     \begin{align*}
         g(x) = \frac{sx}{1 + sx}.
@@ -2032,7 +2042,68 @@ Finally, as in both examples before, these values satisfy \cref{ass:profit_shari
     \begin{align*}
         \pi_F(N_P, N_F) = \int_0^1 N_F h'(s N_F) \ds,
     \end{align*}
-    thus \cref{ass:single_crossing} is satisfied, and in turn \cref{prop:unique_equilibrium_more_general} implies that the equilibrium number of fringe entrants is unique.
+    thus proving the lemma.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
+    \Cref{lem:shape_of_fringe_profit} demonstrates that the fringe total profit function is either concave or decreasing in the number of fringe firms.
+    Thus, \cref{ass:single_crossing} is satisfied, and \cref{prop:unique_equilibrium_more_general} implies that the equilibrium number of fringe entrants is unique.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:fringe_profits_partial}]
+    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing}.
+    Furthermore, 
+    \begin{align*}
+        \frac{\partial^2 \pi^t_F(N_P ,N_F)}{\partial N_P \partial N_F} < 0 \quad \forall\, N_P, N_F \geq 0.
+    \end{align*}
+    Therefore, by \cref{prop:share_of_fringe},
+    \begin{align*}
+        \frac{\partial \pi^t_F(N_P, N_F)}{\partial N_P} < 0 \quad \forall\, N_P, N_F \geq 0.
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:N_F_comparative_equilibrium}]
+    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit}.
+    Therefore, by \cref{prop:aggregate_size_additive}
+    \begin{align*}
+        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
+    \end{align*}
+    immediately follows.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:aggregate_comparative_hybrid}]
+    The first statement follows immediately from
+    \begin{align*}
+        A = N_P V_P + N_F V_F + 1
+    \end{align*}
+    and
+    \begin{align*}
+        \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
+    \end{align*}
+    from \cref{prop:N_F_comparative_equilibrium}.
+    The second part is a consequence of
+    \begin{align*}
+        CS \propto \log(A).
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:aggregate_comparative_retail}]
+    The first statement trivially follows from
+    \begin{align*}
+        A = N_P V_P + 1.
+    \end{align*}
+    The second part is a consequence of
+    \begin{align*}
+        CS \propto \log(A).
+    \end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:benchmark_results}]
+    The respective results are stated in \cref{prop:equilibrium_aggregate_benchmark} and \cref{prop:consumer_surplus_benchmark}.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:bargaining}]
+    The respective results are stated in \cref{prop:N_F_comparative_equilibrium} and \cref{prop:aggregate_comparative_hybrid}.
 \end{proof}
 
 
