@@ -1155,7 +1155,7 @@ Next, let us consider the bargaining outcomes in this three-sided setting.
 \Cref{sec:cooperative_game_two_sided} formally describes the corresponding cooperative game, and \cref{prop:profit_sharing_two_sided} establishes the resulting profit shares.
 To summarize, the shares of the various players are as follows.
 \begin{proposition}
-    \label{prop:profit_sharing_two_sided}
+    \label{prop:three_way_shapley_value}
     \begin{align*}
         \pi_P(N_P, N_F, N_C) &= \int_0^1 s \Pi(N_P, s N_F) \ds, \\
         \pi_F(N_P, N_F, N_C) &= \int_0^1 s^2 N_F \partial_2 \Pi(N_P, s N_F) \ds \\
@@ -1399,7 +1399,7 @@ Finally, as in both examples before, these values satisfy \cref{ass:profit_shari
 
 
 \section{More general results}
-\label{sec:more_general_results}
+\label{sec:results_more_general}
 
 While the main text examines bargaining between the platform and the entrants in the context of a specific, logit-like demand system, many of the results are more general.
 This section presents those and the necessary assumptions.
@@ -1545,7 +1545,7 @@ Again, the profit functions presented in the main text satisfy this assumption.
 This section presents a number of results that can be derived even in this rather abstract setting.
 Let us start with a technical, but very useful result.
 \begin{proposition}
-    \label{prop:unique_equilibrium}
+    \label{prop:unique_equilibrium_more_general}
     Under the conditions in \cref{ass:single_crossing}, the equilibrium is unique if it exists.
 \end{proposition}
 The intuition behind this result is that \cref{ass:single_crossing} ensures that the total profits achieved by the fringe is either concave or hump-shaped.
@@ -1796,7 +1796,7 @@ The demand system presented in the main text also has this property.
     This in turn implies that $\partial_F \pi_F(N_P, N_F, N_C) \leq \partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F'(\bar{N}_F) \leq I_F'(N_F)$ for all $N_F > \bar{N}_F$.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
+\begin{proof}[Proof of \cref{prop:unique_equilibrium_more_general}]
     \Cref{lem:slope_at_eq} states that for any positive $N_F^*$ for which $\pi_F(N_P, N_F^*) - N_F I_F$, the partial derivative with respect to the number of fringe firms is negative.
     Now assume by contradiction that $\exists 0 < N_F^* < N_F^{**}$ such that $\pi_F(N_P, N_F^*) = I_F N_F^*$ and $\pi_F(N_P, N_F^{**}) = I_F N_F^{**}$.
     But then the mean value theorem implies that there is a $\bar{N}_F \in (N_F^*, N_F^{**})$ such that $\partial_F \pi_F(N_P, \bar{N}_F) = I_F$.
@@ -2025,32 +2025,6 @@ The demand system presented in the main text also has this property.
 
     Now let us consider the function $h(x) = N_C \mu g(N_P V_P + V_F x)$.
     By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
-    Finally, notice that $H(x)$ is exactly the profit function of the fringe:
-    \begin{align*}
-        \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
-    \end{align*}
-    and thus the lemma is proven.
-\end{proof}
-
-
-\begin{proof}[Proof of \cref{lem:profit_assumptions_total_surplus}]
-    To show this, I go through the same steps as in the proof of \cref{lem:profit_assumptions}.
-    Consider the function
-    \begin{align*}
-        g(x) = \frac{sx}{1 + sx} + \log(1 + sx).
-    \end{align*}
-    Also, let us define
-    \begin{align*}
-        G(x) &= \int_0^1 s g(sx) \ds \\
-        &= \frac{1}{x + 1}.
-    \end{align*}
-    Clearly, $G$ is a strictly concave function of $x$.
-
-    Now let us consider $h(x) = N_C \mu g(N_P V_P + V_F x).$
-    By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also strictly concave in $x$.\footnote{
-        Technically, the lemma establishes concavity \emph{or} being monotone decreasing.
-        It does not matter for this application, but it is easy to see that $H$ is indeed strictly concave.
-    }
     Finally, notice that $H(x)$ is exactly the profit function of the fringe:
     \begin{align*}
         \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
