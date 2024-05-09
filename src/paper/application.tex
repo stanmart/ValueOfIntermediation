@@ -1999,7 +1999,7 @@ The demand system presented in the main text also has this property.
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{lem:profit_assumptions}]
+\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
     First, consider the function
     \begin{align*}
         g(x) = \frac{sx}{1 + sx}.
@@ -2027,9 +2027,9 @@ The demand system presented in the main text also has this property.
     By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
     Finally, notice that $H(x)$ is exactly the profit function of the fringe:
     \begin{align*}
-        \pi_F(N_P, N_F, N_C) = \int_0^1 N_F h'(s N_F) \ds,
+        \pi_F(N_P, N_F) = \int_0^1 N_F h'(s N_F) \ds,
     \end{align*}
-    and thus the lemma is proven.
+    thus \cref{ass:single_crossing} is satisfied, and in turn \cref{prop:unique_equilibrium_more_general} implies that the equilibrium number of fringe entrants is unique.
 \end{proof}
 
 
