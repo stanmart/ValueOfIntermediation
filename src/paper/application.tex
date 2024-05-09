@@ -1615,10 +1615,10 @@ First, the players bargain over the total surplus generated on all sides of the 
 Second, the outcomes are assumed to be described by a cooperative game with three types of players: the platform, the fringe firms, and the consumers.
 
 Let us start by deriving total surplus as a function of $N_P, N_F$ and $N_C$.
-Under the logit-like demand structure described in \cref{sec:example}, the total surplus is given by
+Under the logit-like demand structure described in \cref{sec:demand}, the total surplus is given by
 \begin{proposition}
     \label{prop:profits_total_surplus}
-    If the platform can extract consumer surplus, then the total surplus is given by
+    Assuming profit-maximizing prices from the platform and the fringe, total surplus as a function of $N_P, N_F$ and $N_C$ is given by
     \begin{align*}
         \Pi(N_P, N_F, N_C) = \mu N_C \left[ \frac{N_P V_P + N_F V_F}{N_P V_P + N_F V_F + 1} + \log(N_P V_P + N_F V_F + 1) \right].
     \end{align*}
@@ -1632,43 +1632,42 @@ Furthermore, $f(N_P, N_F) = g(V_P N_P + V_F N_F)$ for an increasing, strictly co
 
 Next, let us consider the bargaining outcomes in this three-sided setting.
 \Cref{sec:cooperative_game_two_sided} formally describes the corresponding cooperative game, and \cref{prop:profit_sharing_two_sided} establishes the resulting profit shares.
-To summarize, the shares of the various players are given by
-Then, the resulting profit shares are given by
-\begin{align*}
-    \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds, \\
-    \pi_F(N_P, N_F, N_C) &= N_C \int_0^1 s^2 N_F \partial_2 f(N_P, s N_F) \ds \\
-    CS(N_P, N_F, N_C) &= N_C \int_0^1 s f(N_P, s N_F) \ds.
-\end{align*}
+To summarize, the shares of the various players are as follows.
+\begin{proposition}
+    \label{prop:profit_sharing_two_sided}
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= \int_0^1 s \Pi(N_P, s N_F) \ds, \\
+        \pi_F(N_P, N_F, N_C) &= \int_0^1 s^2 N_F \partial_2 \Pi(N_P, s N_F) \ds \\
+        CS(N_P, N_F, N_C) &= \int_0^1 s \Pi(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
 
 There are a number of things to note here.
 First, and most importantly, the consumers' share from total surplus is equal to the platform's.\footnote{
     This is a consequence of the fact that the total surplus function is linear in the number of consumers.
 }
 As a consequence, what's good for the platform is also optimal for the consumers.
-Therefore, letting the platform choose the number of its products maximizes consumer welfare, as well (but not necessarily total surplus).
+Therefore, if the platform can choose its mode of operation to maximize its profits, it maximizes consumer welfare, as well (but not necessarily total surplus).
 
-Second, the expression for the fringe profits has the same structure as in \cref{ass:profit_sharing}.
-Therefore, if we show that \cref{ass:single_crossing} holds, it in turn implies that all of the results in \cref{sec:example} apply here, as well.
-The following lemma establishes this result.
-\begin{lemma}
-    \label{lem:profit_assumptions_two_sided}
-    $f(n_P, n_F)$ satisfies \cref{ass:single_crossing}.
-    Furthermore,
+Second, it can be shown that due to the fringe firms' total profit function having a similar shape as in the main model, the same results hold in terms of the platform's product variety displacing fringe products.
+\begin{proposition}
+    In the hybrid regime under three-sided bargaining, the following holds:
     \begin{align*}
-        \frac{\partial^2 f(n_P, n_F)}{\partial n_P \partial n_F} < 0.
+        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}.
     \end{align*}
-\end{lemma}
-
-With this proven, we can again rely on \cref{prop:aggregate_size_additive} to see that, in equilibrium, an increase in $N_P$ decreases $N_F$.
-Furthermore, this decrease is so large that total product variety, and thus total surplus (which in turn is equal to total profits) also decreases (\cref{fig:fringe_entry_eq_full_surplus_two_sided}).\footnote{
-    As long as the market is in the hybrid regime.
-    If $N_F^* = 0$, then an increase in $N_P$ mechanically increases total aggregate, and thus total surplus.
-}
+\end{proposition}
+As a consequence, the aggregate is decreasing in $N_P$ in the hybrid regime (\cref{fig:fringe_entry_eq_full_surplus_two_sided}).
+\begin{corollary}
+    In the hybrid regime under three-sided bargaining, total aggregate is decreasing in the platform's product variety:
+    \begin{align*}
+        N_F > 0 \implies \frac{\partial A}{\partial N_P} < 0.
+    \end{align*}
+\end{corollary}
 
 Nevertheless, there is an important distinction compared to the previous results.
-As before, platform profits are again increasing in $N_P$.
-However, in this case, it also implies that consumers' share is also increasing in this case (\cref{fig:profits_full_surplus_two_sided}).
-Therefore, consumers do prefer hybrid operation to the the platform being a pure marketplace.
+While this does lead to a decrease in total surplus, in contrast to the two-sided bargaining case, this does not imply a decrese in consumer surplus.
+As mentioned before, the consumers' share of total surplus is equal to the platform's profits, and thus it is increasing in $N_P$ if and only if platform profits (\cref{fig:profits_full_surplus_two_sided}) are.
+Therefore, consumers might prefer hybrid operation to the platform being a pure marketplace.
 
 \begin{figure}
     \centering
