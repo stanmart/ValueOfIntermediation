@@ -105,15 +105,7 @@ In contrast to this positive result, \textcite[]{anderson2021hybrid} find that e
 For example, using a mechanism design approach, \textcite{kang2022contracting} demonstrate that welfare consequences greatly depend on whether the platform faces competition in the upstream market.
 
 This paper aims to contribute to this discussion by examining an important, but so far underexplored aspect of platforms: the bargaining power disparity between them and the other market participants, and how this disparity is affected by the platforms' hybrid operation.
-In particular, I propose an analytically tractable framework which captures many important aspects of bargaining between one large and a continuum of small players, and apply it to the setting of a hybrid platform facing a continuum of potential entrants.
-The framework is quite general: it does not depend on a specific demand structure and investment cost assumptions, and there is even some flexibility to the assumptions about bargaining outcomes.
-Nevertheless, even in this stylized setting, I can highlight certain factors which might cause a platform's hybrid operation to potentially have negative effects. 
-In particular, when the platform's and the potential entrants' products are substitutes, increasing the platform's product variety will lead to a decrease in the number of entrants.
-Under slightly more restrictive assumptions about the functional form of the profit functions, I show that this decrease in entry is so large as to cause a decrease in total profits, as well.
-Due to the generality of this model, these results are applicable not only to hybrid platform, but to other similar settings, such as upstream producers having their own downstream outlets, or retailers with private labels, as well.
-
-As a more specific example, I also examine this phenomenon in a more fully specified model, too.
-In particular, I provide some sharper results under the assumption of logit-like demand and a specific form of the bargaining rule.
+I propose an analytically tractable model of a which captures many important aspects of bargaining between one large and a continuum of small players: namely a hybrid platform facing a continuum of potential entrants.
 I show that, in the presence of bargaining, hybrid operation can indeed have negative welfare consequences for consumers.
 This result is particularly striking in this otherwise distortion-free\footnote{
     In the benchmark model without bargaining, the platform's hybrid operation does not affect consumer welfare.
@@ -121,9 +113,16 @@ This result is particularly striking in this otherwise distortion-free\footnote{
 The intuition is that hybrid operation increases the platform's bargaining power against the entrant sellers.
 This in turn leads to a higher entry fee, fewer entrants, then results in lower consumer surplus.
 These observations constitute a so-far overlooked aspect of hybrid platforms that policymakers should be aware of.
+Due to the relative generality of this model, these results are applicable not only to hybrid platform, but to other similar settings, such as upstream producers having their own downstream outlets, or retailers with private labels, as well.
 
-The closest model to the second, more applied part of this paper one is the one proposed by \textcite{anderson2021hybrid}.
-The main difference between the two boils down to how the entry fee is decided.
+Many of the results are not tied to the specifics of the model, but are more general instead.
+They do not depend on a specific demand structure and investment cost assumptions, and there is even some flexibility to the assumptions about bargaining outcomes.
+I show that, even in such stylized setting, some interesting observations can be made about the effects of hybrid operation. 
+In particular, when the platform's and the potential entrants' products are substitutes, increasing the platform's product variety will lead to a decrease in the number of entrants.
+I also give sufficient conditions for this decrease in entry being so large as to cause a decrease in total profits, as well.
+
+The closest model to the one proposed in this paper is \textcite{anderson2021hybrid}.
+The key difference between the two boils down to how the entry fee is decided.
 In \textcite{anderson2021hybrid}, the platform sets a percentage entry fee, and the entrants decide whether to enter or not.
 In contrast to this, I assume that (1) platforms charge a lump-sum entry fee and that (2) this entry fee is the result of a negotiation process\footnote{
     The bargaining process is modeled using a solution concept from cooperative game theory, namely the Shapley-value.
@@ -134,7 +133,7 @@ between the platform and the entrants.
 The second point is a novelty not only compared to \textcite{anderson2021hybrid}, but also to the existing literature on hybrid platforms.
 Furthermore, in contrast to \textcite{hagiu2022should}, this model is free from any distortive behavior, such as self-preferencing or steering, and the negative results are purely driven by changes in the platform's bargaining position.
 
-The first set of results in this paper go beyond the aforementioned studies in the sense that they illuminate the effects of hybridness as a more abstract phenomenon, and thus also highlight the similarities between the hybrid platform literature and adjacent ones.
+The set of more general results in this paper go beyond the aforementioned studies in the sense that they illuminate the effects of hybridness as a more abstract phenomenon, and thus also highlight the similarities between the hybrid platform literature and adjacent ones.
 Certain structures, such as vertical relationships, or even traditional retail stores share a number of features with platforms (notably, the presence of a dominant, indispensable entity), and can be modeled in much the same way.
 Therefore, the methodology and results in this paper are also of interest to researchers studying questions such as retailers having their own private labels \parencite{steiner2004nature} or vertical integration in upstream-downstream markets \parencite{hart1990vertical,aghion2006vertical}.
 \textcite{de2005vertical} and \textcite{montez2007downstream}, in which bargaining between the upstream and downstream firms take the center stage, are particularly closely related.
@@ -152,7 +151,9 @@ Therefore, the modeling approach presented in this paper may be of use in other 
 
 The rest of the paper is organized as follows.
 In \cref{sec:model}, I introduce a general version of the model.
-After that, \cref{sec:results} demonstrates results about bargaining outcomes one can derive even in this rather abstract setting.
+After that, \cref{sec:results}\footnote{
+    \Cref{sec:more_general} explores the generalizability of these results, and highlights some common themes in settings with hybrid behavior.
+} demonstrates results about bargaining outcomes one can derive even in this rather abstract setting.
 \Cref{sec:example} concretizes the model by assuming a specific demand system, and also presents a corresponding benchmark model without bargaining.
 \Cref{sec:extensions} then examines the effect of different assumptions about the bargaining process.
 Finally, \cref{sec:conclusion} summarizes the results and discusses possible future work.
@@ -352,6 +353,7 @@ Due to the outside option being normalized to zero, the fringe firms will enter 
 
 
 \section{Results}
+\label{sec:results}
 
 I will now present the main results of the model, again, starting from the final subgame and working backwards.
 For each subgame, I also demonstrate that the equilibrium exists and is unique, and therefore the complete game also has a unique equilibrium.
@@ -1283,123 +1285,8 @@ Finally, I believe this approach for modeling bargaining is a rather good compro
 \printbibliography
 
 
-\section{The platform game and the (weighted) Shapley value}
-\label{sec:cooperative_game}
-
-In this section, I describe how the profit sharing rule from \cref{ass:profit_sharing} can be derived from various cooperative games.
-In each of the following subsections, I formally define a cooperative game that models the platform setting, and derive the (weighted) Shapley values of the various players.
-I show that they correspond to the formulas given in \cref{ass:profit_sharing}, with a specific choice of weight functions $w_P$ and $w_F$ for each case.
-
-I start with the simplest case: one-sided bargaining and the usual Shapley value \parencite{shapley1953additive}.
-Then, I look at weighted values \parencite{weber1988probabilistic} in the same cooperative game.
-Finally, I consider the case when the consumers also participate in the bargaining process, and derive the corresponding Shapley values.
-
-\subsection{One-sided case}
-\label{sec:cooperative_game_one_sided}
-
-In the first setting, the platform and the fringe firms bargain over the total profits they generate together, and the consumers are not included in the negotiations.
-The following cooperative game describes this case.
-
-Consider the game $\mathcal{G} = (\mathcal{N}, v)$, characterized by the set of players $\mathcal{N}$ and its characteristic function $v$.
-The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i\}, i \in [0, N_F]$.
-Because the platform is indispensible, the value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
-\begin{align*}
-    v(S) = \begin{cases}
-        0 & \text{if } P \notin S \\
-        N_C f(N_P, n_F(S)) & \text{if } P \in S
-    \end{cases},
-\end{align*}
-where $n_F(S)$ is the measure of fringe firms in $S$.
-
-The following proposition describes the Shapley value of the platform ($\varphi_P(\mathcal{G})$) and the fringe firms ($\varphi_F(\mathcal{G})$) in this game.
-
-\begin{proposition}
-    \label{prop:profit_sharing_one_sided}
-    Consider the cooperative game above.
-    Then, the Shapley values of the platform and the fringe firms are given by
-    \begin{align*}
-        \varphi_P(\mathcal{G}) &= N_C \int_0^1 f(N_P, s N_F) \ds, \\
-        \varphi_P(\mathcal{F}) &= N_C \int_0^1 s N_F \partial_2 f(N_P, s N_F) \ds.
-    \end{align*}
-\end{proposition}
-
-\begin{proof}[proof of \cref{prop:profit_sharing_one_sided}]
-    This result is a direct application of Proposition 3 and Corollary 2 in \textcite{stancsics2023value}.
-\end{proof}
-
-As an immediate consequence, if bargaining outcomes are described by the Shapley value, then the resulting allocations satisfy \cref{ass:profit_sharing} with $w_P(s) \equiv 1$ and $w_F(s) = s$.
-
-
-\subsection{Weighted value}
-\label{sec:cooperative_game_weighted}
-
-Now let us generalize the previous result, and assume instead that players' shares are described by their weighted values,
-As before, let us start by formally describing the cooperative game.
-The set of players and the characteristic function are the same as in \cref{sec:cooperative_game_one_sided}, but now the game is additionally endowed with a weight system $\mathbf{\lambda} = \{\lambda_P, \lambda_{F}(i)\}$.
-Let us assume that all fringe players have the same weight $\lambda_{F}(i) \equiv 1$.
-
-Then, the weighted values of the players are described by the following proposition.
-
-\begin{proposition}
-    \label{prop:profit_sharing_weighted}
-    Consider the cooperative game above.
-    Then, the weighted values of the platform and the fringe firms are given by
-    \begin{align*}
-        \varphi_P(\mathcal{G}) &= N_C \int_0^1 \lambda_P s ^ {\lambda_P - 1} f(N_P, s N_F) \ds, \\
-        \varphi_F(\mathcal{G}) &= N_C \int_0^1 s ^ {\lambda_P} N_F \partial_2 f(N_P, s N_F) \ds.
-    \end{align*}
-\end{proposition}
-
-\begin{proof}[proof of \cref{prop:profit_sharing_weighted}]
-    This result is a direct application of Proposition 4 in \textcite{stancsics2023value}.
-\end{proof}
-
-As before, the resulting allocations satisfy \cref{ass:profit_sharing} with $w_P(s) \equiv \lambda_P s ^ {\lambda_P - 1}$ and $w_F(s) = s ^ {\lambda_P}$.
-
-
-\subsection{Two-sided case}
-\label{sec:cooperative_game_two_sided}
-
-Finally, in certain settings, it might be appropriate to assume that the consumers (or, more generally, the entities on the other side of the market) also engage in the bargaining process.
-The cooperative game describing can be formalized as follows.
-
-The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i, C_j\}, i \in [0, N_F], j \in [0, N_C]$.
-The value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
-\begin{align*}
-    v(S) = \begin{cases}
-        0 & \text{if } P \notin S \\
-        n_C(S) f(N_P, n_F(S)) & \text{if } P \in S
-    \end{cases},
-\end{align*}
-where $n_F(S)$ and $n_C(S)$ is the measure of fringe firms and consumers, respectively, in $S$.
-
-As in the one-sided case, simple expressions exist for the Shapley value of the platform ($\varphi_P(\mathcal{G})$), fringe firms ($\varphi_F(\mathcal{G})$) and consumers ($\varphi_C(\mathcal{G})$).
-
-\begin{proposition}
-    \label{prop:profit_sharing_two_sided}
-    Consider the case when only the platform and the fringe firms participate in the bargaining process.
-    Then, the resulting profit shares are given by
-    \begin{align*}
-        \varphi_P(\mathcal{G}) &= N_C \int_0^1 s f(N_P, s N_F) \ds, \\
-        \varphi_F(\mathcal{G}) &= N_C \int_0^1 s^2 N_F \partial_2 f(N_P, s N_F) \ds \\
-        \varphi_C(\mathcal{G}) &= N_C \int_0^1 s f(N_P, s N_F) \ds.
-    \end{align*}
-\end{proposition}
-\begin{proof}[proof of \cref{prop:profit_sharing_two_sided}]
-    This result is a direct application of Proposition 11 in \textcite{stancsics2023value}.
-\end{proof}
-
-One thing to note is that the platform's and fringe firms' shares are lower than in the one-sided case.
-This is due to the fact of needing to share the pie with the consumers, too.
-Additionally, the platform's share is identical to the consumers' (aggregated) share.\footnote{
-    This stems from the linearity of the profit function in the number of consumers.
-}
-This foreshadows the idea that -- even though it might not be welfare-maximizing -- what's good for the platform might also good for the consumers in the two-sided case.
-Finally, as in both examples before, these values satisfy \cref{ass:profit_sharing} with $w_P(s) = s$ and $w_F(s) = s^2$.
-
-
 \section{More general results}
-\label{sec:results_more_general}
+\label{sec:more_general}
 
 While the main text examines bargaining between the platform and the entrants in the context of a specific, logit-like demand system, many of the results are more general.
 This section presents those and the necessary assumptions.
@@ -1735,6 +1622,122 @@ And, as the second part shows, this bound is sufficient to guarantee that the to
 
 This result has particularly strong implications in models where total profits (or total product variety) has a monotone relationship with consumer welfare, such as those in \textcite{anderson2020aggregative}.
 The demand system presented in the main text also has this property.
+
+
+\section{The platform game and the (weighted) Shapley value}
+\label{sec:cooperative_game}
+
+In this section, I describe how the profit sharing rule from \cref{ass:profit_sharing} can be derived from various cooperative games.
+In each of the following subsections, I formally define a cooperative game that models the platform setting, and derive the (weighted) Shapley values of the various players.
+I show that they correspond to the formulas given in \cref{ass:profit_sharing}, with a specific choice of weight functions $w_P$ and $w_F$ for each case.
+
+I start with the simplest case: one-sided bargaining and the usual Shapley value \parencite{shapley1953additive}.
+Then, I look at weighted values \parencite{weber1988probabilistic} in the same cooperative game.
+Finally, I consider the case when the consumers also participate in the bargaining process, and derive the corresponding Shapley values.
+
+\subsection{One-sided case}
+\label{sec:cooperative_game_one_sided}
+
+In the first setting, the platform and the fringe firms bargain over the total profits they generate together, and the consumers are not included in the negotiations.
+The following cooperative game describes this case.
+
+Consider the game $\mathcal{G} = (\mathcal{N}, v)$, characterized by the set of players $\mathcal{N}$ and its characteristic function $v$.
+The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i\}, i \in [0, N_F]$.
+Because the platform is indispensible, the value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
+\begin{align*}
+    v(S) = \begin{cases}
+        0 & \text{if } P \notin S \\
+        N_C f(N_P, n_F(S)) & \text{if } P \in S
+    \end{cases},
+\end{align*}
+where $n_F(S)$ is the measure of fringe firms in $S$.
+
+The following proposition describes the Shapley value of the platform ($\varphi_P(\mathcal{G})$) and the fringe firms ($\varphi_F(\mathcal{G})$) in this game.
+
+\begin{proposition}
+    \label{prop:profit_sharing_one_sided}
+    Consider the cooperative game above.
+    Then, the Shapley values of the platform and the fringe firms are given by
+    \begin{align*}
+        \varphi_P(\mathcal{G}) &= N_C \int_0^1 f(N_P, s N_F) \ds, \\
+        \varphi_P(\mathcal{F}) &= N_C \int_0^1 s N_F \partial_2 f(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
+
+\begin{proof}[proof of \cref{prop:profit_sharing_one_sided}]
+    This result is a direct application of Proposition 3 and Corollary 2 in \textcite{stancsics2023value}.
+\end{proof}
+
+As an immediate consequence, if bargaining outcomes are described by the Shapley value, then the resulting allocations satisfy \cref{ass:profit_sharing} with $w_P(s) \equiv 1$ and $w_F(s) = s$.
+
+
+\subsection{Weighted value}
+\label{sec:cooperative_game_weighted}
+
+Now let us generalize the previous result, and assume instead that players' shares are described by their weighted values,
+As before, let us start by formally describing the cooperative game.
+The set of players and the characteristic function are the same as in \cref{sec:cooperative_game_one_sided}, but now the game is additionally endowed with a weight system $\mathbf{\lambda} = \{\lambda_P, \lambda_{F}(i)\}$.
+Let us assume that all fringe players have the same weight $\lambda_{F}(i) \equiv 1$.
+
+Then, the weighted values of the players are described by the following proposition.
+
+\begin{proposition}
+    \label{prop:profit_sharing_weighted}
+    Consider the cooperative game above.
+    Then, the weighted values of the platform and the fringe firms are given by
+    \begin{align*}
+        \varphi_P(\mathcal{G}) &= N_C \int_0^1 \lambda_P s ^ {\lambda_P - 1} f(N_P, s N_F) \ds, \\
+        \varphi_F(\mathcal{G}) &= N_C \int_0^1 s ^ {\lambda_P} N_F \partial_2 f(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
+
+\begin{proof}[proof of \cref{prop:profit_sharing_weighted}]
+    This result is a direct application of Proposition 4 in \textcite{stancsics2023value}.
+\end{proof}
+
+As before, the resulting allocations satisfy \cref{ass:profit_sharing} with $w_P(s) \equiv \lambda_P s ^ {\lambda_P - 1}$ and $w_F(s) = s ^ {\lambda_P}$.
+
+
+\subsection{Two-sided case}
+\label{sec:cooperative_game_two_sided}
+
+Finally, in certain settings, it might be appropriate to assume that the consumers (or, more generally, the entities on the other side of the market) also engage in the bargaining process.
+The cooperative game describing can be formalized as follows.
+
+The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i, C_j\}, i \in [0, N_F], j \in [0, N_C]$.
+The value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
+\begin{align*}
+    v(S) = \begin{cases}
+        0 & \text{if } P \notin S \\
+        n_C(S) f(N_P, n_F(S)) & \text{if } P \in S
+    \end{cases},
+\end{align*}
+where $n_F(S)$ and $n_C(S)$ is the measure of fringe firms and consumers, respectively, in $S$.
+
+As in the one-sided case, simple expressions exist for the Shapley value of the platform ($\varphi_P(\mathcal{G})$), fringe firms ($\varphi_F(\mathcal{G})$) and consumers ($\varphi_C(\mathcal{G})$).
+
+\begin{proposition}
+    \label{prop:profit_sharing_two_sided}
+    Consider the case when only the platform and the fringe firms participate in the bargaining process.
+    Then, the resulting profit shares are given by
+    \begin{align*}
+        \varphi_P(\mathcal{G}) &= N_C \int_0^1 s f(N_P, s N_F) \ds, \\
+        \varphi_F(\mathcal{G}) &= N_C \int_0^1 s^2 N_F \partial_2 f(N_P, s N_F) \ds \\
+        \varphi_C(\mathcal{G}) &= N_C \int_0^1 s f(N_P, s N_F) \ds.
+    \end{align*}
+\end{proposition}
+\begin{proof}[proof of \cref{prop:profit_sharing_two_sided}]
+    This result is a direct application of Proposition 11 in \textcite{stancsics2023value}.
+\end{proof}
+
+One thing to note is that the platform's and fringe firms' shares are lower than in the one-sided case.
+This is due to the fact of needing to share the pie with the consumers, too.
+Additionally, the platform's share is identical to the consumers' (aggregated) share.\footnote{
+    This stems from the linearity of the profit function in the number of consumers.
+}
+This foreshadows the idea that -- even though it might not be welfare-maximizing -- what's good for the platform might also good for the consumers in the two-sided case.
+Finally, as in both examples before, these values satisfy \cref{ass:profit_sharing} with $w_P(s) = s$ and $w_F(s) = s^2$.
+
 
 \section{Proofs and additional lemmas}
 
