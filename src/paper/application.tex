@@ -24,6 +24,8 @@
 \usetikzlibrary{shapes}
 \usetikzlibrary{intersections}
 \usetikzlibrary{positioning}
+\usetikzlibrary{fit}
+\usetikzlibrary{arrows}
 \pgfplotsset{compat=1.17}
 
 \newtheorem{definition}{Definition}
@@ -1748,7 +1750,66 @@ This foreshadows the idea that -- even though it might not be welfare-maximizing
 Finally, as in both examples before, these values satisfy \cref{ass:profit_sharing} with $w_P(s) = s$ and $w_F(s) = s^2$.
 
 
+\section{Non-cooperative microfoundations for the bargaining outcome}
+\label{sec:bargaining_microfoundation}
+
+As part of the Nash program\footnote{
+    The research agenda aiming to find links between cooperative and non-cooperative game theory, started by nash1953two
+}, there have been a number of papers proposing microfoundations for the Shapley value in terms of non-cooperative, bargaining-related games \parencite[e.g.][]{gul1989bargaining,winter1994demand,hart1996bargaining,stole1996intra}.
+The cooperative platform game described in \cref{sec:cooperative_game} satisfies the assumption for a number of these models, and thus any of those could be used to build microfoundations for the platform game.
+Among those, I will focus on \textcite{stole1996intra} for the reason that it specifically pertains to a setting with one indispensable player and many small players, just like the current paper.
+
+The model in \textcite{stole1996intra} is phrased in terms of intra-firm bargaining between the workers and the firm itself.
+The workers are assumed to have a fixed outside option, and the firm is the indispensable player.
+This translates directly to the platform game, with the platform being the indispensable player, and fringe firms having a zero outside option.
+Furthermore, in \textcite{stole1996intra}, the bargaining outcome is interpreted as the wage for the workers.
+In the current setting, this would translate to bargaining over profit shares.
+However, it is equivalent to saying that the players negotiate over entry fees, as entry fees combined with equilibrium behavior later on determine the profit shares.
+To keep the model as similar to the benchmark case as possible, I use the latter interpretation.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[node distance=2cm, auto]
+        \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
+        \node[align=center, draw, dashed] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform \\ and $N_F$ fringe firms \\ $[F_F]$};
+        \node[align=center] (sales) [below of=entry_fee] {Platform and fringe \\ sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
+        \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+        \draw[->] (entry_decision) -- (entry_fee);
+        \draw[->] (entry_fee) -- (sales);
+        \draw[->] (sales) -- (final);
+        
+        \node[align=center, right=of entry_decision, distance=3cm] (arrange_fringe) {Arrange fringe firms in some fixed order};
+        \node[align=center, below of=arrange_fringe] (foreach) {For each (remaining) fringe firm $F_i$:};
+        \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is choosen randomly};
+        \node[align=center] (proposal) [below of=choose_proposer] {Proposer proposes entry fee $F_{F_i}$};
+        \node[align=center] (accept) [below left=2cm and -2cm of proposal] {Responder accepts $F_{F_i}$};
+        \node[align=center] (reject) [below right=2cm and -2cm of proposal] {Responder rejects $F_{F_i}$};
+        \node[align=center] (next_player) [below of=accept] {Move on to next \\ fringe firm $F_{F_{i+1}}$};
+        \node[align=center] (eliminate) [below of=reject] {Eliminate $F_i$};
+
+        \draw[->] (arrange_fringe) -- (foreach);
+        \draw[->] (foreach) -- (choose_proposer);
+        \draw[->] (choose_proposer) -- (proposal);
+        \draw[->] (proposal) -- (accept.north);
+        \draw[->] (proposal) -- (reject.north);
+        \draw[->] (accept) -- (next_player);
+        \draw[->] (reject) -- (eliminate) node[midway,right] {$\rho$};
+
+        \draw[->] (reject.north) to [out=45, in=-45] node[midway,right] {$1 - \rho$} (choose_proposer.east);
+        \draw[->] (eliminate.east) to [out=45, in=-40] (foreach.east);
+        
+        \node [draw, dashed, fit=(arrange_fringe)(foreach)(proposal)(accept)(reject)(next_player)(eliminate), inner sep=1em] (expanded_game) {};
+        \draw[-, dashed] (entry_fee.north east) -- (expanded_game.north west);
+        \draw[-, dashed] (entry_fee.south east) -- (expanded_game.south west);
+    \end{tikzpicture}
+    \caption{Timing of the model with extensive-form bargaining. The panel on the right hand side details the bargaining procedure for determining the entry fees.}
+    \label{fig:bargaining_microfoundations}
+\end{figure}
+
+
+
 \section{Proofs and additional lemmas}
+\label{sec:proofs}
 
 \begin{lemma}
     \label{lem:single_crossing_affine_transformation}
@@ -2101,7 +2162,7 @@ Finally, as in both examples before, these values satisfy \cref{ass:profit_shari
     The respective results are stated in \cref{prop:equilibrium_aggregate_benchmark} and \cref{prop:consumer_surplus_benchmark}.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:bargaining}]
+\begin{proof}[Proof of \cref{prop:bargaining_results}]
     The respective results are stated in \cref{prop:N_F_comparative_equilibrium} and \cref{prop:aggregate_comparative_hybrid}.
 \end{proof}
 
