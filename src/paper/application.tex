@@ -360,6 +360,7 @@ I will now present the main results of the model, again, starting from the final
 For each subgame, I also demonstrate that the equilibrium exists and is unique, and therefore the complete game also has a unique equilibrium.
 
 \subsection{Demand and producer profits}
+\label{sec:results_demand}
 
 As the final, price-setting subgame is the same in both the benchmark and the bargaining model, the results in this subsection apply to both.
 Discrete choice models with type I Extreme Value errors give rise to a logit-type demand function \parencite[e.g.][]{small1981applied}.
@@ -1764,8 +1765,9 @@ The workers are assumed to have a fixed outside option, and the firm is the indi
 This translates directly to the platform game, with the platform being the indispensable player, and fringe firms having a zero outside option.
 Furthermore, in \textcite{stole1996intra}, the bargaining outcome is interpreted as the wage for the workers.
 In the current setting, this would translate to bargaining over profit shares.
-However, it is equivalent to saying that the players negotiate over entry fees, as entry fees combined with equilibrium behavior later on determine the profit shares.
-To keep the model as similar to the benchmark case as possible, I use the latter interpretation.
+However, as I argue later on, it is equivalent to bargaining over entry fees.
+Finally, this section focuses on the main model, with two-sided bargaining, and the Shapley value as the equilibrium concept.
+However, the same logic can be applied to the extensions presented in \cref{sec:extensions}, based on sections 3.1 and 3.2 of \textcite{stole1996intra}.
 
 \begin{figure}
     \centering
@@ -1780,18 +1782,18 @@ To keep the model as similar to the benchmark case as possible, I use the latter
         
         \node[align=center, right=of entry_decision, distance=3cm] (arrange_fringe) {Arrange fringe firms in some fixed order};
         \node[align=center, below of=arrange_fringe] (foreach) {For each (remaining) fringe firm $F_i$:};
-        \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is choosen randomly};
+        \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is choosen as the proposer};
         \node[align=center] (proposal) [below of=choose_proposer] {Proposer proposes entry fee $F_{F_i}$};
         \node[align=center] (accept) [below left=2cm and -2cm of proposal] {Responder accepts $F_{F_i}$};
         \node[align=center] (reject) [below right=2cm and -2cm of proposal] {Responder rejects $F_{F_i}$};
-        \node[align=center] (next_player) [below of=accept] {Move on to next \\ fringe firm $F_{F_{i+1}}$};
+        \node[align=center] (next_player) [below of=accept] {Move on to the \\ next fringe firm};
         \node[align=center] (eliminate) [below of=reject] {Eliminate $F_i$};
 
         \draw[->] (arrange_fringe) -- (foreach);
         \draw[->] (foreach) -- (choose_proposer);
         \draw[->] (choose_proposer) -- (proposal);
-        \draw[->] (proposal) -- (accept.north);
-        \draw[->] (proposal) -- (reject.north);
+        \draw[->] (proposal) -- (accept);
+        \draw[->] (proposal) -- (reject);
         \draw[->] (accept) -- (next_player);
         \draw[->] (reject) -- (eliminate) node[midway,right] {$\rho$};
 
@@ -1802,9 +1804,33 @@ To keep the model as similar to the benchmark case as possible, I use the latter
         \draw[-, dashed] (entry_fee.north east) -- (expanded_game.north west);
         \draw[-, dashed] (entry_fee.south east) -- (expanded_game.south west);
     \end{tikzpicture}
-    \caption{Timing of the model with extensive-form bargaining. The panel on the right hand side details the bargaining procedure for determining the entry fees.}
+    \caption{Timing of the model with extensive-form bargaining. The panel on the right-hand side details the negotiation procedure for determining the entry fees.}
     \label{fig:bargaining_microfoundations}
 \end{figure}
+
+Let us now describe the bargaining process in the platform game.
+First, a random order is determined for the fringe firms.
+This order will remain fixed throughout the bargaining phase
+
+Then, for each fringe firm (following the order determined earlier), the platform and the fringe firm negotiate over the entry fee.
+This bilateral negotiation follows the alternating offer procedure described in \textcite{binmore1986nash}.
+One of the two players is chosen as a proposer, and can propose an entry fee for the given firm: $F_{F_i}$.
+The other player can either accept or reject the proposal.
+
+If the proposal is accepted, the negotiation moves on to the next fringe firm.
+If it is rejected, with probability $1-\rho$, the other player becomes the proposer, and the negotiation continues.
+Finally, with probability $\rho$, the negotiations break down, and the fringe firm is eliminated from the rest of the game.
+Crucially, after a breakdown occurs, all of the previous offers are voided, and the platform and the remaining fringe firms start the negotiation process from the beginning (following the same, pre-determined order, but skipping the eliminated firms).
+
+This bargaining process is repeated until all fringe firms have either accepted an offer or been eliminated.
+\Cref{fig:bargaining_microfoundations} provides an illustration of the bargaining process, and how it fits into the broader game.
+Theorem 2 in \textcite{stole1996intra} shows that regardless of the ordering of the fringe firms, the unique subgame perfect equilibrium of this game is the Shapley value of the cooperative game.
+Note, that this result is not only true in expectation: conditioning on any ordering of the fringe firms, the result still holds.
+
+The final piece that is needed to establish the interpretation in terms of entry fees is that for any given configuration of firms emerging from the bargaining process, and, crucially, regardless of the agreed upon entry fees, the unique equilibrium of the subsequent game is the one described in \cref{sec:results_demand}.
+According to the previous theorem, players want to agree on a contract such that their final, total profits $\pi^t_{F_i}$ are equal to their Shapley value ($\varphi_{F_i}$).
+Given any equilibrium sales profits ($\pi^v_{F_i}$), they can achieve it by setting the entry fees to $F_{F_i} = \varphi_{F_i} - \pi^v_{F_i}$.
+Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish that both the Shapley value and the equilibrium sales profits are identical for each fringe firms, and thus a single, common entry fee $F_F$ will be agreed upon.
 
 
 
