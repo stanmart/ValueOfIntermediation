@@ -13,9 +13,9 @@ Main issue: optimization problem is difficult.
 
 ### Price determined in the first stage
 
- - $p_P$ and $F_F$ are determined simultaneously
+ - $p_P$ and $K_F$ are determined simultaneously
  - The platform wants to set a lower price than $c_P + \mu$, because that leads to more fringe entry, and the platform gains on entry fees
- - The pricing decision (and subsequent $F_F$ choice) becomes complex (as in Anderson and Bedre-Defolie)
+ - The pricing decision (and subsequent $K_F$ choice) becomes complex (as in Anderson and Bedre-Defolie)
  - The pricing decision also influences subsequent Shapley-values
 
 ## Shortcut

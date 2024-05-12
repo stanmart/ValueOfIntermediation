@@ -181,7 +181,7 @@ The bargaining rule, as well as other details of the model, are described in the
 \subsection{Overview}
 
 There is an infinite measure of fringe firms, who are deciding whether to enter the market.
-Entering has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $F_F$.
+Entering has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $K_F$.
 One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
 Meanwhile, the second is a payment to the platform for using its services.
 While percentage fees are more common both in the literature and in practice, I assume a lump-sum fee for a few reasons.
@@ -190,7 +190,7 @@ I want to show that even in the absence such distortions, hybrid platforms can h
 Furthermore, due to this distortion, the resulting game could not be represented as a transferable utility game, and the proposed solution concept would not be applicable.
 Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
 
-In the benchmark model, the game starts by the platform announcing and committing to an entry fee $F_F$.\footnote{
+In the benchmark model, the game starts by the platform announcing and committing to an entry fee $K_F$.\footnote{
     With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
     This would lead to a trivial equilibrium, where no firm enters.
 }
@@ -208,7 +208,7 @@ Finally, consumers make their purchase decisions, and profits are realized.
 In the model with bargaining, the platform and the fringe distribute total profits according to their Shapley values.
 One can also think of the latter as agreeing on an entry fee that makes final profits net entry fees equal to the Shapley value of the various players.
 
-The main difference between the benchmark and the bargaining model is in determining the entry fee $F_F$.
+The main difference between the benchmark and the bargaining model is in determining the entry fee $K_F$.
 In the former, the platform unilaterally sets the fee, and the fringe treats it as a take it or leave it offer.
 On the other hand, in the bargaining model, I assume that the entry fee is the result of a negotiation between the parties.
 \Cref{fig:timing} illustrates this difference.
@@ -218,8 +218,8 @@ On the other hand, in the bargaining model, I assume that the entry fee is the r
     \begin{subfigure}{0.45\textwidth}
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
-            \node[align=center] (entry_fee) {Platform unilaterally sets the entry fee \\ $[F_F]$};
-            \node[align=center] (entry_decision) [below of=entry_fee] {Potential entrants decide to enter \\ at cost $I_F + F_F$ \\ $[N_F]$};
+            \node[align=center] (entry_fee) {Platform unilaterally sets the entry fee \\ $[K_F]$};
+            \node[align=center] (entry_decision) [below of=entry_fee] {Potential entrants decide to enter \\ at cost $I_F + K_F$ \\ $[N_F]$};
             \node[align=center] (sales) [below of=entry_decision] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
             \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
             \draw[->] (entry_fee) -- (entry_decision);
@@ -233,7 +233,7 @@ On the other hand, in the bargaining model, I assume that the entry fee is the r
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
             \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
-            \node[align=center] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[F_F]$};
+            \node[align=center] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[K_F]$};
             \node[align=center] (sales) [below of=entry_fee] {Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
             \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
             \draw[->] (entry_decision) -- (entry_fee);
@@ -297,8 +297,8 @@ Alternatively, there might be some kind of internal competition between the diff
 I assume that there is a continuum of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
 Each of them can create a product at an exogenous investment cost $I_F$.
 If they decide not to, they make zero profits and do not participate in the later stages of the game.
-Furthermore, these firms can only sell their products through the platform, for which the platform can charge a lump-sum entry fee $F_F$.
-The timing of these decisions is as follows: (1) the platform sets and commits to an entry fee $F_F$, (2) the fringe firms decide whether to enter the market, and (3) the firms that have entered pay the entry fee to the platform.
+Furthermore, these firms can only sell their products through the platform, for which the platform can charge a lump-sum entry fee $K_F$.
+The timing of these decisions is as follows: (1) the platform sets and commits to an entry fee $K_F$, (2) the fringe firms decide whether to enter the market, and (3) the firms that have entered pay the entry fee to the platform.
 
 \subsubsection{Bargaining case}
 \label{sec:model_bargaining}
@@ -310,7 +310,7 @@ After this, the platform and the firms that have made the investment negotiate t
 Finally, the firms that have entered pay the entry fee to the platform.
 
 In order to keep the model tractable I model the negotiation process in a reduced form manner.
-In particular, I assume that the platform and the entrants agree on an entry fee $F_F$, which makes the total profits net entry fees equal to the Shapley value of the players.\footnote{
+In particular, I assume that the platform and the entrants agree on an entry fee $K_F$, which makes the total profits net entry fees equal to the Shapley value of the players.\footnote{
     One simple extension would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
     \Cref{sec:cooperative_game_weighted} takes a step in this direction by introducing bargaining weights and utilizing the weighted value.
 }
@@ -419,14 +419,14 @@ Therefore, total profits in equilibrium must be zero.
 Combined with the  profit function, this gives the following expressions for the equilibrium number of fringe firms and the equilibrium size of the aggregate.
 \begin{proposition}
     \label{prop:equilibrium_aggregate_benchmark}
-    If entry costs $I_F$ and $F_F$ are low enough, the equilibrium size of the aggregate is
+    If entry costs $I_F$ and $K_F$ are low enough, the equilibrium size of the aggregate is
     \begin{align}
-        A = \mu \frac{V_F}{F_F + I_F}.
+        A = \mu \frac{V_F}{K_F + I_F}.
         \label{eq:aggregate_eq}
     \end{align}
     and the equilibrium number of fringe firms is
     \begin{align*}
-        N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
+        N_F = \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
     \end{align*}
     Otherwise,  $N_F = 0$ and the equilibrium size of the aggregate is
     \begin{align*}
@@ -445,7 +445,7 @@ The following proposition establishes these both for the hybrid and the pure ret
     \label{prop:optimal_entry_fee}
     The optimal entry fee when the platform is operating in the hybrid regime is unique and given by
     \begin{align*}
-        F_F^* = \sqrt{\mu I_F V_F} - I_F.
+        K_F^* = \sqrt{\mu I_F V_F} - I_F.
     \end{align*}
     The platform's total profit in this case is
     \begin{align*}
@@ -459,7 +459,7 @@ The following proposition establishes these both for the hybrid and the pure ret
 
 First, let us look at the case when the platform finds it optimal to operate in the hybrid regime.
 Notice that the optimal entry fee does not depend on either the platform's product value or product variety (\cref{fig:entry_fee}).
-This is because due to the lump-sum nature of the entry fee, the platform can extract all the surplus from the fringe firms, and thus chooses $F_F$ to maximize total industry profits.
+This is because due to the lump-sum nature of the entry fee, the platform can extract all the surplus from the fringe firms, and thus chooses $K_F$ to maximize total industry profits.
 The latter is essentially a function of the aggregate, minus the investment costs of the fringe firms.
 As I have shown in \cref{prop:equilibrium_aggregate_benchmark}, the aggregate is independent of the platform's product variety in the hybrid regime, and therefore the optimal entry fee is also independent of it.
 
@@ -712,10 +712,10 @@ The statements of these theorems are illustrated in \cref{fig:comparative_N_F} a
 The intuition behind these results can be demonstrated by looking at entry fees.
 First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms (bar the investment cost):
 \begin{align*}
-    F_F^{\text{impl}} = \pi_F^v - \pi_F^t.
+    K_F^{\text{impl}} = \pi_F^v - \pi_F^t.
 \end{align*}
 As shown before, as the platform's product variety grows, its bargaining power also increases.
-This can be thought of as an increase in (implied) entry fees $F_F^{\text{impl}}$, which in turn discourages fringe entry.
+This can be thought of as an increase in (implied) entry fees $K_F^{\text{impl}}$, which in turn discourages fringe entry.
 This is not happening in the benchmark model, as the optimal entry fee does not depend on the platform's product variety.
 \Cref{fig:entry_fee} demonstrates this effect.
 
@@ -769,7 +769,7 @@ This is the case in the example parametrization displayed on the figures for eve
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    ylabel={$F_F$},
+                    ylabel={$K_F$},
                     xmin=0, xmax=1.5, % adjust these values as needed
                     ymin=0, ymax=0.65, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
@@ -777,8 +777,8 @@ This is the case in the example parametrization displayed on the figures for eve
                     xtick={0, 1.5},
                     legend pos=north east
                 ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=K_F_opt]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=K_F_implied]{\equilibrium};
                 \legend{Benchmark, Bargaining (implied)}
 
                 \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
@@ -788,7 +788,7 @@ This is the case in the example parametrization displayed on the figures for eve
                 \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
             \end{axis}
         \end{tikzpicture}
-        \caption{Optimal/implied entry fee ($F_F$)}
+        \caption{Optimal/implied entry fee ($K_F$)}
         \label{fig:entry_fee}
     \end{subfigure}
     \caption{Equilibrium number of fringe entrants and (implied) entry fees ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, the entry fee does not depend on the platform's product variety, and an increase in $N_P$ leads to a proportional reduction in $N_F$. In contrast, in the bargaining case, the entry fee is increasing in $N_P$, and the reduction in $N_F$ is more than proportional. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
@@ -1056,9 +1056,9 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
                     legend pos=south east,
                     width=\linewidth,
                 ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=F_F_opt]{\equilibrium};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibrium};
-                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=F_F_implied]{\equilibriumProfitOneSidedLowLambda};
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=K_F_opt]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=K_F_implied]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y=K_F_implied]{\equilibriumProfitOneSidedLowLambda};
 
                 \legend{Benchmark, Bargaining ($\lambda = 1$), Bargaining ($\lambda = 0.5$)}
                 
@@ -1773,7 +1773,7 @@ However, the same logic can be applied to the extensions presented in \cref{sec:
     \centering
     \begin{tikzpicture}[node distance=2cm, auto]
         \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
-        \node[align=center, draw, dashed] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform \\ and $N_F$ fringe firms \\ $[F_F]$};
+        \node[align=center, draw, dashed] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform \\ and $N_F$ fringe firms \\ $[K_F]$};
         \node[align=center] (sales) [below of=entry_fee] {Platform and fringe \\ sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
         \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
         \draw[->] (entry_decision) -- (entry_fee);
@@ -1783,9 +1783,9 @@ However, the same logic can be applied to the extensions presented in \cref{sec:
         \node[align=center, right=of entry_decision, distance=3cm] (arrange_fringe) {Arrange fringe firms in some fixed order};
         \node[align=center, below of=arrange_fringe] (foreach) {For each (remaining) fringe firm $F_i$:};
         \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is choosen as the proposer};
-        \node[align=center] (proposal) [below of=choose_proposer] {Proposer proposes entry fee $F_{F_i}$};
-        \node[align=center] (accept) [below left=2cm and -2cm of proposal] {Responder accepts $F_{F_i}$};
-        \node[align=center] (reject) [below right=2cm and -2cm of proposal] {Responder rejects $F_{F_i}$};
+        \node[align=center] (proposal) [below of=choose_proposer] {Proposer proposes entry fee $K_{F_i}$};
+        \node[align=center] (accept) [below left=2cm and -2cm of proposal] {Responder accepts $K_{F_i}$};
+        \node[align=center] (reject) [below right=2cm and -2cm of proposal] {Responder rejects $K_{F_i}$};
         \node[align=center] (next_player) [below of=accept] {Move on to the \\ next fringe firm};
         \node[align=center] (eliminate) [below of=reject] {Eliminate $F_i$};
 
@@ -1814,7 +1814,7 @@ This order will remain fixed throughout the bargaining phase
 
 Then, for each fringe firm (following the order determined earlier), the platform and the fringe firm negotiate over the entry fee.
 This bilateral negotiation follows the alternating offer procedure described in \textcite{binmore1986nash}.
-One of the two players is chosen as a proposer, and can propose an entry fee for the given firm: $F_{F_i}$.
+One of the two players is chosen as a proposer, and can propose an entry fee for the given firm: $K_{F_i}$.
 The other player can either accept or reject the proposal.
 
 If the proposal is accepted, the negotiation moves on to the next fringe firm.
@@ -1829,9 +1829,14 @@ Note, that this result is not only true in expectation: conditioning on any orde
 
 The final piece that is needed to establish the interpretation in terms of entry fees is that for any given configuration of firms emerging from the bargaining process, and, crucially, regardless of the agreed upon entry fees, the unique equilibrium of the subsequent game is the one described in \cref{sec:results_demand}.
 According to the previous theorem, players want to agree on a contract such that their final, total profits $\pi^t_{F_i}$ are equal to their Shapley value ($\varphi_{F_i}$).
-Given any equilibrium sales profits ($\pi^v_{F_i}$), they can achieve it by setting the entry fees to $F_{F_i} = \varphi_{F_i} - \pi^v_{F_i}$.
-Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish that both the Shapley value and the equilibrium sales profits are identical for each fringe firms, and thus a single, common entry fee $F_F$ will be agreed upon.
+Given any equilibrium sales profits ($\pi^v_{F_i}$), they can achieve it by setting the entry fees to $K_{F_i} = \varphi_{F_i} - \pi^v_{F_i}$.
+Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish that both the Shapley value and the equilibrium sales profits are identical for each fringe firms, and thus a single, common entry fee $K_F$ will be agreed upon.
 
+
+\section{The platform's product pricing assumption}
+\label{sec:separate_pricing}
+
+TODO: discuss the assumptioin of pricing products separately
 
 
 \section{Proofs and additional lemmas}
@@ -2031,36 +2036,36 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
 
 \begin{proof}[Proof of \cref{prop:equilibrium_aggregate_benchmark}]
     From \cref{prop:optimal_profit}, the variable profit of each fringe firm is $\pi_{F_i}^{v*} = \mu V_F / A$.
-    Total profit after entry fees and investment costs is therefore $\pi_{F_i}^{t*} = \mu V_F / A - I_F - F_F$.
+    Total profit after entry fees and investment costs is therefore $\pi_{F_i}^{t*} = \mu V_F / A - I_F - K_F$.
     Under free entry, total profits are zero:
     \begin{align*}
-        0 = \pi_{F_i}^{t*} = \mu V_F / A - F_F - I_F.
+        0 = \pi_{F_i}^{t*} = \mu V_F / A - K_F - I_F.
     \end{align*}
     Simple rearrangement gives the formula we are looking for,
     \begin{align*}
-        A = \mu \frac{V_F}{F_F + I_F},
+        A = \mu \frac{V_F}{K_F + I_F},
     \end{align*}
     and substituting in $A = N_P V_P + N_F V_F + 1$ yields the equilibrium number of fringe firms,
     \begin{align*}
-        N_F = \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
+        N_F = \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
     \end{align*}
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:optimal_entry_fee}]
     The total profit function of the platform is the following:
     \begin{align*}
-        \pi_P^t &= \pi_P^v + F_F N_F \\
-        &= \mu \frac{N_P V_P}{F_F + I_F} + F_F \left[ \frac{\mu}{F_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
+        \pi_P^t &= \pi_P^v + K_F N_F \\
+        &= \mu \frac{N_P V_P}{K_F + I_F} + K_F \left[ \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
     \end{align*}
-    The function is strictly concave in $F_F$, so the first order condition is sufficient for optimality in the case of an interior solution.
+    The function is strictly concave in $K_F$, so the first order condition is sufficient for optimality in the case of an interior solution.
     Assume that that the optimum is indeed interior.
     Then the FOC is
     \begin{align*}
-        \frac{\mu I_F V_F - (F_F + I_F)^2}{V_F (F_F + I_F)^2} = 0.
+        \frac{\mu I_F V_F - (K_F + I_F)^2}{V_F (K_F + I_F)^2} = 0.
     \end{align*}
     Rearranging it gives the optimal entry fee
     \begin{align*}
-        F_F^* = \sqrt{\mu I_F V_F} - I_F,
+        K_F^* = \sqrt{\mu I_F V_F} - I_F,
     \end{align*}
     and substituting it into the profit function leads to
     \begin{align*}
@@ -2071,9 +2076,9 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
         \pi_P^{*t} \geq \mu \frac{N_P V_P}{N_P V_P + 1},
     \end{align*}
     i.e., the profit that the platform could achieve by excluding the fringe completely.
-    Therefore, the optimum is indeed interior whenever $F_F$ is low enough
+    Therefore, the optimum is indeed interior whenever $K_F$ is low enough
 
-    Now consider the case when $F_F^*$ is so large that it would lead to no fringe entry.
+    Now consider the case when $K_F^*$ is so large that it would lead to no fringe entry.
     In that case, the platform's only source of profit is selling its own products, and thus
     \begin{align*}
         \pi_P^{t} = \pi_P^{v} = \mu \frac{ N_P V_P}{N_P V_P + 1}.

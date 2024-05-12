@@ -58,12 +58,12 @@ def create_plot_data(
         else:
             return fsolve(lambda N_F: pi_F_t(N_P, N_F), 3)[0]
         
-    def F_F_opt():
+    def K_F_opt():
         return np.sqrt(mu * I_F * V_F) - I_F
     
     def N_F_opt_bench(N_P):
-        F_F = F_F_opt()
-        N_F_candidate = mu / (F_F + I_F) - N_P * V_P / V_F - 1 / V_F
+        K_F = K_F_opt()
+        N_F_candidate = mu / (K_F + I_F) - N_P * V_P / V_F - 1 / V_F
         return np.maximum(N_F_candidate, 0)
 
     N_P_vec = np.linspace(N_P_range[0], N_P_range[1], num_obs)
@@ -88,10 +88,10 @@ def create_plot_data(
         N_F_bench = N_F_opt_bench(N_P_vec)
         A_bench = N_P_vec * V_P + N_F_bench * V_F + 1   
         CS_bench = np.log(A_bench)
-        pi_P_bench = F_F_opt() * N_F_bench + mu * N_P_vec * V_P / A_bench
-        F_F_opt_vec = np.where(
+        pi_P_bench = K_F_opt() * N_F_bench + mu * N_P_vec * V_P / A_bench
+        K_F_opt_vec = np.where(
             N_F_bench > 1e-5,
-            F_F_opt(),
+            K_F_opt(),
             np.nan
         )
         hybrid_mode_bench = np.where(
@@ -104,10 +104,10 @@ def create_plot_data(
         A_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
         CS_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
         pi_P_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
-        F_F_opt_vec = np.ones_like(N_P_vec, dtype=float) * np.nan
+        K_F_opt_vec = np.ones_like(N_P_vec, dtype=float) * np.nan
         hybrid_mode_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
 
-    F_F_implied = np.where(
+    K_F_implied = np.where(
         N_F_vec > 1e-5,
         (pi_P_vec - pi_P_var_vec) / N_F_vec,
         np.nan
@@ -137,8 +137,8 @@ def create_plot_data(
             "A_noF": A_noF,
             "CS_noF": CS_noF,
             "pi_P_noF": pi_P_noF,
-            "F_F_implied": F_F_implied,
-            "F_F_opt": F_F_opt_vec,
+            "K_F_implied": K_F_implied,
+            "K_F_opt": K_F_opt_vec,
             "hybrid": hybrid_mode,
             "N_F_bench": N_F_bench,
             "A_bench": A_bench,
