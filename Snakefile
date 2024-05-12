@@ -278,7 +278,7 @@ rule figure_equilibrium:
         csv = "out/figures/equilibrium_{value_function}_{bargaining}_scale-{n_c}_lambda-{lambda_P}.csv"
     shell:
         "python {input.script} {output.csv} \
-         --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p-range 0 1.5 --num-obs 200 \
+         --mu 1 --v-p 1 --v-f 1 --i-f 0.05 --n-p-range 0 4.5 --num-obs 200 \
          --n-c {wildcards.n_c} --lambda-p {wildcards.lambda_P} \
          --value-function {wildcards.value_function} --bargaining {wildcards.bargaining}"
 

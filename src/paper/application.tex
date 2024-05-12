@@ -719,18 +719,18 @@ This can be thought of as an increase in (implied) entry fees $K_F^{\text{impl}}
 This is not happening in the benchmark model, as the optimal entry fee does not depend on the platform's product variety.
 \Cref{fig:entry_fee} demonstrates this effect.
 
-In the example parametrization, the implied entry fee is higher than what the platform would prefer to set for any $N_P \geq 0$.
-If it could, it would commit to a lower entry fee to incentivize more fringe entry, and thus increase total profits.
+In the example parametrization, the implied entry fee is lower than what the platform would prefer to set for low values of $N_P$, and higher afterwards.
+There is an optimal platform product variety $N_P^*$ for which the implied entry fee is the same as the optimal entry fee in the benchmark model, and therefore the results of the two models are the same.
+For $N_P > N_P^*$, the platform would like to commit to a lower entry fee to incentivize more fringe entry.
 This is an example that bargaining instead of unilateral pricing does not necessarily lead to lower platform shares, or better welfare outcomes: it can be a lose-lose situation for both the platform and the consumers.
-\Cref{sec:lower_bargaining_power} explores an alternative model where the platform has less bargaining power, and thus -- for sufficiently low values of $N_P$ -- the implied entry fee it achieves in the bargaining model is lower than what it would set unilaterally.
 
 Finally, let us look at the platform's profits in equilibrium.
 As in the benchmark model, they are increasing in the number platform's product variety $N_P$ (\cref{fig:platform_profits}). % TODO: can I make it a proper proposition?
 However, in contrast to that case, there is an important difference in the hybrid regime.
 In the benchmark model, the entry fee was independent of the platform's product variety.
 On the other hand, with bargaining, it is increasing in $N_P$ (\cref{fig:entry_fee}).
-Therefore, if the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits than it would otherwise.
-This is the case in the example parametrization displayed on the figures for every $N_P \geq 0$.
+Therefore, if the entry fee is lower than optimal, then the increase in $N_P$ will bring it closer to the optimal level, and the increase in platform profits will be higher than in the benchmark model.
+On the other hand, when the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits.
 
 % This means that, if the platform had to create its product variety at a per-unit investment cost of $I_P$, it would make different (inefficient) choices compared to the benchmark model.
 % In particular, it might invest in some products even if it has a product disadvantage, and it might not invest in some products even if it has a product disadvantage.
@@ -743,11 +743,11 @@ This is the case in the example parametrization displayed on the figures for eve
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=1.4, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0, ymax=4.4, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
@@ -770,12 +770,12 @@ This is the case in the example parametrization displayed on the figures for eve
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={$K_F$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=0.65, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0, ymax=0.35, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=north east
+                    xtick={0, 4.5},
+                    legend pos=south east
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=K_F_opt]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=K_F_implied]{\equilibrium};
@@ -791,36 +791,66 @@ This is the case in the example parametrization displayed on the figures for eve
         \caption{Optimal/implied entry fee ($K_F$)}
         \label{fig:entry_fee}
     \end{subfigure}
-    \caption{Equilibrium number of fringe entrants and (implied) entry fees ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, the entry fee does not depend on the platform's product variety, and an increase in $N_P$ leads to a proportional reduction in $N_F$. In contrast, in the bargaining case, the entry fee is increasing in $N_P$, and the reduction in $N_F$ is more than proportional. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+    \caption{Equilibrium number of fringe entrants and (implied) entry fees ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.05$). In the benchmark model, the entry fee does not depend on the platform's product variety, and an increase in $N_P$ leads to a proportional reduction in $N_F$. In contrast, in the bargaining case, the entry fee is increasing in $N_P$, and the reduction in $N_F$ is more than proportional. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
     \label{fig:entry_and_fees}
 \end{figure}
 
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-                xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=0.65, % adjust these values as needed
-                    width=0.5\linewidth, % adjust the width of the plot
-                    axis lines=left,
-                    xtick={0, 1.5},
-                    legend pos=south east
-                ]
-            \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
-            \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
-            \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
-            \legend{Benchmark, Bargaining, Pure retail}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                        xmin=0, xmax=4.5, % adjust these values as needed
+                        ymin=0, ymax=0.9, % adjust these values as needed
+                        width=\linewidth, % adjust the width of the plot
+                        axis lines=left,
+                        xtick={0, 4.5},
+                        legend pos=south east
+                    ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
+                \addplot[color=black,mark=none,thick,dashed] table[x=N_P,y=pi_P_noF]{\equilibrium};
+                \legend{Benchmark, Bargaining, Pure retail}
 
-            \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
-            \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
-            \addplot[draw=none,name path=bottom] {0};
-            \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-            \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Platform profits in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In both cases, platform profits are increasing in $N_P$. However, in the case of the hybrid regime under bargaining, this increase is lower, due to the fact that prices deviate further from optimal. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                        xmin=0, xmax=1, % adjust these values as needed
+                        ymin=0.58, ymax=0.67, % adjust these values as needed
+                        width=\linewidth, % adjust the width of the plot
+                        axis lines=left,
+                        xtick={0, 1},
+                        legend pos=south east
+                    ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y=pi_P_bench]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y=pi_P]{\equilibrium};
+                \legend{Benchmark, Bargaining}
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=hybrid_bench] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid_bench and bottom];
+            \end{axis}
+        \end{tikzpicture}
+        \caption{}
+    \end{subfigure}
+    \caption{Platform profits in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.05$). In both cases, platform profits are increasing in $N_P$. In the case of the hybrid regime under bargaining, this increase is higher than in the benchmark case as long as the implied the entry fee is lower than optimal, and lower afterwards. The right-hand side graph zooms on the relevant section to highlight this observation. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
     \label{fig:platform_profits}
 \end{figure}
 
@@ -831,11 +861,11 @@ This is the case in the example parametrization displayed on the figures for eve
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=3, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0, ymax=5.5, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=A_bench]{\equilibrium};
@@ -859,11 +889,11 @@ This is the case in the example parametrization displayed on the figures for eve
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
-                    ymin=0, ymax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0, ymax=1.8, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=CS_bench]{\equilibrium};
@@ -881,7 +911,7 @@ This is the case in the example parametrization displayed on the figures for eve
         \caption{Consumer surplus ($CS$)}
         \label{fig:welfare_consumer_surplus}
     \end{subfigure}
-    \caption{Size of the aggregate and consumer surplus in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$). In the benchmark model, an increase in platform product variety has no effect in the hybrid regime. Under bargaining, it does have a negative effect on total product variety, and, in turn, consumer surplus. The increase has a (mechanical) positive effect in the pure retail regime under both assumptions. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
+    \caption{Size of the aggregate and consumer surplus in equilibrium ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.05$). In the benchmark model, an increase in platform product variety has no effect in the hybrid regime. Under bargaining, it does have a negative effect on total product variety, and, in turn, consumer surplus. The increase has a (mechanical) positive effect in the pure retail regime under both assumptions. Dark shaded area represents hybrid mode under the bargaining assumption, while light shaded area represents additional hybrid mode under the benchmark assumption.}
     \label{fig:welfare}
 \end{figure}
 
@@ -957,11 +987,11 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=1.8, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=N_F_bench]{\equilibrium};
                 \addplot[color=myred,mark=none,thick] table[x=N_P,y=N_F]{\equilibrium};
@@ -984,11 +1014,11 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
         \begin{tikzpicture}
             \begin{axis}[
                     xlabel={$N_P$},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=1.1, % adjust these values as needed
                     width=\linewidth, % adjust the width of the plot
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east,
                 ]
                 \addplot[color=myblue,mark=none,thick] table[x=N_P,y=CS_bench]{\equilibrium};
@@ -1018,10 +1048,10 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=0.65, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east,
                     width=\linewidth,
                 ]
@@ -1049,10 +1079,10 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=0.5, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east,
                     width=\linewidth,
                 ]
@@ -1085,10 +1115,10 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0.2, ymax=0.35, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=north west,
                     width=\linewidth,
                 ]
@@ -1112,10 +1142,10 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0.2, ymax=0.35, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south west,
                     width=\linewidth,
                 ]
@@ -1132,7 +1162,7 @@ Furthermore, if hybrid operation is not allowed, the platform might switch to be
         \end{tikzpicture}
         \caption{$\lambda = 0.5$}
     \end{subfigure}
-    \caption{Total platform profits if the platform incurs an investment cost for creating its own products ($\pi_P(N_P) - I_P N_P$). In the high bargaining power case (left), the platform never chooses to operate in hybrid mode. It either becomes a pure marketplace or a pure retailer. In the case of lower $\lambda_P$ (right), choosing the hybrid mode can be optimal depending on $I_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.2$).}
+    \caption{Total platform profits if the platform incurs an investment cost for creating its own products ($\pi_P(N_P) - I_P N_P$). In the high bargaining power case (left), the platform never chooses to operate in hybrid mode. It either becomes a pure marketplace or a pure retailer. In the case of lower $\lambda_P$ (right), choosing the hybrid mode can be optimal depending on $I_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode ($\mu = 1, N_C = 1, V_P = 1, V_F = 1, I_F = 0.05$).}
     \label{fig:equilibrium_low_lambda_entry_fees}
 \end{figure}
 
@@ -1208,10 +1238,10 @@ Therefore, consumers might prefer hybrid operation to the platform being a pure 
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=3.1, % adjust these values as needed
                     axis lines=left,
-                    xtick={0, 1.5},
+                    xtick={0, 4.5},
                     legend pos=south east,
                     width=\linewidth,
                 ]
@@ -1237,7 +1267,7 @@ Therefore, consumers might prefer hybrid operation to the platform being a pure 
             \begin{axis}[
                     xlabel={$N_P$},
                     ylabel={},
-                    xmin=0, xmax=1.5, % adjust these values as needed
+                    xmin=0, xmax=4.5, % adjust these values as needed
                     ymin=0, ymax=1.2, % adjust these values as needed
                     axis lines=left,
                     xtick={0, 0.6},
