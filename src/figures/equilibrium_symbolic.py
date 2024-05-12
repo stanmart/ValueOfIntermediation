@@ -18,7 +18,7 @@ def create_plot_data(
     num_obs: int = 500,
     lambda_P: float = 1,
     value_function: str = "profit",
-    bargaining: str = "one-sided",
+    bargaining: str = "onesided",
 ):
     
     N_P_sp, N_F_sp = Symbol("N_P"), Symbol("N_F")
