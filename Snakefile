@@ -255,9 +255,13 @@ rule paper:
     output:
         pdf = "out/paper/{paper}.pdf"
     params:
+        pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0],
         outdir = lambda wildcards, output: dirname(output.pdf)
     shell:
-        "tectonic --synctex --keep-intermediates --keep-logs --outdir {params.outdir} {input.tex} -Z search-path=."
+        "latexmk -pdf -synctex=1 -file-line-error \
+                 -outdir={params.outdir} \
+                 -jobname={params.pdf_wo_ext} \
+                 -interaction=nonstopmode {input.tex}"
 
 
 rule figure_equilibrium:
