@@ -8,7 +8,12 @@ Contains the papers "The Value of Being Indispensable", "Hybrid platforms and ba
 
 ## How to compile
 
-The project is set up so that `pixi` required dependencies into a local virtual environment. Simply [install `pixi`](https://pixi.sh/latest/#installation), and then you can use the following commands to compile the outputs:
+The project is set up so that `pixi` installs required dependencies into a local virtual environment. The exception is latex-related stuff:
+
+ * `manim` needs latex to render text. See [manim's documentation](texlive-latex-base) for details.
+ * Even though the project uses `tectonic` to render latex, it still needs `biber` to compile the bibliography. You need to install it separately.
+
+Other than these, simply [install `pixi`](https://pixi.sh/latest/#installation), and then you can use the following commands to compile the outputs:
 
  * `pixi run papers` to compile the papers
  * `pixi run presentations` to compile the presentations
