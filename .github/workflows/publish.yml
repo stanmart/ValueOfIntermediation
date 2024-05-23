@@ -18,10 +18,10 @@ jobs:
         with:
           cache: true
           environments: default
-      - name: Install tinytex
-        run: |
-          wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-          tlmgr install collection-basic amsmath babel-english cbfonts-fd cm-super ctex doublestroke dvisvgm everysel fontspec frcursive fundus-calligra gnu-freefont jknapltx latex-bin mathastext microtype ms physics preview ragged2e relsize rsfs setspace standalone tipa wasy wasysym xcolor xetex xkeyval
+      - name: Setup latex
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          package-file: .github/tl_packages
       - name: Cache Output
         id: cache-output
         uses: actions/cache@v4
