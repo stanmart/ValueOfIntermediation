@@ -1,19 +1,25 @@
-from sympy import Symbol, init_printing, simplify, solve, Eq
-from sympy import sqrt
 import sympy.plotting as sp
+from sympy import (
+    Eq,
+    Symbol,
+    init_printing,
+    simplify,
+    solve,
+    sqrt,  # type: ignore
+)
 
 init_printing()
 
-mu = Symbol('mu')
-V_F = Symbol('V_F')
-V_P = Symbol('V_P')
+mu = Symbol("mu")
+V_F = Symbol("V_F")
+V_P = Symbol("V_P")
 
-I_F = Symbol('I_F')
-K_F = Symbol('K_F')
+I_F = Symbol("I_F")
+K_F = Symbol("K_F")
 
-N_F = Symbol('N_F')
-N_P = Symbol('N_P')
-n = Symbol('n')
+N_F = Symbol("N_F")
+N_P = Symbol("N_P")
+n = Symbol("n")
 
 A_eq = mu * V_F / (K_F + I_F)
 A_def = N_F * V_F + N_P * V_P + 1
@@ -48,11 +54,9 @@ plot_single = sp.plot(
     pi_P_ret.subs(params_1),
     (N_P, 0, 5),
     ylim=(0, 4),
-    show=False
+    show=False,
 )
-plot_single.append(
-    sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_1)), show=False)[0]
-)
+plot_single.append(sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_1)), show=False)[0])
 plot_single.show()
 
 plot_multi = sp.plot(
@@ -62,13 +66,8 @@ plot_multi = sp.plot(
     pi_P_ret.subs(params_2),
     (N_P, 0, 5),
     ylim=(0, 4),
-    show=False
+    show=False,
 )
-plot_multi.append(
-    sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_1)), show=False)[0]
-)
-plot_multi.append(
-    sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_2)), show=False)[0]
-)
+plot_multi.append(sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_1)), show=False)[0])
+plot_multi.append(sp.plot_implicit(Eq(N_P, N_P_bar.subs(params_2)), show=False)[0])
 plot_multi.show()
-

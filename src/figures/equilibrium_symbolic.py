@@ -1,10 +1,11 @@
-import pandas as pd
+from collections.abc import Iterable
+
 import numpy as np
+import pandas as pd
+import typer
 from scipy.integrate import quad
 from scipy.optimize import fsolve
-from collections.abc import Iterable
-import typer
-from sympy import Symbol, integrate, simplify, log, lambdify
+from sympy import Symbol, lambdify, log  # type: ignore
 
 
 def create_plot_data(
@@ -20,12 +21,16 @@ def create_plot_data(
     value_function: str = "profit",
     bargaining: str = "onesided",
 ):
-    
     N_P_sp, N_F_sp = Symbol("N_P"), Symbol("N_F")
     s = Symbol("s")
 
-    f_profit = N_C * mu * (s * N_F_sp * V_F + N_P_sp * V_P) / (s * N_F_sp * V_F + N_P_sp * V_P + 1)
-    f_surplus = N_C * mu * log(s * N_F_sp * V_F + N_P_sp * V_P + 1)
+    f_profit = (
+        N_C
+        * mu
+        * (s * N_F_sp * V_F + N_P_sp * V_P)  # type: ignore
+        / (s * N_F_sp * V_F + N_P_sp * V_P + 1)  # type: ignore
+    )
+    f_surplus = N_C * mu * log(s * N_F_sp * V_F + N_P_sp * V_P + 1)  # type: ignore
 
     if value_function == "profit":
         f = f_profit
@@ -33,19 +38,23 @@ def create_plot_data(
         f = f_profit + f_surplus
     else:
         raise typer.BadParameter(f"Unknown value function: {value_function}")
-    
+
     f_num = lambdify((N_P_sp, N_F_sp, s), f)
     f_diff_num = lambdify((N_P_sp, N_F_sp, s), f.diff(s))
 
     if bargaining == "onesided":
-        pi_P_scalar = lambda N_P, N_F: quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s  ** (lambda_P - 1), 0, 1)[0]
-        pi_F_scalar = lambda N_P, N_F: quad(lambda s: f_diff_num(N_P, N_F, s) * s ** lambda_P, 0, 1)[0]
+        def pi_P_scalar(N_P, N_F):
+            return quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** (lambda_P - 1), 0, 1)[0]
+        def pi_F_scalar(N_P, N_F):
+            return quad(lambda s: f_diff_num(N_P, N_F, s) * s ** lambda_P, 0, 1)[0]
     elif bargaining == "twosided":
-        pi_P_scalar = lambda N_P, N_F: quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** lambda_P, 0, 1)[0]
-        pi_F_scalar = lambda N_P, N_F: quad(lambda s: f_diff_num(N_P, N_F, s) * s ** (lambda_P + 1), 0, 1)[0]
+        def pi_P_scalar(N_P, N_F):
+            return quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** lambda_P, 0, 1)[0]
+        def pi_F_scalar(N_P, N_F):
+            return quad(lambda s: f_diff_num(N_P, N_F, s) * s ** (lambda_P + 1), 0, 1)[0]
     else:
         raise typer.BadParameter(f"Unknown bargaining mode: {bargaining}")
-    
+
     pi_P = np.vectorize(pi_P_scalar)
     pi_F = np.vectorize(pi_F_scalar)
 
@@ -57,10 +66,10 @@ def create_plot_data(
             return np.array([N_F_opt(n) for n in N_P])
         else:
             return fsolve(lambda N_F: pi_F_t(N_P, N_F), 3)[0]
-        
+
     def K_F_opt():
         return np.sqrt(mu * I_F * V_F) - I_F
-    
+
     def N_F_opt_bench(N_P):
         K_F = K_F_opt()
         N_F_candidate = mu / (K_F + I_F) - N_P * V_P / V_F - 1 / V_F
@@ -86,19 +95,11 @@ def create_plot_data(
 
     if bargaining == "onesided" and value_function == "profit":
         N_F_bench = N_F_opt_bench(N_P_vec)
-        A_bench = N_P_vec * V_P + N_F_bench * V_F + 1   
+        A_bench = N_P_vec * V_P + N_F_bench * V_F + 1
         CS_bench = np.log(A_bench)
         pi_P_bench = K_F_opt() * N_F_bench + mu * N_P_vec * V_P / A_bench
-        K_F_opt_vec = np.where(
-            N_F_bench > 1e-5,
-            K_F_opt(),
-            np.nan
-        )
-        hybrid_mode_bench = np.where(
-            N_F_bench > 1e-5,
-            10,
-            0
-        )
+        K_F_opt_vec = np.where(N_F_bench > 1e-5, K_F_opt(), np.nan)
+        hybrid_mode_bench = np.where(N_F_bench > 1e-5, 10, 0)
     else:
         N_F_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
         A_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
@@ -107,17 +108,9 @@ def create_plot_data(
         K_F_opt_vec = np.ones_like(N_P_vec, dtype=float) * np.nan
         hybrid_mode_bench = np.ones_like(N_P_vec, dtype=float) * np.nan
 
-    K_F_implied = np.where(
-        N_F_vec > 1e-5,
-        (pi_P_vec - pi_P_var_vec) / N_F_vec,
-        np.nan
-    )
+    K_F_implied = np.where(N_F_vec > 1e-5, (pi_P_vec - pi_P_var_vec) / N_F_vec, np.nan)
 
-    hybrid_mode = np.where(
-        N_F_vec > 1e-5,
-        10,
-        0
-    )
+    hybrid_mode = np.where(N_F_vec > 1e-5, 10, 0)
 
     A_noF = N_P_vec * V_P + 1
     CS_noF = np.log(A_noF)

@@ -1,14 +1,32 @@
-from manim import *
-from numpy import sqrt, log1p, exp
+from manim import (
+    BLACK,
+    BLUE,
+    RED,
+    UP,
+    WHITE,
+    Axes,
+    Brace,
+    Create,
+    DashedVMobject,
+    FadeIn,
+    FadeOut,
+    Line,
+    MathTex,
+    ParametricFunction,
+    Scene,
+    Tex,
+    Text,
+    Transform,
+    Write,
+)
+from numpy import exp, log1p
 
 
 class Baseline(Scene):
-
     def construct(self):
-
         self.next_section("draw_graph")
 
-        self.camera.background_color = WHITE
+        self.camera.background_color = WHITE  # type: ignore
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
@@ -18,10 +36,7 @@ class Baseline(Scene):
 
         # Create plane
         ax = Axes(
-            x_range=[0, 1, 0.05],
-            y_range=[0, 1.1, 0.05],
-            x_length=10,
-            y_length=10
+            x_range=[0, 1, 0.05], y_range=[0, 1.1, 0.05], x_length=10, y_length=10
         )
         ax_label = ax.get_x_axis_label(r"s")
 
@@ -30,31 +45,48 @@ class Baseline(Scene):
         f_positive = ax.plot(lambda x: x)
         f_negative = ax.plot(lambda x: log1p(exp(1) - 2 + x))
 
-        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, sN_F)", direction=UP)
-        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', sN_F)", direction=UP)
-        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', sN_F)", direction=UP)
+        f_orig_label = ax.get_graph_label(f_orig, "f(N_P, sN_F)", direction=UP)  # type: ignore
+        f_positive_label = ax.get_graph_label(f_positive, "f(N_P', sN_F)", direction=UP)  # type: ignore
+        f_negative_label = ax.get_graph_label(f_negative, "f(N_P', sN_F)", direction=UP)  # type: ignore
 
         top_orig = ax.plot(lambda x: log1p(1))
         top_alt = ax.plot(lambda x: 1)
 
-        area_orig = ax.get_area(f_orig, (0, 1), opacity=0.5, color=BLUE)
-        area_fringe_orig = ax.get_area(f_orig, (0, 1), bounded_graph=top_orig, opacity=0.5, color=RED)
-        area_positive = ax.get_area(f_positive, (0, 1), opacity=0.5, color=BLUE)
-        area_fringe_positive = ax.get_area(f_positive, (0, 1), bounded_graph=top_alt, opacity=0.5, color=RED)
-        area_negative = ax.get_area(f_negative, (0, 1), opacity=0.5, color=BLUE)
-        area_fringe_negative = ax.get_area(f_negative, (0, 1), bounded_graph=top_alt, opacity=0.5, color=RED)
+        area_orig = ax.get_area(f_orig, (0, 1), opacity=0.5, color=BLUE)  # type: ignore
+        area_fringe_orig = ax.get_area(
+            f_orig,
+            (0, 1),
+            bounded_graph=top_orig,
+            opacity=0.5,
+            color=RED,  # type: ignore
+        )
+        area_positive = ax.get_area(f_positive, (0, 1), opacity=0.5, color=BLUE)  # type: ignore
+        area_fringe_positive = ax.get_area(
+            f_positive,
+            (0, 1),
+            bounded_graph=top_alt,
+            opacity=0.5,
+            color=RED,  # type: ignore
+        )
+        area_negative = ax.get_area(f_negative, (0, 1), opacity=0.5, color=BLUE)  # type: ignore
+        area_fringe_negative = ax.get_area(
+            f_negative,
+            (0, 1),
+            bounded_graph=top_alt,
+            opacity=0.5,
+            color=RED,  # type: ignore
+        )
 
         # Dashed placeholders
         def get_dashed_version(obj):
             dashed = obj.copy()
             dashed.set_stroke(width=1, color=BLACK)
             return DashedVMobject(dashed)
+
         f_orig_dashed = get_dashed_version(f_orig)
         f_positive_dashed = get_dashed_version(f_positive)
-        f_negative_dashed = get_dashed_version(f_negative)
         top_orig_dashed = get_dashed_version(top_orig)
         top_alt_dashed = get_dashed_version(top_alt)
-
 
         # Moving objects
         f = f_orig.copy()
@@ -80,7 +112,7 @@ class Baseline(Scene):
             Transform(area, area_positive),
             Transform(area_fringe, area_fringe_positive),
             FadeIn(f_orig_dashed),
-            FadeIn(top_orig_dashed)
+            FadeIn(top_orig_dashed),
         )
 
         # Third phase: back to original
@@ -94,10 +126,10 @@ class Baseline(Scene):
             FadeOut(f_orig_dashed),
             FadeOut(top_orig_dashed),
             FadeIn(f_positive_dashed),
-            FadeIn(top_alt_dashed)
+            FadeIn(top_alt_dashed),
         )
 
-        # Fourth phase: negative cross derivative 
+        # Fourth phase: negative cross derivative
         self.next_section("cross_derivative_negative")
 
         self.play(
@@ -108,6 +140,6 @@ class Baseline(Scene):
             Transform(area_fringe, area_fringe_negative),
             FadeIn(f_orig_dashed),
             FadeIn(top_orig_dashed),
-            FadeOut(top_alt_dashed)
+            FadeOut(top_alt_dashed),
         )
         self.wait(0.1)

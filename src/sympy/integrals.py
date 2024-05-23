@@ -1,12 +1,13 @@
-from sympy import Symbol, integrate, init_printing, simplify, solve, Eq
+from sympy import Eq, Symbol, init_printing, integrate, simplify, solve
+
 init_printing()
 
-mu = Symbol('mu')
-B = Symbol('B')
-C = Symbol('C')
-Nf = Symbol('N_f')
-Np = Symbol('N_P')
-Nfbar = Symbol('\\bar N_f')
+mu = Symbol("mu")
+B = Symbol("B")
+C = Symbol("C")
+Nf = Symbol("N_f")
+Np = Symbol("N_P")
+Nfbar = Symbol("\\bar N_f")
 
 v = (Np * B + Nf * B) / (Np * B + Nf * B + 1)
 

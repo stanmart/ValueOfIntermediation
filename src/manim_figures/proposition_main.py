@@ -1,14 +1,33 @@
-from manim import *
+from manim import (
+    BLACK,
+    BLUE,
+    DOWN,
+    RED,
+    RIGHT,
+    WHITE,
+    Axes,
+    Brace,
+    BraceBetweenPoints,
+    Create,
+    DrawBorderThenFill,
+    FadeIn,
+    FadeOut,
+    Line,
+    ParametricFunction,
+    ReplacementTransform,
+    Scene,
+    Tex,
+    Text,
+    Write,
+)
 from numpy import sqrt
 
 
 class Baseline(Scene):
-
     def construct(self):
-
         self.next_section("draw_bars")
 
-        self.camera.background_color = WHITE
+        self.camera.background_color = WHITE  # type: ignore
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
@@ -16,21 +35,18 @@ class Baseline(Scene):
         ParametricFunction.set_default(color=BLACK)
 
         # Create plane
-        ax = Axes(
-            x_range=[0, 1, 0.05],
-            y_range=[0, 1, 0.05],
-            x_length=10,
-            y_length=10
-        )
+        ax = Axes(x_range=[0, 1, 0.05], y_range=[0, 1, 0.05], x_length=10, y_length=10)
         ax_label = ax.get_axis_labels(x_label=r"t")
 
         self.play(Create(ax), Write(ax_label))
 
         f = ax.plot(lambda x: sqrt(x))
-        area = ax.get_area(f, (0, 1), opacity=0.5, color=BLUE)
+        area = ax.get_area(f, (0, 1), opacity=0.5, color=BLUE)  # type: ignore
 
         # Discrete number of firms
-        rects = ax.get_riemann_rectangles(f, (0.2, 1), dx=0.2, input_sample_type="right")
+        rects = ax.get_riemann_rectangles(
+            f, (0.2, 1), dx=0.2, input_sample_type="right"
+        )
         self.play(DrawBorderThenFill(rects))
 
         self.next_section("add_brace")
@@ -44,7 +60,9 @@ class Baseline(Scene):
         self.next_section("more_firms")
 
         # More firms
-        rects2 = ax.get_riemann_rectangles(f, (0.05, 1), dx=0.05, input_sample_type="right")
+        rects2 = ax.get_riemann_rectangles(
+            f, (0.05, 1), dx=0.05, input_sample_type="right"
+        )
 
         # Brace again
         brace2 = BraceBetweenPoints(ax.c2p(0.05, 0), ax.c2p(0.1, 0))
@@ -54,7 +72,7 @@ class Baseline(Scene):
         self.play(
             ReplacementTransform(rects, rects2),
             ReplacementTransform(brace, brace2),
-            ReplacementTransform(label, label2)
+            ReplacementTransform(label, label2),
         )
 
         self.next_section("continuous_approximation")
@@ -62,10 +80,9 @@ class Baseline(Scene):
         # Continuous approximation
 
         self.play(FadeOut(brace), FadeOut(label), FadeOut(brace2), FadeOut(label2))
-        f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)
+        f_label = ax.get_graph_label(f, "f(t)", direction=RIGHT)  # type: ignore
         self.play(Create(f), Create(f_label))
         self.play(FadeOut(rects2), FadeIn(area))
-
 
         self.next_section("surplus_division")
 
@@ -74,5 +91,5 @@ class Baseline(Scene):
         top = ax.plot(lambda x: 1)
         self.play(Create(top))
 
-        area_fringe = ax.get_area(f, (0, 1), bounded_graph=top, opacity=0.5, color=RED)
+        area_fringe = ax.get_area(f, (0, 1), bounded_graph=top, opacity=0.5, color=RED)  # type: ignore
         self.play(FadeIn(area_fringe))

@@ -1,16 +1,32 @@
-from manim import *
 import pandas as pd
+from manim import (
+    BLACK,
+    BLUE_D,
+    DOWN,
+    RED_D,
+    RIGHT,
+    WHITE,
+    Axes,
+    Brace,
+    Create,
+    Line,
+    MathTex,
+    ParametricFunction,
+    Scene,
+    Tex,
+    Text,
+    Transform,
+    Write,
+)
 
 
 class Baseline(Scene):
-
     def construct(self):
-
         data = pd.read_csv("out/figures/equilibrium.csv")
 
         self.next_section("draw_graph")
 
-        self.camera.background_color = WHITE
+        self.camera.background_color = WHITE  # type: ignore
         Text.set_default(color=BLACK)
         Line.set_default(color=BLACK)
         Tex.set_default(color=BLACK)
@@ -26,35 +42,48 @@ class Baseline(Scene):
             y_length=7,
             x_axis_config={"include_ticks": False},
             y_axis_config={"include_ticks": False},
-
         )
-        x_ax_label, y_ax_label = ax.get_axis_labels(x_label=r"N_P", y_label=r"CS^*(N_P)")
+        x_ax_label, y_ax_label = ax.get_axis_labels(
+            x_label=r"N_P", y_label=r"CS^*(N_P)"
+        )
 
         # Destiniations
-        A_noF =  (ax.plot_line_graph(
-            x_values=data["N_P"], y_values=data["CS_noF"],
-            line_color=BLACK, add_vertex_dots=False
-        ))
+        A_noF = ax.plot_line_graph(
+            x_values=data["N_P"],
+            y_values=data["CS_noF"],
+            line_color=BLACK,  # type: ignore
+            add_vertex_dots=False,
+        )
         A_bench = ax.plot_line_graph(
-            data["N_P"], data["CS_bench"],
-            line_color=BLUE_D, add_vertex_dots=False
+            data["N_P"],
+            data["CS_bench"],
+            line_color=BLUE_D,  # type: ignore
+            add_vertex_dots=False,
         )
         A_barg = ax.plot_line_graph(
-            data["N_P"], data["CS"],
-            line_color=RED_D, add_vertex_dots=False
+            data["N_P"],
+            data["CS"],
+            line_color=RED_D,  # type: ignore
+            add_vertex_dots=False,
         )
 
-        pi_P_noF_scaled = (ax.plot_line_graph(
-            data["N_P"], data["pi_P_noF"] * 3,
-            line_color=BLACK, add_vertex_dots=False
-        ))
+        pi_P_noF_scaled = ax.plot_line_graph(
+            data["N_P"],
+            data["pi_P_noF"] * 3,
+            line_color=BLACK,  # type: ignore
+            add_vertex_dots=False,
+        )
         pi_P_bench_scaled = ax.plot_line_graph(
-            data["N_P"], data["pi_P_bench"] * 3,
-            line_color=BLUE_D, add_vertex_dots=False
+            data["N_P"],
+            data["pi_P_bench"] * 3,
+            line_color=BLUE_D,  # type: ignore
+            add_vertex_dots=False,
         )
         pi_P_barg_scaled = ax.plot_line_graph(
-            data["N_P"], data["pi_P"] * 3,
-            line_color=RED_D, add_vertex_dots=False
+            data["N_P"],
+            data["pi_P"] * 3,
+            line_color=RED_D,  # type: ignore
+            add_vertex_dots=False,
         )
 
         y_ax_label_pi = MathTex(r"\pi_P^*(N_P)")
@@ -67,12 +96,12 @@ class Baseline(Scene):
 
         # Legend
         legend_noF = MathTex(r"\text{No Fringe}", color=BLACK)
-        legend_bench = MathTex(r"\text{Benchmark}", color=BLUE_D)
-        legend_barg = MathTex(r"\text{Bargaining}", color=RED_D)
+        legend_bench = MathTex(r"\text{Benchmark}", color=BLUE_D)  # type: ignore
+        legend_barg = MathTex(r"\text{Bargaining}", color=RED_D)  # type: ignore
 
-        legend_noF.next_to(ax.c2p(1, 2.5), RIGHT + DOWN)
-        legend_bench.next_to(ax.c2p(1, 2.3), RIGHT + DOWN)
-        legend_barg.next_to(ax.c2p(1, 2.1), RIGHT + DOWN)
+        legend_noF.next_to(ax.c2p(1, 2.5), RIGHT + DOWN)  # type: ignore
+        legend_bench.next_to(ax.c2p(1, 2.3), RIGHT + DOWN)  # type: ignore
+        legend_barg.next_to(ax.c2p(1, 2.1), RIGHT + DOWN)  # type: ignore
 
         # First phase: draw axes
         self.play(Create(ax), Write(x_ax_label), Write(y_ax_label))
@@ -95,7 +124,7 @@ class Baseline(Scene):
             Transform(f_noF, pi_P_noF_scaled),
             Transform(f_bench, pi_P_bench_scaled),
             Transform(f_barg, pi_P_barg_scaled),
-            Transform(y_ax_label, y_ax_label_pi)
+            Transform(y_ax_label, y_ax_label_pi),
         )
 
         self.wait(0.1)
