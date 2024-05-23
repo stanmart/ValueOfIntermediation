@@ -1,8 +1,8 @@
 # The value of intermediation
 
-Contains the papers "The Value of Being Indispensible", "Hybrid platforms and bargaining power" and related materials. The main outputs are the following:
+Contains the papers "The Value of Being Indispensable", "Hybrid platforms and bargaining power" and related materials. The main outputs are the following:
 
- * `out/paper/paper.pdf`: The latest version of "The Value of Being Indispensible"
+ * `out/paper/paper.pdf`: The latest version of "The Value of Being Indispensable"
  * `out/paper/application.pdf`: The latest version of "Hybrid platforms and bargaining power"
  * `out/presentation/*.html`: a number of revealjs presentations about the project
 
@@ -13,5 +13,5 @@ The project is set up so that `pixi` required dependencies into a local virtual 
  * `pixi run papers` to compile the papers
  * `pixi run presentations` to compile the presentations
  * `pixi run all` to compile everything
- * `pixi run publish` to compile everything and upload the results to github pages
+ * `pixi run publish` to compile everything and upload the results to Github pages
 
