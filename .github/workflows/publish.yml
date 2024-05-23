@@ -8,16 +8,20 @@ on:
       - completed
 
 jobs:
-  pre-publish:
+  publish:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: prefix-dev/setup-pixi@v0.7.0
+      - name: Setup pixi
+        uses: prefix-dev/setup-pixi@v0.7.0
         with:
-          activate-environment: true
           cache: true
           environments: default
+      - name: Install tinytex
+        run: |
+          wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+          tlmgr install collection-basic amsmath babel-english cbfonts-fd cm-super ctex doublestroke dvisvgm everysel fontspec frcursive fundus-calligra gnu-freefont jknapltx latex-bin mathastext microtype ms physics preview ragged2e relsize rsfs setspace standalone tipa wasy wasysym xcolor xetex xkeyval
       - name: Cache Output
         id: cache-output
         uses: actions/cache@v4
