@@ -5,7 +5,7 @@ from src.utils.makeutils import find_input_files, find_manim_sections, find_vide
 
 
 PAPERS, *_ = glob_wildcards("src/paper/{paper}.tex")
-PRESENTATIONS, *_ = glob_wildcards("src/presentation/{pres}.qmd")
+PRESENTATIONS, *_ = glob_wildcards("src/presentation/{presentation}.qmd")
 
 
 rule all:

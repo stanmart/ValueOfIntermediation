@@ -107,7 +107,7 @@ Examine the bargaining power implications of hybrid platforms and its welfare co
 ::: {.fragment}
  - One **platform**: $P$
    - Without the platform, no value can be created
-   - Might have its own products (hybrid mdoe)
+   - Might have its own products (hybrid mode)
 :::
 ::: {.fragment}
  - A continuum of potential **fringe entrants**: $F_i, i \in \mathbb{R}_0^+$
@@ -306,7 +306,7 @@ $$
 
 ## Production
 ::: {.fragment}
- - Assume that the platform prices its products as if they were made by seperate, competitive sellers
+ - Assume that the platform prices its products as if they were made by separate, competitive sellers
    - Possible interpretation: profit-maximizing subsidiaries
    - More importantly: "best case scenario"
 :::

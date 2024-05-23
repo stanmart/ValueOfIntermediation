@@ -43,15 +43,23 @@ def create_plot_data(
     f_diff_num = lambdify((N_P_sp, N_F_sp, s), f.diff(s))
 
     if bargaining == "onesided":
+
         def pi_P_scalar(N_P, N_F):
-            return quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** (lambda_P - 1), 0, 1)[0]
+            return quad(
+                lambda s: f_num(N_P, N_F, s) * lambda_P * s ** (lambda_P - 1), 0, 1
+            )[0]
+
         def pi_F_scalar(N_P, N_F):
-            return quad(lambda s: f_diff_num(N_P, N_F, s) * s ** lambda_P, 0, 1)[0]
+            return quad(lambda s: f_diff_num(N_P, N_F, s) * s**lambda_P, 0, 1)[0]
     elif bargaining == "twosided":
+
         def pi_P_scalar(N_P, N_F):
-            return quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s ** lambda_P, 0, 1)[0]
+            return quad(lambda s: f_num(N_P, N_F, s) * lambda_P * s**lambda_P, 0, 1)[0]
+
         def pi_F_scalar(N_P, N_F):
-            return quad(lambda s: f_diff_num(N_P, N_F, s) * s ** (lambda_P + 1), 0, 1)[0]
+            return quad(lambda s: f_diff_num(N_P, N_F, s) * s ** (lambda_P + 1), 0, 1)[
+                0
+            ]
     else:
         raise typer.BadParameter(f"Unknown bargaining mode: {bargaining}")
 

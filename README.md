@@ -21,4 +21,4 @@ The steps to build the project are described in its snakemake file. If snakemake
     conda activate snakemake
     snakemake --cores all --use-conda
 ```
-assuming that snakemake is available in the conda environment named snakemake. The number of jobs to be processed in paralell is set by the `--cores` argument (`e.g. snakemake --cores 4` runs four jobs in parallel).
+assuming that snakemake is available in the conda environment named snakemake. The number of jobs to be processed in parallel is set by the `--cores` argument (`e.g. snakemake --cores 4` runs four jobs in parallel).

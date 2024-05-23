@@ -69,10 +69,14 @@ class Baseline(Scene):
         pi_F_orig = ax.plot(lambda x: pi_F(N_P_0, x), color=BLUE_D)
         pi_F_alt = ax.plot(lambda x: pi_F(N_P_1, x), color=RED_D)
         pi_F_orig_label = ax.get_graph_label(
-            pi_F_orig, r"\pi_F(N_P, N_F)", direction=UP  # type: ignore
+            pi_F_orig,
+            r"\pi_F(N_P, N_F)",
+            direction=UP,  # type: ignore
         )
         pi_F_alt_label = ax.get_graph_label(
-            pi_F_alt, r"\pi_F(N_P', N_F)", direction=DOWN  # type: ignore
+            pi_F_alt,
+            r"\pi_F(N_P', N_F)",
+            direction=DOWN,  # type: ignore
         )
 
         N_F_opt_0_bar = ax.get_vertical_line(N_F_opt_point_0, color=BLACK)
@@ -84,10 +88,13 @@ class Baseline(Scene):
 
         investment_cost = ax.plot(lambda x: I_F * x)
         investment_cost_label = ax.get_graph_label(
-            investment_cost, r"I_F N_F", direction=UP  # type: ignore
+            investment_cost,
+            r"I_F N_F",
+            direction=UP,  # type: ignore
         )
         brace_loss = BraceBetweenPoints(
-            N_F_opt_1_bar.get_bottom(), N_F_opt_0_bar.get_bottom()  # type: ignore
+            N_F_opt_1_bar.get_bottom(),  # type: ignore
+            N_F_opt_0_bar.get_bottom(),  # type: ignore
         )
         brace_label = MathTex(r"> N_P' - N_P", color=BLACK)
         brace_label.next_to(brace_loss, DOWN)

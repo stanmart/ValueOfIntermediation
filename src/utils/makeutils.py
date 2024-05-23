@@ -1,15 +1,17 @@
-import re
-import os
-import json
 import glob
-import typer
+import json
+import os
+import re
 
+import typer
 
 app = typer.Typer()
 
 
 @app.command()
-def find_input_files(tex_file: str, remove_prefix: str = "", print_console: bool = False):
+def find_input_files(
+    tex_file: str, remove_prefix: str = "", print_console: bool = False
+):
     """Find all of the files that are included, inputted or includegraphics'
     in a tex file.
     Args:
@@ -21,7 +23,7 @@ def find_input_files(tex_file: str, remove_prefix: str = "", print_console: bool
         List[str]: the list of included files
     """
 
-    with open(tex_file, 'r') as file:
+    with open(tex_file, "r") as file:
         tex_contents = file.read()
 
     patterns = [
@@ -45,7 +47,7 @@ def find_input_files(tex_file: str, remove_prefix: str = "", print_console: bool
 
 @app.command()
 def find_manim_sections(manim_file: str, print_console: bool = False):
-    """Find all of the section names in a manim scirpt.
+    """Find all of the section names in a manim script.
     Args:
         tex_file: The path of the tex file.
         print_console: Whether to print the paths of the manim sections
@@ -53,7 +55,7 @@ def find_manim_sections(manim_file: str, print_console: bool = False):
         List[str]: the list of manim sections
     """
 
-    with open(manim_file, 'r') as file:
+    with open(manim_file, "r") as file:
         manim_contents = file.read()
 
     patterns = [
@@ -81,7 +83,7 @@ def rename_manim_sections(section_dir: str):
     os.chdir(section_dir)
     section_json = glob.glob("*.json")[0]
 
-    with open(section_json, 'r') as file:
+    with open(section_json, "r") as file:
         section_contents = json.load(file)
 
     for section in section_contents:
@@ -98,7 +100,7 @@ def find_videos(qmd_file: str, remove_prefix: str = "", print_console: bool = Fa
         List[str]: the list of video paths
     """
 
-    with open(qmd_file, 'r') as file:
+    with open(qmd_file, "r") as file:
         qmd_contents = file.read()
 
     patterns = [
