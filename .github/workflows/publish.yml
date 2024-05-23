@@ -1,0 +1,28 @@
+name: publish
+
+on:
+  workflow_run:
+    workflows: ["checks"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  pre-publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.7.0
+        with:
+          activate-environment: true
+          cache: true
+          environments: default
+      - name: Cache Output
+        id: cache-output
+        uses: actions/cache@v4
+        with:
+          path: out
+          key: ${{ runner.os }}-out
+      - name: Publish to Github Pages
+        run: "pixi run publish"
