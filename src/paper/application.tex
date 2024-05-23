@@ -1220,7 +1220,7 @@ As a consequence, the aggregate is decreasing in $N_P$ in the hybrid regime (\cr
 \end{corollary}
 
 Nevertheless, there is an important distinction compared to the previous results.
-While this does lead to a decrease in total surplus, in contrast to the two-sided bargaining case, this does not imply a decrese in consumer surplus.
+While this does lead to a decrease in total surplus, in contrast to the two-sided bargaining case, this does not imply a decrease in consumer surplus.
 As mentioned before, the consumers' share of total surplus is equal to the platform's profits, and thus it is increasing in $N_P$ if and only if platform profits (\cref{fig:profits_full_surplus_two_sided}) are.
 Therefore, consumers might prefer hybrid operation to the platform being a pure marketplace.
 
@@ -1379,7 +1379,7 @@ The following observation demonstrates this idea.
 In words, \cref{prop:outcome_based_bargaining_power} describes two alternative worlds, in which $N_F$ fringe firms (assuming a platform with $N_P$ product variety and $N_C$ consumers) are able to achieve the same total profit level.
 However, in one of these cases, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
 The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
-This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind loosing a few fringe sellers.
+This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind losing a few fringe sellers.
 
 \begin{figure}
     \centering
@@ -1679,7 +1679,7 @@ The following cooperative game describes this case.
 
 Consider the game $\mathcal{G} = (\mathcal{N}, v)$, characterized by the set of players $\mathcal{N}$ and its characteristic function $v$.
 The set of players consists of the platform plus the fringe firms: $\mathcal{N} = \{P, F_i\}, i \in [0, N_F]$.
-Because the platform is indispensible, the value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
+Because the platform is indispensable, the value of a coalition $S$ is zero without the platform, and depends on the number of fringe firms otherwise:
 \begin{align*}
     v(S) = \begin{cases}
         0 & \text{if } P \notin S \\
@@ -1806,7 +1806,7 @@ However, the same logic can be applied to the extensions presented in \cref{sec:
         
         \node[align=center, right=of entry_decision, distance=3cm] (arrange_fringe) {Arrange fringe firms in some fixed order};
         \node[align=center, below of=arrange_fringe] (foreach) {For each (remaining) fringe firm $F_i$:};
-        \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is choosen as the proposer};
+        \node[align=center] (choose_proposer) [below=1cm of foreach] {$F_i$ or $P$ is chosen as the proposer};
         \node[align=center] (proposal) [below of=choose_proposer] {Proposer proposes entry fee $K_{F_i}$};
         \node[align=center] (accept) [below left=2cm and -2cm of proposal] {Responder accepts $K_{F_i}$};
         \node[align=center] (reject) [below right=2cm and -2cm of proposal] {Responder rejects $K_{F_i}$};
@@ -1857,10 +1857,29 @@ Given any equilibrium sales profits ($\pi^v_{F_i}$), they can achieve it by sett
 Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish that both the Shapley value and the equilibrium sales profits are identical for each fringe firms, and thus a single, common entry fee $K_F$ will be agreed upon.
 
 
-\section{The platform's product pricing assumption}
-\label{sec:separate_pricing}
+% \section{The platform's product pricing assumption}
+% \label{sec:separate_pricing}
 
-TODO: discuss the assumptioin of pricing products separately
+% This section explores the consequences of relaxing the assumption that the platform prices its own products as if they were priced by separate entities.
+% So let us now assume, that when pricing product $P_i$, the platform does consider its effect on the sales of its other products.
+
+% For the fringe firms, the problem is the same as before: they choose their prices to maximize their profits, while not having an effect on total aggregate.
+% Thus, the price they set is the same as before: $p_{F_i} = c_{F_i} + \mu$.
+
+% The same is not the case with the platform.
+% When pricing its products, the platform must consider the effect of its prices on the sales of its other products, through its effects on the aggregate.
+% The end result is that the platform will set higher prices than under the separate pricing assumption, because it internalizes the effect of one product's price on the demand for the other products.
+% In particular, it can be shown that the optimal price for the platform's product is
+% \begin{align*}
+%     p_P^* = c_P + \mu + W_0\left( \frac{N_P V_P}{N_F V_F + 1} \right),
+% \end{align*}
+% where $W_0$ is the principal branch of the Lambert $W$ function.
+
+% Given an aggregate of size $A$, the platform's profits are
+% \begin{align*}
+%     \dots
+% \end{align*}
+
 
 
 \section{Proofs and additional lemmas}
