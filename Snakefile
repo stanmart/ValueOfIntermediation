@@ -86,7 +86,7 @@ rule presentation:
 rule manim_equilibrium_outcomes:
     input:
         script = "src/manim_figures/equilibrium_outcomes.py",
-        data = "out/figures/equilibrium.csv"
+        data = "out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv"
     output:
         videos = expand(
             "out/manim_figures/videos/equilibrium_outcomes/{height}p{fps}/sections/{section}.mp4",
