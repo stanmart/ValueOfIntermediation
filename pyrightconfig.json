@@ -1,0 +1,3 @@
+{
+    "include": ["src/figures", "src/manim_figures", "src/utils"]
+}

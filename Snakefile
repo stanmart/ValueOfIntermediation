@@ -11,12 +11,17 @@ PRESENTATIONS, *_ = glob_wildcards("src/presentation/{presentation}.qmd")
 rule all:
     input:
         presentations = expand("out/presentation/{presentation}.html", presentation=PRESENTATIONS),
-        paper = expand("out/paper/{paper}.pdf", paper=PAPERS)
+        papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
 
 
 rule papers:
     input:
-        paper = expand("out/paper/{paper}.pdf", paper=PAPERS)
+        papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
+
+
+rule presentations:
+    input:
+        expand("out/presentation/{presentation}.html", presentation=PRESENTATIONS)
 
 
 rule deploy_to_github:
@@ -62,7 +67,6 @@ rule prepare_to_deploy:
 
 
 rule presentation:
-    conda: "envs/quarto.yaml"
     input:
         qmd = "src/presentation/{presentation}.qmd",
         bib = "src/presentation/references.bib",
@@ -80,7 +84,6 @@ rule presentation:
 
 
 rule manim_equilibrium_outcomes:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/equilibrium_outcomes.py",
         data = "out/figures/equilibrium.csv"
@@ -100,7 +103,6 @@ rule manim_equilibrium_outcomes:
 
 
 rule manim_market_structure:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/market_structure.py"
     output:
@@ -119,7 +121,6 @@ rule manim_market_structure:
 
 
 rule manim_market_structure_benchmark:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/market_structure_benchmark.py"
     output:
@@ -138,7 +139,6 @@ rule manim_market_structure_benchmark:
 
 
 rule manim_equilibrium_entry:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/equilibrium_entry.py"
     output:
@@ -157,7 +157,6 @@ rule manim_equilibrium_entry:
 
 
 rule manim_comparative_equilibrium_entry:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/comparative_equilibrium_entry.py"
     output:
@@ -176,7 +175,6 @@ rule manim_comparative_equilibrium_entry:
 
 
 rule manim_comparative_n_p_on_shares:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/comparative_n_p_on_shares.py"
     output:
@@ -195,7 +193,6 @@ rule manim_comparative_n_p_on_shares:
 
 
 rule manim_corollary_comparative:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/corollary_comparative.py"
     output:
@@ -214,7 +211,6 @@ rule manim_corollary_comparative:
 
 
 rule manim_proposition_main:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/proposition_main.py"
     output:
@@ -233,7 +229,6 @@ rule manim_proposition_main:
 
 
 rule manim_shapley_value:
-    conda: "envs/manim.yaml"
     input:
         script = "src/manim_figures/shapley_value_demo.py"
     output:
@@ -260,18 +255,12 @@ rule paper:
     output:
         pdf = "out/paper/{paper}.pdf"
     params:
-        pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0],
         outdir = lambda wildcards, output: dirname(output.pdf)
     shell:
-        "latexmk -pdf -synctex=1 -file-line-error \
-                 -outdir={params.outdir} \
-                 -jobname={params.pdf_wo_ext} \
-                 -interaction=nonstopmode {input.tex}"
+        "tectonic --synctex --keep-intermediates --keep-logs --outdir {params.outdir} {input.tex} -Z search-path=."
 
 
 rule figure_equilibrium:
-    conda:
-        "envs/python-analysis.yaml"
     input:
         script = "src/figures/equilibrium_symbolic.py"
     output:
@@ -284,8 +273,6 @@ rule figure_equilibrium:
 
 
 rule figure_equilibrium_entry:
-    conda:
-        "envs/python-analysis.yaml"
     input:
         script = "src/figures/equilibrium_nf.py"
     output:
@@ -294,31 +281,3 @@ rule figure_equilibrium_entry:
         "python {input.script} {output.fig} \
          --mu 1 --v-p 1 --v-f 1 --i-f 0.2 --n-p 0 --n-p 0.2 --n-f-range 0 1 \
          --num-obs 500 --width 5 --height 3.8 --dpi 300"
-
-
-rule filegraph:
-    conda: "envs/graphviz.yaml"
-    input:
-        "Snakefile"
-    output:
-        "build_graphs/filegraph.pdf"
-    shell:
-        "snakemake --filegraph | dot -Tpdf > build_graphs/filegraph.pdf"
-
-rule rulegraph:
-    conda: "envs/graphviz.yaml"
-    input:
-        "Snakefile"
-    output:
-        "build_graphs/rulegraph.pdf"
-    shell:
-        "snakemake --rulegraph | dot -Tpdf > build_graphs/rulegraph.pdf"
-
-rule dag:
-    conda: "envs/graphviz.yaml"
-    input:
-        "Snakefile"
-    output:
-        "build_graphs/dag.pdf"
-    shell:
-        "snakemake --dag | dot -Tpdf > build_graphs/dag.pdf"

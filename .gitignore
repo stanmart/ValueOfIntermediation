@@ -21,3 +21,7 @@ __pycache__
 
 # Latex workshop recipe
 !.vscode/settings.json
+# pixi environments
+.pixi
+*.egg-info
+
