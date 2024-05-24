@@ -20,6 +20,28 @@ Other than these, simply [install `pixi`](https://pixi.sh/latest/#installation),
  * `pixi run all` to compile everything
  * `pixi run publish` to compile everything and upload the results to Github pages
 
+<details>
+<summary>Other pixi tasks</summary>
+The following commands are available to check the code:
+
+ * `pixi run format` to format the Python code using `ruff`
+ * `pixi run lint` to lint the Python code using `ruff`
+ * `pixi run typecheck` to typecheck the Python code using `pyright`
+ * `pixi run spell` to check the spelling using `codespell`
+ * `pixi run check` to run all the checks
+
+The following commands are available to create graphs of snakemake's execution plan:
+
+ * `pixi run dag` to create a directed acyclic graph of the snakemake workflow
+ * `pixi run filegraph` to create a file graph of the snakemake workflow
+ * `pixi run rulegraph` to create a rule graph of the snakemake workflow
+
+The following command is available to compile the texlive packages needed for the project:
+
+ * `pixi run update-latex-deps` to collect the texlive packages needed for the project and write them to `tl_packages.txt`
+
+</details>
+
 ## Continuous integration
 
 The project uses Github Actions to automatically compile the outputs and upload them to Github pages. First, the following checks must pass:
