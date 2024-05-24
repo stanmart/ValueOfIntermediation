@@ -22,7 +22,9 @@ from manim import (
 
 class Baseline(Scene):
     def construct(self):
-        data = pd.read_csv("out/figures/equilibrium.csv")
+        data = pd.read_csv(
+            "out/figures/equilibrium_profit_onesided_scale-1_lambda-1.csv"
+        )
 
         self.next_section("draw_graph")
 
@@ -36,8 +38,8 @@ class Baseline(Scene):
 
         # Create plane
         ax = Axes(
-            x_range=[0, 1.5, 0.015],
-            y_range=[0, 2.5, 0.02],
+            x_range=[0, 5.3, 0.05],
+            y_range=[0, 4.1, 0.05],
             x_length=11,
             y_length=7,
             x_axis_config={"include_ticks": False},
@@ -50,19 +52,19 @@ class Baseline(Scene):
         # Destiniations
         A_noF = ax.plot_line_graph(
             x_values=data["N_P"],
-            y_values=data["CS_noF"],
+            y_values=data["CS_noF"] * 2,
             line_color=BLACK,  # type: ignore
             add_vertex_dots=False,
         )
         A_bench = ax.plot_line_graph(
             data["N_P"],
-            data["CS_bench"],
+            data["CS_bench"] * 2,
             line_color=BLUE_D,  # type: ignore
             add_vertex_dots=False,
         )
         A_barg = ax.plot_line_graph(
             data["N_P"],
-            data["CS"],
+            data["CS"] * 2,
             line_color=RED_D,  # type: ignore
             add_vertex_dots=False,
         )
@@ -99,9 +101,9 @@ class Baseline(Scene):
         legend_bench = MathTex(r"\text{Benchmark}", color=BLUE_D)  # type: ignore
         legend_barg = MathTex(r"\text{Bargaining}", color=RED_D)  # type: ignore
 
-        legend_noF.next_to(ax.c2p(1, 2.5), RIGHT + DOWN)  # type: ignore
-        legend_bench.next_to(ax.c2p(1, 2.3), RIGHT + DOWN)  # type: ignore
-        legend_barg.next_to(ax.c2p(1, 2.1), RIGHT + DOWN)  # type: ignore
+        legend_noF.next_to(ax.c2p(3.5, 4), RIGHT + DOWN)  # type: ignore
+        legend_bench.next_to(ax.c2p(3.5, 3.7), RIGHT + DOWN)  # type: ignore
+        legend_barg.next_to(ax.c2p(3.5, 3.4), RIGHT + DOWN)  # type: ignore
 
         # First phase: draw axes
         self.play(Create(ax), Write(x_ax_label), Write(y_ax_label))
