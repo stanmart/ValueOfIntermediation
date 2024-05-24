@@ -46,6 +46,7 @@ typecheck = "pyright; exit 0"
 
 [feature.build-graphs.dependencies]
 snakemake = {version = "7.32.*", channel = "bioconda"}
+typer = "0.6.*"
 graphviz = "*"
 [feature.build-graphs.tasks]
 create-build-graph-dir = "mkdir -p build-graphs"
