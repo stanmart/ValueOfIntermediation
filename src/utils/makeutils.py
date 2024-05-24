@@ -119,5 +119,88 @@ def find_videos(qmd_file: str, remove_prefix: str = "", print_console: bool = Fa
     return paths
 
 
+@app.command()
+def collect_latex_packages(
+    dep_files: list[str],
+    output_file: str = "tl_packages.txt",
+    add_biber: bool = False,
+    add_latexmk: bool = False,
+    add_manim_deps: bool = False,
+    print_console: bool = False,
+) -> set[str]:
+    """Collect all of the latex packages from the dependency files.
+    Args:
+        dep_files: The list of dependency files.
+        output_file: The path of the output file.
+    Returns:
+        List[str]: the list of latex packages
+    """
+
+    packages = set()
+
+    for dep_file in dep_files:
+        with open(dep_file, "r") as file:
+            dep_contents = file.read()
+
+        pattern = re.compile(r"\*\{package\}\{(.*?)\}")
+
+        packages.update(pattern.findall(dep_contents))
+
+    if add_biber:
+        packages.add("biber")
+
+    if add_latexmk:
+        packages.add("latexmk")
+
+    if add_manim_deps:
+        packages.update(
+            [
+                "collection-basic",
+                "amsmath",
+                "babel-english",
+                "cbfonts-fd",
+                "cm-super",
+                "ctex",
+                "doublestroke",
+                "dvisvgm",
+                "everysel",
+                "fontspec",
+                "frcursive",
+                "fundus-calligra",
+                "gnu-freefont",
+                "jknapltx",
+                "latex-bin",
+                "mathastext",
+                "microtype",
+                "ms",
+                "physics",
+                "preview",
+                "ragged2e",
+                "relsize",
+                "rsfs",
+                "setspace",
+                "standalone",
+                "tipa",
+                "wasy",
+                "wasysym",
+                "xcolor",
+                "xetex",
+                "xkeyval",
+            ]
+        )
+
+    if print_console:
+        print(f"Found {len(packages)} dependencies:")
+        for package in packages:
+            print(f" > {package}")
+
+    if output_file:
+        with open(output_file, "w") as file:
+            for package in packages:
+                file.write(package + "\n")
+
+    return packages
+
+
 if __name__ == "__main__":
     app()

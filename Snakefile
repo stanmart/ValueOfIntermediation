@@ -14,6 +14,17 @@ rule all:
         papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
 
 
+rule update_latex_deps:
+    input:
+        deps = expand("out/paper/{paper}.dep", paper=PAPERS)
+    output:
+        dep_file = "tl_packages.txt"
+    shell:
+        "python src/utils/makeutils.py collect-latex-packages \
+            --add-biber --add-latexmk --add-manim-deps \
+            --output-file tl_packages.txt {input.deps}"
+
+
 rule papers:
     input:
         papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
@@ -253,7 +264,8 @@ rule paper:
         inputs = lambda wildcard: find_input_files(f"src/paper/{wildcard.paper}.tex"),
         util_script = "src/utils/makeutils.py"
     output:
-        pdf = "out/paper/{paper}.pdf"
+        pdf = "out/paper/{paper}.pdf",
+        dep = "out/paper/{paper}.dep"
     params:
         pdf_wo_ext = lambda wildcards, output: splitext(basename(output.pdf))[0],
         outdir = lambda wildcards, output: dirname(output.pdf)
