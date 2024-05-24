@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 
+import requests
 import typer
 
 app = typer.Typer()
@@ -129,7 +130,7 @@ def collect_latex_packages(
     add_manim_deps: bool = False,
     check_against_tl: bool = False,
     print_console: bool = False,
-) -> set[str]:
+) -> list[str]:
     """Collect all of the latex packages from the dependency files.
     Args:
         dep_files: The list of dependency files.
@@ -138,7 +139,7 @@ def collect_latex_packages(
         List[str]: the list of latex packages
     """
 
-    packages = set()
+    deps = set()
 
     for dep_file in dep_files:
         with open(dep_file, "r") as file:
@@ -146,16 +147,16 @@ def collect_latex_packages(
 
         pattern = re.compile(r"\*\{package\}\{(.*?)\}")
 
-        packages.update(pattern.findall(dep_contents))
+        deps.update(pattern.findall(dep_contents))
 
     if add_biber:
-        packages.add("biber")
+        deps.add("biber")
 
     if add_latexmk:
-        packages.add("latexmk")
+        deps.add("latexmk")
 
     if add_manim_deps:
-        packages.update(
+        deps.update(
             [
                 "collection-basic",
                 "amsmath",
@@ -191,6 +192,18 @@ def collect_latex_packages(
             ]
         )
 
+    packages = set()
+    for dep in deps:
+        req = requests.get(f"https://www.ctan.org/json/2.0/pkg/{dep}")
+        if req.status_code == 200:
+            package_data = json.loads(req.text)
+            if "texlive" in package_data:
+                packages.add(package_data["texlive"])
+            else:
+                print(f"No texlive package found for package {dep}")
+        else:
+            print(f"Package {dep} not found on CTAN")
+
     if check_against_tl:
         tl_packages = set(
             subprocess.getoutput("tlmgr --verify-repo=none info --data=name").split(
@@ -199,17 +212,19 @@ def collect_latex_packages(
         )
         packages &= tl_packages
 
+    package_list = sorted(list(packages))
+
     if print_console:
-        print(f"Found {len(packages)} dependencies:")
-        for package in packages:
+        print(f"Found {len(package_list)} dependencies:")
+        for package in package_list:
             print(f" > {package}")
 
     if output_file:
         with open(output_file, "w") as file:
-            for package in packages:
+            for package in package_list:
                 file.write(package + "\n")
 
-    return packages
+    return package_list
 
 
 if __name__ == "__main__":

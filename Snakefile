@@ -37,7 +37,7 @@ rule presentations:
 
 rule deploy_to_github:
     input:
-        presentations = expand("gh-pages/{presentation}.html", presentation=PRESENTATIONS),
+        # presentations = expand("gh-pages/{presentation}.html", presentation=PRESENTATIONS),
         papers = expand("gh-pages/{paper}.pdf", paper=PAPERS),
         index = "gh-pages/index.html",
         nojekyll = "gh-pages/.nojekyll"
