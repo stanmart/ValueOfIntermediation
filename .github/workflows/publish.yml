@@ -26,7 +26,9 @@ jobs:
         id: cache-output
         uses: actions/cache@v4
         with:
-          path: out
+          path: |
+            out
+            .snakemake/metadata
           key: ${{ runner.os }}-out
       - name: Prepare materials to publish
         run: "pixi run prepare-to-publish"
