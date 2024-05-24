@@ -2,6 +2,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 
 import typer
 
@@ -126,6 +127,7 @@ def collect_latex_packages(
     add_biber: bool = False,
     add_latexmk: bool = False,
     add_manim_deps: bool = False,
+    check_against_tl: bool = False,
     print_console: bool = False,
 ) -> set[str]:
     """Collect all of the latex packages from the dependency files.
@@ -188,6 +190,14 @@ def collect_latex_packages(
                 "xkeyval",
             ]
         )
+
+    if check_against_tl:
+        tl_packages = set(
+            subprocess.getoutput("tlmgr --verify-repo=none info --data=name").split(
+                "\n"
+            )
+        )
+        packages &= tl_packages
 
     if print_console:
         print(f"Found {len(packages)} dependencies:")
