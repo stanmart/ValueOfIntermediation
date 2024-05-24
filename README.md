@@ -8,7 +8,11 @@ Contains the papers "The Value of Being Indispensable", "Hybrid platforms and ba
 
  * `out/paper/paper.pdf`: The latest version of "The Value of Being Indispensable"
  * `out/paper/application.pdf`: The latest version of "Hybrid platforms and bargaining power"
- * `out/presentation/*.html`: a number of revealjs presentations about the project
+ * `out/presentation/*.html`: a number of revealjs presentations about the project:
+   * `io_day.html`: A presentation for the Swiss IO day, 2023 (focus on application)
+   * `topics_talk`: A talk at the Topics in Micro seminar at UZH (focus on application)
+   * `micro_seminar_talk`: A talk at the Topics in Micro seminar at UZH (focus on theory)
+   * `fourth_year_seminar_talk`: A presentation for the Fourth Year Seminar at UZH (focus on theory)
 
 ## How to compile
 
