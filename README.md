@@ -1,3 +1,7 @@
+[![checks](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/ci.yml/badge.svg)](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/ci.yml)
+[![publish](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/publish.yml/badge.svg)](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/publish.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
+
 # The value of intermediation
 
 Contains the papers "The Value of Being Indispensable", "Hybrid platforms and bargaining power" and related materials. The main outputs are the following:
