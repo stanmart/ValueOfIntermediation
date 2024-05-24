@@ -40,9 +40,10 @@ The following commands are available to create graphs of snakemake's execution p
  * `pixi run filegraph` to create a file graph of the snakemake workflow
  * `pixi run rulegraph` to create a rule graph of the snakemake workflow
 
-The following command is available to compile the texlive packages needed for the project:
+The following commands are used for the CI publish job:
 
  * `pixi run update-latex-deps` to collect the texlive packages needed for the project and write them to `tl_packages.txt`
+ * `pixi run prepare-to-publish` to collect every output file and write them to the `gh-pages` folder
 
 </details>
 

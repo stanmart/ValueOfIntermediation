@@ -10,6 +10,7 @@ platforms = ["linux-64", "win-64"]
 all = "snakemake --cores 1 all"
 papers = "snakemake --cores 1 papers"
 presentations = "snakemake --cores 1 presentations"
+prepare-to-publish = "snakemake --cores 1 prepare_to_deploy"
 publish = "snakemake --cores 1 deploy_to_github"
 update-latex-deps = "snakemake --cores 1 update_latex_deps"
 

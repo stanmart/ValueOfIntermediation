@@ -28,5 +28,13 @@ jobs:
         with:
           path: out
           key: ${{ runner.os }}-out
-      - name: Publish to Github Pages
-        run: "pixi run publish"
+      - name: Prepare materials to publish
+        run: "pixi run prepare-to-publish"
+      - name: Publish to GH Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages
+          publish_branch: gh-pages
+          commit_message: "Deploy to GitHub Pages"
+          force_orphan: true
