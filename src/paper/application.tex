@@ -192,6 +192,7 @@ Furthermore, due to this distortion, the resulting game could not be represented
 Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
 
 The timing of the two models is illustrated in \cref{fig:timing}.
+The square brackets indicate the endogenous variables decided at that stage of the game.
 In the benchmark model (\cref{fig:timing_benchmark}), the game starts by the platform announcing and committing to an entry fee $K_F$ ($\mathbf{T_1}$).\footnote{
     With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
     This would lead to a trivial equilibrium, where no firm enters.
@@ -221,8 +222,8 @@ This in turn uniquely determines the entry fee, and thus the negotiation at time
         \begin{tikzpicture}[node distance=2cm, auto]
             \node[align=center] (entry_fee) {($\mathbf{T_1}$) Platform unilaterally \\ sets the entry fee \\ $[K_F]$};
             \node[align=center] (entry_decision) [below of=entry_fee] {($\mathbf{T_2}$) Potential entrants decide to \\ enter at cost $I_F + K_F$ \\ $[N_F]$};
-            \node[align=center] (sales) [below of=entry_decision] {($\mathbf{T_3}$) Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
-            \node[align=center] (final) [below of=sales] {($\mathbf{T_4}$) Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \node[align=center] (sales) [below of=entry_decision] {($\mathbf{T_3}$) Platform and fringe set product prices \\ $[p_{P_i}, p_{F_i}]$};
+            \node[align=center] (final) [below of=sales] {($\mathbf{T_4}$) Consumers make consumption decisions \\ $[x_{P_i}, x_{F_i}]$};
             \draw[->] (entry_fee) -- (entry_decision);
             \draw[->] (entry_decision) -- (sales);
             \draw[->] (sales) -- (final);
@@ -236,8 +237,8 @@ This in turn uniquely determines the entry fee, and thus the negotiation at time
         \begin{tikzpicture}[node distance=2cm, auto]
             \node[align=center] (entry_decision) {($\mathbf{T_1}$) Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
             \node[align=center] (entry_fee) [below of=entry_decision] {($\mathbf{T_2}$) Entry fees are negotiated \\ between platform and $N_F$ fringe firms \\ $[K_F]$};
-            \node[align=center] (sales) [below of=entry_fee] {($\mathbf{T_3}$) Platform and fringe sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
-            \node[align=center] (final) [below of=sales] {($\mathbf{T_4}$) Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+            \node[align=center] (sales) [below of=entry_fee] {($\mathbf{T_3}$) Platform and fringe set product prices \\ $[\pi_{Fi}^v, \pi_P^v]$};
+            \node[align=center] (final) [below of=sales] {($\mathbf{T_4}$) Consumers make consumption decisions \\ $[\pi_{Fi}^t, \pi_P^t]$};
             \draw[->] (entry_decision) -- (entry_fee);
             \draw[->] (entry_fee) -- (sales);
             \draw[->] (sales) -- (final);
@@ -248,6 +249,22 @@ This in turn uniquely determines the entry fee, and thus the negotiation at time
     \caption{Timing of the models}
     \label{fig:timing}
 \end{figure}
+
+The (subgame perfect) equilibrium of this game is defined as follows.
+\begin{definition}
+    \label{def:equilibrium}
+    An equilibrium of the game is a tuple $(N_F, K_F, p_{P_i}, p_{F_i}, x_{P_i}, x_{F_i})$ such that:
+    \begin{enumerate}
+        \item The fringe entrants make zero total profits (including the investment cost $I_F$ and the entry fee $K_F$).
+        \item The platform's entry fee $K_F$ is such that
+        \begin{description}
+            \item[benchmark case:] they maximize total platform profits;
+            \item[bargaining case:] total platform profits are equal to the Shapley value of the platform.
+        \end{description}
+        \item Product prices $p_{F_i}$ and $p_{P_i}$ are such that they maximize per-product profits, given the products on the market ($P_i, i \in [0, N_P]$ and $F_i, i \in [0, N_F]$).
+        \item $x_{F_i}$ and $x_{P_i}$ are the outcome of consumers maximizing their utility, given the prices.
+    \end{enumerate}
+\end{definition}
 
 In the rest of this section, I describe each step in detail, starting from the end of the game and working my way back to the beginning.
 
@@ -1801,8 +1818,8 @@ However, the same logic can be applied to the extensions presented in \cref{sec:
     \begin{tikzpicture}[node distance=2cm, auto]
         \node[align=center] (entry_decision) {Potential entrants decide to invest \\ at cost $I_F$ \\ $[N_F]$};
         \node[align=center, draw, dashed] (entry_fee) [below of=entry_decision] {Entry fees are negotiated \\ between platform \\ and $N_F$ fringe firms \\ $[K_F]$};
-        \node[align=center] (sales) [below of=entry_fee] {Platform and fringe \\ sell products \\ $[\pi_{Fi}^v, \pi_P^v]$};
-        \node[align=center] (final) [below of=sales] {Final profits are realized \\ $[\pi_{Fi}^t, \pi_P^t]$};
+        \node[align=center] (sales) [below of=entry_fee] {Platform and fringe \\ set product prices \\ $[p_{P_i}, p_{F_i}]$};
+        \node[align=center] (final) [below of=sales] {Consumers make \\ consumption decisions \\ $[x_{P_i}, x_{F_i}]$};
         \draw[->] (entry_decision) -- (entry_fee);
         \draw[->] (entry_fee) -- (sales);
         \draw[->] (sales) -- (final);
