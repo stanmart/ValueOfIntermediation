@@ -4,12 +4,15 @@ body {
     line-height: 1.6;
     font-size: 18px;
     color: #404040;
+    font-family: 'Segoe UI', Helvetica,  Arial, sans-serif;
+    background-color: rgb(255, 248, 240);
 }
 
 h1,
 h2,
 h3 {
     line-height: 1.2;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a {
@@ -27,3 +30,8 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+li::marker {
+    content: '▹ ';
+    font-size: 1.2em;
+  }
