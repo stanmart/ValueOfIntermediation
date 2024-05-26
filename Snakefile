@@ -62,19 +62,23 @@ rule deploy_to_github:
 rule prepare_to_deploy:
     input:
         presentations = expand("out/presentation/{presentation}.html", presentation=PRESENTATIONS),
-        papers = expand("out/paper/{paper}.pdf", paper=PAPERS)
+        papers = expand("out/paper/{paper}.pdf", paper=PAPERS),
+        index = "src/homepage/index.html",
+        css = "src/homepage/style.css"
     output:
         presentations = expand("gh-pages/{presentation}.html", presentation=PRESENTATIONS),
         papers = expand("gh-pages/{paper}.pdf", paper=PAPERS),
         index = "gh-pages/index.html",
+        css = "gh-pages/style.css",
         nojekyll = "gh-pages/.nojekyll"
     run:
         from shutil import copy2
         from pathlib import Path
         for file in input.presentations + input.papers:
             copy2(file, "gh-pages")
-        Path("gh-pages/index.html").touch()
-        Path("gh-pages/.nojekyll").touch()
+        copy2(input.index, output.index)
+        copy2(input.css, output.css)
+        Path(output.nojekyll).touch()
 
 
 rule presentation:

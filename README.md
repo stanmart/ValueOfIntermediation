@@ -16,10 +16,7 @@ Contains the papers "The Value of Being Indispensable", "Hybrid platforms and ba
 
 ## How to compile
 
-The project is set up so that `pixi` installs required dependencies into a local virtual environment. The exception is latex:
-
- * `manim` needs latex to render text. See [manim's documentation](texlive-latex-base) for details.
- * `pdflatex`, `biber` and `pdflatex` are needed to compile the papaers.
+The project is set up so that `pixi` installs required dependencies into a local virtual environment. The exception is latex (required texlive packages are listed in `tl_packages.txt`).
 
 Other than these, simply [install `pixi`](https://pixi.sh/latest/#installation), and then you can use the following commands to compile the outputs:
 
