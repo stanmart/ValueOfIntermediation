@@ -7,13 +7,6 @@ __pycache__
 /playground/
 .envrc
 
-# Quarto currently renders into the qmd file's directory
-*.html
-*_files/
-/media
-!/src/presentation/js/*
-!/src/presentation/css/*
-
 .flake8
 
 # Apple stuff
