@@ -278,7 +278,10 @@ Then I describe how entry fees and fringe entry is determined first in the bench
 
 Imagine that there is a unit mass of consumers, looking to buy one product each.
 They choose from a continuum of products, which are either produced by the fringe (indexed by $F_i$), by the platform ($P_i$) and a unit mass of outside options ($0_i$).
-Customer $j$ derives the following utility from buying product $T_i$:
+Customer $j$ derives the following utility from buying product $T_i$\footnote{
+    To avoid duplication, I denote the different types of products by $T_i$, where $T \in \{F, P, 0\}$ (fringe products, platform profucts, and outside options, respectively).
+    This notation is used throughout the paper for other variables having fringe and platform counterparts, as well.
+}:
 \begin{align*}
     u_{T_i}^j = v_{T_i} - p_{T_i} + \mu\epsilon_{T_i}^j \quad \text{for } T_i \in \{F, P\},
 \end{align*}
@@ -321,7 +324,10 @@ Finally, the firms that have entered pay the entry fee to the platform.
 In practice, the resulting entry fees look as follows.
 Assume that $N_F$ fringe firms choose to invest in creating a product in the first stage of the game.
 Now, for every $s N_F$ ($s \in [0, 1]$), calculate the total profits that would be realized if the platform and $n_f$ fringe firms were the only players in the market, and they engaged in monopolistic competition as described in the previous paragraph.
-Let us denote these profits by $\pi^v_{F}(N_P,s N_F)$ and $\pi^v_{P}(N_P,s N_F)$, and the corresponding industry-wide total profits by $\Pi$ and $\Pi(N_P,s N_F, N_C)$.
+Let us denote these profits by $\pi^v_{F}(N_P,s N_F)$ and $\pi^v_{P}(N_P,s N_F)$, and the corresponding industry-wide total profits by $\Pi$ and $\Pi(N_P,s N_F, N_C)$.\footnote{
+    Throughout this paper, I use the notation $\pi_T$ to denote the profits realized by player(s) $T$, and $\Pi$ to denote the total industry profits.
+    Furthermore, $\pi^v_T$ denotes profits from sales (i.e., profits not including investment costs and entry fees), whereas $\pi^t_T$ stands for total profits.
+}
 
 \begin{proposition}
     \label{prop:shapley_value}
