@@ -169,7 +169,7 @@ This section introduces the model used throughout the paper.
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
 
-Assume that there are two types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in [0, N_F$]) and a continuum of consumers $C_j$ ($j \in [0, 1]$).
+Assume that there are two types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in \mathbb{R}^+$) and a continuum of consumers $C_j$ ($j \in [0, 1]$).
 The fringe firms have one product each, which they can only sell through the platform.
 Without the platform, they make zero profits.
 In addition to acting as an intermediary between the fringe and the consumers, the platform itself may also produce and sell a number of products directly to the consumers.
@@ -178,20 +178,19 @@ If it does, it is referred to as a hybrid platform.
 The main distinguishing feature of this model is that, instead of assuming that entry fees or royalties are set by the platform and the fringe treat it as take it or leave it offers, I assume that the platform and the fringe engage in some kind of bargaining over their total profits.
 The bargaining rule, as well as other details of the model, are described in the rest of this section.
 
+The rest of this section is structured as follows.
+\Cref{sec:model_overview} provides an overview of the model's stages, the timing of the game, as well as the qeuilibrium concept used in this paper.
+Then, \cref{sec:model_details} describes each stage of the game formally.
+Finally, \cref{sec:model_discussion} discusses some of the assumptions made in the model, and their implications.
 
-\subsection{Overview}
+\subsection{Overview and timing}
+\label{sec:model_overview}
 
-There is an infinite measure of fringe firms, who are deciding whether to enter the market.
-Entering has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $K_F$.
-One can conceptualize the first as usual fixed costs, such as the cost of setting up production, or designing a product.
-Meanwhile, the second is a payment to the platform for using its services.
-While percentage fees are more common both in the literature and in practice, I assume a lump-sum fee for a few reasons.
-First, and most importantly, revenue-based fees enter the entrants' pricing decision, and thus create a channel through which platforms distort competition.
-I want to show that even in the absence such distortions, hybrid platforms can have a significant impact on competition.
-Furthermore, due to this distortion, the resulting game could not be represented as a transferable utility game, and the proposed solution concept would not be applicable.
-Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
+I consider two versions of the model: a benchmark case with the platform setting the entry fee unilaterally, and a bargaining model where the platform and the fringe firms negotiate over the entry fee.
+Each version has four main stages corresponding to determining four sets of endogenous variables: (1) the platform (and the fringe) setting (negotiating) the entry fee, (2) the fringe firms deciding whether to enter the market, (3) the platform and the fringe setting the prices of their products, and (4) consumers making their purchase decisions.
+The main difference between them lies in how the entry fee is determined, and, correspondingly, the order of the first two stages.
 
-The timing of the two models is illustrated in \cref{fig:timing}.
+The timing of both models is illustrated in \cref{fig:timing}.
 The square brackets indicate the endogenous variables decided at that stage of the game.
 In the benchmark model (\cref{fig:timing_benchmark}), the game starts by the platform announcing and committing to an entry fee $K_F$ ($\mathbf{T_1}$).\footnote{
     With no commitment power, but the ability to set any prices after fringe firms make their investment decisions, the platform would charge an entry fee that would make the fringe profits zero \emph{sans the investment cost}.
@@ -220,7 +219,7 @@ This in turn uniquely determines the entry fee, and thus the negotiation at time
     \begin{subfigure}{0.45\textwidth}
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
-            \node[align=center] (entry_fee) {($\mathbf{T_1}$) Platform unilaterally \\ sets the entry fee \\ $[K_F]$};
+            \node[align=center] (entry_fee) {($\mathbf{T_1}$) Platform unilaterally sets \\ the entry fee \\ $[K_F]$};
             \node[align=center] (entry_decision) [below of=entry_fee] {($\mathbf{T_2}$) Potential entrants decide to \\ enter at cost $I_F + K_F$ \\ $[N_F]$};
             \node[align=center] (sales) [below of=entry_decision] {($\mathbf{T_3}$) Platform and fringe set product prices \\ $[p_{P_i}, p_{F_i}]$};
             \node[align=center] (final) [below of=sales] {($\mathbf{T_4}$) Consumers make consumption decisions \\ $[x_{P_i}, x_{F_i}]$};
@@ -250,7 +249,11 @@ This in turn uniquely determines the entry fee, and thus the negotiation at time
     \label{fig:timing}
 \end{figure}
 
-The (subgame perfect) equilibrium of this game is defined as follows.
+For both models, this structure corresponds to a perfect-information extensive-form game.
+As a consequence, the solution concept I use is the subgame perfect equilibrium.
+As the platform's product variety ($N_P$) is assumed to be exogenous, the only strategic variables are (1) the fringe players' entry decisions, (2) the platform's entry fee (only in the benchmark model), (3) the prices of the products and (4) the consumers' purchase decisions.
+
+In these two specific games, the subgame perfect can be charactrerized as follows.
 \begin{definition}
     \label{def:equilibrium}
     An equilibrium of the game is a tuple $(N_F, K_F, p_{P_i}, p_{F_i}, x_{P_i}, x_{F_i})$ such that:
@@ -266,9 +269,14 @@ The (subgame perfect) equilibrium of this game is defined as follows.
     \end{enumerate}
 \end{definition}
 
-In the rest of this section, I describe each step in detail, starting from the end of the game and working my way back to the beginning.
+\subsection{Details}
+\label{sec:model_details}
 
-\subsection{Demand}
+Let us now describe each stage of the game in more detail.
+I start with the final two subgames, as they are identical in both models.
+Then I describe how entry fees and fringe entry is determined first in the benchmark model, and then highlight the differences in the bargaining model.
+
+\subsubsection{Demand}
 \label{sec:demand}
 
 Imagine that there is a unit mass of consumers, looking to buy one product each.
@@ -293,26 +301,9 @@ As with the value, I assume that the marginal cost is the same for all products:
 Facing the demand described in the previous paragraphs, the sellers choose their price $p_{T_i}$ to maximize profits.
 The price of the outside option is normalized to zero.
 
-The pricing decision of the fringe sellers is rather straightforward, due to their infinitesimal market share: they do not have to take into account the effect of their prices on the aggregate demand.
-This normally is not the case for the platform, as it can affect a non-zero measure of the prices.
-Therefore, when setting the price for product $P_i$, it would optimally like to take into account how it affects demand on its other products $P_j$ $(j \neq i)$.
-Despite this, I assume that the platform prices its products as if they were produced by separate, monopolistically competitive sellers.
+\subsubsection{Fringe entry and platform fees}
 
-I do this for a number of reasons.
-For one, it simplifies the analysis without affecting the main results qualitatively.
-More importantly, it lets me focus on the main question of this paper: how the platform's hybrid operation affects the bargaining power.
-If the platform priced its products strategically, there would be a quite mechanical effect that an increase in the number of products would lead to an increase in optimal prices, which would in fact decrease consumer surplus.
-This hard to disentangle the effects of hybrid operation from the effects of strategic pricing.
-Therefore, this assumption can be seen as a best-case scenario for consumers, and the results can be interpreted as a lower bound on the negative effects of hybrid operation.
-For a more thorough discussion of this assumption, see \cref{sec:separate_pricing}.
-
-Finally, this assumption is not as unrealistic as it might seem at first.
-For example, the platform might be producing its products through a number of subsidiaries, which are legally separate entities, thus having no control over operational decisions, but still getting the profits from the sales.
-Alternatively, there might be some kind of internal competition between the different product teams, which would lead to a similar outcome.
-
-\subsection{Fringe entry and platform fees}
-
-\subsubsection{Benchmark case}
+\paragraph{Benchmark case}
 
 I assume that there is a continuum of potential fringe entrants, indexed by $i \in \mathbb{R}^+_0$.
 Each of them can create a product at an exogenous investment cost $I_F$.
@@ -320,32 +311,17 @@ If they decide not to, they make zero profits and do not participate in the late
 Furthermore, these firms can only sell their products through the platform, for which the platform can charge a lump-sum entry fee $K_F$.
 The timing of these decisions is as follows: (1) the platform sets and commits to an entry fee $K_F$, (2) the fringe firms decide whether to enter the market, and (3) the firms that have entered pay the entry fee to the platform.
 
-\subsubsection{Bargaining case}
+\paragraph{Bargaining case}
 \label{sec:model_bargaining}
 
 In contrast to the benchmark model, in this case, the platform cannot commit to an entry fee: it is decided as a result of a negotiation between the platform and the fringe firms.
-For this reason, the timing of the model is also different.
+In order to keep the model tractable, I model this in a reduced-form manner: I assume that the platform and the entrants agree on an entry fee $K_F$, which makes the total profits net entry fees equal to the Shapley value of the players.
+Due to this assumption, the timing of the model is also slightly different.
 First, the fringe firms decide whether to invest in creating a product at cost $I_F$.
 After this, the platform and the firms that have made the investment negotiate the entry fee.
 Finally, the firms that have entered pay the entry fee to the platform.
 
-In order to keep the model tractable I model the negotiation process in a reduced form manner.
-In particular, I assume that the platform and the entrants agree on an entry fee $K_F$, which makes the total profits net entry fees equal to the Shapley value of the players.\footnote{
-    One simple extension would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
-    \Cref{sec:cooperative_game_weighted} takes a step in this direction by introducing bargaining weights and utilizing the weighted value.
-}
-This way of modelling bargaining outcomes has many precedents in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra} and has a number of appealing properties.
-For example, it is closely related to the marginal contributions of the players to the total value, and, as it will be shown, it is also quite intuitive in terms of comparative statistics.
-Furthermore, and perhaps more importantly, there are a number of ways to place it on non-cooperative microfoundations by setting up non-cooperative games for which the Shapley value is a subgame perfect equilibrium \parencite[e.g.][]{gul1989bargaining,hart1996bargaining,stole1996organizational}.\footnote{
-    For a possible microfoundation of this specific model, see \cref{sec:bargaining_microfoundation}.
-}
-
-For the Shapley value (or any other cooperative solution concept) to be well-defined, the corresponding coalitional game must be specified.
-\Cref{sec:cooperative_game} describes it in detail, but in short, the idea is the following: given any subset of the players (coalition), players can predict total, industry-wide profits assuming the monopolistic competition described previously.
-This is taken as the value of that coalition, thus defining a characteristic function.
-Then, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
-
-In practice, it looks like the following.
+In practice, the resulting entry fees look as follows.
 Assume that $N_F$ fringe firms choose to invest in creating a product in the first stage of the game.
 Now, for every $s N_F$ ($s \in [0, 1]$), calculate the total profits that would be realized if the platform and $n_f$ fringe firms were the only players in the market, and they engaged in monopolistic competition as described in the previous paragraph.
 Let us denote these profits by $\pi^v_{F}(N_P,s N_F)$ and $\pi^v_{P}(N_P,s N_F)$, and the corresponding industry-wide total profits by $\Pi$ and $\Pi(N_P,s N_F, N_C)$.
@@ -359,19 +335,70 @@ Let us denote these profits by $\pi^v_{F}(N_P,s N_F)$ and $\pi^v_{P}(N_P,s N_F)$
     \end{align*}
 \end{proposition}
 
+\subsection{Discussion}
+\label{sec:model_discussion}
 
-\subsection{Equilibrium}
+Let us now discuss some of the non-standard assumptions made in the model, and their implications.
+I look at four main categories in this section: the timing of the game, the costs of entry for fringe firms, the way the monopolistic competition is modeled, and the way the bargaining process is modeled.
 
-For both models, the previous sections describe a perfect-information extensive-form game.
-As a consequence, the solution concept I use is the subgame perfect equilibrium.
-As the platform's product variety ($N_P$) is assumed to be exogenous, the only strategic variables are (1) the fringe players' entry decisions, (2) the platform's entry fee (only in the benchmark model), and (3) the prices of the products.
+\subsubsection{Costs of entry}
 
-Furthermore, the game can be solved via straightforward backward induction.
-In both models, the final subgame is simply a game of monopolistic competition with horizontally differentiated products.
-In the benchmark model, it is preceded by the platform setting the entry fee, while in the bargaining model the entry fee is set according to the previously described rule (which in turn can be motivated by an extensive form game).
-Finally, the first stage of the game is the fringe firms' investment decision.
-Due to the outside option being normalized to zero, the fringe firms will enter the market if and only if the expected profits from doing so are positive, leading to the usual free entry condition.
+For each potential fringe entrant $F_i$, entering the marker has two, separate costs: an exogenous investment cost $I_F$, and the lump-sum platform entry fee $K_F$.
+One can conceptualize the first one, $I_F$, as usual fixed costs, such as the cost of setting up production, or designing a product.
+Without it, fringe firms would always make positive profits in the bargaining model, and therefore the free entry equilibrium would not exist.
+Furthermore, it is a quite reasonable assumption in most settings, as some of the costs of entering the market are sunk, and not paid to the platform.
 
+Meanwhile, the second cost, $K_F$, is a payment to the platform for using its services.
+While percentage fees are more common both in the literature and in practice, I assume a lump-sum fee for a few reasons.
+First, and most importantly, revenue-based fees enter the entrants' pricing decision, and thus create a channel through which platforms distort competition.
+I want to show that even in the absence such distortions, hybrid platforms can have a significant impact on competition.
+Furthermore, due to this distortion, the resulting game could not be represented as a transferable utility game, and the proposed solution concept would not be applicable.
+Finally, lump-sum fees do make sense in settings when individual negotiation takes place and contracts are not standardized.
+
+\subsubsection{Timing of the game}
+
+% TODO
+
+\subsubsection{Product pricing}
+
+The pricing decision of the fringe sellers is rather straightforward, due to their infinitesimal market share: they do not have to take into account the effect of their prices on the aggregate demand.
+This normally is not the case for the platform, as it can affect a non-zero measure of the prices.
+Therefore, when setting the price for product $P_i$, it would optimally like to take into account how it affects demand on its other products $P_j$ $(j \neq i)$.
+Despite this, I assume that the platform prices its products as if they were produced by separate, monopolistically competitive sellers.
+
+I do this for a number of reasons.
+For one, it simplifies the analysis without affecting the main results qualitatively.
+More importantly, it lets me focus on the main question of this paper: how the platform's hybrid operation affects the bargaining power.
+If the platform priced its products strategically, there would be a quite mechanical effect that an increase in the number of products would lead to an increase in optimal prices, which would in fact decrease consumer surplus.
+This hard to disentangle the effects of hybrid operation from the effects of strategic pricing.
+Therefore, this assumption can be seen as a best-case scenario for consumers, and the results can be interpreted as a lower bound on the negative effects of hybrid operation.
+For a more thorough discussion of this assumption, see.
+
+Finally, this assumption is not as unrealistic as it might seem at first.
+For example, the platform might be producing its products through a number of subsidiaries, which are legally separate entities, thus having no control over operational decisions, but still getting the profits from the sales.
+Alternatively, there might be some kind of internal competition between the different product teams, which would lead to a similar outcome.
+
+\subsubsection{Bargaining over the platform entry fee}
+
+Although the main reason for utilizing cooperative game theory in this model is tractability, it is by no means the only one.
+This way of modelling bargaining outcomes has many precedents in the industrial organization literature \parencite[e.g.][]{montez2007downstream,hart1990property,levy1997individual,inderst2003bargaining,brugemann2019intra}
+Furthermore, it has a number of appealing properties.
+For example, it is closely related to the marginal contributions of the players to the total value, and, as shown in \cref{sec:more_general_results}, it is also quite intuitive in terms of comparative statistics.
+Furthermore, and perhaps more importantly, there are a number of ways to place it on non-cooperative microfoundations by setting up non-cooperative games for which the Shapley value is a subgame perfect equilibrium \parencite[e.g.][]{gul1989bargaining,hart1996bargaining,stole1996organizational}.
+\Cref{sec:bargaining_microfoundation} provides an example on how this specific model can be placed on such microfoundations.
+The subgame perfect equilibrium of the fully non-cooperative model described in that section coincides with the equilibrium of the bargaining model in the main text.
+Therefore, if one is uncomfortable with the cooperative elements in the model, they can simply think of it as a more tractable representation of the one from \cref{sec:bargaining_microfoundation}.
+
+Let us also discuss the specifics of the cooperative game of which the Shapley value is calculated.
+For the Shapley value (or any other cooperative solution concept) to be well-defined, the corresponding coalitional game must be precisely specified, as well.
+\Cref{sec:cooperative_game} describes it in detail. 
+In short, the idea is the following: given any subset of the players (coalition), players can predict total, industry-wide profits, as the pricing subgame has a unique subgame perfect equilibrium for any subset of the players.
+This total profit is taken as the value of that coalition, thus defining a characteristic function.
+Then, according to the definition of the Shappley value, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
+
+One simple extension of this bargaining process would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
+\textcite{stancsics2023bargaining} examines this solution concept for a similar game, but in a more more abstract setting.
+\Cref{sec:cooperative_game_weighted} takes a step in this direction by introducing bargaining weights and utilizing the weighted value.
 
 \section{Results}
 \label{sec:results}
