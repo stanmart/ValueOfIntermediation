@@ -419,7 +419,7 @@ For the Shapley value (or any other cooperative solution concept) to be well-def
 \Cref{sec:cooperative_game} describes it in detail. 
 In short, the idea is the following: given any subset of the players (coalition), players can predict total, industry-wide profits, as the pricing subgame has a unique subgame perfect equilibrium for any subset of the players.
 This total profit is taken as the value of that coalition, thus defining a characteristic function.
-Then, according to the definition of the Shappley value, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
+Then, according to the definition of the Shapley value, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
 
 One simple extension of this bargaining process would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
 \textcite{stancsics2023bargaining} examines this solution concept for a similar game, but in a more more abstract setting.
@@ -1446,7 +1446,7 @@ The following observation demonstrates this idea.
 \end{proposition}
 
 In words, \cref{prop:outcome_based_bargaining_power} describes two alternative worlds, in which $N_F$ fringe firms (assuming a platform with $N_P$ product variety and $N_C$ consumers) are able to achieve the same total profit level.
-However, in one of these cases, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
+However, in the case with $\tilde{f}$, the fringe firms are more substitutable to each other in the sense that fewer of them are needed to achieve a given level of profit (see \cref{fig:outcome_based_bargaining_power}).
 The observation is that, in this situation, the platform's share is indeed higher when the fringe firms are more substitutable.
 This coincides with the intuitive idea that the platform's bargaining power is higher when it does not really mind losing a few fringe sellers.
 
@@ -1525,7 +1525,7 @@ Finally, in order to guarantee a unique equilibrium, let us make the following, 
     \end{align*}
 \end{assumption}
 This assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with total entry cost (apart from the obvious $N_F=0$ intersection).
-Again, the profit functions presented in the main text satisfy this assumption.
+The profit functions presented in the main text satisfy this assumption.
 
 \subsection{Results}
 \label{sec:more_general_results}
@@ -1610,7 +1610,7 @@ For example, it is possible that for the new, higher value of $N_P$, the complem
 \end{figure}
 
 Next, let us look at an analogous result for the fringe firms.
-In their case, the direction of the change depends on the complementarities between the fringe firms.
+In their case, the direction of the change depends on the complementarities between the platform and the fringe firms.
 \begin{proposition}
     \label{prop:share_of_fringe}
     Assume that $f, w$ are twice continuously differentiable.
@@ -1625,6 +1625,11 @@ In their case, the direction of the change depends on the complementarities betw
 In summary, when they are mostly substitutes (the cross-derivatives of $f$ are negative), the fringe's profits decrease as a result of an increase in $N_F$.
 The intuition is that, even though the total size of the pie increases, the bargaining power of the fringe deteriorates so much that its share decreases not only in relative, but also in absolute terms (as illustrated in \cref{fig:increase_N_P_fringe}).
 On the other hand, when the fringe firms are mostly complements the fringe's profits increase.
+
+As the Shapley value of each player is their average marginal contribution to the total value, this result can best be understood through the lens of marginal contributions.
+When the cross derivative is positive, an increase in the platform's product variety increases the marginal contribution of the fringe firms to the total value for any given number of fringe firms.
+Therefore, the share of the fringe also increases.
+On the other hand, when the cross derivative is negative, the marginal contribution of the fringe firms decreases, and so does their share.
 
 \begin{figure}[ht]
     \centering
@@ -1691,10 +1696,11 @@ The previous proposition implies an almost immediate corollary regarding the equ
         \frac{\partial N_F^*}{\partial N_P} < 0.
     \end{align*}
 \end{corollary}
-That is, the equilibrium number of entrants increases as a response to an increase in $N_P$ if the fringe firms are mostly complements, and decreases if they are mostly substitutes.
+That is, the equilibrium number of entrants increases as a response to an increase in $N_P$ if the platform and the fringe firms are complements, and decreases if they are substitutes.
 The underlying reason is again the concave or hump-shaped fringe profit function.
 If $N_F^*$ is an equilibrium, then fringe profits minus entry costs are strictly positive for all $N_F \leq N_F^*$ and strictly negative for all $N_F > N_F^*$.
 Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F \geq 0$, equilibrium can be restored by decreasing the number of fringe entrants, (and vice versa for the other case).
+This is also related to the concept of strategic complementary and substitutability, which also depends on the cross-derivatives (i.e. the supermodularity or submodularity) of the profit function.
 
 Finally, let us conclude this section by establishing a stronger result for a more restrictive class of profit functions.
 In the following, I assume that the profit function has an additive form.
@@ -1994,7 +2000,7 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
     \cref{ass:single_crossing} states that at any $N_F \geq 0$, $\pi_F(N_P, N_F, N_C)$ is either concave or decreasing in $N_F$.
     In the remainder, let us denote partial derivatives as follows:
     \begin{align*}
-        \partial_F \pi_F(N_P^*, N_F^*, N_C^*) \coloneqq \left. \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*, N_C = N_C^*}.
+        \partial_F \pi_F(N_P^*, N_F^*, N_C^*) \coloneqq \left. \frac{\partial \pi_F(N_P, N_F,  )}{\partial N_F} \right|_{N_P = N_P*, N_F = N_F^*, N_C = N_C^*}.
     \end{align*}
 
     Notice that the fact that $\pi_F$ is concave or decreasing in $N_F$ implies that if $\partial_F \pi_F(N_P, N_F', N_C)$ for some $N_F' \geq 0$, then $\partial_F \pi_F(N_P, N_F'', N_C) < \partial_F \pi_F(N_P, N_F', N_C)$ for any $\tilde{N_F} < \bar{N_F}$.
