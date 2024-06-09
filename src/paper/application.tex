@@ -42,6 +42,7 @@
 \crefname{observation}{observation}{observations}
 \Crefname{observation}{Observation}{Observations}
 
+\newcommand{\dd}{\mathrm{d}}
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
 \newcommand{\di}{\mathrm{d}i}
@@ -543,6 +544,7 @@ This is a rather mechanical result: the platform's product variety is exogenous,
 If the platform is operating in the hybrid regime, less fringe firms are needed to achieve the (fixed) equilibrium aggregate, therefore there is less expenditure on (essentially wasted) investment costs.
 Consequently, in the hybrid regime, the derivative of optimal profits with respect to the platform's product variety is simply the fringe's investment cost, adjusted for the possible difference in product value.
 \begin{corollary}
+    \label{prop:platform_profits_comparative_benchmark}
     \begin{align*}
         N_F > 0 \implies \frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F.
     \end{align*}
@@ -785,14 +787,23 @@ This in turn leads to a decrease in the number of fringe firms, and this decreas
 
 The statements of these theorems are illustrated in \cref{fig:comparative_N_F,fig:welfare_aggregate,fig:platform_profits}.
 The intuition behind these results can be demonstrated by looking at entry fees.
-First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms (bar the investment cost):
+First, define the implied entry fee in the bargaining case as the difference between the variable profit and the final, total profit of the fringe firms (bar the investment cost)\footnote{
+    Or, in light of \cref{sec:bargaining_microfoundation}, it can also directly be interpreted as the entry fee that the parties agree on after negotiating.
+}:
 \begin{align*}
-    K_F^{\text{impl}} = \pi_F^v - \pi_F^t.
+    K_F^i = \frac{\pi_F^v - \pi_F^t}{N_F} - I_F.
 \end{align*}
 As shown before, as the platform's product variety grows, its bargaining power also increases.
-This can be thought of as an increase in (implied) entry fees $K_F^{\text{impl}}$, which in turn discourages fringe entry.
+This can be thought of as an increase in (implied) entry fees $K_F^i$, which in turn discourages fringe entry.
+\begin{proposition}
+    \label{prop:implied_entry_fee_comparative}
+    In the hybrid regime, the implied entry fee is increasing in the number of the platform's products:
+    \begin{align*}
+        N_F(N_P) > 0 \implies \frac{\partial K_F^i(N_P)}{\partial N_P} > 0.
+    \end{align*}
+\end{proposition}
 This is not happening in the benchmark model, as the optimal entry fee does not depend on the platform's product variety.
-\Cref{fig:entry_fee} demonstrates this effect.
+\Cref{fig:entry_fee} demonstrates this difference graphically.
 
 In the example parametrization, the implied entry fee is lower than what the platform would prefer to set for low values of $N_P$, and higher afterwards.
 There is an optimal platform product variety $N_P^*$ for which the implied entry fee is the same as the optimal entry fee in the benchmark model, and therefore the results of the two models are the same.
@@ -806,10 +817,7 @@ In the benchmark model, the entry fee was independent of the platform's product 
 On the other hand, with bargaining, it is increasing in $N_P$ (\cref{fig:entry_fee}).
 Therefore, if the entry fee is lower than optimal, then the increase in $N_P$ will bring it closer to the optimal level, and the increase in platform profits will be higher than in the benchmark model.
 On the other hand, when the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits.
-
-% This means that, if the platform had to create its product variety at a per-unit investment cost of $I_P$, it would make different (inefficient) choices compared to the benchmark model.
-% In particular, it might invest in some products even if it has a product disadvantage, and it might not invest in some products even if it has a product disadvantage.
-% This phenomenon is more pronounced when the implied entry fee for $N_P = 0$ is lower than optimal, and is explored in more detail in \cref{sec:lower_bargaining_power}.
+\Cref{sec:endogenizing_n_p} explores this phenomenon in more detail.
 
 \begin{figure}
     \centering
@@ -991,6 +999,142 @@ On the other hand, when the entry fee is already higher than optimal for a given
 \end{figure}
 
 
+\subsection{Platform's mode of operation}
+\label{sec:endogenizing_n_p}
+
+While completely endogenizing the platform's mode of operation (i.e., the determination of $N_P$) is outside the scope of this paper, some insights can be gained by building on the previous results.
+Let us start by examining whether the platform would prefer to switch to the pure retail regime and exclude the fringe firms.
+
+Assume that $N_P$ is still fixed, but at time 0, the platform can decide whether to exclude the fringe.
+As the next proposition shows, the platform never has an incentive to do so, if otherwise the equilibrium is in the hybrid regime.
+\begin{proposition}
+    \label{prop:hybrid_vs_retail}
+    In both the benchmark and bargaining models, the platform never has an incentive to switch from the hybrid to the pure retail regime:
+    \begin{align*}
+        \pi_P^t(N_P, N_F(N_P)) \geq \pi_P^t(N_P, 0) \forall\, N_P.
+    \end{align*}
+    The inequality is strict whenever $N_F(N_P) > 0$.
+\end{proposition}
+In the case of the benchmark model, this result is rather straightforward: if the platform would find it optimal to exclude the fringe, it could do so by setting the entry fee to a sufficiently high level.
+In the bargaining case, the reasoning is less obvious, as it is not immediately clear that the share of profits that the platform can negotiate for itself is higher than what it could achieve by itself.
+However, it turns out that it is indeed the case.
+The intuition is that the platform's profit is just the average of total profits, with the average taken over the number of fringe firms.
+As total profits are increasing in the number of the fringe entrants, this average is also increasing in $N_F$.
+
+A related, but different question is whether the platform how the platform would decide between operating in pure retail and pure marketplace modes, if hybrid regime is not an option.
+It is particularly relevant from a policy perspective, as it can help understand what happens if hybrid operation is banned.
+The answer to this is less clear-cut, and depends on the parameters of the model.
+For low enough values of $V_P$ and $N_P$, the platform would clearly choose the pure marketplace mode, as with pure retail, its profits can be arbitrarily low.
+The opposite is true for high enough values of $V_P$ and $N_P$.
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0.55, ymax=0.65, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 4.5},
+                    legend pos=south west,
+                    width=\linewidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P_bench} - \thisrow{N_P} * 0.045]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P_bench} - \thisrow{N_P} * 0.05]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P_bench} - \thisrow{N_P} * 0.055]{\equilibrium};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid_bench]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$I_P = 0.045$, $I_P = 0.05$, $I_P = 0.055$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Benchmark case}
+        \label{fig:optimal_n_p_benchmark}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={$N_P$},
+                    ylabel={},
+                    xmin=0, xmax=4.5, % adjust these values as needed
+                    ymin=0.55, ymax=0.65, % adjust these values as needed
+                    axis lines=left,
+                    xtick={0, 4.5},
+                    legend pos=north west,
+                    width=\linewidth,
+                ]
+                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.045]{\equilibrium};
+                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.05]{\equilibrium};
+                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.055]{\equilibrium};
+
+                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
+                \addplot[draw=none,name path=bottom] {0};
+                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
+
+                \legend{$I_P = 0.045$, $I_P = 0.05$, $I_P = 0.055$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Bargaining case}
+        \label{fig:optimal_n_p_bargaining}
+    \end{subfigure}
+    \caption{Total platform profits if the platform incurs an investment cost for creating its own products. In the benchmark case, hybrid mode operation can only be optimal in the knife-edge case when neither the platform's nor the fringe's product has an advantage. In the bargaining model, hybrid operation may be optimal even if the platform has a product disadvantage. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode ($\mu = 1, V_P = 1, V_F = 1, I_F = 0.05$).}
+    \label{fig:optimal_n_p}
+\end{figure}
+
+
+Finally, let us look at the more general case, where the platform can choose its number of products at the beginning of the game.
+Similarly to the fringe, assume that it faces an investment cost of $I_P$ per product.
+As before, things are straightforward in the benchmark model: the platform invests in own products only if $\frac{V_P}{I_P} \geq \frac{V_F}{I_F}$.
+The following proposition characterizes the platform's optimal investment more precisely.
+\begin{proposition}
+    \label{prop:optimal_n_p_benchmark}
+    Let $N_P^*$ be the platform's optimal number of products.
+    Then, in the benchmark model, the following holds:
+    \begin{align*}
+        \frac{V_P}{I_P} < \frac{V_F}{I_F} &\implies N_P^* 0, \\
+        \frac{V_P}{I_P} > \frac{V_F}{I_F} &\implies N_P^* > 0, N_F(N_P^*) = 0, \\
+        \frac{V_P}{I_P} = \frac{V_F}{I_F} &\implies N_P^* \in [0, \bar{N}_P] \text{ for some } \bar{N}_P > 0.
+    \end{align*}
+\end{proposition}
+
+The intuition behind this result is that the platform can extract all profits from the fringe firms through the lump-sum entry fee, end thus it invests in its own products only if it has a product advantage (either in terms of less costly investment or more valuable product).
+A consequence of this proposition is that, apart from the knife-edge case of $\frac{V_P}{I_P} = \frac{V_F}{I_F}$, the platform never finds it optimal to operate in hybrid mode: it either creates so many products that it excludes the fringe, or it creates none at all.
+\Cref{fig:optimal_n_p_benchmark} illustrates this result.
+
+As before, the situation is more complicated in the bargaining model.
+Instead of characterizing the platform's optimal investment directly, let us look at it through the lens of implied entry fees.
+Remember, that in the bargaining model, the implied entry fee is increasing in the number of the platform's products.
+Together with the concavity of platform profits as a function of $N_P$, and the statement of \cref{prop:platform_profits_comparative_benchmark}, this implies the following result:
+\begin{proposition}
+    \label{prop:comparative_n_p_bargaining}
+    In the bargaining model, the platform invests in its own products only if it has a product advantage, and the optimal number of products is increasing in the size of this advantage.
+    \begin{align*}
+        K_F^i(N_P) < K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} > \frac{V_P}{V_F} I_F \\
+        K_F^i(N_P) > K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} < \frac{V_P}{V_F} I_F.
+    \end{align*}
+\end{proposition}
+The intuition is that if, for a certain $N_P$, the implied entry fee is lower than optimal, then the platform investing in more products will bring it closer to the optimal level, and the increase in platform profits will be higher than in the benchmark model.
+Conversely, if the entry fee is already higher than optimal for a given $N_P$, an additional increase will lead to an even more suboptimal (implied) entry fee, and thus a lower increase in platform profits.
+
+The consequence of this result is that in the bargaining model, hybrid operation can be optimal, and not only for knife-edge cases.
+Furthermore, and even more strikingly, the platform may find it optimal to invest in its own products even if it has a product disadvantage, if it helps it to negotiate a more optimal entry fee.
+\Cref{fig:optimal_n_p_bargaining} displays such an example.
+
+
+
+
+\subsection{Discussion}
+TODO: which assumptions are crucial for the results?
+
+
 \section{Extensions}
 \label{sec:extensions}
 
@@ -1042,10 +1186,6 @@ Another major difference pertains to the total profits of the platform as a func
 It is still true that they are increasing in the number of the platform's products, but now this increase is even slower in the hybrid regime.
 The reason is that the implied entry fee is always higher than the optimal one, therefore an increase the positive effect of an increase in $N_P$ is somewhat counterbalanced by the entry fee becoming even more suboptimal.
 
-\Cref{fig:equilibrium_high_lambda_entry_fees} demonstrates an important consequence of this phenomenon.
-Imagine that the platform can decide on the number of its products at time 0, at an investment cost of $I_P$ per product.
-In the example for the main model, due to the implied entry fee being higher than optimal even for $N_P = 0$, hybrid operation may be optimal for certain values of $I_P$ (most notably, $I_P = I_F = 0.05$).
-In contrast, in the example with the platform having higher bargaining power, it would always prefer either pure retail or pure marketplace operation.
 
 \begin{figure}
     \centering
@@ -1171,66 +1311,6 @@ In contrast, in the example with the platform having higher bargaining power, it
     \end{subfigure}
     \caption{Platform profits and (implied) entry fees ($\mu = 0.2, V_P = 1, V_F = 1, I_F = 0.05$). Regardless of lambda, platform profits and entry fees are increasing in $N_P$. However, when the platform's innate bargaining power is higher, entry fees are above optimal levels already for $N_P = 0$, and the additional increase somewhat mitigates the benefits of the platform's increased product variety. When $\lambda$ is lower, the entry fees are below optimal for low $N_P$, therefore increasing $N_P$ has a larger positive effect on profits. Dark shaded area represents hybrid mode under $\lambda=2$, while light shaded area represents additional hybrid mode under $\lambda=1$.}
     \label{fig:profits_and_entry_fees_high_lambda}
-\end{figure}
-
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=4.5, % adjust these values as needed
-                    ymin=0.2, ymax=0.7, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 4.5},
-                    legend pos=south west,
-                    width=\linewidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.04]{\equilibrium};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.05]{\equilibrium};
-                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.06]{\equilibrium};
-
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibrium};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$I_P = 0.04$, $I_P = 0.05$, $I_P = 0.05$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{$\lambda = 1$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[
-                    xlabel={$N_P$},
-                    ylabel={},
-                    xmin=0, xmax=4.5, % adjust these values as needed
-                    ymin=0.2, ymax=0.7, % adjust these values as needed
-                    axis lines=left,
-                    xtick={0, 4.5},
-                    legend pos=south west,
-                    width=\linewidth,
-                ]
-                \addplot[color=myblue,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.04]{\equilibriumProfitOneSidedHighLambda};
-                \addplot[color=myred,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.05]{\equilibriumProfitOneSidedHighLambda};
-                \addplot[color=mygreen,mark=none,thick] table[x=N_P,y expr=\thisrow{pi_P} - \thisrow{N_P} * 0.06]{\equilibriumProfitOneSidedHighLambda};
-
-                \addplot[draw=none,name path=hybrid] table[x=N_P,y=hybrid]{\equilibriumProfitOneSidedHighLambda};
-                \addplot[draw=none,name path=bottom] {0};
-                \addplot [fill=black, fill opacity=0.05] fill between [of=hybrid and bottom];
-
-                \legend{$I_P = 0.04$, $I_P = 0.05$, $I_P = 0.05$}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{$\lambda = 0.5$}
-    \end{subfigure}
-    \caption{Total platform profits if the platform incurs an investment cost for creating its own products ($\pi_P(N_P) - I_P N_P$). In the high bargaining power case (right), the platform never chooses to operate in hybrid mode. It either becomes a pure marketplace or a pure retailer. In the case of lower $\lambda_P$ (left), choosing the hybrid mode can be optimal depending on $I_P$. The shaded region represents hybrid operation, while in the unshaded region, the platform operates in pure retail mode ($\mu = 1, V_P = 1, V_F = 1, I_F = 0.05$).}
-    \label{fig:equilibrium_high_lambda_entry_fees}
 \end{figure}
 
 
