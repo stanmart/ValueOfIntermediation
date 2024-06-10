@@ -539,11 +539,14 @@ This is because due to the lump-sum nature of the entry fee, the platform can ex
 The latter is essentially a function of the aggregate, minus the investment costs of the fringe firms.
 As I show later in \cref{prop:equilibrium_benchmark}, the aggregate is independent of the platform's product variety in the hybrid regime, and therefore the optimal entry fee is also independent of it.
 
-On the other hand, \cref{fig:platform_profits} shows the platform's profit (\cref{eq:platform_profits_hybrid_benchmark,eq:platform_profits_retail_benchmark}) is increasing in the number of its products.
+On the other hand, \cref{fig:platform_profits}\footnote{
+    $\frac{\dd X}{\dd N_P}$ denotes equilibrium comparative statics.
+    I.e., if the variable $X$ is a function of $N_P$ and $N_F$, then $$\frac{\dd X}{\dd N_P} = \frac{\partial X(N_P, N_F(N_P))}{\partial N_P}$$.
+} shows the platform's profit (\cref{eq:platform_profits_hybrid_benchmark,eq:platform_profits_retail_benchmark}) is increasing in the number of its products.
 \begin{corollary}
     \label{prop:platform_profits_comparative_benchmark}
     \begin{align*}
-        N_F > 0 \implies \frac{\partial \pi_P^t}{\partial N_P} = \frac{V_P}{V_F} I_F.
+        N_F(N_P) > 0 \implies \frac{\dd \pi_P^t}{\dd N_P} = \frac{V_P}{V_F} I_F.
     \end{align*}
 \end{corollary}
 This is a rather mechanical result: the platform's product variety is exogenous, and therefore possible investment costs are not modeled.
@@ -622,7 +625,7 @@ This, and a few other results in this section\footnote{
     \label{lem:shape_of_fringe_profit}
     For any $N_P, N_F \geq 0$, the fringe profit function is either concave or decreasing in $N_F$:
     \begin{align*}
-        \frac{\pi_F^t(N_P, N_F)}{\partial N_F} < 0 \text{ or } \frac{\partial^2 \pi_F^t(N_P, N_F)}{\partial N_F^2} < 0 \quad \forall\, N_P, N_F \geq 0.
+        \frac{\partial \pi_F^t(N_P, N_F)}{\partial N_F} < 0 \text{ or } \frac{\partial^2 \pi_F^t(N_P, N_F)}{\partial N_F^2} < 0 \quad \forall\, N_P, N_F \geq 0.
     \end{align*}
 \end{lemma}
 This lemma states that the fringe profit function is hump-shaped in the sense that it starts with an increasing\footnote{
