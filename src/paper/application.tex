@@ -1568,21 +1568,16 @@ This coincides with the intuitive idea that the platform's bargaining power is h
 \label{sec:more_general_equilibrium}
 
 Let us now turn to the determination of the equilibrium number of fringe firms.
-Assume that total investment cost for the fringe is given by some increasing, weakly convex function $I_F(N_F)$.
-Note, that it includes the linear (per-firm constant) investment cost used throughout the main text.
-\begin{assumption}
-    Assume that $I_F(N_F)$ is a strictly increasing, convex, twice differentiable function:
-    \begin{align*}
-        \frac{\partial I_F(N_F)}{\partial N_F} > 0, \quad \frac{\partial^2 I_F(N_F)}{\partial N_F^2} \geq 0.
-    \end{align*}
-\end{assumption}
-
+Assume that each firm faces a lump-sum investment cost of $I_F$ to enter the market.\footnote{
+    The results would also hold if the investment cost was non-constant, as long as the marginal cost of investment is weakly increasing.
+}
+Thus, total investment cost for the fringe is given by $I_F N_F$.
 The equilibrium number of entrants is determined by a free entry condition: in the end, the fringe firms' total profits should be equal to the aggregated investment cost.
 \begin{assumption}
     \label{ass:free_entry}
     Let us define a free entry equilibrium by the following conditions: Entrants make zero profits after accounting for entry costs: 
     \begin{align*}
-        \pi_F(N_P, N_F) = I_F(N_F).
+        \pi_F(N_P, N_F) = I_F N_F.
     \end{align*}
 \end{assumption}
 
@@ -2061,9 +2056,9 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
 
 \begin{lemma}
     \label{lem:slope_at_eq}
-    Let the conditions in \cref{ass:single_crossing} hold. Then for any $N_F^* > 0$ for which $\pi_F(N_P, N_F^*, N_C) = I_F(N_F)$, the partial derivative of fringe profits with respect to the number of fringe firms is smaller than the marginal investment cost:
+    Let the conditions in \cref{ass:single_crossing} hold. Then for any $N_F^* > 0$ for which $\pi_F(N_P, N_F^*, N_C) = I_F N_F$, the partial derivative of fringe profits with respect to the number of fringe firms is smaller than the marginal investment cost $I_F$:
     \begin{align*}
-        \left. \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} \right|_{N_F = N_F^*} < I_F'(N_F).
+        \left. \frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_F} \right|_{N_F = N_F^*} < I_F.
     \end{align*}
 \end{lemma}
 \begin{proof}[Proof of \cref{lem:slope_at_eq}]
@@ -2075,17 +2070,17 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
 
     Notice that the fact that $\pi_F$ is concave or decreasing in $N_F$ implies that if $\partial_F \pi_F(N_P, N_F', N_C)$ for some $N_F' \geq 0$, then $\partial_F \pi_F(N_P, N_F'', N_C) < \partial_F \pi_F(N_P, N_F', N_C)$ for any $\tilde{N_F} < \bar{N_F}$.
 
-    Next, observe that if $\partial_F \pi_F(N_P, 0, N_C) < I_F'(0)$, then there is no equilibrium with $N_F > 0$.
-    To show this, assume by contradiction that $\exists N_F^* > 0$ such that $\pi_F(N_P, N_F^*, N_C) = I_F(N_F^*)$.
-    Then the mean value theorem implies that there is a $\bar{N}_F \in (0, N_F^*)$ such that $\partial_F \pi_F(N_P, \bar{N}_F, N_C) = I_F'(\bar{N_F}) \geq I_F'(0)$.
-    However, this clearly cannot be the case as $\partial_F \pi_F(N_P, N_F, N_C) < I_F'(0)$ or $\pi_F(N_P, N_F, N_C) \leq 0$ for all $N_F > 0$.
+    Next, observe that if $\partial_F \pi_F(N_P, 0, N_C) < I_F$, then there is no equilibrium with $N_F > 0$.
+    To show this, assume by contradiction that $\exists N_F^* > 0$ such that $\pi_F(N_P, N_F^*, N_C) = I_F N_F^*$.
+    Then the mean value theorem implies that there is a $\bar{N}_F \in (0, N_F^*)$ such that $\partial_F \pi_F(N_P, \bar{N}_F, N_C) = I_F$.
+    However, this clearly cannot be the case as $\partial_F \pi_F(N_P, N_F, N_C) < I_F$ or $\pi_F(N_P, N_F, N_C) \leq 0$ for all $N_F > 0$.
 
-    Now let $N_F^*$ be a positive number for which $f(N_P, N_F^*, N_C) = I_F(N_F^*)$.
-    It is easy to see that $\partial \pi(N_P, N_F^*, N_C) < I_F'(N_F^*)$.
-    The reason is that if it exists, then $\partial_F \pi_F(N_P, 0, N_C) > I_F'(0)$.
-    Now if $\partial_F \pi_F(N_P, N_F, N_C) \geq I_F'(N_F) \forall N_F > 0$, then $f(N_P, N_F, N_F) > I_F(N_F)$, and the two functions do not intersect.
-    Therefore, there must exist some $\bar{N}_F > 0$ for which $\partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F'(\bar{N}_F)$.
-    This in turn implies that $\partial_F \pi_F(N_P, N_F, N_C) \leq \partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F'(\bar{N}_F) \leq I_F'(N_F)$ for all $N_F > \bar{N}_F$.
+    Now let $N_F^*$ be a positive number for which $f(N_P, N_F^*, N_C) = I_F N_F^*$.
+    It is easy to see that $\partial \pi(N_P, N_F^*, N_C) < I_F$.
+    The reason is that if it exists, then $\partial_F \pi_F(N_P, 0, N_C) > I_F$.
+    Now if $\partial_F \pi_F(N_P, N_F, N_C) \geq I_F \forall N_F > 0$, then $f(N_P, N_F, N_F) > I_F N_F$, and the two functions do not intersect.
+    Therefore, there must exist some $\bar{N}_F > 0$ for which $\partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F$.
+    This in turn implies that $\partial_F \pi_F(N_P, N_F, N_C) \leq \partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F$ for all $N_F > \bar{N}_F$.
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:unique_equilibrium_more_general}]
@@ -2129,13 +2124,13 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
     \Cref{prop:unique_equilibrium} establishes that if an equilibrium with $N_F > 0$ exists, it is unique.
     Use the implicit function theorem on the equation from \cref{ass:free_entry} to obtain
     \begin{align*}
-        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P}}{I_F'(N_F) - \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F}}
+        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P}}{I_F - \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F}}
     \end{align*}
     The derivative exists if the above expression is well-defined, i.e. $\frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} \neq I_F$.
     Remember from \cref{prop:share_of_fringe} that the numerator of this expression is negative under the condition $\frac{\partial^2 f(N_P, N_F, N_C)}{\partial N_P \partial N_F}$.
     Now all we need to show to conclude the proof is that
     \begin{align*}
-        \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} < I_F'(N_F),
+        \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} < I_F,
     \end{align*}
     which is the statement of \cref{lem:slope_at_eq}.
 \end{proof}
@@ -2143,9 +2138,9 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
 \begin{proof}[Proof of \cref{prop:aggregate_size_additive}]
     Use the implicit function theorem to get the equilibrium number of fringe firms as a function of the platform's product variety:
     \begin{align*}
-        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P}}{I_F'(N_F) - \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F}}.
+        \frac{\partial N_F}{\partial N_P} = \frac{\frac{\partial \pi_F(N_P, N_F, N_C)}{\partial N_P}}{I_F - \frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F}}.
     \end{align*}
-    Remember, that from \cref{lem:slope_at_eq}, and the assumption on the investment cost function we have that $\frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} < I_F'(N_F)$.
+    Remember, that from \cref{lem:slope_at_eq}, and the assumption on the investment cost function we have that $\frac{\partial \pi_F (N_P, N_F, N_C)}{\partial N_F} < I_F$.
     Then, substitute $f(N_P, N_F) = g(\alpha N_P + \beta N_P)$ into $\pi_F$ to get the following fringe profit function:
     \begin{align*}
         \pi_F(N_P, N_F, N_C) = \beta N_C N_F \int_0^1 w_F(s) g'(\alpha N_P + s \beta N_F) \ds.
@@ -2163,15 +2158,11 @@ Finally, \cref{sec:cooperative_game} and \cref{sec:results_demand} establish tha
     Finally, from \cref{prop:share_of_fringe}, we have that the whole expression must be negative.
 
     First, let us show that (1) is non-negative, and, coupled with the fact that (2) is positive, omitting it increases the denominator in absolute value, thus making the whole expression larger.
-    To see this, observe that the second part of (1) is just the per-unit fringe profit, i.e.
+    To see this, observe that the second part of (1) is just the per-unit fringe profit.
+    Therefore, in equilibrium, (1) must be zero:
     \begin{align*}
-        (1) = I_F'(N_F) - \pi_F(N_P, N_F, N_C) / N_F \geq 0 \Leftrightarrow N_F I_F'(N_F) - \pi_F(N_P, N_F, N_C) \leq 0.
+        N_F (1) = N_F I_F - \pi_F(N_P, N_F, N_C) = 0.
     \end{align*}
-    Next, use the convexity of $I_F$ and the definition of the equilibrium to obtain
-    \begin{align*}
-        N_F I_F'(N_F) - \pi_F(N_P, N_F, N_C) \leq I_F(N_F) - \pi_F(N_P, N_F, N_C) = 0,
-    \end{align*}
-    thus proving that (1) is non-negative.
 
     Next, observe that we can bound (2) from above using the fact that $0 \leq s \leq 1$:
     \begin{align*}
