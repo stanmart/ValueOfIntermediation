@@ -1,6 +1,7 @@
 amscls
 amsfonts
 amsmath
+apptools
 auxhook
 babel-english
 biber
@@ -41,7 +42,6 @@ ltxcmds
 mathastext
 mathtools
 microtype
-ms
 pdfescape
 pdftexcmds
 pgf
