@@ -22,7 +22,7 @@ rule update_latex_deps:
     shell:
         "python src/utils/makeutils.py collect-latex-packages \
             --add-biber --add-latexmk --add-manim-deps --check-against-tl \
-            --output-file tl_packages.txt {input.deps}"
+            --output-file tl_packages.txt --force-add ms {input.deps}"
 
 
 rule papers:

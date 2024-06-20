@@ -42,6 +42,7 @@ ltxcmds
 mathastext
 mathtools
 microtype
+ms
 pdfescape
 pdftexcmds
 pgf

@@ -12,7 +12,9 @@ app = typer.Typer()
 
 @app.command()
 def find_input_files(
-    tex_file: str, remove_prefix: str = "", print_console: bool = False
+    tex_file: str,
+    remove_prefix: str = "",
+    print_console: bool = False,
 ):
     """Find all of the files that are included, inputted or includegraphics'
     in a tex file.
@@ -129,6 +131,7 @@ def collect_latex_packages(
     add_latexmk: bool = False,
     add_manim_deps: bool = False,
     check_against_tl: bool = False,
+    force_add: list[str] = [],
     print_console: bool = False,
 ) -> list[str]:
     """Collect all of the latex packages from the dependency files.
@@ -211,6 +214,8 @@ def collect_latex_packages(
             )
         )
         packages &= tl_packages
+
+    packages |= set(force_add)
 
     package_list = sorted(list(packages))
 
