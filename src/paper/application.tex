@@ -15,6 +15,7 @@
 \usepackage{subcaption}
 \usepackage{setspace}
 \usepackage{snapshot}
+\usepackage{apptools}
 \usepackage[backend=biber,style=authoryear,maxbibnames=99,hyperref=true]{biblatex} 
 
 \setstretch{1.15}
@@ -30,7 +31,6 @@
 \pgfplotsset{compat=1.17}
 
 \newtheorem{definition}{Definition}
-\newtheorem{observation}{Observation}
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
@@ -39,8 +39,15 @@
 
 \crefname{assumption}{assumption}{assumptions}
 \Crefname{assumption}{Assumption}{Assumptions}
-\crefname{observation}{observation}{observations}
-\Crefname{observation}{Observation}{Observations}
+
+\AtAppendix{\counterwithin{definition}{section}}
+\AtAppendix{\counterwithin{proposition}{section}}
+\AtAppendix{\counterwithin{theorem}{section}}
+\AtAppendix{\counterwithin{corollary}{section}}
+\AtAppendix{\counterwithin{lemma}{section}}
+\AtAppendix{\counterwithin{assumption}{section}}
+\AtAppendix{\counterwithin{equation}{section}}
+\AtAppendix{\counterwithin{figure}{section}}
 
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\dt}{\mathrm{d}t}
@@ -429,7 +436,7 @@ This total profit is taken as the value of that coalition, thus defining a chara
 Then, according to the definition of the Shapley value, every firm (including the platform) will get their average marginal contribution this industry-wide profit (with the average taken over all possible orderings of the firms).
 
 One simple extension of this bargaining process would be to use the more general concept of random order values \parencite{weber1988probabilistic}.
-\textcite{stancsics2023bargaining} examines this solution concept for a similar game, but in a more more abstract setting.
+\textcite{stancsics2023value} examines this solution concept for a similar game, but in a more more abstract setting.
 \Cref{sec:cooperative_game_weighted} takes a step in this direction by introducing bargaining weights and utilizing the weighted value.
 
 \section{Results}
