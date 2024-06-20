@@ -491,6 +491,7 @@ Finally, another important feature of this demand system is that, assuming optim
 In particular, consumer surplus is proportional to the logarithm of the aggregate: $CS = \mu \log(A)$. This fact makes welfare analysis rather simple in this setting.
 
 \subsection{Benchmark: platform sets entry fee unilaterally}
+\label{sec:results_benchmark}
 
 Let us now examine entry fees and fringe entry decisions in the benchmark model.
 Recall that there is an infinity of potential fringe entrants looking to enter the market.
@@ -1506,6 +1507,29 @@ Next, assume that the platform and the fringe share profits according to the fol
 It covers the cases in the main text (namely the Shapley value and the weighted value, and three-way bargaining), but is also more general than those.
 In particular, in the platform game, any random order value \parencite{weber1988probabilistic} can be described by such a rule.
 
+In the main text, I use a simpler version of this profit sharing rule.
+I assume that $w_P(s) = w_F(s) \equiv 1$.
+As \cref{sec:cooperative_game} demonstrates, this corresponds to players. Getting their Shapley values in the end.
+Together with the assumptions on the demand system, one can even derive a closed form expression for the platform's profit share (\cref{prop:platform_profits_bargaining}).
+The proof if this proposition is given below
+\begin{proof}[Proof of \cref{prop:platform_profits_bargaining}]
+    Simply integrate the total industry profit function with respect to the mass of fringe entrants obtain the platform's share of the pie:
+    \begin{align*}
+        \pi^t_P &= \int_0^1 f(N_P, sN_F) \ds \\
+        &= \mu \int_0^1 \frac{N_P V_P + s N_F V_F}{N_P V_P + s N_F V_F + 1} \ds \\
+        &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
+    \end{align*}
+    The fringe's share is just the remainder,
+    \begin{align*}
+        f(N_P, N_F) - \int_0^1 f(N_P, sN_F) \ds = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
+    \end{align*}
+    Finally, remember that the investment cost of the fringe is fixed at the bargaining stage, and is therefore not included in the bargaining outcome.
+    Therefore, the total profits of the complete fringe are
+    \begin{align*}
+        \pi^t_P = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F.
+    \end{align*}
+\end{proof}
+
 Apart from the cooperative foundations, one major justification for this profit allocation rule is its intuitive behavior in terms of comparative statics.
 To illustrate this, let us examine what happens when one varies the substitutability between the fringe firms.
 As it turns out, the platform's share increases if the fringe firms are more substitutable.
@@ -1599,6 +1623,40 @@ Finally, in order to guarantee a unique equilibrium, let us make the following, 
 This assumption essentially guarantees that the profit of the fringe (as a function of the number of entrants) has at most a single crossing with total entry cost (apart from the obvious $N_F=0$ intersection).
 The profit functions presented in the main text satisfy this assumption.
 
+Under the specific demand system and profit sharing rule described in the main text, it can be shown that this assumption is satisfied.
+\begin{proof}[Proof of \cref{lem:shape_of_fringe_profit}]
+    First, consider the function
+    \begin{align*}
+        g(x) = \frac{sx}{1 + sx}.
+    \end{align*}
+    Also, let us define
+    \begin{align*}
+        G(x) &= \int_0^1 s g(sx) \ds \\
+        &= \frac{\log(x+1)}{x} + \frac{1}{x(x+1)} - \frac{1}{x}.
+    \end{align*}
+
+    Differentiation with respect to $x$ yields that
+    \begin{align*}
+        G'(x) < 0 \iff \log(x+1) > \frac{x (2x+1)}{(x+1)^2}
+    \end{align*}
+    and
+    \begin{align*}
+        G''(x) < 0 \iff \log(x+1) < \frac{x (5x^2 + 5x + 2)}{2 (x+1)^3}.
+    \end{align*}
+    There exists $\bar{x} > 0$\footnote{
+        $\bar{x} = 3$ is such a number.
+    }, such that the first equality holds for all $x > \bar{x}$, and the second for all $x < \bar{x}$.
+    Therefore, $G$ is either concave or decreasing for all $x > 0$.
+
+    Now let us consider the function $h(x) = N_C \mu g(N_P V_P + V_F x)$.
+    By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
+    Finally, notice that $H(x)$ is exactly the profit function of the fringe:
+    \begin{align*}
+        \pi_F(N_P, N_F) = \int_0^1 N_F h'(s N_F) \ds,
+    \end{align*}
+    thus proving the lemma.
+\end{proof}
+
 \subsection{Results}
 \label{sec:more_general_results}
 
@@ -1618,6 +1676,11 @@ Let us start with a technical, but very useful result.
 The intuition behind this result is that \cref{ass:single_crossing} ensures that the total profits achieved by the fringe is either concave or hump-shaped.
 Consequently, it has at most one crossing with the -- convex and increasing -- total entry cost function (for $n_F > 0$).
 This particular shape (concave or hump-shaped) is also the main driver for the later results about the comparative statics of equilibrium profits and entry.
+Given that \cref{ass:free_entry,ass:single_crossing} is satisfied in the model presented in the main text, it immediately follows that the equilibrium in that model is also unique.
+\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
+    \Cref{lem:shape_of_fringe_profit} demonstrates that the fringe total profit function is either concave or decreasing in the number of fringe firms.
+    Thus, \cref{ass:single_crossing} is satisfied, and \cref{prop:unique_equilibrium_more_general} implies that the equilibrium number of fringe entrants is unique.
+\end{proof}
 
 The following two propositions are partial equilibrium results: consider the number of fringe entrants $N_F$ as fixed.
 The first statement claims that the platform's profits are increasing in its own product variety.
@@ -1827,6 +1890,19 @@ If $N_F^*$ is an equilibrium, then fringe profits minus entry costs are strictly
 Therefore, if an increase in $N_P$ decreases the fringe's profits for every $N_F \geq 0$, equilibrium can be restored by decreasing the number of fringe entrants, (and vice versa for the other case).
 This is also related to the concept of strategic complementary and substitutability, which also depends on the cross-derivatives (i.e. the supermodularity or submodularity) of the profit function.
 
+Based on this general result, the corresponding on in the main text follows immediately.
+\begin{proof}[Proof of \cref{prop:fringe_profits_partial}]
+    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing}.
+    Furthermore, 
+    \begin{align*}
+        \frac{\partial^2 \pi^t_F(N_P ,N_F)}{\partial N_P \partial N_F} < 0 \quad \forall\, N_P, N_F \geq 0.
+    \end{align*}
+    Therefore, by \cref{prop:share_of_fringe},
+    \begin{align*}
+        \frac{\partial \pi^t_F(N_P, N_F)}{\partial N_P} < 0 \quad \forall\, N_P, N_F \geq 0.
+    \end{align*}
+\end{proof}
+
 Finally, let us conclude this section by establishing a stronger result for a more restrictive class of profit functions.
 In the following, I assume that the profit function has an additive form.
 Intuitively, this means that -- in terms of total profits generated -- the platform's and the fringe firms' products are substitutable to each other according to some constant ratio.
@@ -1906,11 +1982,22 @@ It states that, not only does the equilibrium number of fringe firms decrease as
 And, as the second part shows, this bound is sufficient to guarantee that the total size of the pie ($\Pi(N_P, N_F, N_C)$) also decreases in equilibrium.
 
 This result has particularly strong implications in models where total profits (or total product variety) has a monotone relationship with consumer welfare, such as those in \textcite{anderson2020aggregative}.
-The demand system presented in the main text also has this property.
+The demand system presented in the main text also has this property, and thus the results of this proposition apply to it as well.
+\begin{proof}[Proof of \cref{prop:N_F_comparative_equilibrium}]
+    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit}.
+    Therefore, by \cref{prop:aggregate_size_additive}
+    \begin{align*}
+        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
+    \end{align*}
+    immediately follows.
+\end{proof}
 
-\subsection{Additional lemmas}
+
+\subsection{Additional lemmas and proofs}
 \label{sec:lemmas}
 This subsection contains a couple of lemmas that are, while not very interesting on their own, necessary for the proofs in the previous sections.
+Furthermore, it contains the proofs of the results presented in \cref{sec:results_benchmark}, as they are not related to the bargaining framework, and are thus omitted from the previous sections.
+
 The first lemma is helpful for establishing whether \cref{ass:single_crossing} holds under a certain $f$ function.
 It states that showing that it holds for any affine transformation of $f$ is sufficient.
 \begin{lemma}
@@ -1973,6 +2060,7 @@ It states that in an equilibrium, the slope of the fringe profit function is sma
     This in turn implies that $\partial_F \pi_F(N_P, N_F, N_C) \leq \partial_F \pi_F(N_P, \bar{N}_F, N_C) < I_F$ for all $N_F > \bar{N}_F$.
 \end{proof}
 
+The remainder of this section contains the proofs related to optimal product pricing and various results for the benchmark model.
 
 \begin{proof}[Proof of \cref{prop:optimal_profit}]
     The profit function for product $Ti$ is the following:
@@ -2049,83 +2137,6 @@ It states that in an equilibrium, the slope of the fringe profit function is sma
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:platform_profits_bargaining}]
-    Simply integrate the total industry profit function with respect to the mass of fringe entrants obtain the platform's share of the pie:
-    \begin{align*}
-        \pi^t_P &= \int_0^1 f(N_P, sN_F) \ds \\
-        &= \mu \int_0^1 \frac{N_P V_P + s N_F V_F}{N_P V_P + s N_F V_F + 1} \ds \\
-        &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
-    \end{align*}
-    The fringe's share is just the remainder,
-    \begin{align*}
-        f(N_P, N_F) - \int_0^1 f(N_P, sN_F) \ds = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
-    \end{align*}
-    Finally, remember that the investment cost of the fringe is fixed at the bargaining stage, and is therefore not included in the bargaining outcome.
-    Therefore, the total profits of the complete fringe are
-    \begin{align*}
-        \pi^t_P = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right] - I_F N_F.
-    \end{align*}
-\end{proof}
-
-\begin{proof}[Proof of \cref{lem:shape_of_fringe_profit}]
-    First, consider the function
-    \begin{align*}
-        g(x) = \frac{sx}{1 + sx}.
-    \end{align*}
-    Also, let us define
-    \begin{align*}
-        G(x) &= \int_0^1 s g(sx) \ds \\
-        &= \frac{\log(x+1)}{x} + \frac{1}{x(x+1)} - \frac{1}{x}.
-    \end{align*}
-
-    Differentiation with respect to $x$ yields that
-    \begin{align*}
-        G'(x) < 0 \iff \log(x+1) > \frac{x (2x+1)}{(x+1)^2}
-    \end{align*}
-    and
-    \begin{align*}
-        G''(x) < 0 \iff \log(x+1) < \frac{x (5x^2 + 5x + 2)}{2 (x+1)^3}.
-    \end{align*}
-    There exists $\bar{x} > 0$\footnote{
-        $\bar{x} = 3$ is such a number.
-    }, such that the first equality holds for all $x > \bar{x}$, and the second for all $x < \bar{x}$.
-    Therefore, $G$ is either concave or decreasing for all $x > 0$.
-
-    Now let us consider the function $h(x) = N_C \mu g(N_P V_P + V_F x)$.
-    By \cref{lem:single_crossing_affine_transformation}, $H(x) = \int_0^1 s h'(sx) \ds$ is also either concave or decreasing for any $x > 0$.
-    Finally, notice that $H(x)$ is exactly the profit function of the fringe:
-    \begin{align*}
-        \pi_F(N_P, N_F) = \int_0^1 N_F h'(s N_F) \ds,
-    \end{align*}
-    thus proving the lemma.
-\end{proof}
-
-\begin{proof}[Proof of \cref{prop:unique_equilibrium}]
-    \Cref{lem:shape_of_fringe_profit} demonstrates that the fringe total profit function is either concave or decreasing in the number of fringe firms.
-    Thus, \cref{ass:single_crossing} is satisfied, and \cref{prop:unique_equilibrium_more_general} implies that the equilibrium number of fringe entrants is unique.
-\end{proof}
-
-\begin{proof}[Proof of \cref{prop:fringe_profits_partial}]
-    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing}.
-    Furthermore, 
-    \begin{align*}
-        \frac{\partial^2 \pi^t_F(N_P ,N_F)}{\partial N_P \partial N_F} < 0 \quad \forall\, N_P, N_F \geq 0.
-    \end{align*}
-    Therefore, by \cref{prop:share_of_fringe},
-    \begin{align*}
-        \frac{\partial \pi^t_F(N_P, N_F)}{\partial N_P} < 0 \quad \forall\, N_P, N_F \geq 0.
-    \end{align*}
-\end{proof}
-
-\begin{proof}[Proof of \cref{prop:N_F_comparative_equilibrium}]
-    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit}.
-    Therefore, by \cref{prop:aggregate_size_additive}
-    \begin{align*}
-        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
-    \end{align*}
-    immediately follows.
-\end{proof}
-
 \begin{proof}[Proof of \cref{prop:aggregate_comparative_hybrid}]
     The first statement follows immediately from
     \begin{align*}
@@ -2152,15 +2163,6 @@ It states that in an equilibrium, the slope of the fringe profit function is sma
         CS \propto \log(A).
     \end{align*}
 \end{proof}
-
-\begin{proof}[Proof of \cref{prop:benchmark_results}]
-    The respective results are stated in \cref{prop:equilibrium_aggregate_benchmark} and \cref{prop:consumer_surplus_benchmark}.
-\end{proof}
-
-\begin{proof}[Proof of \cref{prop:bargaining_results}]
-    The respective results are stated in \cref{prop:N_F_comparative_equilibrium} and \cref{prop:aggregate_comparative_hybrid}.
-\end{proof}
-
 
 \section{Bargaining microfoundations and the cooperative game}
 This section examines the bargaining assumption from the main text in more detail.
