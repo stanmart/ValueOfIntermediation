@@ -341,6 +341,10 @@ Let us denote these profits by $\pi^v_{F}(N_P,s N_F)$ and $\pi^v_{P}(N_P,s N_F)$
         \pi^t_F(N_P, N_F) &= \int_0^1 \partial_2 N_F \Pi(N_P,s N_F) \ds.
     \end{align*}
 \end{proposition}
+\begin{proof}[Proof of \cref{prop:shapley_value}]
+    The cooperative game is describer in detail in \cref{sec:cooperative_game_one_sided}.
+    This result is a direct consequence of \cref{prop:profit_sharing_one_sided}.
+\end{proof}
 
 \subsection{Discussion}
 \label{sec:model_discussion}
@@ -481,9 +485,10 @@ For ease of notation, let us define the following:
 $V_T$ can be thought of as the value of the product, also accounting for marginal costs and taste heterogeneity.
 In this logit demand system, the primitive parameters $v_T$ and $c_T$ only affect the outcomes through this value.
 In fact, equilibrium per-product demand and variable profit can simply be expressed as $V_T/ A$ and $\mu V_T/ A$, respectively, where
-\begin{align*}
+\begin{align}
     A = N_P V_P + N_F V_F + 1
-\end{align*}
+    \label{eq:aggregate_simple}
+\end{align}
 denotes the total aggregate.
 Therefore, to simplify the notation, I will use $V_T$ and $A$ in the rest of the paper, instead of the more cumbersome expressions.
 
@@ -505,9 +510,10 @@ Combined with the  profit function, this gives the following expressions for the
         \label{eq:aggregate_eq}
     \end{align}
     and the equilibrium number of fringe firms is
-    \begin{align*}
+    \begin{align}
         N_F = \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F}.
-    \end{align*}
+        \label{eq:N_F_eq}
+    \end{align}
     Otherwise,  $N_F = 0$ and the equilibrium size of the aggregate is
     \begin{align*}
         A = N_P V_P + 1.
@@ -567,7 +573,7 @@ The next theorem establishes results for these three variables in the benchmark 
     \label{prop:equilibrium_benchmark}
     In the benchmark model, if $N_F(N_P) > 0$ (hybrid regime), then the following hold.
     \begin{itemize}
-        \item The equilibrium number of fringe firms is decreasing in the platform's product variety: $\frac{\dd N_F}{\dd N_P} = -\frac{V_P}{V_F} < -0$.
+        \item The equilibrium number of fringe firms is decreasing in the platform's product variety: $\frac{\dd N_F}{\dd N_P} = -\frac{V_P}{V_F} < 0$.
         \item The equilibrium size of the aggregate and consumer surplus are independent of the platform's product variety: $\frac{\dd A}{\dd N_P} = \frac{\dd CS}{\dd N_P} = 0$.
     \end{itemize}
     If $N_F(N_P) = 0$ (pure retailer regime), then both the aggregate and consumer surplus are increasing in the platform's product variety:
@@ -734,7 +740,7 @@ The following results shows that this is not the case in the bargaining model: a
 
 The main takeaway from this theorem is that the increasing the platform's product variety can actually decrease consumer welfare in the bargaining model.
 The underlying reason is illustrated in \cref{fig:fringe_entry_eq}: the decrease in the number of fringe entrants is large enough to not only to offset the increase in the platform's product variety, but also to decrease the aggregate (\cref{fig:welfare_aggregate}).
-This in turn leads to a decrease in consumer surplus (\cref{fig:welfare_consumer}).
+This in turn leads to a decrease in consumer surplus (\cref{fig:welfare_consumer_surplus}).
 
 This set of results is in stark contrast to the benchmark model.
 Instead of increased product variety weakly increasing consumer welfare, when entry fees are negotiated, it can actually decrease it if the platform stays in the hybrid regime.
@@ -951,7 +957,7 @@ As the next proposition shows, the platform never has an incentive to do so, if 
     \label{prop:hybrid_vs_retail}
     In both the benchmark and bargaining models, the platform never has an incentive to switch from the hybrid to the pure retail regime:
     \begin{align*}
-        \pi_P^t(N_P, N_F(N_P)) \geq \pi_P^t(N_P, 0) \forall\, N_P.
+        \pi_P^t(N_P, N_F(N_P)) \geq \pi_P^t(N_P, 0) \;\forall\, N_P.
     \end{align*}
     The inequality is strict whenever $N_F(N_P) > 0$.
 \end{proposition}
@@ -1039,7 +1045,7 @@ The following proposition characterizes the platform's optimal investment more p
     Let $N_P^*$ be the platform's optimal number of products.
     Then, in the benchmark model, the following holds:
     \begin{align*}
-        \frac{V_P}{I_P} < \frac{V_F}{I_F} &\implies N_P^* 0, \\
+        \frac{V_P}{I_P} < \frac{V_F}{I_F} &\implies N_P^* = 0, \\
         \frac{V_P}{I_P} > \frac{V_F}{I_F} &\implies N_P^* > 0, N_F(N_P^*) = 0, \\
         \frac{V_P}{I_P} = \frac{V_F}{I_F} &\implies N_P^* \in [0, \bar{N}_P] \text{ for some } \bar{N}_P > 0.
     \end{align*}
@@ -1177,6 +1183,9 @@ As shown in \cref{sec:cooperative_game_weighted}, the weighted Shapley value, an
         \pi^t_F(N_P, N_F) &= \int_0^1 s ^ {\lambda_P} \partial_2 N_F \Pi(N_P,s N_F) \ds.
     \end{align*}
 \end{proposition}
+\begin{proof}[Proof of \cref{prop:weighted_shapley_value}]
+\end{proof}
+This result is a direct consequence of \cref{prop:profit_sharing_weighted}.
 It is similar to the non-weighted value in that it is an average of marginal contributions, but now those averages are weighted, with the weight function depending on platform's bargaining weight.
 
 The interpretation of $\lambda_P$ as a bargaining weight for the platform is supported by the fact that the platform's profit function is increasing in it.
@@ -1188,6 +1197,10 @@ The interpretation of $\lambda_P$ as a bargaining weight for the platform is sup
         \frac{\partial \pi_F^t(N_P, N_F)}{\partial \lambda_P} &< 0.
     \end{align*}
 \end{proposition}
+\begin{proof}[Proof of \cref{prop:lambda_P_comparative}]
+    For any $\lambda < \lambda'$, $\int_0^s \lambda t^{\lambda - 1} \dt = s^\lambda > s^{\lambda'} = \int_0^s \lambda' t^{\lambda' - 1} \dt \forall s \in [0, 1]$.
+    Therefore, for any (non-constant) function $\Pi$, $\int_0^1 \lambda s^{\lambda - 1} \Pi(s) \ds > \int_0^1 \lambda' s^{\lambda' - 1} \Pi(s) \ds$.
+\end{proof}
 In fact, the limits as $\lambda_P \to 0$ and $\lambda_P \to \infty$ are quite intuitive: in the former case, the platform's profits are zero, while in the latter case it is able to appropriate all profits.
 That is, these limits correspond to the platform either receiving or making take-it or leave-it offers.
 
@@ -1369,6 +1382,10 @@ To summarize, the shares of the various players are as follows.
         CS(N_P, N_F, N_C) &= \int_0^1 s \Pi(N_P, s N_F) \ds.
     \end{align*}
 \end{proposition}
+\begin{proof}[Proof of \cref{prop:three_way_shapley_value}]
+    \Cref{sec:cooperative_game_two_sided} formally describes the cooperative game corresponding to the three-sided bargaining assumption.
+    This result is a direct consequence of \cref{prop:profit_sharing_two_sided}.
+\end{proof}
 
 There are a number of things to note here.
 First, and most importantly, the customers' share from total surplus is equal to the platform's.\footnote{
@@ -1379,11 +1396,32 @@ Therefore, if the platform can choose its mode of operation to maximize its prof
 
 Second, it can be shown that due to the fringe firms' total profit function having a similar shape as in the main model, the same results hold in terms of the platform's product variety displacing fringe products.
 \begin{proposition}
+    \label{prop:fringe_entry_two_sided}
     In the hybrid regime under three-sided bargaining, the following holds:
     \begin{align*}
-        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}.
+        N_F > 0 \implies \frac{\dd N_F}{\dd N_P} < -\frac{V_P}{V_F}.
     \end{align*}
 \end{proposition}
+\begin{proof}[Proof of \cref{prop:fringe_entry_two_sided}]
+    The proof is analogous to that of \cref{prop:equilibrium_bargaining}.
+    To see that $\frac{\partial \pi_F}{\partial N_F}$ satisfies \cref{ass:single_crossing}, first consider the function
+    \begin{align*}
+        g(x) = \frac{x}{1 + x} + \log(1 + x).
+    \end{align*}
+    Then observe that
+    \begin{align*}
+        G(x) \coloneq \int_0^1 g(sx) \ds = \frac{\frac{x^{2} \left(x + 1\right)}{2} + \left(1 - \log{\left(x + 1 \right)}\right) \left(x + 1\right) - 1}{x^{2} \left(x + 1\right)}
+    \end{align*}
+    is concave, and thus satisfies \cref{ass:single_crossing}.
+    By \cref{lem:single_crossing_affine_transformation}, $\pi_F$ then also satisfies \cref{ass:single_crossing}.
+    Finally, as \cref{ass:additive_profit,ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:single_crossing} are satisfied, it follows from \cref{prop:aggregate_size_additive} that
+    \begin{align*}
+        \frac{\dd N_F}{\dd N_P} < -\frac{V_P}{V_F}
+    \end{align*}
+    in the hybrid regime.
+    
+\end{proof}
+
 As a consequence, the aggregate is decreasing in $N_P$ in the hybrid regime (\cref{fig:fringe_entry_eq_full_surplus_two_sided}).
 \begin{corollary}
     In the hybrid regime under three-sided bargaining, total aggregate is decreasing in the platform's product variety:
@@ -1391,6 +1429,9 @@ As a consequence, the aggregate is decreasing in $N_P$ in the hybrid regime (\cr
         N_F > 0 \implies \frac{\partial A}{\partial N_P} < 0.
     \end{align*}
 \end{corollary}
+\begin{proof}
+    This result also follows from the applicability of \cref{prop:aggregate_size_additive}.
+\end{proof}
 
 Nevertheless, there is an important distinction compared to the previous results.
 While this does lead to a decrease in total surplus, in contrast to the two-sided bargaining case, this does not imply a decrease in the customers' surplus.
@@ -1856,7 +1897,7 @@ Finally, let us turn to equilibrium entry as a function of the platform's produc
 The previous proposition implies an almost immediate corollary regarding the equilibrium number of fringe entrants.
 \begin{corollary}
     \label{cor:fringe_entry}
-    Let \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:free_entrya,ass:single_crossing} hold.
+    Let \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:free_entry,ass:single_crossing} hold.
     Furthermore, assume that $f, w$ are twice continuously differentiable.
     Let $N_F^*$ denote the equilibrium number of fringe firms.
     Let us also assume that $N_F^* > 0$, and that
@@ -1917,7 +1958,7 @@ Intuitively, this means that -- in terms of total profits generated -- the platf
 
 \begin{proposition}
     \label{prop:aggregate_size_additive}
-    Let \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:free_entrya,ass:single_crossing,ass:additive_profit} hold.
+    Let \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:free_entry,ass:single_crossing,ass:additive_profit} hold.
     Then
     \begin{align*}
         \frac{\partial N_F^*}{\partial N_P} < -\frac{\alpha}{\beta}.
@@ -1983,15 +2024,30 @@ And, as the second part shows, this bound is sufficient to guarantee that the to
 
 This result has particularly strong implications in models where total profits (or total product variety) has a monotone relationship with consumer welfare, such as those in \textcite{anderson2020aggregative}.
 The demand system presented in the main text also has this property, and thus the results of this proposition apply to it as well.
-\begin{proof}[Proof of \cref{prop:N_F_comparative_equilibrium}]
-    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit}.
-    Therefore, by \cref{prop:aggregate_size_additive}
-    \begin{align*}
-        N_F > 0 \implies \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
-    \end{align*}
-    immediately follows.
+\begin{proof}[Proof of \cref{prop:platform_profits_comparative_benchmark}]
+    Simply differentiate \cref{eq:platform_profits_hybrid_benchmark} with respect to $N_P$.
 \end{proof}
 
+\begin{proof}[Proof of \cref{prop:equilibrium_bargaining}]
+    $\pi^t_F(N_P ,N_F)$ adheres to the \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit,ass:single_crossing}.
+    Therefore, by \cref{prop:aggregate_size_additive}
+    \begin{align*}
+        N_F > 0 \implies \frac{\dd N_F}{\dd N_P} < -\frac{V_P}{V_F}
+    \end{align*}
+    immediately follows.
+    The second set of results can be obtained from this, as well as \cref{eq:aggregate_simple}:
+    \begin{align*}
+        \frac{\dd A}{\dd N_P}& = V_P \frac{\dd N_P}{\dd N_P} + V_F \frac{\dd N_F}{\dd N_P} \\
+        &< V_P - V_F \frac{V_P}{V_F} = 0,
+    \end{align*}
+    where the inequality follows from the previous proposition.
+    Finally, $CS$ is also decreasing as
+    \begin{align*}
+        \frac{\dd CS}{\dd N_P} = \frac{\dd \mu \log(A)}{\dd N_P} < 0.
+    \end{align*}
+    
+    For the results about the pure retailer regime, use the fact that $A = N_P V_P + 1$ and $CS(A) = \mu\log(A)$.
+\end{proof}
 
 \subsection{Additional lemmas and proofs}
 \label{sec:lemmas}
@@ -2137,31 +2193,16 @@ The remainder of this section contains the proofs related to optimal product pri
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:aggregate_comparative_hybrid}]
-    The first statement follows immediately from
-    \begin{align*}
-        A = N_P V_P + N_F V_F + 1
-    \end{align*}
-    and
-    \begin{align*}
-        \frac{\partial N_F}{\partial N_P} < -\frac{V_P}{V_F}
-    \end{align*}
-    from \cref{prop:N_F_comparative_equilibrium}.
-    The second part is a consequence of
-    \begin{align*}
-        CS \propto \log(A).
-    \end{align*}
+\begin{proof}[Proof of \cref{prop:platform_profits_comparative_benchmark}]
+    Simply differentiate \cref{eq:platform_profits_hybrid_benchmark} with respect to $N_P$.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:aggregate_comparative_retail}]
-    The first statement trivially follows from
-    \begin{align*}
-        A = N_P V_P + 1.
-    \end{align*}
-    The second part is a consequence of
-    \begin{align*}
-        CS \propto \log(A).
-    \end{align*}
+\begin{proof}[Proof of \cref{prop:equilibrium_benchmark}]
+    The first statement follows from differentiating \cref{eq:N_F_eq} with respect to $N_P$.
+    $\frac{\dd A}{\dd N_P} = 0$ follows from the fact that $A$ does not depend on $N_P$ in \cref{eq:aggregate_eq}.
+    Finally, $\frac{\dd A}{\dd N_P} = 0$ follows from the fact that consumer surplus only depends on $A$.
+    
+    For the results about the pure retailer regime, use the fact that $A = N_P V_P + 1$ and $CS(A) = \mu\log(A)$.
 \end{proof}
 
 \section{Bargaining microfoundations and the cooperative game}
