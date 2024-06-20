@@ -650,9 +650,9 @@ This lemma states that the fringe profit function is hump-shaped in the sense th
 }, concave part, after which it may turn into a decreasing (but not necessarily concave or convex) function of $N_F$.
 \Cref{fig:equilibrium} illustrates this property.
 
-While this lemma's main purpose is to help establish the results about fringe entry and consumer surplusfor the bargaining case, it is also interesting in its own right.
+While this lemma's main purpose is to help establish the results about fringe entry and consumer surplus for the bargaining case, it is also interesting in its own right.
 It shows that the number of fringe firms do not necessarily have a monotonic effect on the total profits of the fringe.
-That is, even though industry-wide profits are increasing in $N_F$, the share that the fringe can obtain may decrease after a certain point, not only in relative terms, but also in absolute terms.
+That is, even though industry-wide profits are increasing in $N_F$, the amount that the fringe can obtain may decrease after a certain point, not only as a fraction of the total, but also in absolute terms.
 The underlying reason is that as the number of fringe firms increases, their bargaining power decreases due to their substitutability with each other.
 This decrease can be large enough to offset the total pie getting larger.
 
@@ -1380,7 +1380,7 @@ Furthermore, $f(N_P, N_F) = g(V_P N_P + V_F N_F)$ for an increasing, strictly co
 
 Next, let us consider the bargaining outcomes in this three-sided setting.
 \Cref{sec:cooperative_game_two_sided} formally describes the corresponding cooperative game, and \cref{prop:profit_sharing_two_sided} establishes the resulting profit shares.
-To summarize, the shares of the various players are as follows.
+To summarize, the various players share the total surplus in the following way.
 \begin{proposition}
     \label{prop:three_way_shapley_value}
     \begin{align*}
@@ -1563,13 +1563,13 @@ The proof if this proposition is given below.
 \begin{proof}[Proof of \cref{prop:platform_profits_bargaining}]
     Simply integrate the total industry profit function with respect to the mass of fringe entrants obtain the platform's share of the pie:
     \begin{align*}
-        \pi^t_P &= \int_0^1 f(N_P, sN_F) \ds \\
+        \pi^t_P &= \int_0^1 \Pi(N_P, sN_F) \ds \\
         &= \mu \int_0^1 \frac{N_P V_P + s N_F V_F}{N_P V_P + s N_F V_F + 1} \ds \\
         &= \mu \left[ 1 - \frac{\log \left(1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} \right].
     \end{align*}
     The fringe's share is just the remainder,
     \begin{align*}
-        f(N_P, N_F) - \int_0^1 f(N_P, sN_F) \ds = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
+        \Pi(N_P, N_F) - \int_0^1 \Pi(N_P, sN_F) \ds = \mu \left[ \frac{\log \left( 1 + \frac{N_F V_F}{N_P V_P + 1} \right)}{N_F V_F} - \frac{1}{N_P V_P + N_F V_F + 1} \right]
     \end{align*}
     Finally, remember that the investment cost of the fringe is fixed at the bargaining stage, and is therefore not included in the bargaining outcome.
     Therefore, the total profits of the complete fringe are
@@ -1740,7 +1740,7 @@ The first statement claims that the platform's profits are increasing in its own
 \begin{proposition}
     \label{prop:share_of_platform}
     Let \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing} hold.
-    Further assume that $f$ is continuously differentiable with respect to $N_P$ and also twice differentiable.
+    Also assume that $f$ is continuously differentiable with respect to $N_P$ and also twice differentiable.
     Let $N_F \geq 0$.
     Then $\pi_P$ is also differentiable and
     \begin{align*}
@@ -1848,13 +1848,13 @@ In their case, the direction of the change depends on the complementarities betw
     \end{align*}
 \end{proof}
 In summary, when they are mostly substitutes (the cross-derivatives of $f$ are negative), the fringe's profits decrease as a result of an increase in $N_F$.
-The intuition is that, even though the total size of the pie increases, the bargaining power of the fringe deteriorates so much that its share decreases not only in relative, but also in absolute terms (as illustrated in \cref{fig:increase_N_P_fringe}).
+The intuition is that, even though the total size of the pie increases, the bargaining power of the fringe deteriorates so much that its total profits decreases not only in relative, but also in absolute terms (as illustrated in \cref{fig:increase_N_P_fringe}).
 On the other hand, when the fringe firms are mostly complements the fringe's profits increase.
 
 As the Shapley value of each player is their average marginal contribution to the total value, this result can best be understood through the lens of marginal contributions.
 When the cross derivative is positive, an increase in the platform's product variety increases the marginal contribution of the fringe firms to the total value for any given number of fringe firms.
-Therefore, the share of the fringe also increases.
-On the other hand, when the cross derivative is negative, the marginal contribution of the fringe firms decreases, and so does their share.
+Therefore, the amount that the fringe gets also increases.
+On the other hand, when the cross derivative is negative, the marginal contribution of the fringe firms decreases, and so does the amount they obtain.
 
 \begin{figure}[ht]
     \centering
@@ -2063,8 +2063,55 @@ The demand system presented in the main text also has this property, and thus th
     For the results about the pure retailer regime, use the fact that $A = N_P V_P + 1$ and $CS(A) = \mu\log(A)$.
 \end{proof}
 
+Finally, \cref{prop:implied_entry_fee_comparative} can be viewed as a corollary of the previous theorem.
+\begin{proof}[Proof of \cref{prop:implied_entry_fee_comparative}]
+    Remember that in the hybrid regime, regardless of $N_P$, the size o the aggregate is pinned down by the entry fee $K_F$ (\cref{eq:aggregate_eq}).
+    Conversely, when given some $A$, there is a unique entry fee that supports it:
+    \begin{align*}
+        K_F^{impl} = \frac{\mu V_F}{A} - I_F.
+    \end{align*}
+    Furthermore, this entry fee is decreasing in $A$.
+    \Cref{prop:equilibrium_bargaining} states that $A$ is decreasing in $N_P$, and thus it follows that
+    \begin{align*}
+        \frac{\dd K_F^{impl}}{\dd N_P} = \underbracket{\frac{\dd K_F^{impl}}{\dd A}}_{<0} \underbracket{\frac{\dd A}{\dd N_P}}_{<0} > 0.
+    \end{align*}
+\end{proof}
+
 \paragraph{Platform profits -- general equilibrium}
-Finally, let us examine how the platform's product variety impacts its total profits, also taking into account its effect on the number of fringe entrants.
+Now let us consider how the platform's product variety impacts its total profits, also taking into account its effect on the number of fringe entrants.
+While \cref{prop:share_of_platform} establishes that the platform's profits increase in its own product variety, it is not a general equilibrium result.
+In particular, we know that increasing the platform's product variety leads to a decrease in the number of fringe entrants, and in total profits.
+It would be conceivable that this decrease in entry is so large that the platform's profits decrease as well.
+
+While I do not have a general result for the platform's profits in equilibrium, an important observation can be made.
+No matter the form of the profit function, the platform's profits are always higher in the hybrid regime than if it exclusively sold its own products.
+The intuition behind it is that the profit sharing rule is such that each player gets at least as much as they would make on their own\footnote{
+    Which is only a positive amount for the platform, as the fringe cannot create any value on its own.
+}.
+The following proposition formalizes this idea.
+\begin{proposition}
+    \label{prop:hybrid_vs_retail_general}
+    Under \cref{ass:additive_profit,ass:monotone_profits,ass:monotone_profits}, for any $N_C, N_P, N_F \geq 0$,
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) \geq \pi_P(N_P, 0, N_C).
+    \end{align*}
+\end{proposition}
+\begin{proof}[Proof of \cref{prop:hybrid_vs_retail_general}]
+    \begin{align*}
+        \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 w_P(s) f(N_P, s N_F) \ds \\
+        &\geq N_C \int_0^1 w_P(s) f(N_P, 0) \ds \\
+        &= \int_0^1 w_P(s) \ds N_C f(N_P, 0) \\
+        &= \pi_P(N_P, 0, N_C),
+    \end{align*}
+    with the inequality being strict if $N_F > 0$ and $f$ is not constant its second argument on $[0, N_F]$.
+\end{proof}
+
+\Cref{prop:hybrid_vs_retail} is then a special case of this result.
+\begin{proof}[Proof of \cref{hybrid_vs_retail}]
+    $\Pi$ satisfies \cref{ass:additive_profit,ass:monotone_profits,ass:monotone_profits}.
+    By \cref{prop:hybrid_vs_retail_general}, $\pi_P(N_P, N_F) \geq \pi_P(N_P, N_F)$ for any $N_F$, thus also for $N_F(N_P)$.
+    When $N_F(N_P) > 0$, the inequality is strict.
+\end{proof}
 
 
 \subsection{Additional lemmas and proofs}
@@ -2245,8 +2292,9 @@ This translates directly to the platform game, with the platform being the indis
 Furthermore, in \textcite{stole1996intra}, the bargaining outcome is interpreted as the wage for the workers.
 In the current setting, this would translate to bargaining over profit shares.
 However, as I argue later on, it is equivalent to bargaining over entry fees.
-Finally, this section focuses on the main model, with two-sided bargaining, and the Shapley value as the solution concept.
-However, the same logic can be applied to the extensions presented in \cref{sec:extensions}, based on sections 3.1 and 3.2 of \textcite{stole1996intra}.
+While this section focuses on the main model, with two-sided bargaining, and the Shapley value as the solution, the same logic can be applied to the extensions presented in \cref{sec:extensions}, based on sections 3.1 and 3.2 of \textcite{stole1996intra}.
+Finally, the model is defined for a finite number of small players.
+The continuous version in this paper is the limit of this model as the number of fringe firms goes to infinity.
 
 \begin{figure}
     \centering
