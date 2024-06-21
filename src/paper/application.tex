@@ -2117,10 +2117,10 @@ This result allows us to prove an important result from the main text about the 
     In the bargaining model, \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit,ass:single_crossing} are satisfied.
     From the proof of \cref{eq:platform_profits}, the platform's profits are strictly concave in the entry fee $K_F$.
     This implies that for a fixed $N_P$,
-    \begin{align*}
-        \frac{\dd \pi_P}{\dd K_F} > 0 \text{ if } K_F < K_F^{opt},
-        \frac{\dd \pi_P}{\dd K_F} < 0 \text{ if } K_F > K_F^{opt}. \label{eq:profit_on_entry_fee}
-    \end{align*}
+    \begin{align}
+        &\frac{\dd \pi_P}{\dd K_F} > 0 \text{ if } K_F < K_F^{opt}, \nonumber \\
+        &\frac{\dd \pi_P}{\dd K_F} < 0 \text{ if } K_F > K_F^{opt}. \label{eq:profit_on_entry_fee}
+    \end{align}
     Now let us consider platform profits, but parametrized through $N_P$ and $K_F$ instead of the usual $N_P$ and $N_F$:
     \begin{align*}
         \frac{\dd \pi_P}{\dd N_P} &= \frac{\dd \pi_P(N_P, K_F(N_P))}{\dd N_P} \\
@@ -2216,8 +2216,8 @@ The remainder of this section contains the proofs related to optimal product pri
     Note that $A$ is not influenced by changes in $p_{T_i}$, as $A$ is an integral and $p_T$ is only changed on a zero-measure (singleton) set.
     Therefore, let calculate the first order condition while treating $A$ as a constant:
     \begin{align}
-        \label{eq:foc_profit}
         \mu \frac{\exp\left( \frac{v_T - p_{T_i}}{\mu} \right)}{A} \left[ \frac{p_T - c_T}{\mu} - 1 \right] = 0.
+        \label{eq:foc_profit}
     \end{align}
     Also note that $\pi_{T_i}(p_{T_i})$ is strictly concave, so the FOC is sufficient for optimality.
 
@@ -2251,7 +2251,7 @@ The remainder of this section contains the proofs related to optimal product pri
 \begin{proof}[Proof of \cref{prop:optimal_entry_fee}]
     The total profit function of the platform is the following:
     \begin{align}
-        \pi_P^t &= \pi_P^v + K_F N_F \\
+        \pi_P^t &= \pi_P^v + K_F N_F \nonumber \\
         &= \mu \frac{N_P V_P}{K_F + I_F} + K_F \left[ \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right]. \label{eq:platform_profits}
     \end{align}
     The function is strictly concave in $K_F$, so the first order condition is sufficient for optimality in the case of an interior solution.
