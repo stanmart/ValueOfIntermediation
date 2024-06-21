@@ -162,9 +162,7 @@ Therefore, the modeling approach presented in this paper may be of use in other 
 
 The rest of the paper is organized as follows.
 In \cref{sec:model}, I introduce two model of hybrid platforms: a benchmark with the platform setting an entry fee unilaterally, and the main model, where the platform and the fringe firms engage in bargaining.
-After that, \cref{sec:results}\footnote{
-    \Cref{sec:more_general} explores the generalizability of these results, and highlights some common themes in settings with hybrid behavior.
-} demonstrates that the two have very different implications for consumer welfare.
+After that, \cref{sec:results} demonstrates that the two have very different implications for consumer welfare.
 \Cref{sec:extensions} then examines the effect of different assumptions about the bargaining process.
 Finally, \cref{sec:conclusion} summarizes the results and discusses possible future work.
 
@@ -176,6 +174,8 @@ This section introduces the model used throughout the paper.
 % TODO: better motivation
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
+Furthermore, while the discussion in the main text focuses on a specific demand structure and profit sharing rule, most of the results apply to a broader class of models.
+\Cref{sec:more_general} explores the generalizability of these results, and highlights some common themes in settings with hybrid behavior.
 
 Assume that there are two types of players in the market: a platform $P$, a continuum of fringe sellers $F_i$ ($i \in \mathbb{R}^+$) and a continuum of consumers $C_j$ ($j \in [0, 1]$).
 The fringe firms have one product each, which they can only sell through the platform.
@@ -444,6 +444,8 @@ One simple extension of this bargaining process would be to use the more general
 
 I will now present the main results of the model, again, starting from the final subgame and working backwards.
 For each subgame, I also demonstrate that the equilibrium exists and is unique, and therefore the complete game also has a unique equilibrium.
+The propositions in this section are generally proven for a more general framework, and those presented here are special cases of those.
+For this reason, the proofs are also presented together with the more general model in \cref{sec:more_general}.
 
 \subsection{Demand and producer profits}
 \label{sec:results_demand}
@@ -1538,7 +1540,8 @@ I will assume that, in addition to being increasing in the number of consumers, 
 Such profit functions arise in settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
 One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
 Alternatively, indirect network effects, such as those in two-sided markets, can also result in such increasing profits.
-Finally, if we assume that the platform can extract consumer surplus through entry fees or some similar mechanism, then this assumption will be true for any demand system in which total surplus is increasing in product variety.
+\textcite{chen2008price} demonstrates that under certain circumstances an even more extreme phenomenon might occur: competition may not only increase industry-wide profits, but prices, as well.
+Finally, under the assumption that the platform can extract consumer surplus through entry fees or some similar mechanism, this assumption is be true for any demand system in which total surplus is increasing in product variety.
 
 \subsection{Profit sharing}
 \label{sec:more_general_profit_sharing}
