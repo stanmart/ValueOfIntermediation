@@ -1068,7 +1068,7 @@ Remember, that in the bargaining model, the implied entry fee is increasing in t
 Together with the concavity of platform profits as a function of $N_P$, and the statement of \cref{prop:platform_profits_comparative_benchmark}, this implies the following result:
 \begin{proposition}
     \label{prop:comparative_n_p_bargaining}
-    In the bargaining model, the platform invests in its own products only if it has a product advantage, and the optimal number of products is increasing in the size of this advantage.
+    In the bargaining model, the dependence of the platform's profits on its number of products depends on what the implied entry fee is compared to the optimal entry fee:
     \begin{align*}
         K_F^{impl}(N_P) < K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} > \frac{V_P}{V_F} I_F \\
         K_F^{impl}(N_P) > K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} < \frac{V_P}{V_F} I_F.
@@ -1533,7 +1533,7 @@ It can be justified for markets with the following features: (1) all fringe firm
 I will assume that, in addition to being increasing in the number of consumers, total profits are also increasing in both the number of fringe firms and the platform' products.
 \begin{assumption}
     \label{ass:monotone_profits}
-    $f(n_P, n_F)$ is increasing in both $n_P$ and $n_F$.
+    $f(N_P, n_F)$ is increasing in both $N_P$ and $N_F$.
 \end{assumption}
 Such profit functions arise in settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
 One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
@@ -1905,6 +1905,8 @@ On the other hand, when the cross derivative is negative, the marginal contribut
     \label{fig:increase_N_P_fringe}
 \end{figure}
 
+
+
 \paragraph{Number of entrants -- general equilibrium}
 Next, let us turn to equilibrium entry as a function of the platform's product variety.
 The previous proposition implies an almost immediate corollary regarding the equilibrium number of fringe entrants.
@@ -2063,7 +2065,7 @@ The demand system presented in the main text also has this property, and thus th
     For the results about the pure retailer regime, use the fact that $A = N_P V_P + 1$ and $CS(A) = \mu\log(A)$.
 \end{proof}
 
-Finally, \cref{prop:implied_entry_fee_comparative} can be viewed as a corollary of the previous theorem.
+\Cref{prop:implied_entry_fee_comparative} can be viewed as a corollary of the previous theorem.
 \begin{proof}[Proof of \cref{prop:implied_entry_fee_comparative}]
     Remember that in the hybrid regime, regardless of $N_P$, the size o the aggregate is pinned down by the entry fee $K_F$ (\cref{eq:aggregate_eq}).
     Conversely, when given some $A$, there is a unique entry fee that supports it:
@@ -2083,34 +2085,56 @@ While \cref{prop:share_of_platform} establishes that the platform's profits incr
 In particular, we know that increasing the platform's product variety leads to a decrease in the number of fringe entrants, and in total profits.
 It would be conceivable that this decrease in entry is so large that the platform's profits decrease as well.
 
-While I do not have a general result for the platform's profits in equilibrium, an important observation can be made.
-No matter the form of the profit function, the platform's profits are always higher in the hybrid regime than if it exclusively sold its own products.
-The intuition behind it is that the profit sharing rule is such that each player gets at least as much as they would make on their own\footnote{
-    Which is only a positive amount for the platform, as the fringe cannot create any value on its own.
-}.
+While I do not have a general result for the platform's profits in equilibrium, useful can be made.
+No matter the form of the profit function, the platform's profits always prefers more fringe firms to fewer in the bargaining model.
 The following proposition formalizes this idea.
 \begin{proposition}
     \label{prop:hybrid_vs_retail_general}
-    Under \cref{ass:additive_profit,ass:monotone_profits,ass:monotone_profits}, for any $N_C, N_P, N_F \geq 0$,
+    Under \cref{ass:additive_profit,ass:monotone_profits,ass:monotone_profits}, for any $N_C, N_P\leq 0$ and $0 \geq N_F \leq N_F'$
     \begin{align*}
-        \pi_P(N_P, N_F, N_C) \geq \pi_P(N_P, 0, N_C).
+        \pi_P(N_P, N_F, N_C) \leq \pi_P(N_P, N_F', N_C).
     \end{align*}
 \end{proposition}
 \begin{proof}[Proof of \cref{prop:hybrid_vs_retail_general}]
     \begin{align*}
         \pi_P(N_P, N_F, N_C) &= N_C \int_0^1 w_P(s) f(N_P, s N_F) \ds \\
-        &\geq N_C \int_0^1 w_P(s) f(N_P, 0) \ds \\
-        &= \int_0^1 w_P(s) \ds N_C f(N_P, 0) \\
-        &= \pi_P(N_P, 0, N_C),
+        &\leq  N_C \int_0^1 w_P(s) f(N_P, s N_F') \ds \\
+        &= \pi_P(N_P, N_F', N_C)
     \end{align*}
-    with the inequality being strict if $N_F > 0$ and $f$ is not constant its second argument on $[0, N_F]$.
+    with the inequality being strict if $N_F < N_F'$ and $f$ is not constant its second argument on $[0, N_F']$.
 \end{proof}
 
 \Cref{prop:hybrid_vs_retail} is then a special case of this result.
 \begin{proof}[Proof of \cref{hybrid_vs_retail}]
     $\Pi$ satisfies \cref{ass:additive_profit,ass:monotone_profits,ass:monotone_profits}.
-    By \cref{prop:hybrid_vs_retail_general}, $\pi_P(N_P, N_F) \geq \pi_P(N_P, N_F)$ for any $N_F$, thus also for $N_F(N_P)$.
-    When $N_F(N_P) > 0$, the inequality is strict.
+    The result is an immediate corollary of \cref{prop:hybrid_vs_retail_general} with $N_F=0$ and $N'F=N_F(N_P)$.
+\end{proof}
+
+This observation then makes characterizing the profit-maximizing platform product variety in \cref{sec:endogenizing_n_p} easier, as one does not have to worry about comparing the different regimes in the case of the bargaining model.
+If, for a given $N_P$, hybrid mode would be feasible, then it is also optimal compared to being a pure retailer.
+This result allows us to prove an important result from the main text about the platform's profits as a function of its number of products.
+\begin{proof}[Proof of \cref{prop:comparative_n_p_bargaining}]
+    In the bargaining model, \cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing,ass:additive_profit,ass:single_crossing} are satisfied.
+    From the proof of \cref{eq:platform_profits}, the platform's profits are strictly concave in the entry fee $K_F$.
+    This implies that for a fixed $N_P$,
+    \begin{align*}
+        \frac{\dd \pi_P}{\dd K_F} > 0 \text{ if } K_F < K_F^{opt},
+        \frac{\dd \pi_P}{\dd K_F} < 0 \text{ if } K_F > K_F^{opt}. \label{eq:profit_on_entry_fee}
+    \end{align*}
+    Now let us consider platform profits, but parametrized through $N_P$ and $K_F$ instead of the usual $N_P$ and $N_F$:
+    \begin{align*}
+        \frac{\dd \pi_P}{\dd N_P} &= \frac{\dd \pi_P(N_P, K_F(N_P))}{\dd N_P} \\
+        &= \frac{\pi_P(N_P, K_F)}{\partial N_P} + \frac{\pi_P(N_P, K_F)}{\partial K_F} \frac{\partial K_F}{\partial N_P}.
+    \end{align*}
+    \Cref{prop:platform_profits_comparative_benchmark} establishes that
+    \begin{align*}
+        \frac{\pi_P(N_P, K_F)}{\partial N_P} = \frac{V_P}{V_F} I_F
+    \end{align*}
+    in the hybrid regime, while \cref{prop:implied_entry_fee_comparative} states that
+    \begin{align*}
+        \frac{\partial K_F}{\partial N_P}.
+    \end{align*}
+    Together with \cref{eq:profit_on_entry_fee}, the statement of the proposition follows.
 \end{proof}
 
 
@@ -2226,10 +2250,10 @@ The remainder of this section contains the proofs related to optimal product pri
 
 \begin{proof}[Proof of \cref{prop:optimal_entry_fee}]
     The total profit function of the platform is the following:
-    \begin{align*}
+    \begin{align}
         \pi_P^t &= \pi_P^v + K_F N_F \\
-        &= \mu \frac{N_P V_P}{K_F + I_F} + K_F \left[ \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right].
-    \end{align*}
+        &= \mu \frac{N_P V_P}{K_F + I_F} + K_F \left[ \frac{\mu}{K_F + I_F} - N_P \frac{V_P}{V_F} - \frac{1}{V_F} \right]. \label{eq:platform_profits}
+    \end{align}
     The function is strictly concave in $K_F$, so the first order condition is sufficient for optimality in the case of an interior solution.
     Assume that the optimum is indeed interior.
     Then the FOC is
@@ -2268,6 +2292,21 @@ The remainder of this section contains the proofs related to optimal product pri
     Finally, $\frac{\dd A}{\dd N_P} = 0$ follows from the fact that consumer surplus only depends on $A$.
     
     For the results about the pure retailer regime, use the fact that $A = N_P V_P + 1$ and $CS(A) = \mu\log(A)$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:optimal_n_p_benchmark}]
+    From \cref{prop:optimal_entry_fee,prop:equilibrium_benchmark} we have that
+    \begin{itemize}
+        \item $\frac{\dd \pi_P}{\dd N_P} = \frac{V_P}{V_F} I_F$ if $N_F(N_P) > 0$,
+        \item $\frac{\dd \pi_P}{\dd N_P} < \frac{V_P}{V_F} I_F$ if $N_F(N_P) = 0$.
+    \end{itemize}
+    It immediately follows that if the platform can invest in $N_P$ at cost $I_P$, then the optimal number of products is the one that maximizes profits:
+    \begin{align*}
+        \frac{V_P}{I_P} < \frac{V_F}{I_F} &\implies N_P^* = 0, \\
+        \frac{V_P}{I_P} > \frac{V_F}{I_F} &\implies N_P^* > 0, N_F(N_P^*) = 0, \\
+        \frac{V_P}{I_P} = \frac{V_F}{I_F} &\implies N_P^* \in [0, \bar{N}_P] \text{ for some } \bar{N}_P > 0.
+    \end{align*}
+    \Cref{fig:optimal_n_p_benchmark} demonstrates this graphically.
 \end{proof}
 
 \section{Bargaining microfoundations and the cooperative game}
