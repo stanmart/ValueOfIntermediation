@@ -14,6 +14,7 @@
 \usepackage{subcaption}
 \usepackage{setspace}
 \usepackage{snapshot}
+\usepackage{apptools}
 \usepackage[backend=biber,style=authoryear,maxbibnames=99,hyperref=true]{biblatex}
 
 \setstretch{1.15}
@@ -29,6 +30,14 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
 \newtheorem{assumption}{Assumption}
+
+\AtAppendix{\counterwithin{proposition}{section}}
+\AtAppendix{\counterwithin{theorem}{section}}
+\AtAppendix{\counterwithin{corollary}{section}}
+\AtAppendix{\counterwithin{lemma}{section}}
+\AtAppendix{\counterwithin{assumption}{section}}
+\AtAppendix{\counterwithin{equation}{section}}
+\AtAppendix{\counterwithin{figure}{section}}
 
 \newcommand{\dt}{\mathrm{d}t}
 \newcommand{\ds}{\mathrm{d}s}
@@ -126,11 +135,11 @@ This model is based on the seminal work of \textcite{armstrong2006competition} o
 Thus, although the present paper is mainly theoretical, it also has some minor contributions towards better understanding the functioning of multi-sided markets.
 
 The paper is organized as follows.
-In \cref{sec:one_sided}, I present the main results for the case of one indispensable player and a continuum of identical fringe players.
+In \Cref{sec:one_sided}, I present the main results for the case of one indispensable player and a continuum of identical fringe players.
 \Cref{sec:many_sided} extends these results to the case of multiple types of fringe players.
 This is where the most novel results of the paper are presented.
 \Cref{sec:application} provides an example application of the results to a simple model of a two-sided market.
-Finally, \cref{sec:conclusions} concludes the paper.
+Finally, \Cref{sec:conclusions} concludes the paper.
 
 
 \section{One-sided case}
@@ -183,7 +192,7 @@ Namely, the asymptotic and the axiomatic approach of characterizing the Shapley-
     More precisely, the asymptotic value coincides with the axiomatic one derived using the uniform distribution.
     For a more detailed discussion, see \textcite{fogelman1980asymptotic}.
 }.
-This result could also be used to prove \cref{prop:one_sided} instead of the direct proof provided in \cref{sec:proofs}.
+This result could also be used to prove \Cref{prop:one_sided} instead of the direct proof provided in \Cref{sec:proofs}.
 
 \subsection{Random order values}
 
@@ -285,11 +294,11 @@ The following proposition and corollary derives the limit of the Shapley value f
     \end{align*}
 \end{corollary}
 
-Because the Shapley value is a special case of the random order value, these results are quite straightforward consequences of \cref{prop:one_sided_general} and \cref{cor:fringe_value_general}.
+Because the Shapley value is a special case of the random order value, these results are quite straightforward consequences of \Cref{prop:one_sided_general} and \Cref{cor:fringe_value_general}.
 One only has to notice that each permutation having an equal probability implies that the number of firms coming before $P$ is uniformly distributed on $1, \dots, n$, and thus the share of firms before $P$ converges in distribution to the uniform distribution on $[0, 1]$.
-Alternatively, a more direct proof is provided in \cref{sec:proofs}, or a probabilistic justification can be found in \textcite{levy1997individual}.
+Alternatively, a more direct proof is provided in \Cref{sec:proofs}, or a probabilistic justification can be found in \textcite{levy1997individual}.
 
-The resulting Shapley values also have a nice geometric interpretation shown on \cref{fig:one_sided}.
+The resulting Shapley values also have a nice geometric interpretation shown on \Cref{fig:one_sided}.
 Consider a rectangle with sides of length 1 and $f(1)$, respectively.
 The grand coalition achieves the value $f(1)$, which is also the area of the rectangle.\footnote{
     Due to superadditivity, the grand coalition can be expected to form, and the main question is how the value is distributed between the big player and the fringe.
@@ -366,7 +375,7 @@ while the fringe gets the rest, i.e.,
 \end{align*}
 
 In words, regardless of the value of $\bar{n}$, the two types of players share the total value in the same proportion.
-This proportion depends on the parameter $\alpha$ (\cref{fig:power_function_example}), which can be interpreted as the degree of substitutability between the fringe players.
+This proportion depends on the parameter $\alpha$ (\Cref{fig:power_function_example}), which can be interpreted as the degree of substitutability between the fringe players.
 More specifically, the higher $\alpha$ is, the more complementary the fringe players are to each other, and the larger the share they obtain.
 In the limit, when $\alpha \to \infty$, the fringe obtains all the value, as essentially all players become indispensable, and share the total value equally.
 On the other hand, when $\alpha \to 0$, the big players can appropriate all the value.
@@ -410,7 +419,7 @@ Additionally, \textcite{stole1996intra} provides an alternative microfoundation 
 For my purposes, it is sufficient to deal with the case of simple weights.
 I.e., assume that there is at most one player with zero weight.
 For my main result, I make use of an alternative, computational characterization of the weighted values. 
-\textcite{kalai1987weighted} demonstratesd that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
+\textcite{kalai1987weighted} demonstrated that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
 Start with the set of all players.
 Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$.
 Continue until all players are exhausted.
@@ -433,7 +442,7 @@ The following lemma establishes the continuous analogue of this statement.
 \end{lemma}
 
 Now we have everything we need to derive the weighted value of both types of players.
-Having \cref{eq:entry_distr_discrete} and \cref{lem:entry_distr} allows us to invoke \cref{prop:one_sided_general} to obtain the following proposition.\footnote{
+Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to invoke \Cref{prop:one_sided_general} to obtain the following proposition.\footnote{
     \textcite{stole1996intra} also derive essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
 }
 
@@ -456,7 +465,7 @@ Having \cref{eq:entry_distr_discrete} and \cref{lem:entry_distr} allows us to in
 As before, the value of the big player can still be expressed as an integral of the value function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
 The only difference is that, as in the case of the general random order value, the integrands are weighted by some probability distribution.
 Depending on the shape of this distribution, regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
-Contrary to \cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
+Contrary to \Cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
 \Cref{fig:weigh_function} illustrates the weighting function for various values of $\lambda$.
 
 \begin{figure}[ht]
@@ -555,7 +564,7 @@ Furthermore, it turns out that even though the number of fringe players is a mul
 \subsection{Random order values}
 
 First, let us examine the most general case: the random order value.
-Let us start by establishing the analog of \cref{prop:one_sided_general} for the many-sided case to obtain the limit of the value of the big player.
+Let us start by establishing the analog of \Cref{prop:one_sided_general} for the many-sided case to obtain the limit of the value of the big player.
 \begin{proposition}
     \label{prop:many_sided_general}
     Let $f$ be continuous on $[0, 1]^L$. Furthermore, let us denote the random vector of the proportions of the various types of fringe players before $P$ as $X_n$:
@@ -570,7 +579,7 @@ Let us start by establishing the analog of \cref{prop:one_sided_general} for the
     \end{align*}
     with the last equality holding if $X$ is a continuous random variable.
 \end{proposition}
-The proposition above is almost identical to \cref{prop:one_sided_general}, with the only difference being that the integral is now over the $L$-dimensional unit hypercube, due to $f$ being a function of $L$ variables.
+The proposition above is almost identical to \Cref{prop:one_sided_general}, with the only difference being that the integral is now over the $L$-dimensional unit hypercube, due to $f$ being a function of $L$ variables.
 
 While the above proposition is very general in terms of permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire, $L$-dimensional domain of $f$.
 It would be much more convenient, if one only had to be concerned with a one-dimensional manifold within the hypercube instead.
@@ -694,7 +703,7 @@ Fringe players of type $A^2$ have a higher weight than those of type $A^1$, and 
 Finally, player $P$'s probability of coming after $s$ proportion of the fringe is also not uniform, but rather influenced by the relationship between its own and the fringe players' weights.\footnote{
     This is the same mechanism as in the case of the one-sided weighted value.
 } 
-Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that of \cref{prop:one_sided_weighted}.
+Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that of \Cref{prop:one_sided_weighted}.
 The result is the following: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
 The following, simple corollary formalizes this idea.
 
@@ -725,7 +734,7 @@ The following, simple corollary formalizes this idea.
     \label{cor:platform_value_multiple_sides_weighted}
     $\varphi_P^\infty$ is increasing in $\lambda_P$ unless $f$ is constant.
 \end{corollary}
-This result is analogous to \cref{cor:platform_value_weighted}, and demonstrates that a higher weight for player $P$ corresponds to a higher value in this game as well.
+This result is analogous to \Cref{cor:platform_value_weighted}, and demonstrates that a higher weight for player $P$ corresponds to a higher value in this game as well.
 
 \section{Example application}
 \label{sec:application}
@@ -755,7 +764,7 @@ Following \textcite{armstrong2006competition}, let us model player entry also in
 Assume that there is a continuum of potential entrants on both sides of the market.
 The number of actual entrants depends on the utility they would derive from participating in the market.\footnote{
     Such assumptions are usually justified by some idiosyncratic cost of entry, the distribution of which determines the function $\phi$.
-    For simplicity, I refrain from explicitly modeling this cost in the main text, but \cref{sec:explicit_entry_costs} provides a discussion of how one can incorporate it into the model, its impact on bargaining outcomes.
+    For simplicity, I refrain from explicitly modeling this cost in the main text, but \Cref{sec:explicit_entry_costs} provides a discussion of how one can incorporate it into the model, its impact on bargaining outcomes.
 }
 Let us denote this relationship as $\phi_i(u_i)$, where $\phi_i$ is a strictly increasing, differentiable function.
 Then,
@@ -852,7 +861,7 @@ Finally, let us consider the case when the platform and the entrants bargain ove
 Assume that $n_1$ and $n_2$ players have decided to enter on sides $1$ and $2$, respectively.
 Furthermore, assume that players' bargaining weights are $\lambda_1, \lambda_2$ and $\lambda_P$.
 
-The characteristic function of the game takes a similar form to that in \cref{sec:many_sided}.
+The characteristic function of the game takes a similar form to that in \Cref{sec:many_sided}.
 If the platform is not a member of a coalition, then the value that coalition can generate is zero.
 Otherwise, it is simply the sum of the utilities of the two sides minus the cost of serving them.\footnote{
     Entry fees paid to the platform do not matter, as they are within-coalition transfers, and thus do not affect the total value.
@@ -862,7 +871,7 @@ This value, as a function of the number of entrants, is
     w(n_1, n_2) = n_1 \alpha_1 n_2^{\gamma_1} + n_2 \alpha_2 n_1^{\gamma_2} - F_1 n_1 - F_2 n_2.
 \end{align*}
 
-The share received by each type of player is then easily established using \cref{prop:many_sided_weighted}.
+The share received by each type of player is then easily established using \Cref{prop:many_sided_weighted}.
 \begin{proposition}
     \label{prop:bargaining_entry_fees}
     The weighted values of the various sides are
@@ -877,7 +886,7 @@ Total welfare $w(n_1, n_2)$ can be divided into four parts: utility generated by
 Each side's share of these parts is given by $S_i^{b_1}, S_i^{b_2}, S_i^{c_1}$ and $S_i^{c_2}$, respectively.
 As it turns out, these shares only depend on the bargaining weights ($\lambda_P, \lambda_1, \lambda_2$) and the network effects ($\gamma_1, \gamma_2$), but not on the actual number of entrants.\footnote{
     This is due to the characteristic function being a polynomial of the number of entrants.
-    Just like in \cref{sec:power_function_example}, each constituent of the polynomial are divided in a constant proportion.
+    Just like in \Cref{sec:power_function_example}, each constituent of the polynomial are divided in a constant proportion.
 }
 Furthermore, all of these shares are increasing in one's own bargaining weight, and decreasing in the others' weights.
 Finally, and perhaps most interestingly, the share of side $i$ from the value generated on side $j$ is also increasing in $\gamma_j$.
@@ -1001,7 +1010,7 @@ Furthermore, the results are analytically tractable, and have neat interpretatio
 
 Random order values offer a comprehensive framework for modeling bargaining outcomes, and also include important and well-known special cases, such as the Shapley value or the weighted value.
 Due to the former retaining many of the attractive properties of its more specialized counterparts, it might be a good candidate for modeling bargaining outcomes flexibly and in a tractable manner.
-Furthermore, as shown in \cref{sec:extensions}, the results can also be generalized to cases with not completely indispensable big players, while retaining the essential structure of the results.
+Furthermore, as shown in \Cref{sec:extensions}, the results can also be generalized to cases with not completely indispensable big players, while retaining the essential structure of the results.
 
 Another contribution of this paper is the derivation of the weighted value in the case of multiple types of fringe players.
 This provides a rather flexible model (one more general than the Shapley value) for modeling multi-sided markets.
@@ -1026,7 +1035,6 @@ Besides these more theoretical directions, the practical applications are no les
 The proposed profit sharing framework could be embedded in more applied and detailed models describing various settings.
 The example application in this paper is a streamlined example of this, while \textcite{stancsics2023hybrid} is a further step in this direction, applying these ideas to a model of hybrid platforms.
 Due to the simplicity of the results, this approach might be a viable, almost drop-in replacement for unilateral price setting in cases where one does not wish to ascribe all the bargaining power to one player.
-
 
 
 \appendix
@@ -1065,7 +1073,7 @@ For example, \textcite{hart1996bargaining} propose an interpretation when there 
 
 As before, the main proposition in this section provides us with an expression of the limit of the value for this variant of the game.
 Notably, as in the case of the weighted value, the share of player $P$ can again be expressed as an integral of $f$ and some weighting\footnote{
-    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case (\cref{fig:multiple_platforms}).
+    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case (\Cref{fig:multiple_platforms}).
 } function $h(t)$, with the latter depending only on the number of big players.
 \begin{proposition}
     \label{prop:multiple_platforms}
@@ -1119,7 +1127,7 @@ It immediately follows from the previous proposition that
     \varphi_{P}^{\infty, m} = \int_0^1 g(t) f(t) \dt,
 \end{align*}
 where $g(t) = m (1-t) ^ {m-1}$.
-Notice that $g(t)$ now integrates to one, and is thus a probability distribution (\cref{fig:multiple_platforms_total}).
+Notice that $g(t)$ now integrates to one, and is thus a probability distribution (\Cref{fig:multiple_platforms_total}).
 Therefore, the Shapley value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
 The probability distribution for the corresponding random order value has a specific form, and its only parameter is the number of big players.
 Thus, all the results from the previous section apply to this case as well.
@@ -1156,7 +1164,7 @@ Thus, all the results from the previous section apply to this case as well.
 \end{figure}
 
 Now let us look at how the value of the big players and the fringe changes as a function of the number of the big players.
-Proposition \cref{cor:multiple_platforms_2} again confirms our intuition: more players means that they become more substitutable, and thus their bargaining power decreases.
+Proposition \Cref{cor:multiple_platforms_2} again confirms our intuition: more players means that they become more substitutable, and thus their bargaining power decreases.
 This not only means that the value of each individual big player decreases, but also that their total value goes down.
 
 \begin{corollary}
@@ -1225,7 +1233,7 @@ Therefore, there is an additional term in the integral, corresponding to the mar
     \end{align*}
 \end{corollary}
 
-It is clear that the value of the big player is decreasing in $f_0$ (\cref{fig:non_indispensable}).
+It is clear that the value of the big player is decreasing in $f_0$ (\Cref{fig:non_indispensable}).
 Consequently, the value of the fringe is increasing in $f_0$, which is essentially its outside option (what it can achieve without the big player).
 This is a natural result, and again, it is in line with what one would expect from bargaining theory.
 \begin{figure}
@@ -1319,7 +1327,7 @@ Then, the total idiosyncratic cost is simply the sum of the idiosyncratic costs 
 \begin{align*}
     K(n_1, n_2) = \int_0^{n_1} \kappa_1(s) \ds + \int_0^{n_2} \kappa_2(s) \ds.
 \end{align*}
-One can obtain the weighted values of all sides using \cref{prop:many_sided_weighted}.
+One can obtain the weighted values of all sides using \Cref{prop:many_sided_weighted}.
 \begin{proposition}
     \label{prop:platform_bargaining_idiosyncratic}
     The weighted values of the idiosyncratic cost component are
@@ -1366,7 +1374,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
     Then $\Delta_n \xrightarrow[]{\mathrm{u}} \Delta$ uniformly on $[t, 1]$ for any $t > 0, \lambda > 0$.
 \end{lemma}
-\begin{proof}[Proof of \cref{lemma:log_convergence}]
+\begin{proof}[Proof of \Cref{lemma:log_convergence}]
     First, note that $\Delta_n$ and $\Delta$ are all continuous functions.
     Then, following the standard proof for $\frac{\mathrm{d}}{\mathrm{d}s}log(s) = \frac{1}{s}$ rewrite $\Delta_n(s)$ as
     \begin{align*}
@@ -1387,7 +1395,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
         \lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) = \int_0^1 f(t) \dt.
     \end{align*}
 \end{lemma}
-\begin{proof}[Proof of \cref{lemma:integral_convergence}]
+\begin{proof}[Proof of \Cref{lemma:integral_convergence}]
     \begin{align*}
         &\lim_{n \to \infty} \frac{b-a}{n} \sum_{k=1}^n f_n \left( a + \frac{b-a}{n} \right) \\
         &= \lim_{n \to \infty} \frac{b-a}{n} \left[ \sum_{k=1}^n f \left( a + \frac{b-a}{n} \right) + \sum_{k=1}^n \left( f_n \left( a + \frac{b-a}{n} \right) - f \left( a + \frac{b-a}{n} \right) \right) \right] \\
@@ -1407,7 +1415,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     Then $X_n \xrightarrow[]{d} h(S)$.
 \end{lemma}
 
-\begin{proof}[Proof of \cref{lem:convergence_to_manifold}]
+\begin{proof}[Proof of \Cref{lem:convergence_to_manifold}]
     We have to show that
     \begin{align*}
         \lim_{n \to \infty} \Pr(X_n \leq x) = \Pr(h(S) \leq x).
@@ -1437,14 +1445,14 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
 \section{Proofs of propositions in the main text}
 \label{sec:proofs}
 
-\begin{proof}[Proof of \cref{prop:monotone}]
+\begin{proof}[Proof of \Cref{prop:monotone}]
     Monotonicity is evident.
     For superadditivity, note that for any coalitions $S_1, s_2$ such that $S_1 \cap s_2 = \emptyset$, $P \notin S_1$ or $P \notin s_2$.
     WLOG assume it is the latter, therefore $v(S_2) = 0$.
     As a result, $v(S_1) + v(S_2) = v(S_1) \leq v(S_1 \cup S_2)$ holds if and only if $(N, v)$ is monotone.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:one_sided_general}]
+\begin{proof}[Proof of \Cref{prop:one_sided_general}]
     First, observe that $f$ is continuous on the compact set $[0, 1]$, and is therefore also bounded.
     Furthermore,
     \begin{align*}
@@ -1464,7 +1472,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:one_sided}]
+\begin{proof}[Proof of \Cref{prop:one_sided}]
     Let $R$ denote a permutation of the set of players ($N$).
     Additionally, let us denote the players preceding $i$ by $\mathcal{P}_i^R$.
     The value of player $P$ is their expected marginal contribution averaged over all permutations of $N$:
@@ -1508,7 +1516,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{lem:entry_distr}] %\textcolor{red}{(Might have to fix sum indices)} \\
+\begin{proof}[Proof of \Cref{lem:entry_distr}] %\textcolor{red}{(Might have to fix sum indices)} \\
     The probability of $P$ having at most fraction $t$ of the other players before itself is
     \begin{align*}
         \Pr(X_n \leq nt) &= \Pr(X_n \leq nt ) \\
@@ -1557,7 +1565,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     The inequalities become strict if $f$ is not constant on the whole interval.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:one_sided_weighted}]
+\begin{proof}[Proof of \Cref{prop:one_sided_weighted}]
     The weighted value of player $P$ is its expected contribution across all permutations, with each permutation weighted by its probability of occurring.
     \begin{align*}
         \varphi_P^{n, \lambda} = \sum_R \Pr(R) [v(\mathcal{P}_P^R \cup \{i\}) - v(\mathcal{P}_P^R)]
@@ -1596,7 +1604,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     $\lim_{\lambda \to \infty} \varphi^{\infty, \lambda}_P = f(1)$ can be shown along the same lines.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:multiple_platforms}]
+\begin{proof}[Proof of \Cref{prop:multiple_platforms}]
     \label{prop:one_sided_multiple}
     First, let us rewrite the expected marginal contribution of player $P_i$ in the following way:
     \begin{align*}
@@ -1646,8 +1654,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     Conversely, $\varphi_{P}^{\infty, m} = 1 - \varphi_{A}^{\infty, m}$ is decreasing in $m$.
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:many_sided_general}]
-    The proof mirrors that of \cref{prop:one_sided_general}.
+\begin{proof}[Proof of \Cref{prop:many_sided_general}]
+    The proof mirrors that of \Cref{prop:one_sided_general}.
     First, note that the random order value can be expressed as follows:
     \begin{align*}
         \varphi_P^n &= \sum_{k_1=0}^n \dots \sum_{k_L=0}^n \Pr(n_{A_1}(\mathcal{P}_P) = k_1, \dots, n_{A_L}(\mathcal{P}_P) = k_L) f\left(\frac{k_1}{n}, \dots, \frac{k_L}{n}\right) \\
@@ -1668,8 +1676,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{lem:many_sided_manifold}]
-    Just like in the proof of \cref{prop:many_sided_general}, the random order value can be expressed as follows:
+\begin{proof}[Proof of \Cref{lem:many_sided_manifold}]
+    Just like in the proof of \Cref{prop:many_sided_general}, the random order value can be expressed as follows:
     \begin{align*}
         \varphi_P^n &= \E[f(X_n)].
     \end{align*}
@@ -1719,7 +1727,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
 
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:many_sided_shapley}]
+\begin{proof}[Proof of \Cref{prop:many_sided_shapley}]
     Let us show than $X_n$ converges in distribution to the degenerate random variable $X = (U, \dots, U)$, where $U$ is uniformly distributed on $[0, 1]$.
 
     First, let us switch to an alternative formulation of the problem.
@@ -1744,8 +1752,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
         [X_n]_l < x \mid U_P \xrightarrow[]{a.s.} \E[\mathbf{1}[U_{li} < u]] = u.
     \end{align*}
     
-    Now we can use \cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (U, \dots, U)$.
-    Finally, by \cref{lem:many_sided_manifold}, the Shapley-value is
+    Now we can use \Cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (U, \dots, U)$.
+    Finally, by \Cref{lem:many_sided_manifold}, the Shapley-value is
     \begin{align*}
         \varphi_P^\infty & = \int_0^1 f(s, \dots, s) \dt
     \end{align*}
@@ -1756,15 +1764,15 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
 
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:many_sided_weighted}]
-    The proof uses the same approach as that of \cref{prop:many_sided_shapley}.
-    I will show that $X_n \xrightarrow[]{d} h(S)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $S$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \cref{lem:many_sided_manifold}.
+\begin{proof}[Proof of \Cref{prop:many_sided_weighted}]
+    The proof uses the same approach as that of \Cref{prop:many_sided_shapley}.
+    I will show that $X_n \xrightarrow[]{d} h(S)$, where $h(s) = (s^{\lambda_1}, \dots, s^{\lambda_L})$, and $S$ is a random variable with cdf $G(s) = s^{\lambda_P}$, and then rely on \Cref{lem:many_sided_manifold}.
 
     First, as before, let us characterize the probabilities of the various permutations.
     The approach I am using relies on two main ideas.
 
     First, as shown by \textcite{kalai1987weighted}, the probability of a permutation can be described by successively selecting the players with probabilities proportional to the weights of the players that have not been selected yet, and then reversing this ordering.\footnote{
-        For more details, see \cref{sec:weighted_one_sided}.
+        For more details, see \Cref{sec:weighted_one_sided}.
     }
 
     The other key result I rely on is the main proposition of \textcite{efraimidis2006weighted}.
@@ -1791,9 +1799,9 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \begin{align*}
         [X_n]_l < x \mid V_P \xrightarrow[]{a.s.} \E[\mathbf{1}[V_{li} < u]] = u^{\lambda_l}.
     \end{align*}
-    Then we can rely on \cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (V_P^{\lambda_1}, \dots, V_P^{\lambda_L})$.
+    Then we can rely on \Cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (V_P^{\lambda_1}, \dots, V_P^{\lambda_L})$.
 
-    Finally, by \cref{lem:many_sided_manifold}, the weighted value of player $P$ is
+    Finally, by \Cref{lem:many_sided_manifold}, the weighted value of player $P$ is
     \begin{align*}
         \varphi_P^\infty &= \int_0^1 f(s_1^{\lambda_1}, \dots, s_L^{\lambda_L}) \mathrm{d} V_P(s) \\
         &= \int_0^1 f(s_1^{\lambda_1}, \dots, s_L^{\lambda_L}) \lambda_P s^{\lambda_P - 1} \ds,
@@ -1805,7 +1813,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:welfare_max_entry_fees}]
+\begin{proof}[Proof of \Cref{prop:welfare_max_entry_fees}]
     The (marginal) cost of serving an entrant on side $i$ is $F_i$.
     The marginal network externality it generates on the other side is
     \begin{align*}
@@ -1817,7 +1825,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:unilateral_entry_fees}]
+\begin{proof}[Proof of \Cref{prop:unilateral_entry_fees}]
     By assumption, $\pi_P(u_1, u_2)$ is concave in $u_1$ and $u_2$, therefore the first-order conditions are necessary and sufficient for a maximum.
     Simply taking the partial derivatives with respect to $u_i$ yields the following condition for the optimal entry fees:
     \begin{align*}
@@ -1825,8 +1833,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:bargaining_entry_fees}]
-    From \cref{prop:many_sided_weighted}, the value of player $P$ is
+\begin{proof}[Proof of \Cref{prop:bargaining_entry_fees}]
+    From \Cref{prop:many_sided_weighted}, the value of player $P$ is
     \begin{align*}
         \pi_P &= \int_0^1 \lambda_P t^{\lambda_P - 1} w(t^{\lambda_1} n_1, t^{\lambda_2} n_2) \dt \\
         &= \int_0^1 \lambda_P t^{\lambda_P - 1} \left[ \alpha_1 t^{\lambda_1} n_1 t^{\lambda_2\gamma_1} n_2^{\gamma_1} + \alpha_2 t^{\lambda_2} n_2 t^{\lambda_1\gamma_2} n_1^{\gamma_2} + t^{\lambda_1} F_1 n_1 + t^{\lambda_2} F_2 n_2 \right] \dt \\
@@ -1841,8 +1849,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of \cref{prop:all_entry_fees}]
-    See the proof of \cref{prop:welfare_max_entry_fees,prop:unilateral_entry_fees,prop:bargaining_entry_fees}.
+\begin{proof}[Proof of \Cref{prop:all_entry_fees}]
+    See the proof of \Cref{prop:welfare_max_entry_fees,prop:unilateral_entry_fees,prop:bargaining_entry_fees}.
 \end{proof}
 
 \end{document}
