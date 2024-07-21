@@ -624,9 +624,9 @@ The game starts by fringe firms' investment decisions, after which, in the secon
 
 As described in \Cref{sec:model_bargaining}, participants negotiate over the aggregate profits that they expect to obtain in the subsequent period (assuming the same non-collusive, monopolistic pricing, as before).
 From \Cref{eq:optimal_profit}, the total profit achieved by the platform and $N_F$ fringe firms is given by
-\begin{align*}
-    \Pi(N_P, N_F) = \mu \frac{n V_F + N_P V_P}{n V_F + N_P V_P + 1}.
-\end{align*}
+\begin{align}
+    \Pi(N_P, N_F) = \mu \frac{N_F V_F + N_P V_P}{N_F V_F + N_P V_P + 1}.  \label{eq:total_profits}
+\end{align}
 Bargaining outcomes are determined according to Shapley values, given by \Cref{prop:shapley_value}.
 Based on these, one can obtain closed-form expressions for platform and fringe profit shares for this class of demand systems.
 \begin{proposition}
@@ -641,13 +641,26 @@ Based on these, one can obtain closed-form expressions for platform and fringe p
     \end{align*}
 \end{proposition}
 
-Now let us turn to how the platform's dual mode operation affects product variety and consumer welfare.
-I start by showing that the equilibrium is unique in this case, as well.
-This, and a few other results in this section\footnote{
-    These results do not actually rely on the specific logit demand system.
-    As long as the fringe profit function has the property described in \Cref{lem:shape_of_fringe_profit}, and the total profit function satisfies some assumptions, the results hold.
-    \Cref{sec:more_general_results} provides more detail on the necessary assumptions.
-}, rely on the following lemma.
+Let us establish a couple of partial equilibrium results about the profir shares before moving on to the main results.
+Consider the number of fringe firms $N_F$ fixed.
+Then, total profits, as given by \Cref{eq:total_profits}, are clearly increasing in the number of platform products.
+The next proposition shows that the platform's profits are also increasing in $N_P$, while the fringe's profits are decreasing.
+\begin{proposition}
+    \label{prop:profits_partial_bargaining}
+    For any $N_F > 0$, the platform's profits are increasing in the number of its products, while the fringe's profits are decreasing:
+    \begin{align*}
+        \frac{\partial \pi_P^t}{\partial N_P} &> 0, \quad \frac{\partial \pi_F^t}{\partial N_P} < 0.
+    \end{align*}
+\end{proposition}
+This is actually a rather striking results.
+Even though the total size of the pie increases, the slice that the fringe can obtain decreases.
+This is due to the substitutability of the fringe and the platform's own products\footnote{
+    \Cref{prop:share_of_fringe} demonstrates that the direction of the change depends on the cross derivative of the total profit function.
+}: as the latter increases its product variety, the marginal benefit of adding each fringe firm decreases, leading to a detoriation in the fringe's bargaining position.
+
+Let us now endogeneize $N_F$, and turn to the main results of this section: how the platform's dual mode operation affects product variety and consumer welfare.
+I start by showing that, like in the benchmark model, the equilibrium is unique in this case, as well.
+This, and many other results in this section, rely on the following lemma.
 \begin{lemma}
     \label{lem:shape_of_fringe_profit}
     For any $N_P, N_F \geq 0$, the fringe profit function is either concave or decreasing in $N_F$:
@@ -1915,6 +1928,22 @@ On the other hand, when the cross derivative is negative, the marginal contribut
     \caption{Illustration of \Cref{prop:share_of_fringe} when fringe and platform products are substitutes. An increase in the platform's product variety increases total profits, yet, the fringe's share decreases in absolute terms.}
     \label{fig:increase_N_P_fringe}
 \end{figure}
+
+\Cref{prop:profits_partial_bargaining} is a direct corollary of the two previous results.
+\begin{proof}[Proof of \Cref{prop:profits_partial_bargaining}]
+    The model presented in the main text adheres to \Cref{ass:identical_fringe,ass:monotone_profits,ass:profit_sharing}. Thus, by \Cref{prop:share_of_platform},
+    \begin{align*}
+        \frac{\partial \pi_P(N_P, N_F)}{\partial N_P} > 0.
+    \end{align*}
+    Furthermore,
+    \begin{align*}
+        \frac{\partial^2 f(N_P, N_F)}{\partial N_P \partial N_F} = \frac{\partial^2}{\partial N_P \partial N_F} \mu \frac{N_F V_F + N_P V_P}{N_F V_F + N_P V_P + 1} < 0,
+    \end{align*}
+    therefore, by \Cref{prop:share_of_platform},
+    \begin{align*}
+        \frac{\partial \pi_F(N_P, N_F)}{\partial N_P} < 0.
+    \end{align*}    
+\end{proof}
 
 
 
