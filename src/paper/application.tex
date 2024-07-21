@@ -981,8 +981,11 @@ This is not happening in the benchmark model, because, as stated in \Cref{prop:o
 While completely endogenizing the platform's mode of operation (i.e., the determination of $N_P$) is outside the scope of this paper, some insights can be gained by building on the previous results.
 Let us start by examining whether the platform would prefer to switch to the pure retail regime and exclude the fringe firms.
 
-Assume that $N_P$ is still fixed, but at time 0, the platform can decide whether to exclude the fringe.
-As the next proposition shows, the platform never has an incentive to do so, if otherwise the equilibrium is in the hybrid regime.
+Assume that $N_P$ is still fixed, but now at time 0, the platform can decide whether to exclude the fringe.
+As the next proposition shows, the platform never has an incentive to do so.\footnote{
+    Note, that it is possible that the optimal or negotiated entry fee is such that zero fringe firms enter the market.
+    This proposition's main statements is about the platform's decision to exclude the fringe, when the entry fee would be such that the fringe would enter.
+}
 \begin{proposition}
     \label{prop:hybrid_vs_retail}
     In both the benchmark and bargaining models, the platform never has an incentive to switch from the hybrid to the pure retail regime:
@@ -1068,6 +1071,8 @@ The opposite is true for high enough values of $V_P$ and $N_P$.
 
 Finally, let us look at the more general case, where the platform can choose its number of products at the beginning of the game.
 Similarly to the fringe, assume that it faces an investment cost of $I_P$ per product.
+\Cref{fig:optimal_n_p} illustrates the platform's final profits as a function of its product variety.
+
 As before, things are straightforward in the benchmark model: the platform invests in own products only if $\frac{V_P}{I_P} \geq \frac{V_F}{I_F}$.
 The following proposition characterizes the platform's optimal investment more precisely.
 \begin{proposition}
@@ -1083,7 +1088,7 @@ The following proposition characterizes the platform's optimal investment more p
 
 The intuition behind this result is that the platform can extract all profits from the fringe firms through the lump-sum entry fee, end thus it invests in its own products only if it has a product advantage (either in terms of less costly investment or more valuable product).
 A consequence of this proposition is that, apart from the knife-edge case of $\frac{V_P}{I_P} = \frac{V_F}{I_F}$, the platform never finds it optimal to operate in hybrid mode: it either creates so many products that it excludes the fringe, or it creates none at all.
-\Cref{fig:optimal_n_p_benchmark} illustrates this result.
+\Cref{fig:optimal_n_p_benchmark} displays this result: for low values of $I_P$, the equilibrium is a corner solution with $N_P = 0$, and for high values, the maximum is reached in the pure retail regime.
 
 As before, the situation is more complicated in the bargaining model.
 Instead of characterizing the platform's optimal investment directly, let us look at it through the lens of implied entry fees.
@@ -1091,7 +1096,7 @@ Remember, that in the bargaining model, the implied entry fee is increasing in t
 Together with the concavity of platform profits as a function of $N_P$, and the statement of \Cref{prop:platform_profits_comparative_benchmark}, this implies the following result:
 \begin{proposition}
     \label{prop:comparative_n_p_bargaining}
-    In the bargaining model, the dependence of the platform's profits on its number of products depends on what the implied entry fee is compared to the optimal entry fee:
+    In the bargaining model, the dependence of the platform's profits on its number of products is conditional on whether, for a given $N_P$,  the implied entry fee is higher or lower than the optimal entry fee:
     \begin{align*}
         K_F^{impl}(N_P) < K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} > \frac{V_P}{V_F} I_F \\
         K_F^{impl}(N_P) > K_F^{opt} &\implies \frac{\dd \pi_P^t}{\dd N_P} < \frac{V_P}{V_F} I_F.
@@ -1102,7 +1107,9 @@ Conversely, if the entry fee is already higher than optimal for a given $N_P$, a
 
 The consequence of this result is that in the bargaining model, hybrid operation can be optimal, and not only for knife-edge cases.
 Furthermore, and even more strikingly, the platform may find it optimal to invest in its own products even if it has a product disadvantage, if it helps it to negotiate a more optimal entry fee.
-\Cref{fig:optimal_n_p_bargaining} displays such an example.
+\Cref{fig:optimal_n_p_bargaining} showcases such an example.
+When the platform has a not too large product disadvantage ($I_P = 0.55$ case), the maximum of its profits is reached in the hybrid regime.
+This is doubly unfortunate from a welfare perspective: not only does the platform make an investment that the fringe could have made more efficiently, but it also decreases consumer welfare by reducing the total product variety.
 
 \subsection{Discussion}
 \label{sec:results_discussion}
