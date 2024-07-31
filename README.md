@@ -6,7 +6,7 @@
 
 Contains the papers "The Value of Being Indispensable", "Hybrid platforms and bargaining power" and related materials. The main outputs are the following:
 
- * `out/paper/paper.pdf`: The latest version of "The Value of Being Indispensable"
+ * `out/paper/theory.pdf`: The latest version of "The Value of Being Indispensable"
  * `out/paper/application.pdf`: The latest version of "Hybrid platforms and bargaining power"
  * `out/presentation/*.html`: a number of revealjs presentations about the project:
    * `io_day`: A presentation for the Swiss IO day, 2023 (focus on application)
