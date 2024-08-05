@@ -18,3 +18,4 @@ __pycache__
 .pixi
 *.egg-info
 
+/src/paper/*-diff*.tex
