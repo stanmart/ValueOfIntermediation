@@ -43,6 +43,7 @@
 \newcommand{\ds}{\mathrm{d}s}
 \newcommand{\di}{\mathrm{d}i}
 \newcommand{\dG}{\mathrm{d}G}
+\newcommand{\dH}{\mathrm{d}H}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\Var}{\mathrm{Var}}
 
@@ -230,7 +231,7 @@ As a corollary, the continuous fringe model can be thought of as a more tractabl
 
 \begin{proposition}
     \label{prop:one_sided_general}
-    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
+    Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\mathcal{P}_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G(t)$ and (if exists) pdf $g(t)$.
     Then
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \dG(t) = \int_0^1 g(t) f(t) \dt,
@@ -522,15 +523,19 @@ This set of results highlights that utilizing (weighted) Shapley values to model
 \subsection{Non-indispensable big player(s)}
 \label{sec:extensions}
 
-This section demonstrates two ways in which the model can be extended to include non-indispensable big players, while retaining the essential structure and the tractability of the results.
-In the first case, there are a number of big players, which are perfect substitutes of each other.
-In the second case, there is a single big player, the fringe is able to generate some value on its own, and the big player is only needed to generate the rest.
-In both cases, the value function is still a random order value, and thus results from the main text can be applied.
+This section relaxes the assumption that the big player is indispensable.
+I demonstrate two ways in which the model can be extended to include non-indispensable big players, while retaining the essential structure and the tractability of the results.
+In the first case, there are a finite number of big players, which are perfect substitutes of each other.
+In the second case, there is a single big player, but the fringe is able to generate some value on its own.
+In both cases, the value function is still a random order value, and thus results from the main text can be applied. % TODO: elaborate on this
 
 \subsubsection{Shapley value with multiple big players}
 
-Now imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
-That is, the fringe players still need one at least of them to achieve any value, but it does not matter which and how many of them are present.
+Imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
+That is, any coalition still needs at least one of them to create any value, but it does not matter which and how many of them are present.\footnote{
+    The relaxtion of this assumption, while conceptually straightforward, is not as simple to analyze.
+    Instead of having to deal with the minimum of $m$ independent random variables, one needs to consider all order statistics.
+}
 Formally, the value function for coalition $S$ becomes the following:
 \begin{align*}
     v(S) = \begin{cases}
@@ -548,23 +553,91 @@ For example, when $f$ is concave, then $m$ coalitions with one platform each and
 Therefore, the results of this section are most applicable to settings when multiple coalitions cannot be formed at the same time for some reason.
 For example, \textcite{hart1996bargaining} propose an interpretation when there is a single, indivisible, non-replicable resource or technology (not captured in the value function) necessary to produce any value.
 
-As before, the main proposition in this section provides us with an expression of the limit of the value for this variant of the game.
-Notably, as in the case of the weighted value, the share of player $P$ can again be expressed as an integral of $f$ and some weighting\footnote{
-    Weighting is not a completely precise term, as $h(t)$ does not integrate to one, and is therefore not a probability distribution in this case (\Cref{fig:multiple_platforms}).
-} function $h(t)$, with the latter depending only on the number of big players.
+For simplicity, let us restrict our attention to probability distributions over the permutations that are symmetric with respect to the big players.
+That is, the probability of having $k_F$ fringe players and $k_P$ big players before player $P_j$ is the same for all $i$.\footnote{
+    This assumption can easily be relaxed, but it would complicate the results without adding much insight.
+}
+As before, I assume that, as the number of fringe players goes to infinity, the distribution of the number of fringe players before player $P_j$ to a continuous distribution.
+
+Let us first establish the sum of the shares of all big players.
+Then, the value of individual big players can be obtained by relying on the symmetry assumption.
+The following proposition provides an expression for the limit of this total value.
 \begin{proposition}
-    \label{prop:multiple_platforms}
-    The limit of the Shapley-value (as $n \to \infty$) of each player of type $P$ is
+    \label{prop:multiple_platforms_total}
+    Let $f$ be continuous on [0, 1].
+    Let us denote the number of fringe players in any coalition $S$ as $n_F(S)$.
+    Furthermore, let us denote the random variable $\frac{n_F(\mathcal{P}_{P_j})}{n}$ as $X_n$.
+    Assume that $X_n \xrightarrow[]{d} X$ with cdf $G(t)$ and (if exists) pdf $g(t)$.
+
+    Let $H(t) = 1 - [1 - G(t)]^m$, i.e. the cdf of the minimum of the $m$ independent random variables distributed according to $G$.
+    Then
     \begin{align*}
-        \varphi_{P_i}^{\infty, m} = \int_0^1 h(t) f(t) \dt,
+        \varphi_P^\infty = \lim_{n \to \infty} \sum_{j=1}^m \varphi_{P_j}^n = \int_0^1 f(t) \dH(t) = \int_0^1 h(t) f(t) \dt,
     \end{align*}
-    where $h(t) = (1-t) ^ {m-1}$.
+    with the last equality holding if $X$ is a continuous random variable.
 \end{proposition}
+% TODO: needs proof
+
+Notably, value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
+The probability distribution for the corresponding random order value has a specific form, and depends on the number of big players.
+Consequently, all the results from the previous section apply to this case as well.
 
 As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation.
 Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit interval.
 The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players.
-That is, for any $t_i$, the probability if $P_i$ being the first is related to the cdf of the first order statistic from $n-1$ independent uniform distributions: $1 - (1-t)^{m-1}$.
+Therefore, the total value of the big players is the random order value with corresponding probability distribution being the minimum of $m$ independent random variables describing the number of fringe players before each big player.
+
+Due to the symmetry of the big players in terms of the permutation probabilities, the value of each individual big player is the same.
+\begin{corollary}
+    \label{prop:multiple_platforms_individual}
+    The limit of the value (as $n \to \infty$) of each player of type $P$ is
+    \begin{align*}
+        \varphi_{P_i}^{\infty, m} = \frac{1}{m} \varphi_P^\infty = \int_0^1 \frac{h(t)}{m} f(t) \dt
+    \end{align*}
+    where $H(t) = 1 - [1 - G(t)]^m$, and $h(t) = H'(t)$ whenever $G$ is differentiable.
+\end{corollary}
+Furthermore, the value of the fringe has a similar, marginal contribution-based interpretation as in the case of a single big player.
+\begin{corollary}
+    \label{cor:multiple_platforms}
+    The per-unit Shapley-value of the fringe is
+    \begin{align*}
+        \varphi_A^{\infty, m} = 1 - \int_0^1 f(t) \dH(t) = \int_0^1 H(t) f'(t) \dt,
+    \end{align*}
+    where $H(t) = 1 - [1 - G(t)]^m$.
+\end{corollary}
+
+Finally, let us look at how the value of the big players and the fringe changes as a function of the number of the big players.
+Proposition \Cref{cor:multiple_platforms_2} again confirms our intuition: more players means that they become more substitutable, and thus their bargaining power decreases.
+This not only means that the value of each individual big player decreases, but also that their total value goes down.
+\begin{corollary}
+    \label{cor:multiple_platforms_2}
+    Let $\varphi_{P}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant.
+\end{corollary}
+% TODO: adjust proof
+
+
+
+\paragraph{Example: Shapley value.}
+
+I illustrate the effect of the number of big players on the weight function $h(t)$ by looking at the simplest random order value, the Shapley value.
+As shown in \Cref{prop:one_sided}, the limit of the Shapley value in the case of a single big player is just $\int_0^1 f(t) \dt$.
+Therefore, using the notation from \Cref{prop:one_sided_general}, $G(t) = t$.
+Conseqently, by \Cref{prop:multiple_platforms_total}, the sum of the shares of the big players corresponds to the random order value characterized by the cumulative distribution function
+\begin{align} 
+    H(t) = 1 - (1 - t)^m.  \label{eq:weight_function_shapley}
+\end{align}
+That is, the value of the sum of the big players' values is given by
+\begin{align*}
+    \varphi_P^{\infty, m} = \underbracket{m (1-t) ^ {m-1}}_{h(t)} f(t) \dt,
+\end{align*}
+while the value that each individual big player obtains is
+\begin{align*}
+    \varphi_{P_j}^{\infty, m} = \underbracket{(1-t) ^ {m-1}}_{h_j(t)} f(t) \dt.
+\end{align*}
+
+\Cref{fig:multiple_platforms,fig:multiple_platforms_total} illustrate how $h_t$ and $h_j(t)$ depend on the number of big firms, $m$.
+In particular, it is apparent that a $H(t)$ with lower $m$ first order stochastically dominates one with a higher number of big firms.
+This is the underlying reason of the big players' share decreasing in their number, i.e. \Cref{cor:multiple_platforms_2}.
 
 \begin{figure}[ht]
     \centering
@@ -578,7 +651,7 @@ That is, for any $t_i$, the probability if $P_i$ being the first is related to t
                 \addplot[thick, dotted] {(1-x)^2};
             \end{axis}
         \end{tikzpicture}
-        \caption{$h(t)$}
+        \caption{$h_i(t)$}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -591,23 +664,11 @@ That is, for any $t_i$, the probability if $P_i$ being the first is related to t
                 \legend{$m = 1$, $m = 2$, $m = 3$}
             \end{axis}
         \end{tikzpicture}
-        \caption{$\int_0^t h(s) \ds$}
+        \caption{$\int_0^t h_i(s) \ds$}
     \end{subfigure}
-    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case -- individual big player.}
+    \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case -- individual big players.}
     \label{fig:multiple_platforms}
 \end{figure}
-
-Let us examine the total value of all the big players.
-Denote the aggregated value of players of type $P$ as $\varphi_{P}^{\infty, m} \coloneqq \sum_{j=1}^m\varphi_{P_j}^{\infty, m} = m\varphi_{P_i}^{\infty, m}$.
-It immediately follows from the previous proposition that
-\begin{align*}
-    \varphi_{P}^{\infty, m} = \int_0^1 g(t) f(t) \dt,
-\end{align*}
-where $g(t) = m (1-t) ^ {m-1}$.
-Notice that $g(t)$ now integrates to one, and is thus a probability distribution (\Cref{fig:multiple_platforms_total}).
-Therefore, the Shapley value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
-The probability distribution for the corresponding random order value has a specific form, and its only parameter is the number of big players.
-Thus, all the results from the previous section apply to this case as well.
 
 \begin{figure}[ht]
     \centering
@@ -621,7 +682,7 @@ Thus, all the results from the previous section apply to this case as well.
                 \addplot[thick, dotted] {3 * ((1-x)^2)};
             \end{axis}
         \end{tikzpicture}
-        \caption{$g(t)$}
+        \caption{$h(t)$}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -634,7 +695,7 @@ Thus, all the results from the previous section apply to this case as well.
                 \legend{$m = 1$, $m = 2$, $m = 3$}
             \end{axis}
         \end{tikzpicture}
-        \caption{$\int_0^t g(s) \ds$}
+        \caption{$H(t) = \int_0^t h(s) \ds$}
     \end{subfigure}
     \caption{Illustration of the weighting function for various values of $m$ in the multiple big player case -- total of big players.}
     \label{fig:multiple_platforms_total}
@@ -663,9 +724,9 @@ Finally, let us show that the value of the fringe has a similar, marginal contri
 
 \subsubsection{Small players can generate some value on their own}
 
-As a final extension for the one-sided case, let us examine what happens when the small players can generate some value on their own.
-Assume that the big player still provides some value to any coalition, but a coalition of fringe players can achieve a positive value even without it.
-Formally, the value function is the following:
+Another way of relaxing the indispensability of the big player is assuming that the small players can generate some value on their own.
+Suppose that the big player still provides some value to any coalition, but a coalition of fringe players can achieve a positive value even without it.
+Formally, the value function is now the following:
 \begin{align*}
     v(S) = \begin{cases}
         f_0\left(\frac{n_A(S)}{n}\right) & P \notin S \\
@@ -677,13 +738,13 @@ As in the case of multiple big players, monotonicity is straightforward to estab
 \begin{proposition}
     The game is monotone if $f$ is increasing and $f(t) \geq f_0(t) \geq 0 \forall t$.
 \end{proposition}
-Also similarly, superadditivity is not straightforward in general.
+Also similarly, conditions for superadditivity are not as simple.
 Therefore, the simultaneous formation of multiple coalitions must be excluded in this setting as well.
 
 On the other hand, the random order values and their limits are very straightforward to characterize.
 The value of the big player is still its average marginal contribution.
-The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not simply $f(s)$, but rather $f(s) - f_0(s)$.
-This is because the big player is not indispensable, and thus the fringe can achieve some value without it.
+The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not $f(s)$, but rather $f(s) - f_0(s)$.
+This is because the big player is not indispensable, as $s$ mass of fringe firms can achieve $f_0(s)$ even without it.
 
 \begin{proposition}
     \label{prop:one_sided_non_indispensable}
