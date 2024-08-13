@@ -277,7 +277,7 @@ This result aligns with the intuition that player $P$ has a better bargaining po
 \subsection{Special cases}
 
 This section discusses the two most important special cases of random order values: the Shapley value and the somewhat more general weighted value.
-While most of these results are known in the literature, I include them here for two reasons: to provide build intuition for the more general and to highlight the similarities to the multi-sided case.
+While most of these results are known in the literature, I include them here for two reasons: to provide build intuition for the more general and to highlight the similarities to the case of heterogeneous fringe players.
 
 \subsubsection{Shapley value}
 
@@ -817,16 +817,16 @@ This is a natural result, and again, it is in line with what one would expect fr
 \label{sec:many_sided}
 
 Up until this point, we have only considered games with a single type of small player.
-Now imagine that, in addition to player $P$, there are $L$ different varieties of smaller players: $\{A^l_1, \dots, A^l_n\}$ where $1 \leq l \leq L$.
+Now imagine that, in addition to player $P$, there are $L$ different varieties of players: $\{A^l_1, \dots, A^l_n\}$ where $1 \leq l \leq L$.
 The idea is the same as before: I assume that $P$ is necessary for any coalition to have a positive value, and the small players are identical to each other \emph{within their types}.
 The substitutability of the different types of small players will be captured by the -- now multivariate -- function $f$.
 
-Let us now turn to the formal definition of the game.
-For a finite number of fringe players, the coalitional form of the game $(N, v)$ is the following.
+Let us now turn to the formal definition of the setting.
+For a finite number of fringe players, the coalitional form, $(N, v)$, of the game is the following.
 The set of players is $N = \{P, A^1_1, \dots, A^1_n, \dots, A^L_1, \dots, A^L_n\}$, which in total contains $nL + 1$ players.\footnote{
     In this formulation, we assume that the number of players of each type is the same.
     However, this is not as restrictive as it might seem.
-    In the limit, each type of player will become infinitesimally small, and the exact number of players of each type will not matter.
+    In the limit, each type of player will become infinitesimally small, and the exact number of players of each type does not matter.
 }
 The characteristic function is
 \begin{align*}
@@ -835,16 +835,16 @@ The characteristic function is
         f\left(\frac{n_{A^1}(S)}{n}, \dots, \frac{n_{A^L}(S)}{n}\right) & \text{otherwise},
     \end{cases}
 \end{align*}
-where $f$ is now a multivariate function from $[0, 1]^L$ to $\mathbb{R}$.
+where $f$ is now a multivariate function from $[0, 1]^L$ to $\mathbb{R}$ and $n_{A^l}(S)$ denotes the number of players of type $A^l$ in coalition $S$.
 
 A prominent interpretation of the two-sided version of this model would be a platform marketplace with a set of sellers and a set of buyers, where all three sides possess some amount of bargaining power.
 However, player $P$ does not have to be in the ``middle'' of the transactions for this framework to be applicable.
 For example, it also captures the situation of a single upstream producer, a large number of downstream firms, and a similarly large number of customers, as long as both the customers and the downstream firms can participate in the bargaining process.\footnote{
     A setting where these assumptions might be plausible is, for example, the new car market with a car producer, a number of independent dealerships, and customers who might engage in some form of negotiation.
 }
-More than two types of fringe players can be used to model a platform with more than two sides, such as a platform with both buyers and sellers, and a set of advertisers, or, following \textcite{stole1996intra}, bargaining between a firm and multiple types of input suppliers.
+More than two types of fringe players can be used to model a platform with more than two sides, such as a platform with buyers, sellers and a set of advertisers, or, following \textcite{stole1996intra}, bargaining between a firm and multiple types of input suppliers.
 
-For the subseuent discussion, let us follow the structure of the previous section.
+The subsequent discussion follows the structure of \Cref{sec:one_sided}.
 I start by characterizing conditions for monotonicity and superadditivity to support the bargaining interpretation and the formation of the grand coalition.
 It turns out that necessary and sufficient conditions for these properties are the straightforward analogues of those from the one-sided case.
 \begin{proposition}
@@ -852,14 +852,14 @@ It turns out that necessary and sufficient conditions for these properties are t
 \end{proposition}
 The intuition for this is the same as before: superadditivity is equivalent to monotonicity due to the fact that no coalition can have a positive value without $P$, and monotonicity boils down to $f$ being increasing in all of its arguments.
 
-In the next subsections, I will first examine random order values, and then two important special cases: the Shapley value and the weighted value.
-Many of the results will be similar to the one-sided case, including the marginal contribution interpretation of the value of the fringe, and the geometric interpretation of the Shapley value.
+In the next subsections, I will first examine random order values, and then the two important special cases: the Shapley value and the weighted value.
+Many of the results are be similar to the one-sided case, including the marginal contribution interpretation of the value of the fringe, and the geometric interpretation of the Shapley value.
 Furthermore, it turns out that even though the number of fringe players is a multi-dimensional object in this case, for the limit of the Shapley and weighted values, one only has to integrate over a one-dimensional manifold within the unit hypercube, which makes the results more tractable.
 
 \subsection{Random order values}
 
-First, let us examine the most general case: the random order value.
-Let us start by establishing the analog of \Cref{prop:one_sided_general} for the many-sided case to obtain the limit of the value of the big player.
+I start with the most general case: the random order value.
+Let us establish the analog of \Cref{prop:one_sided_general} for the case of heterogeneous fringe to obtain the limit of the value of the big player.
 \begin{proposition}
     \label{prop:many_sided_general}
     Let $f$ be continuous on $[0, 1]^L$. Furthermore, let us denote the random vector of the proportions of the various types of fringe players before $P$ as $X_n$:
@@ -877,11 +877,11 @@ Let us start by establishing the analog of \Cref{prop:one_sided_general} for the
 The proposition above is almost identical to \Cref{prop:one_sided_general}, with the only difference being that the integral is now over the $L$-dimensional unit hypercube, due to $f$ being a function of $L$ variables.
 
 While the above proposition is very general in terms of permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire, $L$-dimensional domain of $f$.
-It would be much more convenient, if one only had to be concerned with a one-dimensional manifold within the hypercube instead.
-It turns out, that for a number of important cases (namely, the Shapley value and the weighted value) it is indeed the case.
+It would be much more convenient, if one only had to be concerned with a one-dimensional manifold within this hypercube instead.
+It turns out that, for a number of important cases (namely, the Shapley value and the weighted value), it is indeed the case.
 
-Let us start by establishing a general result, after which I will show that the Shapley value and the weighted value are special cases of it.
-The following lemma provides sufficient conditions, under which the limit of the value of the big player can be expressed as an integral over a one-dimensional path, even though the value for any finite number of players depends on the whole domain of $f$.
+The following lemma states a general result about this idea: it provides sufficient conditions, under which the limit of the value of the big player can be expressed as an integral over a one-dimensional path, even though the value for any finite number of players depends on the whole domain of $f$.
+Later on, I show that it applies to both the Shapley value and the weighted value.
 \begin{lemma}
     % TODO: check notation!
     \label{lem:many_sided_manifold}
@@ -901,17 +901,19 @@ The following lemma provides sufficient conditions, under which the limit of the
     \end{align*}
 \end{lemma}
 
-The lemma states, that if the permutation probabilities are such that the number of fringe players before $P$ converges to a degenerate distribution, then one only has to be concerned with just a tiny fraction of the production function $f$.
+The lemma states, that if the permutation probabilities are such that the number of fringe players before $P$ converges to a degenerate distribution, then one only has to be concerned with just a tiny part of the production function $f$.
 Namely, we only need to know how the function behaves on the set $\{(a_1(t), \dots, a_L(t)) : t \in [0, 1]\} \subset [0, 1]^L$.\footnote{
     For the fringe players, we also need the partial derivatives.
-    Therefore, technically, the behavior of $f$ on some arbitrarily small neighborhood of the set also matters.
+    Therefore, technically, the behavior of $f$ on some arbitrarily small neighborhood of this set also matters.
 }
 This result is essentially a generalization of the diagonal formula from \textcite{aumann2015values} or \textcite{stole1996intra} to the case where permutation probabilities are not uniform.
 The intuition, however, is the same law-of-large-numbers-type argument: if the number of fringe players is large, then it is very unlikely that, after a random ordering, their proportion is very different from its expected value.
-The main difference is that, in this case, this conditional expectations are not linear, but rather given by the $a_l$ functions.
+The main difference is that, in this case, these conditional expectations are not linear, but rather given by the $a_l$ functions.
 
-In the remainder of this section, I will show that the Shapley value and the weighted value satisfy the assumptions of the above lemma, and thus the limit of those values can be expressed as an integral over a well-defined one-dimensional path.
-
+In the remainder of this section, I will show that the Shapley value and the weighted value satisfy the assumptions of the above lemma, and thus the limit of those values can be expressed as an integral over a well-defined, one-dimensional path.\footnote{
+    I do not extend the heterogeneous agent model to the case of non-indispensable big players.
+    It would be conceptually straightforward to do so for cases when \Cref{lem:many_sided_manifold} applies, albeit somewhat more cumbersome.
+}
 
 \subsection{Special cases}
 \subsubsection{Shapley-value}
@@ -933,7 +935,7 @@ As hinted before, due to the uniformity of the permutation probabilities, we get
     \end{align*}
 \end{proposition}
 That is, in the case of the Shapley value, one has to integrate over the diagonal of the unit hypercube to obtain the limit of the value of the big player.\footnote{
-    \textcite{stole1996intra} also obtain the expression for the big player's value for the limiting case of their bargaining game.
+    \textcite{stole1996intra} also obtain this expression for the big player's value for the limiting case of their bargaining game.
     The proof of this proposition demonstrates a way to obtain it as a limit of the Shapley value of the finite games.
 }
 \Cref{fig:many_sided_shapley} illustrates this result in the case of two types of fringe players: the value of player $P$ is the integral of $f$ over the diagonal of the unit square.
@@ -966,17 +968,17 @@ Namely, those having higher marginal contributions along the diagonal get a larg
 
 \subsubsection{Weighted value}
 
-The final part of this section is dedicated to the weighted value in the many-sided case.
+The final part of this section is dedicated to the weighted value in the heterogeneous fringe case.
 The set of players and the characteristic function are the same as in the previous section, but, as before, each player has a weight attached to them.
-I will assume that fringe players are identical to each other within their types also with respect to their weights.
+I assume that fringe players are identical to each other within their types also with respect to their weights.
 That is, the weight system for the game is the following: player $P$ has weight $\lambda_P$, while players $A^l_i$ have weight $\lambda_l$.
 
-I will show, that as with non-weighted Shapley value, the limit of the weighted value can be expressed as an integral over a one-dimensional path in the weighted case as well.
-However, now this path is not the diagonal of the unit hypercube, but a function of the fringe players' weights.
+I will show that, as with non-weighted Shapley value, the limit of the weighted value can be expressed as an integral over a one-dimensional path in the weighted case as well.
+However, this path is not the diagonal of the unit hypercube anymore, but a function of the fringe players' weights.
 The reason for this is that not all permutations have the same probability of occurring: those with players having higher weights ordered later are more likely to occur.
 
 The following statement is the central theorem of this paper.
-In fact, most of the propositions in the previous sections can be considered as special cases of it.
+In fact, many of the propositions with one indispensable player can be considered as special cases of it.
 \begin{theorem}
     \label{prop:many_sided_weighted}
     Let $f$ be continuous on $[0, 1]^L$.
@@ -989,19 +991,19 @@ In fact, most of the propositions in the previous sections can be considered as 
         \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\_L}) \dt.
     \end{align*}
 \end{theorem}
-The intuition is the following.
+The intuition for this is the following.
 A higher weight for a player means that it has a higher chance of being relatively late in a random permutation.
 Therefore, conditional on $s$ proportion of the fringe coming before $P$, the various types' proportions do not reflect their population shares ($1/L$).
 For any $s \in (0, 1)$, the proportion of fringe players with a higher weight is lower than their population share, while the proportion of fringe players with a lower weight is higher than their population share.
 
 \Cref{fig:many_sided_weighted} illustrates this phenomenon in the case of two types of fringe players.
-Fringe players of type $A^2$ have a higher weight than those of type $A^1$, and thus the path the integral is taken over contains more of the latter than the former.
+Players of type $A^2$ have a higher weight than those of type $A^1$, and thus the path the integral is taken over contains more of the latter than the former.
 
-Finally, player $P$'s probability of coming after $s$ proportion of the fringe is also not uniform, but rather influenced by the relationship between its own and the fringe players' weights.\footnote{
+Finally, player $P$'s probability of coming after $s$ proportion of the fringe is also not uniform, but rather influenced by the relationship between its own weight and the fringe players' weights.\footnote{
     This is the same mechanism as in the case of the one-sided weighted value.
 } 
-Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that of \Cref{prop:one_sided_weighted}.
-The result is the following: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
+Therefore, the integral is not taken with respect to the uniform distribution, but rather one resembling that in \Cref{prop:one_sided_weighted}.
+It results are the same: when the big player has a higher weight, its chances of being relatively late in the ordering are higher, and thus -- due to $f$ being monotone increasing -- its value is higher.
 The following, simple corollary formalizes this idea.
 
 \begin{figure}
@@ -1031,7 +1033,7 @@ The following, simple corollary formalizes this idea.
     \label{cor:platform_value_multiple_sides_weighted}
     $\varphi_P^\infty$ is increasing in $\lambda_P$ unless $f$ is constant.
 \end{corollary}
-This result is analogous to \Cref{cor:platform_value_weighted}, and demonstrates that a higher weight for player $P$ corresponds to a higher value in this game as well.
+This result is analogous to \Cref{cor:platform_value_weighted}, and demonstrates that a higher weight for player $P$ corresponds to a higher value in this game, as well.
 
 \section{Example application}
 \label{sec:application}
