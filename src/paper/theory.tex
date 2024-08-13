@@ -151,7 +151,7 @@ Finally, \Cref{sec:conclusions} concludes the paper.
 \section{Identical fringe players}
 \label{sec:one_sided}
 
-In this section I examine the case of identical fringe players.
+In this section, I examine the case of identical fringe players.
 I start with the case of one, indispensable big player, and relax this assumption in \Cref{sec:extensions}.
 Let us start by defining the cooperative game that describes this situation.
 
@@ -412,33 +412,34 @@ On the other hand, when $\alpha \to 0$, the big player can appropriate all the v
 \subsubsection{Weighted values}
 \label{sec:weighted_one_sided}
 
-This section investigates the case of players having different levels of innate bargaining power.
-One way to model this is by using weighted values \parencite{shapley1953additive}, which are a generalization of the Shapley value.
-They are also a non-symmetric generalization of the Shapley value, albeit with more structure than random order values.
-The idea behind them is that, in addition to the set of players and the characteristic function, the game is also endowed with a weight system, which is a vector of non-negative numbers, one for each player.
+The other important special case of random order values is the weighted value \parencite{shapley1953additive}.
+It relaxes the symmetry axiom of the Shapley value, and allows for players having different levels of innate bargaining power.
+On the other hand, weighted values still have more structure than random order values, as they are characterized by a weight system (a vector of non-negative numbers for each player).
 These weights determine how the value of a coalition is distributed amongst its members in the case when they are all equally important for the coalition.
 Then, relying on the linearity of the value, this distribution can be extended to the case when the players are not equally important.
 
-These weights can be thought of as the measure of some innate bargaining power, not reflected in the value function.\footnote{
+The weights can be thought of as the measure of some innate bargaining power, not reflected in the value function.\footnote{
     Although, this interpretation is not always appropriate.
     As \textcite{owen1968communications} demonstrates, there are games where the weighted value is not monotone increasing in a player's weight.
 }
 Further support for this interpretation in certain games can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{
     For example, only one player having a positive value corresponds to them making take it or leave it offers.
 }
-Additionally, \textcite{stole1996intra} provides an alternative microfoundation for the weighted value in the case of non-binding contracts.
+Additionally, \textcite{stole1996intra} provides alternative microfoundations for the weighted value in the case of one indispensable and a continuum of fringe players.
 
-For my purposes, it is sufficient to deal with the case of simple weights.
-I.e., assume that there is at most one player with zero weight.
-For my main result, I make use of an alternative, computational characterization of the weighted values. 
-\textcite{kalai1987weighted} demonstrated that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
+For the purposes of the current players, it is sufficient to deal with the case of simple weights\footnote{
+    In general, weighted values allow for more complex weight systems with each player having a vector of weights applied in a lexicographic manner.
+}
+as I assume that there is at most one player with zero weight.
+For my main result, I make use the following characterization of the weighted values: \textcite{kalai1987weighted} demonstrated that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
 Start with the set of all players.
 Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$.
 Continue until all players are exhausted.
 This yields a well-defined probability for each permutation of players.
+The weighted value is then the same as the random order value with this probability distribution over the permutations.
 
 Now let us turn to deriving the weighted value and its limit for the big player and the fringe in this specific game.
-First, I propose a lemma that characterizes the distribution of the number of players before $P$ in the limit, and then use it to derive the weighted value of the big player and the fringe.
+First, I prove a lemma that characterizes the distribution of the number of players before $P$ in the limit, and then use it to derive the weighted value of the big player and the fringe.
 Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively.
 Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the previously described procedure.
 Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
@@ -453,7 +454,7 @@ The following lemma establishes the continuous analogue of this statement.
     Consequently, the corresponding probability density function is $g(t) = \lambda t^{\lambda - 1}$.
 \end{lemma}
 
-Now we have everything we need to derive the weighted value of both types of players.
+With this in hand, deriving the weighted value of both types of players is straightforward.
 Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to invoke \Cref{prop:one_sided_general} to obtain the following proposition.\footnote{
     \textcite{stole1996intra} also derive essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
 }
@@ -474,8 +475,8 @@ Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to in
     where $G(t) = t^\lambda$.
 \end{proposition}
 
-As before, the value of the big player can still be expressed as an integral of the value function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
-The only difference is that, as in the case of the general random order value, the integrands are weighted by some probability distribution.
+As before, the value of the big player can be expressed as an integral of the value function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
+The only difference is that, as in the case of the general random order value, the integrands are weighted by a specific probability distribution.
 Depending on the shape of this distribution, regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
 Contrary to \Cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
 \Cref{fig:weigh_function} illustrates the weighting function for various values of $\lambda$.
@@ -512,22 +513,21 @@ Contrary to \Cref{prop:one_sided_general}, the probability distribution has a sp
 \end{figure}
 
 Now, let us examine how these weights impact the shares of the various players.
+It turns out, that a higher weight corresponds to a higher value in this game.\footnote{
+    This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
+},
+supporting their interpretation as some kind of innate bargaining power.
 \begin{corollary}
     \label{cor:platform_value_weighted}
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
-It turns out, that a higher weight corresponds to a higher Shapley-value in this game.\footnote{
-    This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
-},
-supporting their interpretation as some kind of innate bargaining power.
 
-Furthermore, the next corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoffs $P$ would achieve if $P$ were making (facing) take-it-or-leave-it offers.
+Furthermore, the next corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoff $P$ that they would achieve if they were making (facing) take-it-or-leave-it offers.
 \begin{corollary}
     \label{cor:paltform_value_weighted_2}
-    If the weight of player $P$ goes to infinity (zero), its weighted Shapley value converges to $f(1)$ ($f(0)$).
+    If the weight of player $P$ goes to infinity (zero), their weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
-This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player, and thus a generalization of take-it-or-leave-it offers.
-
+This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player, and thus a generalization of take-it-or-leave-it offers, with the distribution of bargaining power being adjustable by a single parameter.
 
 
 \subsection{Non-indispensable big player(s)}
@@ -623,13 +623,9 @@ This not only means that the value of each individual big player decreases, but 
     \label{cor:multiple_platforms_2}
     Let $\varphi_{P}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant or $X$ is degenerate.
 \end{corollary}
-% TODO: adjust proof
-
-
 
 \paragraph{Example: Shapley value.}
-
-I illustrate the effect of the number of big players on the weight function $h(t)$ by looking at the simplest random order value, the Shapley value.
+I illustrate the effect of the number of big players on the weight function $h(t)$ by looking at the simplest of the random order values, the Shapley value.
 As shown in \Cref{prop:one_sided}, the limit of the Shapley value in the case of a single big player is just $\int_0^1 f(t) \dt$.
 Therefore, using the notation from \Cref{prop:one_sided_general}, $G(t) = t$.
 Conseqently, by \Cref{prop:multiple_platforms_total}, the sum of the shares of the big players corresponds to the random order value characterized by the cumulative distribution function
