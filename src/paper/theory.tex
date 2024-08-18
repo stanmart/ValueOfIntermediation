@@ -234,7 +234,7 @@ The following proposition demonstrates the main idea of this paper: even as the 
 Or, in other words, the fringe, even when its members are infinitesimally small, still retains some bargaining power.
 As a consequence, the continuous fringe model can be thought of as a more tractable approximation of bargaining between a finite number of fringe players.
 
-\begin{proposition}
+\begin{theorem}
     \label{prop:one_sided_general}
     Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\precede_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G(t)$ and (if exists) pdf $g(t)$.
     Then
@@ -242,7 +242,7 @@ As a consequence, the continuous fringe model can be thought of as a more tracta
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \dG(t) = \int_0^1 g(t) f(t) \dt,
     \end{align*}
     with the last equality holding if $X$ is a continuous random variable.
-\end{proposition}
+\end{theorem}
 
 This result has an immediate interpretation in terms of marginal contributions.
 Remember, that player $P$ is indispensable for creating value.
@@ -586,7 +586,7 @@ As before, I assume that, as the number of fringe players goes to infinity, the 
 Let us first establish the sum of the shares of all big players.
 Then, the value of individual big players can be obtained by relying on the symmetry assumption.
 The following proposition provides an expression for the limit of this total value.
-\begin{proposition}
+\begin{theorem}
     \label{prop:multiple_platforms_total}
     Let $f$ be continuous on [0, 1].
     Let us denote the number of fringe players in any coalition $S$ as $n_A(S)$.
@@ -600,7 +600,7 @@ The following proposition provides an expression for the limit of this total val
         \varphi_P^\infty = \lim_{n \to \infty} \sum_{j=1}^m \varphi_{P_j}^n = \int_0^1 f(t) \dH(t) = \int_0^1 h(t) f(t) \dt,
     \end{align*}
     with the last equality holding if $X$ is a continuous random variable.
-\end{proposition}
+\end{theorem}
 
 Notably, value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
 The probability distribution for the corresponding random order value has a specific form, and depends on the number of big players.
@@ -623,7 +623,7 @@ Due to the symmetry of the big players in terms of the permutation probabilities
 Furthermore, the value of the fringe has a similar, marginal contribution-based interpretation as in the case of a single big player.
 \begin{corollary}
     \label{cor:multiple_platforms}
-    The per-unit Shapley-value of the fringe is
+    The per-unit value of the fringe is
     \begin{align*}
         \varphi_A^{\infty, m} = 1 - \int_0^1 f(t) \dH(t) = \int_0^1 H(t) f'(t) \dt,
     \end{align*}
@@ -746,7 +746,7 @@ The value of the big player is still its average marginal contribution.
 The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not $f(s)$, but rather $f(s) - f_0(s)$.
 This is because the big player is not indispensable, as $s$ mass of fringe firms can achieve $f_0(s)$ even without it.
 
-\begin{proposition}
+\begin{theorem}
     \label{prop:one_sided_non_indispensable}
     Let $f$ be continuous on [0, 1]. Furthermore, let us denote the random variable $\frac{|\precede_P|}{n}$ as $X_n$. Assume that $X_n \xrightarrow[]{d} X$ with cdf $G_X(t)$ and (if exists) pdf $g(t)$.
     Then
@@ -754,7 +754,7 @@ This is because the big player is not indispensable, as $s$ mass of fringe firms
         \varphi_P^\infty = \lim_{n \to \infty} \varphi_P^n = \int_0^1 f(t) \dG(t) = \int_0^1 g(t) [f(t) - f_0(t)] \dt,
     \end{align*}
     with the last equality holding if $X$ is a continuous random variable.
-\end{proposition}
+\end{theorem}
 
 The value of the fringe is also similar to the baseline case, except now fringe players have a non-zero marginal contribution even when $P$ is not present.
 Therefore, there is an additional term in the integral, corresponding to the marginal value of the fringe when $P$ is not present.
@@ -874,7 +874,7 @@ Furthermore, it turns out that even though the number of fringe players is a mul
 
 I start with the most general case: the random order value.
 Let us establish the analog of \Cref{prop:one_sided_general} for the case of heterogeneous fringe to obtain the limit of the value of the big player.
-\begin{proposition}
+\begin{theorem}
     \label{prop:many_sided_general}
     Let $f$ be continuous on $[0, 1]^L$. Furthermore, let us denote the random vector of the proportions of the various types of fringe players before $P$ as $X_n$:
     \begin{align*}
@@ -887,7 +887,7 @@ Let us establish the analog of \Cref{prop:one_sided_general} for the case of het
         &= \int_0^1\dots \int_0^1 g(t_1, \dots, t_n) f(t_1, \dots, t_L) \dt_1 \dots \dt_L,
     \end{align*}
     with the last equality holding if $X$ is a continuous random variable.
-\end{proposition}
+\end{theorem}
 The proposition above is almost identical to \Cref{prop:one_sided_general}, with the only difference being that the integral is now over the $L$-dimensional unit hypercube, due to $f$ being a function of $L$ variables.
 
 While the above proposition is very general in terms of permutation probabilities, it is not very tractable in practice, as one has to integrate over the entire, $L$-dimensional domain of $f$.
@@ -992,7 +992,7 @@ The reason for this is that not all permutations have the same probability of oc
 
 The following statement is the central theorem of this paper.
 In fact, many of the propositions with one indispensable player can be considered as special cases of it.
-\begin{theorem}
+\begin{proposition}
     \label{prop:many_sided_weighted}
     Let $f$ be continuous on $[0, 1]^L$.
     Then,
@@ -1003,7 +1003,7 @@ In fact, many of the propositions with one indispensable player can be considere
     \begin{align*}
         \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda_L}) \dt.
     \end{align*}
-\end{theorem}
+\end{proposition}
 The intuition for this is the following.
 A higher weight for a player means that it has a higher chance of being relatively late in a random permutation.
 Therefore, conditional on $s$ proportion of the fringe coming before $P$, the various types' proportions do not reflect their population shares ($1/L$).
