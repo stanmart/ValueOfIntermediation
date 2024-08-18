@@ -171,7 +171,6 @@ Finally, \Cref{sec:conclusion} summarizes the results and discusses possible fut
 \label{sec:model}
 
 This section introduces the model used throughout the paper.
-% TODO: better motivation
 I use the terms ``platform'' and ``fringe sellers'', and present my ideas in the context of an intermediated market, such as an online marketplace or an application store.
 However, the model is quite general, and the results apply to a broader class of settings, such as vertical markets where the upstream firm can sell directly to consumers, or retail stores with their own private labels.
 Furthermore, while the discussion in the main text focuses on a specific demand structure and profit sharing rule, most of the results apply to a broader class of models.
@@ -398,7 +397,7 @@ Therefore, when setting the price for product $P_i$, it would optimally like to 
 Despite this, I assume that the platform prices its products as if they were produced by separate, monopolistically competitive sellers.
 
 I do this for a number of reasons.
-For one, it simplifies the analysis without affecting the main results qualitatively.  % TODO: refer to results if I can
+For one, it simplifies the analysis without affecting the main results qualitatively.
 More importantly, it lets me focus on the main question of this paper: how the platform's hybrid operation affects the bargaining power.
 If the platform priced its products strategically, there would be an additional channel through which its product variety could affect the outcomes: in contrast to the fringe firms, it takes into account the effect of its prices on the aggregate demand.
 This would make it harder to disentangle the effects of hybrid operation from the effects of strategic pricing.
@@ -1147,8 +1146,11 @@ It does simplify the analysis, especially in terms of consumer welfare, but the 
     In particular, demand functions for which the implied profit functions satisfy the assumptions in \Cref{sec:more_general}.
 }.
 It is however important that the demand function is such that total profits are increasing in the number of fringe firms.
-Without this, the corresponding cooperative game is not monotone, and the bargaining microfoundations do not apply.
-%TODO: more on this assumption
+Without this, the corresponding cooperative game is not monotone, and the bargaining interpretation is less applicable.
+In the model presented in the main text, monotonicity arises due to consumers' taste for variety preferences.
+This assumption might also be justified in settingswith network effects \parencite{rochet2003platform}, or when the platform can extract consumer surplus through entry fees or some other mechanism.\footnote{
+    \textcite{chen2008price} demonstrates that under certain circumstances an even more extreme phenomenon might occur: competition may not only increase industry-wide profits, but prices, as well.
+}
 
 The other assumption that is crucial for the results is the lump-sum nature of the entry fee.
 Without it, the corresponding cooperative game would not have transferable utility, and the Shapley value would not be a meaningful solution concept.
@@ -1566,10 +1568,7 @@ I will assume that, in addition to being increasing in the number of consumers, 
     $f(N_P, n_F)$ is increasing in both $N_P$ and $N_F$.
 \end{assumption}
 Such profit functions arise in settings in which the profit reduction from increased competition is dominated by extra sales due to increased product variety.
-One such example is \textcite{anderson2020aggregative}, where the demand exhibits love for variety, while consumers have access to an outside option.
-Alternatively, indirect network effects, such as those in two-sided markets, can also result in such increasing profits.
-\textcite{chen2008price} demonstrates that under certain circumstances an even more extreme phenomenon might occur: competition may not only increase industry-wide profits, but prices, as well.
-Finally, under the assumption that the platform can extract consumer surplus through entry fees or some similar mechanism, this assumption is be true for any demand system in which total surplus is increasing in product variety.
+\Cref{sec:results_discussion} discusses this assumption in more detail.
 
 \subsection{Profit sharing}
 \label{sec:more_general_profit_sharing}

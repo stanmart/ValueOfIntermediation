@@ -101,7 +101,7 @@ Apart from the general framework, this paper also extends the results of the rel
 Most importantly, I relax the usual assumption that there is only one indispensable player, and show how the results can be generalized when (1) there are multiple central players, and (2) when the central player is not completely indispensable.
 Further contributions include new results for the case of heterogeneous fringe players.
 In particular, I provide results for weighted values in the case of heterogeneous fringe players, which is a novel contribution to the literature.
-Furthermore, I highlight how the value of the fringe players can be expressed in terms of their marginal contributions, i.e. the partial derivatives of the value function.
+Furthermore, I highlight how the value of the fringe players can be expressed in terms of their marginal contributions, i.e. the partial derivatives of the production function.
 
 I rely on an infinite-player (oceanic game) version of these models, where fringe players are represented as a continuum.
 As is often the case in economics, this infinite-player approximation turns out to be more tractable than the  finite-player model, while retaining the desirable features of the latter.
@@ -153,6 +153,7 @@ Finally, \Cref{sec:conclusions} concludes the paper.
 
 In this section, I examine the case of identical fringe players.
 I start with the case of one, indispensable big player, and relax this assumption in \Cref{sec:extensions}.
+Such a game can represent, for example, a (one-sided) platform and a number of potential entrants, where the entrants can only reach their prospective consumers through the platform, or a vertical supply chain with one upstream producer and a number of downstream sellers.
 Let us start by defining the cooperative game that describes this situation.
 
 Consider a game with two types of players: a central (or big) player $P$ and $n$ smaller players $A_i$, $1 \leq i \leq n$.
@@ -166,7 +167,7 @@ Under these assumptions, the characteristic function of this game (the value tha
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-Such a game can represent, for example, a (one-sided) platform and a number of potential entrants, where the entrants can only reach their prospective consumers through the platform, or a vertical supply chain with one upstream producer and a number of downstream sellers.
+The function $f$ (henecforth also referred to as the production function) then characterizes this game, and determines the distribution of the value between the big player and the fringe.
 
 Before delving into solution concepts, let us find conditions under which this game is monotone\footnote{
     Monotonicity requires that the value of any coalition is weakly higher than the value of any of its subsets.
@@ -243,7 +244,10 @@ As a consequence, the continuous fringe model can be thought of as a more tracta
     with the last equality holding if $X$ is a continuous random variable.
 \end{proposition}
 
-% TODO: explain relation to marginal contribution
+This result has an immediate interpretation in terms of marginal contributions.
+Remember, that player $P$ is indispensable for creating value.
+Therefore, for any coalition of fringe players, the marginal contribution of player $P$ is the total value that the coalition can generate $P$ included.
+Player $P$'s then is its average marginal contribution, which boils down to the expected value that a coalition can generate conditional on player $P$ being in it.
 
 Now let us turn to the value of the fringe.
 The following corollary shows that the aggregated value of the fringe remains positive even in the limit.
@@ -263,15 +267,20 @@ In other words, even though the fringe players become smaller and more numerous,
 It also provides us with two ways of thinking about the value of the fringe.
 First, due to random order values being efficient, it can be thought of as the leftover from the total value after subtracting the value of the big player.
 Alternatively, as the second part of the corollary demonstrates, it is also related to the marginal contributions of the fringe agents.
-The only difference from the big player's value is that we have to multiply these marginal contributions by the probability of the big player appearing before the fringe firm in question, as otherwise they would be zero.
-The latter interpretation is particularly useful when thinking about the value of the fringe in the setting with heterogeneous fringe firms.
+This marginal contribution is the derivative of the production function with respect to the mass of fringe players (i.e., the effect of adding an infinitesimally small player to the coalition), multiplied by the probability of the central player appearing before the fringe player (otherwise the marginal contribution is zero, as the central player is indispensable).
+The second interpretation is particularly useful when thinking about the value of the fringe in the setting with heterogeneous fringe firms.
 
 It also follows immediately from the previous proposition that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
 That is, when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus, then player $P$ is able to appropriate a larger share of the total value.
 This result aligns with the intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms on board were able to obtain high values.
 
-% TODO: relation to substitutability
-% In contrast, when fringe players are more complementary to each other, the big player can only obtain a smaller share, as its bargaining power is more limited.
+In certain settings, this can also be interpreted as the degree of complementarity or substitutability between the fringe players.
+For example, imagine that the fringe consists of a set of firms producing one product each, and the central player is necessary for this product to be sold or created.\footnote{
+    For example, the central player could be a platform that connects the fringe firms with consumers, or a provider of a key input.
+}
+When the fringe firms are substitutes, then additional ones add less value to the total pie.
+Therefore, relatively few of them are needed to create most of the value, and the central player can appropriate a larger share.
+Conversely, when the fringe firms are complements, the fringe firms are in a better bargaining position, and can obtain a larger share of the total value.
 
 
 \subsection{Special cases}
@@ -338,6 +347,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
             \end{axis}
         \end{tikzpicture}
         \caption{Fringe players have lower bargaining power}
+        \label{fig:one_sided_substitute}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
@@ -357,6 +367,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
             \end{axis}
         \end{tikzpicture}
         \caption{Fringe players have higher bargaining power}
+        \label{fig:one_sided_complement}
     \end{subfigure}
     \caption{Distribution of value between player $P$ (red) and the fringe (blue)}
     \label{fig:one_sided}
@@ -418,7 +429,7 @@ On the other hand, weighted values still have more structure than random order v
 These weights determine how the value of a coalition is distributed amongst its members in the case when they are all equally important for the coalition.
 Then, relying on the linearity of the value, this distribution can be extended to the case when the players are not equally important.
 
-The weights can be thought of as the measure of some innate bargaining power, not reflected in the value function.\footnote{
+The weights can be thought of as the measure of some innate bargaining power, not reflected in the production function.\footnote{
     Although, this interpretation is not always appropriate.
     As \textcite{owen1968communications} demonstrates, there are games where the weighted value is not monotone increasing in a player's weight.
 }
@@ -475,7 +486,7 @@ Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to in
     where $G(t) = t^\lambda$.
 \end{proposition}
 
-As before, the value of the big player can be expressed as an integral of the value function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
+As before, the value of the big player can be expressed as an integral of the production function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
 The only difference is that, as in the case of the general random order value, the integrands are weighted by a specific probability distribution.
 Depending on the shape of this distribution, regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
 Contrary to \Cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
@@ -537,7 +548,10 @@ This section relaxes the assumption that the big player is indispensable.
 I demonstrate two ways in which the model can be extended to include non-indispensable big players, while retaining the essential structure and the tractability of the results.
 In the first case, there are a finite number of big players, which are perfect substitutes of each other.
 In the second case, there is a single big player, but the fringe is able to generate some value on its own.
-In both cases, the value function is still a random order value, and thus results from the main text can be applied. % TODO: elaborate on this
+In both cases, the player's shares are still random order values\footnote{
+    The case of multiple big players is equivalent to the case of a single big player with the same production function, but a different probability distribution over the permutations.
+    Conversely, in the setting when the fringe can generate some value on its own, the production function changes, but the probability distribution is the same.
+}, and thus many of the earlier results apply.
 
 \subsubsection{Shapley value with multiple big players}
 
@@ -883,7 +897,6 @@ It turns out that, for a number of important cases (namely, the Shapley value an
 The following lemma states a general result about this idea: it provides sufficient conditions, under which the limit of the value of the big player can be expressed as an integral over a one-dimensional path, even though the value for any finite number of players depends on the whole domain of $f$.
 Later on, I show that it applies to both the Shapley value and the weighted value.
 \begin{lemma}
-    % TODO: check notation!
     \label{lem:many_sided_manifold}
     Assume that $X_n \xrightarrow[]{d} X$ where $X$ is a degenerate distribution in the following sense: $\exists \, a_l: [0, 1] \to [0, 1], l = 1, \dots, L$, such that
     \begin{align*}
@@ -988,7 +1001,7 @@ In fact, many of the propositions with one indispensable player can be considere
     \end{align*}
     and
     \begin{align*}
-        \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\_L}) \dt.
+        \varphi_{A^l}^\infty & = \int_0^1 t^{\lambda_P} \lambda_l t^{\lambda_l - 1} \partial_l f(t^{\lambda_1}, \dots, t^{\lambda_L}) \dt.
     \end{align*}
 \end{theorem}
 The intuition for this is the following.
@@ -1190,12 +1203,7 @@ This means that if players on side $i$ are less substitutable (or, equivalently,
 
 These expressions for welfare are remarkably similar in structure to those obtained in the welfare maximizing case.
 The main difference is that each part (both costs and positive utilities) is reweighted, and either side only receives a fraction of it.
-It is also worth noting that $W_i^b(n_1, n_2) < W_i^*(n_1, n_2)$, and, as a consequence, entry is lower than what would be socially optimal.\footnote{
-    The easiest way to see it is this in the welfare-maximizing case the platform's profit is negative, while in the bargaining case it must be non-negative.
-    Therefore, fringe utilities must be lower in the latter case.
-}
-These similarities and differences are examined in more detail in the next subsection.
-%TODO: check if it is true for both sides
+These similarities and differences are examined in more detail in \Cref{sec:application_comparison}.
 
 For making comparisons easier, let us also derive implied entry fees and utilities.\footnote{
     If one wished to close the model, the number of entrants in equilibrium could be obtained by solving the system of equations $n_i = \phi_i(u_i(n_1, n_2)), n \in \{1, 2\}$, just like in the other cases.
@@ -1210,6 +1218,7 @@ Implied entry fees on the other hand can be calculated from the equation $u_i = 
 \end{align}
 
 \subsection{Comparison}
+\label{sec:application_comparison}
 
 Let us now compare the outcomes of the three cases described in the previous sections.
 To highlight the similarity to \textcite{armstrong2006competition}, I first consider the case of linear network effects.
@@ -1274,9 +1283,9 @@ For the cost of serving the players (1), the addition of bargaining weights simp
 }
 The higher the weight, the larger the share for any given player.
 While the latter observation is true for non-linear terms, as well, the influence of the weights is more complex in their case.
-Namely, it also depends on the shape of value function.
+Namely, it also depends on the shape of function.
 For example, in term (2), $\lambda_i$ interacts with the parameter determining the shape of the network effects, $\gamma_j$
-Therefore, the weighted value is more than just a simple reweighting of the non-weighted value, and its effects can be quite complex depending on the shape of the value function.
+Therefore, the weighted value is more than just a simple reweighting of the non-weighted value, and its effects can be quite complex depending on the shape of the total welfare function.
 
 Whether bargaining leads to a higher or lower total welfare in comparison to unilateral price setting depends on the parameters of the model.
 For example, if $\lambda_P$ is high enough, then $p_i^b > p_i^u > p_i^*$, leading to fewer firms entering and lower total surplus not only than the welfare-maximizing case, but also than the unilateral pricing case.
@@ -1290,7 +1299,7 @@ As a consequence, the total welfare under bargaining is between the welfare-maxi
 Therefore, whether bargaining leads to higher or lower welfare than unilateral pricing depends on model parameters.
 The platform, however, always achieves a (weakly) lower profit than if it could chose the entry fees itself.
 
-Finally, it is always true that $p_1^b < p_1^*$ or $p_2^b < p_2^*$.
+Finally, it is always true that $p_1^b > p_1^*$ or $p_2^b > p_2^*$.
 The reason is that the platform's profit is always non-negative in the bargaining case, while it is negative in the welfare-maximizing case.
 This also implies that the total welfare is strictly lower under bargaining than in the welfare maximizing benchmark.
 Therefore, while bargaining can be welfare-improving compared to unilateral price setting, it can not achieve the highest possible total utility.\footnote{
@@ -1359,9 +1368,9 @@ The reason is that, in the welfare-maximizing case, optimal prices only depend o
 On the other hand, the bargaining case is more interesting.
 The reason is that this idiosyncratic cost becomes a part of the value that the players bargain over, and thus it affects the characteristic function and the resulting bargaining outcomes.
 
-I approach this problem by breaking it down into two parts: the bargaining over the idisyncratic and non-idiosyncratic parts of the value generated.
+I approach this problem by breaking it down into two parts: bargaining over the idisyncratic and non-idiosyncratic parts of the value generated.
 Due to the linearity property of the Shapley value, the bargaining outcomes over the whole value are simply the sum of the bargaining outcomes over these two parts.
-Furthermore, the non-idiosyncratic part is simply the value function from the main text, and thus the resulting weighted values are the same as before.
+Furthermore, the non-idiosyncratic part is the same as in the main text, and thus the weighted values arising from it are also identical.
 
 Let us continue by examining the idiosyncratic part of the value.
 Assume that, even though entrants with different costs have different contribution to the total value, there can be no discrimination between them in terms of the bargaining outcomes.
@@ -1888,9 +1897,8 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
         &= \frac{\lambda_P}{\lambda_P + \lambda_1 + \lambda_2\gamma_1} \alpha_1 n_1 n_2^{\gamma_1} + \frac{\lambda_P}{\lambda_P + \lambda_2 + \lambda_1\gamma_2} \alpha_2 n_2 n_1^{\gamma_2} - \frac{\lambda_P}{\lambda_P + \lambda_1} n_1 F_1 - \frac{\lambda_P}{\lambda_P + \lambda_2} n_2 F_2.
     \end{align*}
     Similarly, the value of side $i \in \{1, 2\}$ is
-    % TODO: improve formalism in the first line of formula below?
     \begin{align*}
-        W_i &= \int_0^1 t^{\lambda_P} \lambda_i t^{\lambda_i - 1} \partial_i w(t^{\lambda_1} n_1, t^{\lambda_2} n_2) \dt \\
+        W_i &= \int_0^1 t^{\lambda_P} \lambda_i t^{\lambda_i - 1} \partial_i n_i w(t^{\lambda_1} n_1, t^{\lambda_2} n_2) \dt \\
         &= \int_0^1 t^{\lambda_P} \lambda_i t^{\lambda_i - 1} \left[ \alpha_i n_i t^{\lambda_j \gamma_i} n_j^{\gamma_i} + \alpha_j \lambda_i \gamma_j t^{\lambda_j} n_j t^{\lambda_i (\gamma_j - 1)} n_i^{\gamma_j} - n_i F_i \right] \dt \\
         &= \frac{\lambda_i}{\lambda_P + \lambda_i + \lambda_j\gamma_i} \alpha_i n_i n_j^{\gamma_i} + \frac{\lambda_i \gamma_j}{\lambda_P + \lambda_j + \lambda_i\gamma_j} \alpha_j n_j n_i^{\gamma_j} - \frac{\lambda_i}{\lambda_P + \lambda_1} n_i F_i.
     \end{align*}
