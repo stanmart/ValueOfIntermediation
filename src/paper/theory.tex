@@ -69,81 +69,82 @@
 \maketitle
 
 \begin{abstract}
-    This paper investigates the idea of using random order values, a concept from cooperative game theory, to model bargaining outcomes in games with a small number of central players and a continuum of fringe players.
+    This paper investigates using random order values, a concept from cooperative game theory, to model bargaining outcomes in games with a small number of central players and a continuum of fringe players.
     Two important special cases of random order values are discussed in detail: the Shapley value and the weighted value.
-    I show that this approach proves to be very tractable, and leads to results that are in line with one's intuitive expectations about bargaining outcomes.
-    Thus, it can be a useful tool in modelling situations where one does not want to attribute all the bargaining power to one side of the market, and at the same time would like to avoid having to deal with an explicit multi-stage bargaining game.
+    This approach proves to be very tractable and leads to results that are in line with one's intuitive expectations about bargaining outcomes.
+    Thus, it can be a valuable tool in modelling situations where one does not wish to attribute all the bargaining power to one side of the market and, at the same time, would like to avoid having to deal with an explicit multi-stage bargaining game.
     The utility of this approach is demonstrated via a simple model of a two-sided market.
 \end{abstract}
 
 
 \section{Introduction}
 
-Using cooperative game theory to model bargaining outcomes has quite a few precedents in the industrial organization literature.
-This is in part motivated by the appealing properties of the resulting gain distributions and their tractability.
+Using cooperative game theory to model bargaining outcomes has quite a few precedents in the economics literature.
+This is, in part, motivated by the appealing properties of the resulting gain distributions and their tractability.
 Furthermore, this practice also has solid theoretical justifications thanks to the long line of studies showing that various cooperative solution concepts are related to certain dynamic, non-cooperative bargaining games.\footnote{
-    For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining} propose various extensive-form bargaining games in which the equilibrium corresponds to players' Shapley-values.
+    For example, \textcite{gul1989bargaining,winter1994demand,hart1996bargaining,inderst2003bargaining} propose various extensive-form bargaining games in which the equilibrium corresponds to players' Shapley values.
     For results specifically for games bargaining with one indispensable player, see \textcite{stole1996intra}.
 }
 
-For practical applications, the case of a small number of central players and a large number of fringe ones is particularly important in a number of settings.
+The case of a small number of central players and a large number of fringe ones is particularly important in several settings.
 Examples include intra-firm ownership structures \parencite{hart1990property}, wage bargaining \parencite{stole1996intra,stole1996organizational,levy1997individual}, collusion and mergers \parencite{segal2003collusion} and upstream-downstream supply chains \parencite{inderst2003bargaining,montez2007downstream}.
-The study of multi-sided markets (or platforms) is also a good fit for this modeling approach, as the platforms are often assumed to be indispensable for the various sides to interact.\footnote{
+The study of multi-sided markets (or platforms) is also a good fit for this modeling approach, as platforms are often assumed to be indispensable for the various sides' interaction.\footnote{
     \textcite{huang2022shapley} is amongst the very few examples of using cooperative game theory in this setting.
 }
 
 This paper provides a general framework for modeling bargaining outcomes in this setting.
-By relying on the rather concept of random order values, I highlight the common themes between various results found in more applied papers.
+By relying on the general concept of random order values, I highlight the common themes between various results found in more applied papers.
 I demonstrate that these values are described by tractable expressions and have geometric interpretations.
-Just as importantly, I show that the outcomes are in line with one's intuitive expectations of bargaining power in such situations.
+Just as importantly, I show that the outcomes align with one's intuitive expectations of bargaining power in such situations.
 
-Apart from the general framework, this paper also extends the results of the related literature in a number of ways.
-Most importantly, I relax the usual assumption that there is only one indispensable player, and show how the results can be generalized when (1) there are multiple central players, and (2) when the central player is not completely indispensable.
+Apart from the general framework, this paper extends the results of the related literature in several ways.
+Most importantly, I relax the usual assumption that there is only one indispensable player, and show how the results can be generalized when (1) there are multiple central players and (2) when the central player is not completely indispensable.
 Further contributions include new results for the case of heterogeneous fringe players.
 In particular, I provide results for weighted values in the case of heterogeneous fringe players, which is a novel contribution to the literature.
-Furthermore, I highlight how the value of the fringe players can be expressed in terms of their marginal contributions, i.e. the partial derivatives of the production function.
+Furthermore, I highlight how the value of the fringe players can be expressed in terms of their marginal contributions (i.e. the partial derivatives of the production function).
 
 I rely on an infinite-player (oceanic game) version of these models, where fringe players are represented as a continuum.
-As is often the case in economics, this infinite-player approximation turns out to be more tractable than the  finite-player model, while retaining the desirable features of the latter.
-For example, the resulting profit shares depend on the production function similarly to the finite-player case, while becoming continuous and differentiable functions of the size of the fringe.
-This can be useful when embedding these results into more complex models.
+As is often the case in economics, this infinite-player approximation is more tractable than the finite-player model while retaining the latter's desirable features.
+For example, the resulting profit shares depend on the production function, similar to how they do in the finite player case.
+At the same time, they are continuous and differentiable functions of the size of the fringe.
+The latter can be useful when embedding these results into more complex models.
 
-The results presented in this paper can be used as a tool-kit for embedding bargaining outcomes into more complex models.
-To showcase the utility of this approach, I present simple model of two-sided markets.
-\textcite{stancsics2023hybrid} provides a more full-fledged example of such an application, where the results of this paper are used to model the bargaining outcomes in a market with a hybrid platform.
+The results presented in this paper can be used as a toolkit for embedding bargaining outcomes into more complex models.
+To showcase the utility of this approach, I present a simple model of two-sided markets.
+\textcite{stancsics2023hybrid} provides a more full-fledged example of such an application, which relies on the results of the current paper to model bargaining outcomes in a market with a hybrid platform.
 
 The present paper is closely related to two bodies of literature: a theoretical and an applied one.
 Cooperative games with a finite number of atomic players and a continuum of non-atomic ones are called mixed or oceanic games \parencite{milnor1978values}, and have been studied in the cooperative game theory literature.
-Generally, papers in this line of research focus on fundamental questions, such as existence and uniqueness of the value \parencite{hart1973values}, and whether the various ways of defining it\footnote{
-    One can characterize the value of the oceanic game directly, relying on a set of axioms (axiomatic approach). Alternatively the value of an infinite-player game can also be defined as the limit of the value of a series of finite-player games (asymptotic approach).
+Generally, papers in this line of research focus on fundamental questions, such as the existence and uniqueness of the value \parencite{hart1973values}, and whether the various ways of defining it\footnote{
+    One can characterize the value of the oceanic game directly, relying on a set of axioms (axiomatic approach). Alternatively, the value of an infinite-player game can also be defined as the limit of the value of a series of finite-player games (asymptotic approach).
 } lead to the same result \parencite{fogelman1980asymptotic}.\footnote{
-    \textcite{hart1973values} shows that in the case of mixed games, the usual axioms do not in general characterize a unique value.
-    However, \textcite{fogelman1980asymptotic} demonstrates that, for a quite large subset of games, the asymptotic approach leads to one specific element from the set characterized by the axiomatic approach. 
+    \textcite{hart1973values} shows that in the case of mixed games, the usual axioms do not, in general, characterize a unique value.
+    However, \textcite{fogelman1980asymptotic} demonstrates that, for a large subset of games, the asymptotic approach leads to one specific element from the set characterized by the axiomatic approach. 
 }
 My aim with this paper is both more general and more specific in certain aspects.
-For one, I focus on the asymptotic approach, and within that, a specific way of approximating the infinite game of interest.
-This is motivated by the fact that I am not interested in the oceanic game per se, but rather in its ability to approximate finite-player games.
-Furthermore, I restrict my attention to a specific, but economically important subset of games: those with one, or a small number of central players, and a continuum of fringe players consisting of a finite number of types.
-These two restrictions in turn allow me to go beyond the Shapley value, and obtain results for a more general set of solution concepts: random order values.
+For one, I focus on the asymptotic approach and, within that, a specific way of approximating the game of interest.
+This is motivated by the fact that I am not interested in the oceanic game per se but rather in its ability to approximate finite-player games.
+Furthermore, I restrict my attention to a specific but economically significant subset of games: those with one (or a small number of) central player(s) and a continuum of fringe ones.
+These two restrictions allow me to go beyond the Shapley value and obtain results for a more general set of solution concepts: random order values.
 Additionally, instead of looking at general results, such as existence, I can provide and interpret explicit expressions for the values of the various players.
 
-The other strand of research that is closely related to this paper belongs to the industrial organization literature.
-Despite the theoretical appeal and tractability of oceanic games, they, in general, saw remarkably little use in the industrial organization, and, more generally, applied economics.
-Examples of this include \textcite{stole1996intra, stole1996organizational}\footnote{
+The other strand of research closely related to this paper belongs to the industrial organization literature.
+Despite their theoretical appeal and tractability, oceanic games saw remarkably little use in industrial organization and, more generally, applied economics.
+Rare examples of such applications include \textcite{stole1996intra, stole1996organizational}\footnote{
     \textcite{stole1996intra} also provides microfoundations for using the Shapley value and the weighted value in a bargaining setting with one indispensable player.
-} and \textcite{levy1997individual}, which use the Shapley value to model wage bargaining under the assumption of divisible labor (continuum of workers).
+} and \textcite{levy1997individual}, which use the Shapley value to model wage bargaining under a divisible labor assumption (continuum of workers).
 
-The present paper contributes to this literature by generalizing its results, and highlighting certain general properties of the various values in the context of such games.
+The present paper contributes to this literature by generalizing its results and highlighting some general properties of the various values in the context of such games.
 The latter is achieved by relying on the concept of random order values, which includes the Shapley value and the weighted value as special cases.
 The generalizations include relaxing the assumption on the indispensability of the central player, providing results for the distribution of the value between the various types of fringe players, and going beyond the Shapley value in the heterogeneous fringe player case.
 
 Finally, the example application presented to demonstrate the usefulness of the proposed approach is based on the seminal work of \textcite{armstrong2006competition} on multi-sided markets.
-Thus, despite the main results being presented in an abstract setting, this paper also has some minor contributions towards better understanding the functioning of multi-sided markets.
+Thus, despite the main results being presented in an abstract setting, this paper also has some minor contributions towards better understanding the functioning of platform economies.
 
 The paper is organized as follows.
 In \Cref{sec:one_sided}, I present the main results for the case of identical fringe players.
-It includes the generalizations for the case of not completely indispensable big players.
-\Cref{sec:many_sided} extends some of those results to the case of heterogeneous fringe players.
+It includes generalizations that relax the assumption about the indispensability of the central player.
+\Cref{sec:many_sided} then extends many of those results to the case of heterogeneous fringe players.
 \Cref{sec:application} provides an example application of the results to a simple model of a two-sided market.
 Finally, \Cref{sec:conclusions} concludes the paper.
 
@@ -152,8 +153,8 @@ Finally, \Cref{sec:conclusions} concludes the paper.
 \label{sec:one_sided}
 
 In this section, I examine the case of identical fringe players.
-I start with the case of one, indispensable big player, and relax this assumption in \Cref{sec:extensions}.
-Such a game can represent, for example, a (one-sided) platform and a number of potential entrants, where the entrants can only reach their prospective consumers through the platform, or a vertical supply chain with one upstream producer and a number of downstream sellers.
+I start with the case of one indispensable big player and then relax this assumption in \Cref{sec:extensions}.
+Such a game can represent, for example, a (one-sided) platform and several potential entrants, where the entrants can only reach their prospective consumers through the platform, or a vertical supply chain with one upstream producer and many downstream sellers.
 Let us start by defining the cooperative game that describes this situation.
 
 Consider a game with two types of players: a central (or big) player $P$ and $n$ smaller players $A_i$, $1 \leq i \leq n$.
@@ -167,7 +168,7 @@ Under these assumptions, the characteristic function of this game (the value tha
         f\left(\frac{n_A(S)}{n}\right) & \text{otherwise}.
     \end{cases}
 \end{align*}
-The function $f$ (henecforth also referred to as the production function) then characterizes this game, and determines the distribution of the value between the big player and the fringe.
+The function $f$ (henceforth the production function) then characterizes this game and determines the distribution of the value between the big player and the fringe.
 
 Before delving into solution concepts, let us find conditions under which this game is monotone\footnote{
     Monotonicity requires that the value of any coalition is weakly higher than the value of any of its subsets.
@@ -175,46 +176,46 @@ Before delving into solution concepts, let us find conditions under which this g
     Superadditivity requires that the value of the union of two disjoint coalitions is weakly higher than the sum of their values.
 }.
 The latter is a key property of cooperative games, as it ensures that it always pays off to form the grand coalition (i.e., the coalition that includes all players).
-Furthermore, in the context of bargaining, these properties provide some theoretical support for using the Shapley-value or the weighted value to represent bargaining outcomes, as many results creating a link between non-cooperative bargaining games and the values of cooperative games often rely on these assumptions.\footnote{
+Furthermore, in the context of bargaining, these properties provide theoretical support for using the Shapley value or the weighted value to represent bargaining outcomes, as many results that create a link between non-cooperative bargaining games and the values of cooperative games rely on these assumptions.\footnote{
     For example, the results in \textcite{gul1989bargaining} rely on superadditivity, while monotonicity suffices for \textcite[]{hart1996bargaining}.
 }
 
-As the next proposition shows, characterizing monotonicity and superadditivity is extremely straightforward in this setting.
+As the following proposition shows, characterizing monotonicity and superadditivity is straightforward in this setting.
 \begin{proposition}
     \label{prop:monotone}
     The game $(N, v)$ is monotone and superadditive if and only if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
-The intuition behind this result is quite straightforward.
+The intuition behind this result is relatively straightforward.
 As player $P$ is necessary to create any value, no two disjoint coalitions can both achieve a positive value.
 Therefore, superadditivity is equivalent to monotonicity in this case.
 
 In the following, let us assume that the assumptions required for monotonicity are always satisfied (i.e., $f$ is monotone increasing).\footnote{
     This assumption is not entirely innocuous.
-    For example, having more small firms could in theory lead to stronger competition, decreasing total profits.
+    For example, having more small firms could, in theory, lead to stronger competition, decreasing total profits.
     However, it often holds in models with network effects \parencite{rochet2003platform} or with consumers having taste for variety \parencite{anderson2020aggregative}.
 }
 As a side note, it also ensures that the game is of bounded variation, and thus the main theorem in \textcite{fogelman1980asymptotic} applies.
-Namely, the asymptotic and the axiomatic approach of characterizing the Shapley-value of the game both lead to the same result\footnote{
+Namely, the asymptotic and the axiomatic approach of characterizing the Shapley value of the game both lead to the same result\footnote{
     More precisely, the asymptotic value coincides with the axiomatic one derived using the uniform distribution.
     For a more detailed discussion, see \textcite{fogelman1980asymptotic}.
 }.
-This result could also be used to prove the main proposition for the Shapley value (\Cref{prop:one_sided}) instead of the direct proof provided in \Cref{sec:proofs}.
+This result observation can also be used to prove the main proposition about the Shapley value (\Cref{prop:one_sided}) instead of the direct proof provided in \Cref{sec:proofs}.
 
 \subsection{Random order values}
 
-Random order values are a class of cooperative solution concepts characterized by efficiency, monotonicity, linearity and the null-player axiom \parencite{weber1988probabilistic}.
+Random order values are a class of cooperative solution concepts characterized by efficiency, monotonicity, linearity, and the null-player axiom \parencite{weber1988probabilistic}.
 That is, they are a generalization of the Shapley value, with the axiom of symmetry being relaxed.
-Another way to think about them is that for they can be defined as the average marginal contribution of player to all possible coalitions, where the average is taken according to some probability distribution over the permutations of the players.
+Another way to think about them is that they can be defined as the average marginal contribution of a player to all possible coalitions, where the average is taken according to some probability distribution over the players' permutations.
 
 In this specific game, a random order value can be obtained in the following way.
 First, take all permutations of the players, and assign a probability to each permutation.
 Then, the corresponding random order value of player $P$ is the expected marginal contribution of $P$ to the value of the coalition preceding it, where the expectation is taken according to said probability distribution.
 
-Random order values are of interest for a number of reasons.
+Random order values are of interest for several reasons.
 First, they are a natural extension of the Shapley value and the weighted value.
-Furthermore, they provide a convenient framework, of which all subsequent results (Shapley value, weighted value, multiple central players) are special cases of.
+Furthermore, they provide a convenient framework, of which all subsequent results (Shapley value, weighted value, multiple central players) are special cases.
 
-For the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the (depending on section, Shapley, weighted or random order) value of player $P$ in the game with players $N = \{P, A_1, \dots, A_n\}$.
+For the remainder of the paper, let us use the following notation: $\varphi_P^n$ denotes the (depending on the section, Shapley, weighted or random order) value of player $P$ in the game with players $N = \{P, A_1, \dots, A_n\}$.
 Then, formally,
 \begin{align}
     \varphi_P^n = \frac{1}{(n+1)!} \sum_{R} \Pr(R) [ v(\precede_P^R \cup \{i\}) - v(\precede_P^R) ]  \label{eq:one_sided_general}
@@ -229,10 +230,10 @@ Utilizing the fact that the value of any coalition is zero without $P$, and that
 \end{align*}
 where $\Pr(|\precede_P| = k)$ is determined by the probability distribution over the permutations.
 
-Now let us look at the asymptotic limit of this expression, as the number of fringe players goes to infinity.
+Now, let us look at the asymptotic limit of this expression as the number of fringe players goes to infinity.
 The following proposition demonstrates the main idea of this paper: even as the number of fringe players goes to infinity, the value of the big player does not converge to the total worth of the grand coalition, $f(1)$.
 Or, in other words, the fringe, even when its members are infinitesimally small, still retains some bargaining power.
-As a consequence, the continuous fringe model can be thought of as a more tractable approximation of bargaining between a finite number of fringe players.
+As a consequence, the continuous fringe model can be considered a more tractable approximation of bargaining between a finite number of fringe players.
 
 \begin{theorem}
     \label{prop:one_sided_general}
@@ -245,13 +246,13 @@ As a consequence, the continuous fringe model can be thought of as a more tracta
 \end{theorem}
 
 This result has an immediate interpretation in terms of marginal contributions.
-Remember, that player $P$ is indispensable for creating value.
-Therefore, for any coalition of fringe players, the marginal contribution of player $P$ is the total value that the coalition can generate $P$ included.
-Player $P$'s then is its average marginal contribution, which boils down to the expected value that a coalition can generate conditional on player $P$ being in it.
+Remember that player $P$ is indispensable for creating value.
+Therefore, for any coalition of fringe players, the marginal contribution of player $P$ is the total value that the coalition can generate with $P$ included in it.
+Player $P$'s average marginal contributionthen boils down to the expected value that a coalition can generate conditional on player $P$ being in it.
 
-Now let us turn to the value of the fringe.
+Now, let us turn to the value of the fringe.
 The following corollary shows that the aggregated value of the fringe remains positive even in the limit.
-In other words, even though the fringe players become smaller and more numerous, they do not lose all of their bargaining power, and still end up with a positive payoff in the end.
+In other words, even though the fringe players become smaller and more numerous, they do not lose all their bargaining power and still end up with a positive payoff.
 \begin{corollary}
     \label{cor:fringe_value_general}
     The aggregated value of the fringe is
@@ -264,38 +265,38 @@ In other words, even though the fringe players become smaller and more numerous,
     \end{align*}
 \end{corollary}
 
-It also provides us with two ways of thinking about the value of the fringe.
-First, due to random order values being efficient, it can be thought of as the leftover from the total value after subtracting the value of the big player.
+This corollary also provides two ways of thinking about the value of the fringe.
+First, because random order values are efficient, the fringe's share can be thought of as the leftover from the total value after subtracting the value of the big player.
 Alternatively, as the second part of the corollary demonstrates, it is also related to the marginal contributions of the fringe agents.
-This marginal contribution is the derivative of the production function with respect to the mass of fringe players (i.e., the effect of adding an infinitesimally small player to the coalition), multiplied by the probability of the central player appearing before the fringe player (otherwise the marginal contribution is zero, as the central player is indispensable).
-The second interpretation is particularly useful when thinking about the value of the fringe in the setting with heterogeneous fringe firms.
+This marginal contribution is the derivative of the production function (i.e., the effect of adding an infinitesimally small player to the coalition) multiplied by the probability of the central player appearing before a given fringe player (otherwise, the marginal contribution would be zero, as the central player is indispensable).
+The second interpretation is particularly useful when thinking about the value of the fringe in a setting with heterogeneous fringe firms.
 
 It also follows immediately from the previous proposition that (for a fixed total pie size $f(1)$) player $P$ gets a larger share when $f(t)$ is larger for every $t$.
-That is, when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus, then player $P$ is able to appropriate a larger share of the total value.
-This result aligns with the intuition that player $P$ has a better bargaining position in this case, than if only coalitions with most of the fringe firms on board were able to obtain high values.
+That is, when only a relatively small fraction of the fringe is needed to create a large part of the total potential surplus, player $P$ can appropriate a larger share of the total value.
+This result aligns with the intuition that player $P$ has a better bargaining position in this case than if only coalitions with most of the fringe firms on board could create considerable value.
 
-In certain settings, this can also be interpreted as the degree of complementarity or substitutability between the fringe players.
+In specific settings, this property of the production function can also be interpreted as the degree of complementarity or substitutability between the fringe players.
 For example, imagine that the fringe consists of a set of firms producing one product each, and the central player is necessary for this product to be sold or created.\footnote{
-    For example, the central player could be a platform that connects the fringe firms with consumers, or a provider of a key input.
+    For example, the central player can be a platform that connects the fringe firms with consumers, or the provider of a key input.
 }
-When the fringe firms are substitutes, then additional ones add less value to the total pie.
-Therefore, relatively few of them are needed to create most of the value, and the central player can appropriate a larger share.
+When the fringe firms are substitutes, each additional one adds less value to the total pie.
+Therefore, relatively few are needed to create most of the value, and the central player can appropriate a larger share.
 Conversely, when the fringe firms are complements, the fringe firms are in a better bargaining position, and can obtain a larger share of the total value.
 
 
 \subsection{Special cases}
 
 This section discusses the two most important special cases of random order values: the Shapley value and the somewhat more general weighted value.
-While most of these results are known in the literature, I include them here for two reasons: to provide build intuition for the more general and to highlight the similarities to the case of heterogeneous fringe players.
+While most of these results are known in the literature, I include them here for two reasons: to build intuition for the more general case and to highlight the similarities to the model with heterogeneous fringe players.
 
 \subsubsection{Shapley value}
 
 Let us start with one of the most popular cooperative solution concepts, the Shapley value.
-It can be characterized as the random order value that additionally also satisfies the axiom of symmetry.
+It can be characterized as the random order value that also satisfies the axiom of symmetry.
 This axiom requires that if two players are identical in terms of the characteristic function, then they should have the same value.
 Equivalently, it is the same as imposing that all permutations have an equal probability in \Cref{eq:one_sided_general}.
 
-The following proposition and corollary derives the limit of the Shapley value for both types of players as the number of fringe players goes to infinity.
+The following proposition and corollary derive the limit of the Shapley value for both types of players as the number of fringe players goes to infinity.
 
 \begin{proposition}
     \label{prop:one_sided}
@@ -307,7 +308,7 @@ The following proposition and corollary derives the limit of the Shapley value f
 
 \begin{corollary}
     \label{cor:fringe_value}
-    The aggregated Shapley-value of the fringe is
+    The aggregated Shapley value of the fringe is
     \begin{align*}
         \varphi_A^\infty = f(1) - \int_0^1 f(t) \dt.
     \end{align*}
@@ -317,7 +318,7 @@ The following proposition and corollary derives the limit of the Shapley value f
     \end{align*}
 \end{corollary}
 
-Because the Shapley value is a special case of the random order values, these results are quite straightforward consequences of \Cref{prop:one_sided_general} and \Cref{cor:fringe_value_general}.
+Because the Shapley value is a special case of the random order values, these results are straightforward consequences of \Cref{prop:one_sided_general} and \Cref{cor:fringe_value_general}.
 One only has to notice that each permutation having an equal probability implies that the number of firms coming before $P$ is uniformly distributed on $1, \dots, n$, and thus the share of firms before $P$ converges in distribution to the uniform distribution on $[0, 1]$.
 Alternatively, a more direct proof is provided in \Cref{sec:proofs}, or a probabilistic justification can be found in \textcite{levy1997individual}.
 
@@ -373,7 +374,7 @@ Thus, the graph of $f$ partitions the area (total value) into what the big playe
     \label{fig:one_sided}
 \end{figure}
 
-Finally, the following corollary highlights that, even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value still remains positive.
+Finally, the following corollary highlights that even though the individual share of each $A_i$ vanishes as their number goes to infinity, their total value remains positive.
 \begin{corollary}
     \label{cor:fringe_value_2}
     $\varphi_P^\infty < f(1)$ and $\varphi_A^\infty > 0$ for any $f$ that is not constant.
@@ -385,7 +386,7 @@ Finally, the following corollary highlights that, even though the individual sha
 
 Let us illustrate the results of this section with a simple example.
 Consider the case when $f(n) = n^\alpha$, for some $\alpha > 0$.
-Assume that the bargaining takes place between player $P$ and a measure $\bar{n}$ of fringe players.
+Assume that the bargaining occurs between player $P$ and a measure $\bar{n}$ of fringe players.
 Thus, the value that the grand coalition can achieve is $\bar{n}^\alpha$.
 
 \Cref{prop:one_sided} implies that the value of player $P$ in this case is
@@ -397,11 +398,11 @@ while the fringe gets the rest, i.e.,
     \varphi_A^\infty(\bar{n}) = \bar{n}^\alpha - \frac{1}{\alpha + 1} \bar{n}^\alpha = \frac{\alpha}{\alpha + 1} \bar{n}^\alpha.
 \end{align*}
 
-In words, regardless of the value of $\bar{n}$, the two types of players share the total value in the same proportion.
+In other words, regardless of the value of $\bar{n}$, the two types of players share the total value in the same proportion.
 This proportion depends on the parameter $\alpha$ (\Cref{fig:power_function_example}), which can be interpreted as the degree of substitutability between the fringe players.
-More specifically, the higher $\alpha$ is, the more complementary the fringe players are to each other, and the larger the share they obtain.
-In the limit, when $\alpha \to \infty$, the fringe obtains all the value, as essentially all players become indispensable, and share the total value equally.
-On the other hand, when $\alpha \to 0$, the big player can appropriate all the value.
+More specifically, the higher $\alpha$ is, the more complementary the fringe players are to each other and the larger the share they obtain.
+In the limit, when $\alpha \to \infty$, the fringe obtains all the value, as essentially all players become indispensable and share the total value equally.
+On the other hand, when $\alpha \to 0$, the big player can appropriate all of the value.
 
 \begin{figure}
     \centering
@@ -424,33 +425,35 @@ On the other hand, when $\alpha \to 0$, the big player can appropriate all the v
 \label{sec:weighted_one_sided}
 
 The other important special case of random order values is the weighted value \parencite{shapley1953additive}.
-It relaxes the symmetry axiom of the Shapley value, and allows for players having different levels of innate bargaining power.
-On the other hand, weighted values still have more structure than random order values, as they are characterized by a weight system (a vector of non-negative numbers for each player).
-These weights determine how the value of a coalition is distributed amongst its members in the case when they are all equally important for the coalition.
-Then, relying on the linearity of the value, this distribution can be extended to the case when the players are not equally important.
+It relaxes the symmetry axiom of the Shapley value and allows players to have different levels of innate bargaining power.
+On the other hand, weighted values still have more structure than random order values, as they are characterized by a weight system that is more restrictive than assigning arbitrary probabilities to each permutation of players.
+These weights determine how a coalition's value is distributed amongst its members when they are all equally important to the coalition.
+Then, relying on the linearity of the value, this can be extended to the case when the players are not equally important.
 
-The weights can be thought of as the measure of some innate bargaining power, not reflected in the production function.\footnote{
-    Although, this interpretation is not always appropriate.
+The weights can be thought of as a measure of some innate bargaining power, which is not reflected in the production function.\footnote{
+    However, this interpretation is not always appropriate.
     As \textcite{owen1968communications} demonstrates, there are games where the weighted value is not monotone increasing in a player's weight.
 }
-Further support for this interpretation in certain games can be found in \textcite{hart1996bargaining}, demonstrating that in a certain alternating offer bargaining game, weights are related to the probability of each player making the offer.\footnote{
-    For example, only one player having a positive value corresponds to them making take it or leave it offers.
+Further support for this interpretation in certain games can be found in \textcite{hart1996bargaining}, demonstrating that weights in a certain alternating offer bargaining game are related to the probability of each player making the offer.\footnote{
+    For example, only one player having a positive weight corresponds to that player making take it or leave it offers.
 }
 Additionally, \textcite{stole1996intra} provides alternative microfoundations for the weighted value in the case of one indispensable and a continuum of fringe players.
 
 For the purposes of the current players, it is sufficient to deal with the case of simple weights\footnote{
-    In general, weighted values allow for more complex weight systems with each player having a vector of weights applied in a lexicographic manner.
+    In general, weighted values allow for more complex weight systems, with each player having a vector of weights applied in a lexicographic manner.
 }
 as I assume that there is at most one player with zero weight.
-For my main result, I make use the following characterization of the weighted values: \textcite{kalai1987weighted} demonstrated that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
+For the main result in this section, I make use of the following characterization of the weighted values: \textcite{kalai1987weighted} demonstrated that weighted values can be calculated by weighting the permutations by the probabilities arising from the following sequential ordering procedure.
 Start with the set of all players.
 Let the probability of player $i$ being the last amongst the set of remaining players $R$ be $\lambda_i / \sum_{j \in R} \lambda_j$.
 Continue until all players are exhausted.
 This yields a well-defined probability for each permutation of players.
 The weighted value is then the same as the random order value with this probability distribution over the permutations.
 
-Now let us turn to deriving the weighted value and its limit for the big player and the fringe in this specific game.
-First, I prove a lemma that characterizes the distribution of the number of players before $P$ in the limit, and then use it to derive the weighted value of the big player and the fringe.
+Now, let us derive the weighted value and its limit for the big player and the fringe in this specific game.
+I start by proving a lemma that characterizes the distribution of the number of players before $P$ in the limit.
+Then, I use it to derive the weighted values of the players.
+
 Consider the game described in the previous section, and let the weights of players of type $A$ and $P$ be 1 and $\lambda$, respectively.
 Let $X_n$ be a random variable representing the number of players before $P$ when players are ordered according to the previously described procedure.
 Then, the probability of player $P$ having at most $k$ players of type $A$ before themselves is simply
@@ -467,7 +470,7 @@ The following lemma establishes the continuous analogue of this statement.
 
 With this in hand, deriving the weighted value of both types of players is straightforward.
 Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to invoke \Cref{prop:one_sided_general} to obtain the following proposition.\footnote{
-    \textcite{stole1996intra} also derive essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution, and assert that it is equal to the weighted value.
+    \textcite{stole1996intra} also derive essentially the same expression for the equilibrium outcome of their bargaining game with unequal profit distribution and assert that it is equal to the weighted value.
 }
 
 \begin{proposition}
@@ -489,7 +492,7 @@ Having \Cref{eq:entry_distr_discrete} and \Cref{lem:entry_distr} allows us to in
 As before, the value of the big player can be expressed as an integral of the production function, while the value of the fringe can be expressed as an integral of the marginal contributions of the fringe players.
 The only difference is that, as in the case of the general random order value, the integrands are weighted by a specific probability distribution.
 Depending on the shape of this distribution, regions corresponding to different masses of fringe firms can be over or underweighted in this integral, leading to different values.
-Contrary to \Cref{prop:one_sided_general}, the probability distribution has a specific functional form, and is characterized by a single parameter, $\lambda$.
+Contrary to \Cref{prop:one_sided_general}, the probability distribution has a specific functional form and is characterized by a single parameter, $\lambda$.
 \Cref{fig:weigh_function} illustrates the weighting function for various values of $\lambda$.
 
 \begin{figure}[ht]
@@ -519,12 +522,12 @@ Contrary to \Cref{prop:one_sided_general}, the probability distribution has a sp
         \end{tikzpicture}
         \caption{$G(t)$}
     \end{subfigure}
-    \caption{Illustration of the weighting function for various values of $\lambda$ in the weighted Shapley-value.}
+    \caption{Illustration of the weighting function for various values of $\lambda$ in the weighted Shapley value.}
     \label{fig:weigh_function}
 \end{figure}
 
 Now, let us examine how these weights impact the shares of the various players.
-It turns out, that a higher weight corresponds to a higher value in this game.\footnote{
+It turns out that a higher weight corresponds to a higher value in this game.\footnote{
     This would not necessarily have to be the case, as demonstrated by \textcite{owen1968communications}.
 },
 supporting their interpretation as some kind of innate bargaining power.
@@ -533,31 +536,31 @@ supporting their interpretation as some kind of innate bargaining power.
     $\varphi_P(\lambda, \infty)$ is increasing in $\lambda$ unless $f$ is constant.
 \end{corollary}
 
-Furthermore, the next corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity) is precisely the payoff $P$ that they would achieve if they were making (facing) take-it-or-leave-it offers.
+Furthermore, the following corollary shows that the limit of the weighted value of $P$, as their weight goes to zero (infinity), is precisely the payoff $P$ that they would achieve if they were making (facing) take-it-or-leave-it offers.
 \begin{corollary}
     \label{cor:paltform_value_weighted_2}
     If the weight of player $P$ goes to infinity (zero), their weighted Shapley value converges to $f(1)$ ($f(0)$).
 \end{corollary}
-This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one or the other player, and thus a generalization of take-it-or-leave-it offers, with the distribution of bargaining power being adjustable by a single parameter.
+This set of results highlights that utilizing (weighted) Shapley values to model bargaining outcomes provides an intermediate solution between inscribing all the bargaining power to one type of player and, thus, ait is a generalization of take-it-or-leave-it offers, with the distribution of bargaining power being adjustable by a single parameter.
 
 
 \subsection{Non-indispensable big player(s)}
 \label{sec:extensions}
 
-This section relaxes the assumption that the big player is indispensable.
-I demonstrate two ways in which the model can be extended to include non-indispensable big players, while retaining the essential structure and the tractability of the results.
-In the first case, there are a finite number of big players, which are perfect substitutes of each other.
+This section relaxes the assumption that the central player is indispensable.
+I demonstrate two ways in which the model can be extended to include non-indispensable big players while retaining the essential structure and the tractability of the results.
+In the first case, there is a finite number of big players who are perfect substitutes for each other.
 In the second case, there is a single big player, but the fringe is able to generate some value on its own.
 In both cases, the player's shares are still random order values\footnote{
-    The case of multiple big players is equivalent to the case of a single big player with the same production function, but a different probability distribution over the permutations.
+    The case of multiple big players is equivalent to that of a single big player with the same production function but a different probability distribution over the permutations.
     Conversely, in the setting when the fringe can generate some value on its own, the production function changes, but the probability distribution is the same.
-}, and thus many of the earlier results apply.
+}, and thus, many of the earlier results apply.
 
-\subsubsection{Shapley value with multiple big players}
+\subsubsection{Multiple central players}
 
-Imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes of each other.
+Imagine that, instead of just one, there are $m$ players of type $P$, and they are perfect substitutes for each other.
 That is, any coalition still needs at least one of them to create any value, but it does not matter which and how many of them are present.\footnote{
-    The relaxtion of this assumption, while conceptually straightforward, is not as simple to analyze.
+    The relaxation of this assumption, while conceptually straightforward, is more complex to analyze.
     Instead of having to deal with the minimum of $m$ independent random variables, one needs to consider all order statistics.
 }
 Formally, the value function for coalition $S$ becomes the following:
@@ -572,19 +575,19 @@ Let us start by establishing monotonicity for this version of the model, too.
 \begin{proposition}
     The game is monotone if $f$ is increasing and $f(0) \geq 0$.
 \end{proposition}
-On the other hand, superadditivity is not as simple in this case, as before.
-For example, when $f$ is concave, then $m$ coalitions with one platform each and the fringe divided equally amongst them clearly achieve a higher total payoff than the grand coalition.
-Therefore, the results of this section are most applicable to settings when multiple coalitions cannot be formed at the same time for some reason.
-For example, \textcite{hart1996bargaining} propose an interpretation when there is a single, indivisible, non-replicable resource or technology (not captured in the value function) necessary to produce any value.
+On the other hand, superadditivity is more complex in this case than before.
+For example, when $f$ is concave, then $m$ coalitions with one platform each and the fringe divided equally amongst them achieve a higher total payoff than the grand coalition.
+Therefore, the results of this section are most applicable to settings when multiple coalitions cannot be formed simultaneously.
+For example, \textcite{hart1996bargaining} proposes that it might be due to a single, indivisible, non-replicable resource or technology (not captured in the value function) necessary to produce any value.
 
-For simplicity, let us restrict our attention to probability distributions over the permutations that are symmetric with respect to the big players.
+For simplicity, let us restrict our attention to probability distributions over the permutations which are symmetric with respect to the big players.
 That is, the probability of having $k_F$ fringe players and $k_P$ big players before player $P_j$ is the same for all $i$.\footnote{
-    This assumption can easily be relaxed, but it would complicate the results without adding much insight.
+ This assumption can easily be relaxed, but it would complicate the results without adding much insight.
 }
-As before, I assume that, as the number of fringe players goes to infinity, the distribution of the number of fringe players before player $P_j$ to a continuous distribution.
+As before, I assume that, as the number of fringe players goes to infinity, the distribution of the number of fringe players before player $P_j$ converges to a continuous distribution.
 
 Let us first establish the sum of the shares of all big players.
-Then, the value of individual big players can be obtained by relying on the symmetry assumption.
+Then, the value of individual big players can be obtained by relying on the assumption of symmetry.
 The following proposition provides an expression for the limit of this total value.
 \begin{theorem}
     \label{prop:multiple_platforms_total}
@@ -594,7 +597,7 @@ The following proposition provides an expression for the limit of this total val
     Assume that $X_n^j$ and $X_n^k$ are independent for all $j \neq k$.
     Furthermore, supppose that $X_n^j \xrightarrow[]{d} X^j$ with cdf $G(t)$ and (if exists) pdf $g(t)$ for every $j = 1, \dots, m$.
 
-    Let $H(t) = 1 - [1 - G(t)]^m$, i.e. the cdf of the minimum of the $m$ independent random variables distributed according to $G$.
+    Let $H(t) = 1 - [1 - G(t)]^m$, i.e., the cdf of the minimum of the $m$ independent random variables distributed according to $G$.
     Then
     \begin{align*}
         \varphi_P^\infty = \lim_{n \to \infty} \sum_{j=1}^m \varphi_{P_j}^n = \int_0^1 f(t) \dH(t) = \int_0^1 h(t) f(t) \dt,
@@ -602,14 +605,14 @@ The following proposition provides an expression for the limit of this total val
     with the last equality holding if $X$ is a continuous random variable.
 \end{theorem}
 
-Notably, value in the case of multiple, substitutable big players can be interpreted as a random order value with a single big player.
+Notably, value in the case of multiple, substitutable big players can reformulated as a random order value with a single big player.
 The probability distribution for the corresponding random order value has a specific form, and depends on the number of big players.
-Consequently, all the results from the previous section apply to this case as well.
+Consequently, all the results from the previous section also apply to this case.
 
 As with proposition \ref{prop:one_sided}, this result also has a probabilistic interpretation.
 Let the location of the $m$ atoms be $t_1, \dots, t_m$, distributed independently and uniformly on the unit interval.
-The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the major players.
-Therefore, the total value of the big players is the random order value with corresponding probability distribution being the minimum of $m$ independent random variables describing the number of fringe players before each big player.
+The expected marginal contribution of $t_i$ is only positive whenever it is the first amongst the central players.
+Therefore, the total value of the big players is the random order value, with the corresponding probability distribution being the minimum of $m$ independent random variables describing the number of fringe players before each big player.
 
 Due to the symmetry of the big players in terms of the permutation probabilities, the value of each individual big player is the same.
 \begin{corollary}
@@ -632,17 +635,17 @@ Furthermore, the value of the fringe has a similar, marginal contribution-based 
 
 Finally, let us look at how the value of the big players and the fringe changes as a function of the number of the big players.
 Proposition \Cref{cor:multiple_platforms_2} again confirms our intuition: more players means that they become more substitutable, and thus their bargaining power decreases.
-This not only means that the value of each individual big player decreases, but also that their total value goes down.
+This not only means that the value of each individual big player decreases but also that the sum of their values is reduced.
 \begin{corollary}
     \label{cor:multiple_platforms_2}
     Let $\varphi_{P}^{\infty, m}$ denote the aggregated values of players of type $P$. $\varphi_{P}^{\infty, m}$ is decreasing in $m$ and $\varphi_{A}^{\infty, m}$ is increasing in $m$ unless $f$ is constant or $X$ is degenerate.
 \end{corollary}
 
 \paragraph{Example: Shapley value.}
-I illustrate the effect of the number of big players on the weight function $h(t)$ by looking at the simplest of the random order values, the Shapley value.
+I illustrate the effect of the number of central players on the weight function $h(t)$ by looking at the simplest of the random order values, the Shapley value.
 As shown in \Cref{prop:one_sided}, the limit of the Shapley value in the case of a single big player is just $\int_0^1 f(t) \dt$.
 Therefore, using the notation from \Cref{prop:one_sided_general}, $G(t) = t$.
-Conseqently, by \Cref{prop:multiple_platforms_total}, the sum of the shares of the big players corresponds to the random order value characterized by the cumulative distribution function
+Consequently, by \Cref{prop:multiple_platforms_total}, the sum of the shares of the big players corresponds to the random order value characterized by the cumulative distribution function
 \begin{align} 
     H(t) = 1 - (1 - t)^m.  \label{eq:weight_function_shapley}
 \end{align}
@@ -655,9 +658,9 @@ while the value that each individual big player obtains is
     \varphi_{P_j}^{\infty, m} = \underbracket{(1-t) ^ {m-1}}_{h_j(t)} f(t) \dt.
 \end{align*}
 
-\Cref{fig:multiple_platforms,fig:multiple_platforms_total} illustrate how $h_t$ and $h_j(t)$ depend on the number of big firms, $m$.
-In particular, it is apparent that a $H(t)$ with lower $m$ first order stochastically dominates one with a higher number of big firms.
-This is the underlying reason of the big players' share decreasing in their number, i.e. \Cref{cor:multiple_platforms_2}.
+\Cref{fig:multiple_platforms,fig:multiple_platforms_total} illustrate how $h_t$ and $h_j(t)$ depend on the number of central players, $m$.
+In particular, it is apparent that a $H(t)$ with lower $m$ first order stochastically dominates one with a higher number of players of type $P$.
+This is the underlying reason for the big players' share decreasing in their number, i.e., \Cref{cor:multiple_platforms_2}.
 
 \begin{figure}[ht]
     \centering
@@ -724,8 +727,8 @@ This is the underlying reason of the big players' share decreasing in their numb
 
 \subsubsection{Small players can generate some value on their own}
 
-Another way of relaxing the indispensability of the big player is assuming that the small players can generate some value on their own.
-Suppose that the big player still provides some value to any coalition, but a coalition of fringe players can achieve a positive value even without it.
+Another way of relaxing the central player's indispensability is to assume that the fringe players can generate some value on their own.
+Suppose the big player still provides some value to any coalition, but a coalition of fringe players can achieve a positive value even without it.
 Formally, the value function is now the following:
 \begin{align*}
     v(S) = \begin{cases}
@@ -734,17 +737,17 @@ Formally, the value function is now the following:
     \end{cases}
 \end{align*}
 
-As in the case of multiple big players, monotonicity is straightforward to establish.
+As with multiple central players, monotonicity is straightforward to establish.
 \begin{proposition}
     The game is monotone if $f$ is increasing and $f(t) \geq f_0(t) \geq 0 \forall t$.
 \end{proposition}
 Also similarly, conditions for superadditivity are not as simple.
-Therefore, the simultaneous formation of multiple coalitions must be excluded in this setting as well.
+Therefore, the simultaneous formation of multiple coalitions must be assumed away in this setting, too.
 
 On the other hand, the random order values and their limits are very straightforward to characterize.
 The value of the big player is still its average marginal contribution.
-The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not $f(s)$, but rather $f(s) - f_0(s)$.
-This is because the big player is not indispensable, as $s$ mass of fringe firms can achieve $f_0(s)$ even without it.
+The only difference is that this marginal contribution (conditional on $s$ share of the fringe coming before $P$) is not $f(s)$, but instead $f(s) - f_0(s)$.
+This is because the big player is not indispensable, as $s$ mass of fringe firms can achieve $f_0(s)$ without it.
 
 \begin{theorem}
     \label{prop:one_sided_non_indispensable}
@@ -756,8 +759,8 @@ This is because the big player is not indispensable, as $s$ mass of fringe firms
     with the last equality holding if $X$ is a continuous random variable.
 \end{theorem}
 
-The value of the fringe is also similar to the baseline case, except now fringe players have a non-zero marginal contribution even when $P$ is not present.
-Therefore, there is an additional term in the integral, corresponding to the marginal value of the fringe when $P$ is not present.
+The value of the fringe is also similar to the baseline case, except now fringe players have a non-zero marginal contribution  to coalitions not containing player $P$.
+Therefore, there is an additional term in the integral corresponding to the marginal value of fringe players when $P$ is not present.
 
 \begin{corollary}
     \label{cor:fringe_value_non_indispensable}
@@ -771,9 +774,9 @@ Therefore, there is an additional term in the integral, corresponding to the mar
     \end{align*}
 \end{corollary}
 
-It is clear that the value of the big player is decreasing in $f_0$ (\Cref{fig:non_indispensable}).
-Consequently, the value of the fringe is increasing in $f_0$, which is essentially its outside option (what it can achieve without the big player).
-This is a natural result, and again, it is in line with what one would expect from bargaining theory.
+Clearly, the value of the big player is decreasing in $f_0$ (\Cref{fig:non_indispensable}).
+Consequently, the value of the fringe is increasing in $f_0$, which is essentially its outside option.
+This is a natural result, and again, it aligns with what one would expect from bargaining theory.
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -929,7 +932,7 @@ In the remainder of this section, I will show that the Shapley value and the wei
 }
 
 \subsection{Special cases}
-\subsubsection{Shapley-value}
+\subsubsection{Shapley value}
 
 Let us now turn our attention to the Shapley value.
 As hinted before, due to the uniformity of the permutation probabilities, we get a diagonal formula in this case.
@@ -1560,7 +1563,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
 \end{proof}
 
 \begin{proof}[Proof of Corollary \ref{cor:fringe_value}]
-    The first equality comes from the efficiency of the Shapley-value.
+    The first equality comes from the efficiency of the Shapley value.
     The values of all players sum up to $f(1)$ for all $n \in \mathbb{N}$, therefore
     \begin{align*}
         \lim_{n \to \infty} \sum_{i=1}^n \varphi_{A_i}^n = \lim_{n \to \infty} (1 - \varphi_P^n ) = 1 - \int_0^1 f(t).
@@ -1809,7 +1812,7 @@ As in the case of non-linear network effects, it depends on the bargaining weigh
     \end{align*}
     
     Now we can use \Cref{lem:convergence_to_manifold} to conclude that $X_n \xrightarrow[]{d} (U, \dots, U)$.
-    Finally, by \Cref{lem:many_sided_manifold}, the Shapley-value is
+    Finally, by \Cref{lem:many_sided_manifold}, the Shapley value is
     \begin{align*}
         \varphi_P^\infty & = \int_0^1 f(s, \dots, s) \dt
     \end{align*}
