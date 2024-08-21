@@ -92,8 +92,12 @@ The study of multi-sided markets (or platforms) is also a good fit for this mode
     \textcite{huang2022shapley} is amongst the very few examples of using cooperative game theory in this setting.
 }
 
-This paper provides a general framework for modeling bargaining outcomes in this setting.
-By relying on the general concept of random order values, I highlight the common themes between various results found in more applied papers.
+I focus on how the central and fringe players split the total value that they can create.
+By relying on a generalization of the Shapley value, namely, random order values\footnote{
+    Similarly to the Shapley-value, random order values are also based on players' average marginal contributions to coalitions' values.
+    Contrary to the Shapley value, this average can be taken with respect to any probability distribution.
+}, this paper provides a general framework for modeling bargaining outcomes in this setting.
+This also highlights the common themes between various results found in more applied papers.
 I demonstrate that these values are described by tractable expressions and have geometric interpretations.
 Just as importantly, I show that the outcomes align with one's intuitive expectations of bargaining power in such situations.
 
@@ -128,18 +132,22 @@ Furthermore, I restrict my attention to a specific but economically significant 
 These two restrictions allow me to go beyond the Shapley value and obtain results for a more general set of solution concepts: random order values.
 Additionally, instead of looking at general results, such as existence, I can provide and interpret explicit expressions for the values of the various players.
 
-The other strand of research closely related to this paper belongs to the industrial organization literature.
+The other strand of research closely related to this paper belongs to the industrial organization literature, and, more specifically, to the literature on intermediation, multi-sided markets and vertical integration.
 Despite their theoretical appeal and tractability, oceanic games saw remarkably little use in industrial organization and, more generally, applied economics.
 Rare examples of such applications include \textcite{stole1996intra, stole1996organizational}\footnote{
     \textcite{stole1996intra} also provides microfoundations for using the Shapley value and the weighted value in a bargaining setting with one indispensable player.
 } and \textcite{levy1997individual}, which use the Shapley value to model wage bargaining under a divisible labor assumption (continuum of workers).
 
-The present paper contributes to this literature by generalizing its results and highlighting some general properties of the various values in the context of such games.
+The present paper contributes to this literature by providing a general framework for modeling bargaining outcomes in such settings, and highlighting some general properties of the various bargaining rules used in these papers.
 The latter is achieved by relying on the concept of random order values, which includes the Shapley value and the weighted value as special cases.
-The generalizations include relaxing the assumption on the indispensability of the central player, providing results for the distribution of the value between the various types of fringe players, and going beyond the Shapley value in the heterogeneous fringe player case.
+The generalizations include relaxing the assumption on the indispensability of the central player, which is especially relevant in the context of competing platforms.
+Additionally, I provide results on how the total value is distributed between the various players in the case of heterogeneous fringe when using weighted values.
 
 Finally, the example application presented to demonstrate the usefulness of the proposed approach is based on the seminal work of \textcite{armstrong2006competition} on multi-sided markets.
 Thus, despite the main results being presented in an abstract setting, this paper also has some minor contributions towards better understanding the functioning of platform economies.
+In particular, it highlights that, in contrast to the unilateral price-setting case, under bargaining, entry fees for each side of the market do depend on the surplus realized on that side.\footnote{
+    In the benchmark, unilateral price-setting model, the entry fee only depends on the externalities that the entrants impose and the elasticity of entry as a function of the entry fee.
+}
 
 The paper is organized as follows.
 In \Cref{sec:one_sided}, I present the main results for the case of identical fringe players.
