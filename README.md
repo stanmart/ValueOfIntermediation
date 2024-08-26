@@ -2,6 +2,9 @@
 [![publish](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/publish.yml/badge.svg)](https://github.com/stanmart/ValueOfIntermediation/actions/workflows/publish.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
+> [!CAUTION]
+> This repository is archived and is for reference only. The latest version of the papers, as well as a third, experimental one, can be found at [stanmart/phd-thesis](https://github.com/stanmart/phd-thesis).
+
 # The value of intermediation
 
 Contains the papers "The Value of Being Indispensable", "Hybrid platforms and bargaining power" and related materials. The main outputs are the following:
